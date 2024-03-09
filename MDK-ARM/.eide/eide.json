@@ -1,0 +1,461 @@
+{
+  "name": "infantry",
+  "type": "ARM",
+  "dependenceList": [],
+  "srcDirs": [
+    ".eide/deps"
+  ],
+  "virtualFolder": {
+    "name": "<virtual_root>",
+    "files": [],
+    "folders": [
+      {
+        "name": "::CMSIS",
+        "files": [],
+        "folders": []
+      },
+      {
+        "name": "Application",
+        "files": [],
+        "folders": [
+          {
+            "name": "MDK-ARM",
+            "files": [
+              {
+                "path": "startup_stm32f407xx.s"
+              }
+            ],
+            "folders": []
+          },
+          {
+            "name": "User",
+            "files": [],
+            "folders": [
+              {
+                "name": "Core",
+                "files": [
+                  {
+                    "path": "../Core/Src/can.c"
+                  },
+                  {
+                    "path": "../Core/Src/dma.c"
+                  },
+                  {
+                    "path": "../Core/Src/gpio.c"
+                  },
+                  {
+                    "path": "../Core/Src/i2c.c"
+                  },
+                  {
+                    "path": "../Core/Src/main.c"
+                  },
+                  {
+                    "path": "../Core/Src/spi.c"
+                  },
+                  {
+                    "path": "../Core/Src/stm32f4xx_hal_msp.c"
+                  },
+                  {
+                    "path": "../Core/Src/stm32f4xx_it.c"
+                  },
+                  {
+                    "path": "../Core/Src/tim.c"
+                  },
+                  {
+                    "path": "../Core/Src/usart.c"
+                  }
+                ],
+                "folders": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Chariot",
+        "files": [
+          {
+            "path": "../User/Chariot/crt_booster.cpp"
+          },
+          {
+            "path": "../User/Chariot/crt_chassis.cpp"
+          },
+          {
+            "path": "../User/Chariot/crt_gimbal.cpp"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "Device",
+        "files": [
+          {
+            "path": "../User/Device/dvc_boarda-mpuahrs-istmagnet.cpp"
+          },
+          {
+            "path": "../User/Device/dvc_boarda-mpuahrs.cpp"
+          },
+          {
+            "path": "../User/Device/dvc_djimotor.cpp"
+          },
+          {
+            "path": "../User/Device/dvc_dmmotor.cpp"
+          },
+          {
+            "path": "../User/Device/dvc_dr16.cpp"
+          },
+          {
+            "path": "../User/Device/dvc_manifold.cpp"
+          },
+          {
+            "path": "../User/Device/dvc_minipc.cpp"
+          },
+          {
+            "path": "../User/Device/dvc_referee.cpp"
+          },
+          {
+            "path": "../User/Device/dvc_sampler.cpp"
+          },
+          {
+            "path": "../User/Device/dvc_serialplot.cpp"
+          },
+          {
+            "path": "../User/Device/dvc_servo.cpp"
+          },
+          {
+            "path": "../User/Device/dvc_supercap.cpp"
+          },
+          {
+            "path": "../User/Device/dvc_witahrs.cpp"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "Drivers",
+        "files": [],
+        "folders": [
+          {
+            "name": "CMSIS",
+            "files": [
+              {
+                "path": "../Core/Src/system_stm32f4xx.c"
+              },
+              {
+                "path": "../Drivers/CMSIS/Lib/ARM/arm_cortexM4lf_math.lib"
+              }
+            ],
+            "folders": []
+          },
+          {
+            "name": "STM32F4xx_HAL_Driver",
+            "files": [
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c"
+              }
+            ],
+            "folders": []
+          }
+        ]
+      },
+      {
+        "name": "Interaction",
+        "files": [
+          {
+            "path": "../User/Interaction/ita_chariot.cpp"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "Middleware",
+        "files": [],
+        "folders": [
+          {
+            "name": "Algorithm",
+            "files": [
+              {
+                "path": "../User/Middleware/Algorithm/alg_filter.cpp"
+              },
+              {
+                "path": "../User/Middleware/Algorithm/alg_fsm.cpp"
+              },
+              {
+                "path": "../User/Middleware/Algorithm/alg_pid.cpp"
+              },
+              {
+                "path": "../User/Middleware/Algorithm/alg_slope.cpp"
+              }
+            ],
+            "folders": []
+          },
+          {
+            "name": "Driver",
+            "files": [
+              {
+                "path": "../User/Middleware/Driver/drv_adc.c"
+              },
+              {
+                "path": "../User/Middleware/Driver/drv_bsp-boarda.c"
+              },
+              {
+                "path": "../User/Middleware/Driver/drv_can.c"
+              },
+              {
+                "path": "../User/Middleware/Driver/drv_i2c.c"
+              },
+              {
+                "path": "../User/Middleware/Driver/drv_math.cpp"
+              },
+              {
+                "path": "../User/Middleware/Driver/drv_spi.c"
+              },
+              {
+                "path": "../User/Middleware/Driver/drv_tim.c"
+              },
+              {
+                "path": "../User/Middleware/Driver/drv_uart.c"
+              }
+            ],
+            "folders": []
+          }
+        ]
+      },
+      {
+        "name": "Task",
+        "files": [
+          {
+            "path": "../User/Task/tsk_config_and_callback.cpp"
+          }
+        ],
+        "folders": []
+      }
+    ]
+  },
+  "outDir": "build",
+  "deviceName": null,
+  "packDir": ".pack/Keil/STM32F4xx_DFP.1.0.8",
+  "miscInfo": {
+    "uid": "d3dda172da2b4989a1c79b21e8e46f0d"
+  },
+  "targets": {
+    "infantry": {
+      "excludeList": [],
+      "toolchain": "AC5",
+      "compileConfig": {
+        "cpuType": "Cortex-M4",
+        "floatingPointHardware": "single",
+        "scatterFilePath": "",
+        "useCustomScatterFile": false,
+        "storageLayout": {
+          "RAM": [
+            {
+              "tag": "RAM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            },
+            {
+              "tag": "RAM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            },
+            {
+              "tag": "RAM",
+              "id": 3,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            },
+            {
+              "tag": "IRAM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x20000000",
+                "size": "0x1c000"
+              },
+              "isChecked": true,
+              "noInit": false
+            },
+            {
+              "tag": "IRAM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x2001c000",
+                "size": "0x4000"
+              },
+              "isChecked": true,
+              "noInit": false
+            }
+          ],
+          "ROM": [
+            {
+              "tag": "ROM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            },
+            {
+              "tag": "ROM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            },
+            {
+              "tag": "ROM",
+              "id": 3,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            },
+            {
+              "tag": "IROM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x8000000",
+                "size": "0x100000"
+              },
+              "isChecked": true,
+              "isStartup": true
+            },
+            {
+              "tag": "IROM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            }
+          ]
+        },
+        "options": "null"
+      },
+      "uploader": "JLink",
+      "uploadConfig": {
+        "bin": "",
+        "baseAddr": "",
+        "cpuInfo": {
+          "vendor": "ST",
+          "cpuName": "STM32F407IG"
+        },
+        "proType": 1,
+        "speed": 8000,
+        "otherCmds": ""
+      },
+      "uploadConfigMap": {},
+      "custom_dep": {
+        "name": "default",
+        "incList": [
+          "../Core/Inc",
+          "../Drivers/STM32F4xx_HAL_Driver/Inc",
+          "../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy",
+          "../Drivers/CMSIS/Device/ST/STM32F4xx/Include",
+          "../Drivers/CMSIS/Include",
+          "../User/Chariot",
+          "../User/Device",
+          "../User/Interaction",
+          "../User/Middleware/Algorithm",
+          "../User/Middleware/Driver",
+          "../User/Task",
+          "../Drivers/CMSIS/DSP/Include",
+          "RTE/_infantry"
+        ],
+        "libList": [],
+        "sourceDirList": [],
+        "defineList": [
+          "USE_HAL_DRIVER",
+          "STM32F407xx",
+          "ARM_MATH_CM4",
+          "__CC_ARM",
+          "ARM_MATH_MATRIX_CHECK",
+          "ARM_MATH_ROUNDING",
+          "__TARGET_FPU_VFP",
+          "__FPU_PRESENT=1"
+        ]
+      }
+    }
+  },
+  "version": "3.3"
+}
