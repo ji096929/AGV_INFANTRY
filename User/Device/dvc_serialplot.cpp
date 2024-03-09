@@ -58,14 +58,14 @@ void Class_Serialplot::Init(UART_HandleTypeDef *huart, uint8_t __Serialplot_Rx_V
     {
         UART_Manage_Object = &UART6_Manage_Object;
     }
-    else if (huart->Instance == UART7)
-    {
-        UART_Manage_Object = &UART7_Manage_Object;
-    }
-    else if (huart->Instance == UART8)
-    {
-        UART_Manage_Object = &UART8_Manage_Object;
-    }
+//    else if (huart->Instance == UART7)
+//    {
+//        UART_Manage_Object = &UART7_Manage_Object;
+//    }
+//    else if (huart->Instance == UART8)
+//    {
+//        UART_Manage_Object = &UART8_Manage_Object;
+//    }
 
     UART_Rx_Variable_Num = __Serialplot_Rx_Variable_Assignment_Num;
     UART_Rx_Variable_List = __Serialplot_Rx_Variable_Assignment_List;

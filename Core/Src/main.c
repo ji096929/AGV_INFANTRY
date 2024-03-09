@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2022 STMicroelectronics.
+  * Copyright (c) 2024 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -18,20 +18,17 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "adc.h"
 #include "can.h"
 #include "dma.h"
+#include "i2c.h"
 #include "spi.h"
 #include "tim.h"
 #include "usart.h"
-#include "usb_device.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
 #include "tsk_config_and_callback.h"
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -97,29 +94,23 @@ int main(void)
   MX_DMA_Init();
   MX_CAN2_Init();
   MX_TIM3_Init();
-  MX_TIM5_Init();
-  MX_TIM12_Init();
-  MX_CAN1_Init();
   MX_USART1_UART_Init();
-  MX_USART2_UART_Init();
-  MX_USART6_UART_Init();
+  MX_CAN1_Init();
   MX_USART3_UART_Init();
-  MX_SPI5_Init();
-  MX_USB_DEVICE_Init();
-  MX_UART7_Init();
-  MX_ADC1_Init();
+  MX_USART6_UART_Init();
+  MX_I2C3_Init();
+  MX_SPI1_Init();
+  MX_TIM10_Init();
   MX_TIM4_Init();
+  MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
-
   Task_Init();
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
-  { 
-    Task_Loop();
+  {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -151,7 +142,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLM = 6;
   RCC_OscInitStruct.PLL.PLLN = 168;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 7;
+  RCC_OscInitStruct.PLL.PLLQ = 4;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();

@@ -54,14 +54,14 @@ void Class_DR16::Init(UART_HandleTypeDef *huart)
     {
         UART_Manage_Object = &UART6_Manage_Object;
     }
-    else if (huart->Instance == UART7)
-    {
-        UART_Manage_Object = &UART7_Manage_Object;
-    }
-    else if (huart->Instance == UART8)
-    {
-        UART_Manage_Object = &UART8_Manage_Object;
-    }
+//    else if (huart->Instance == UART7)
+//    {
+//        UART_Manage_Object = &UART7_Manage_Object;
+//    }
+//    else if (huart->Instance == UART8)
+//    {
+//        UART_Manage_Object = &UART8_Manage_Object;
+//    }
 }
 
 /**
@@ -196,6 +196,8 @@ void Class_DR16::Data_Process()
 {
     //数据处理过程
     Struct_DR16_UART_Data *tmp_buffer = (Struct_DR16_UART_Data *)UART_Manage_Object->Rx_Buffer;
+
+    /*源数据转为对外数据*/
 
     //摇杆信息
     Data.Right_X = (tmp_buffer->Channel_0 - Rocker_Offset) / Rocker_Num;

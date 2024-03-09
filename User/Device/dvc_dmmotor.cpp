@@ -216,7 +216,7 @@ void Class_DM_Motor_J4310::Data_Process()
 void Class_DM_Motor_J4310::CAN_RxCpltCallback(uint8_t *Rx_Data)
 {
     //滑动窗口, 判断电机是否在线
-    Flag += 1;
+    this->Flag += 1;
 
     Data_Process();
 }

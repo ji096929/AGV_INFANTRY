@@ -32,8 +32,8 @@
 #define CAN_EXTID (1 << 1)
 
 // 数据帧或遥控帧
-#define CAN_DATA_TYPE (0 << 0)
-#define CAN_REMOTE_TYPE (1 << 0)
+#define CAN_DATA_TYPE    0
+#define CAN_REMOTE_TYPE  1
 
 /* Exported types ------------------------------------------------------------*/
 

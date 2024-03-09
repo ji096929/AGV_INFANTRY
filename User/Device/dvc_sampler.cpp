@@ -30,25 +30,25 @@
  * @param __Sampler_Serial 采样点序列号, 从0开始
  * @param __Sampler_Filter 采用的滤波器
  */
-void Class_Sampler::Init(ADC_HandleTypeDef *hadc, uint16_t __Sampler_Serial, Enum_Sampler_Filter __Sampler_Filter)
-{
-    if (hadc->Instance == ADC1)
-    {
-        ADC_Manage_Object = &ADC1_Manage_Object;
-    }
-    else if (hadc->Instance == ADC2)
-    {
-        ADC_Manage_Object = &ADC2_Manage_Object;
-    }
-    else if (hadc->Instance == ADC3)
-    {
-        ADC_Manage_Object = &ADC3_Manage_Object;
-    }
-    Sampler_Serial = __Sampler_Serial;
-    Sampler_Filter = __Sampler_Filter;
+//void Class_Sampler::Init(ADC_HandleTypeDef *hadc, uint16_t __Sampler_Serial, Enum_Sampler_Filter __Sampler_Filter)
+//{
+//    if (hadc->Instance == ADC1)
+//    {
+//        ADC_Manage_Object = &ADC1_Manage_Object;
+//    }
+//    else if (hadc->Instance == ADC2)
+//    {
+//        ADC_Manage_Object = &ADC2_Manage_Object;
+//    }
+//    else if (hadc->Instance == ADC3)
+//    {
+//        ADC_Manage_Object = &ADC3_Manage_Object;
+//    }
+//    Sampler_Serial = __Sampler_Serial;
+//    Sampler_Filter = __Sampler_Filter;
 
-    ADC_Value = &ADC_Manage_Object->ADC_Data[Sampler_Serial];
-}
+//    ADC_Value = &ADC_Manage_Object->ADC_Data[Sampler_Serial];
+//}
 
 /**
  * @brief TIM定时器中断计算滤波器回调函数

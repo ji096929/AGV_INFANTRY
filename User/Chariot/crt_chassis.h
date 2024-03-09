@@ -43,13 +43,14 @@ enum Enum_Chassis_Control_Type
  * @brief Specialized, 三轮舵轮底盘类
  *
  */
+//omnidirectional 全向轮
 class Class_Tricycle_Chassis
 {
 public:
-    //功率控制舵向电机PID
-    Class_PID PID_Power_Limit_Steer;
-    //功率控制轮向电机PID
-    Class_PID PID_Power_Limit_Wheel;
+    // //功率控制舵向电机PID
+    // Class_PID PID_Power_Limit_Steer;
+    // //功率控制轮向电机PID
+    // Class_PID PID_Power_Limit_Wheel;
 
     //斜坡函数加减速速度X
     Class_Slope Slope_Velocity_X;
@@ -62,12 +63,12 @@ public:
     Class_Referee *Referee;
 
     //电流采样数据, 提供功率测量
-    Class_Sampler Sampler;
+ //   Class_Sampler Sampler;
 
     //下方转动电机
-    Class_DJI_Motor_C620 Motor_Wheel[3];
-    //舵向控制电机
-    Class_DJI_Motor_GM6020 Motor_Steer[3];
+    Class_DJI_Motor_C620 Motor_Wheel[4];
+    // //舵向控制电机
+    // Class_DJI_Motor_GM6020 Motor_Steer[3];
 
     void Init(float __Velocity_X_Max = 2.0f, float __Velocity_Y_Max = 2.0f, float __Omega_Max = 4.0f, float __Steer_Power_Ratio = 0.5);
 
@@ -117,7 +118,7 @@ protected:
     //舵向电机目标值
     float Target_Steer_Angle[3];
     //转动电机目标值
-    float Target_Wheel_Omega[3];
+    float Target_Wheel_Omega[4];
 
     //读变量
 
@@ -153,9 +154,9 @@ protected:
 
     //内部函数
 
-    void Power_Limit_Steer();
-    void Power_Limit_Wheel();
-    void Power_Limit();
+    // void Power_Limit_Steer();
+    // void Power_Limit_Wheel();
+    // void Power_Limit();
     void Speed_Resolution();
 };
 
@@ -181,6 +182,26 @@ const float FRONT_TO_FRONT_CENTER_DISTANCE = 0.176f;
 //轮组方位角
 const float WHEEL_AZIMUTH[3] = {0.0f, atan2f(-FRONT_TO_FRONT_CENTER_DISTANCE, -FRONT_CENTER_TO_CORE_DISTANCE), atan2f(FRONT_TO_FRONT_CENTER_DISTANCE, -FRONT_CENTER_TO_CORE_DISTANCE)};
 
+//轮子直径
+const float WHELL_DIAMETER = 15.400000f;	
+
+//底盘半宽
+const float HALF_WIDTH = 0.15000000f;		
+
+//底盘半长
+const float HALF_LENGTH = 0.15000000f;	
+
+//转速转角速度	1 rpm = 2pi/60 rad/s 
+const float RPM2RAD = 0.104720f;				
+
+//转速转线速度	vel = rpn*pi*D/60  cm/s
+const float RPM2VEL = 0.806342f;			
+
+//线速度转转度  //1.240168							
+const float VEL2RPM = 1.240168f;				
+
+//齿轮箱减速比;	
+const float M3508_REDUCTION_RATIO = 13.733f;	
 /* Exported function declarations --------------------------------------------*/
 
 /**

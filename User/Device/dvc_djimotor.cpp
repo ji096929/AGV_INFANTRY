@@ -529,7 +529,7 @@ void Class_DJI_Motor_C620::Init(CAN_HandleTypeDef *hcan, Enum_DJI_Motor_ID __CAN
     DJI_Motor_Control_Method = __DJI_Motor_Control_Method;
     Gearbox_Rate = __Gearbox_Rate;
     Torque_Max = __Torque_Max;
-    CAN_Tx_Data = allocate_tx_data(hcan, __CAN_ID);
+    this->CAN_Tx_Data = allocate_tx_data(hcan, __CAN_ID);
 }
 
 /**

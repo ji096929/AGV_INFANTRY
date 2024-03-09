@@ -46,13 +46,16 @@
 /* Private variables ---------------------------------------------------------*/
 
 bool init_finished = 0;
-
+//机器人控制对象
 Class_Chariot chariot;
-
+//达妙电机对象
 Class_DM_Motor_J4310 motor;
+//imu对象
 Class_BoardA_MPU boarda_mpu;
+//串口裁判系统对象
 Class_Serialplot serialplot;
-static char Variable_Assignment_List[][SERIALPLOT_RX_VARIABLE_ASSIGNMENT_MAX_LENGTH] = {
+
+//static char Variable_Assignment_List[][SERIALPLOT_RX_VARIABLE_ASSIGNMENT_MAX_LENGTH] = {
     // 电机调PID
     // "pa",
     // "ia",
@@ -79,10 +82,10 @@ static char Variable_Assignment_List[][SERIALPLOT_RX_VARIABLE_ASSIGNMENT_MAX_LEN
     // "dw",
 
     // 陀螺仪调参
-    "kp",
-    "ki",
-    "int",
-};
+//    "kp",
+//    "ki",
+//    "int",
+//};
 
 /* Private function declarations ---------------------------------------------*/
 
@@ -117,19 +120,19 @@ void Device_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
         chariot.Chassis.Motor_Wheel[2].CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
-    case (0x205):
+    case (0x204):
     {
-        chariot.Chassis.Motor_Steer[0].CAN_RxCpltCallback(CAN_RxMessage->Data);
+        chariot.Chassis.Motor_Wheel[3].CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
     case (0x206):
     {
-        chariot.Chassis.Motor_Steer[1].CAN_RxCpltCallback(CAN_RxMessage->Data);
+        //chariot.Chassis.Motor_Steer[1].CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
     case (0x207):
     {
-        chariot.Chassis.Motor_Steer[2].CAN_RxCpltCallback(CAN_RxMessage->Data);
+        //chariot.Chassis.Motor_Steer[2].CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
     }
@@ -140,6 +143,7 @@ void Device_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
  *
  * @param CAN_RxMessage CAN2收到的消息
  */
+bool get_flag=0;
 void Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 {
     switch (CAN_RxMessage->Header.StdId)
@@ -169,7 +173,8 @@ void Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
         chariot.Gimbal.Motor_Pitch.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
-    }
+	  }
+		
 }
 
 /**
@@ -179,21 +184,21 @@ void Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
  * @param Rx_Buffer SPI5接收的消息
  * @param Length 长度
  */
-void Device_SPI5_Callback(uint8_t *Tx_Buffer, uint8_t *Rx_Buffer, uint16_t Length)
-{
-    if (SPI5_Manage_Object.Now_GPIOx == BoardA_MPU6500_CS_GPIO_Port && SPI5_Manage_Object.Now_GPIO_Pin == BoardA_MPU6500_CS_Pin)
-    {
-        boarda_mpu.SPI_TxRxCpltCallback(Tx_Buffer, Rx_Buffer);
-    }
-}
+//void Device_SPI5_Callback(uint8_t *Tx_Buffer, uint8_t *Rx_Buffer, uint16_t Length)
+//{
+//    if (SPI5_Manage_Object.Now_GPIOx == BoardA_MPU6500_CS_GPIO_Port && SPI5_Manage_Object.Now_GPIO_Pin == BoardA_MPU6500_CS_Pin)
+//    {
+//        boarda_mpu.SPI_TxRxCpltCallback(Tx_Buffer, Rx_Buffer);
+//    }
+//}
 
 /**
- * @brief UART1遥控器回调函数
+ * @brief UART3遥控器回调函数
  *
  * @param Buffer UART1收到的消息
  * @param Length 长度
  */
-void DR16_UART1_Callback(uint8_t *Buffer, uint16_t Length)
+void DR16_UART3_Callback(uint8_t *Buffer, uint16_t Length)
 {
     chariot.DR16.UART_RxCpltCallback(Buffer);
 }
@@ -369,7 +374,7 @@ void AHRS_UART7_Callback(uint8_t *Buffer, uint16_t Length)
  */
 void MiniPC_USB_Callback(uint8_t *Buffer, uint32_t Length)
 {
-    chariot.MiniPC.USB_RxCpltCallback(Buffer);
+    //chariot.MiniPC.USB_RxCpltCallback(Buffer);
 }
 
 /**
@@ -379,7 +384,7 @@ void MiniPC_USB_Callback(uint8_t *Buffer, uint32_t Length)
 void Task100us_TIM4_Callback()
 {
     // 单给收发SPI消息开的定时器
-    boarda_mpu.TIM100us_Send_PeriodElapsedCallback();
+    //boarda_mpu.TIM100us_Send_PeriodElapsedCallback();
 }
 
 /**
@@ -395,22 +400,33 @@ void Task1ms_TIM5_Callback()
     {
         mod50 = 0;
 
-        chariot.Referee.TIM1msMod50_Alive_PeriodElapsedCallback();
+//        chariot.Referee.TIM1msMod50_Alive_PeriodElapsedCallback();
         chariot.DR16.TIM1msMod50_Alive_PeriodElapsedCallback();
-        chariot.Gimbal.WIT.TIM1msMod50_Alive_PeriodElapsedCallback();
-        chariot.MiniPC.TIM1msMod50_Alive_PeriodElapsedCallback();
-
-        motor.TIM_Alive_PeriodElapsedCallback();
+        chariot.Referee.TIM1msMod50_Alive_PeriodElapsedCallback();
+        //chariot.Gimbal.WIT.TIM1msMod50_Alive_PeriodElapsedCallback();
+//        chariot.MiniPC.TIM1msMod50_Alive_PeriodElapsedCallback();
+        //判断达妙电机是否断开连接
+//        motor.TIM_Alive_PeriodElapsedCallback();
     }
 
-    // 交互层回调函数
+    // 交互层回调函数 1ms
 
     chariot.TIM_Control_Callback();
+//    chariot.Chassis.Motor_Wheel[2].Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_OMEGA);
+    //chariot.Chassis.Motor_Wheel[0].Set_Target_Omega(0.5f); // 设置电机目标转速为0.5 rad/s
+//    chariot.Chassis.Motor_Wheel[2].TIM_PID_PeriodElapsedCallback(); // 调用PID回调函数，更新电机控制
 
+		// for(int i=0;i<4;i++){
+		// 	chariot.Chassis.Motor_Wheel[i].Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_OMEGA);
+		// 	chariot.Chassis.Motor_Wheel[i].TIM_PID_PeriodElapsedCallback(); 
+		// 	chariot.Chassis.Motor_Wheel[i].TIM_Alive_PeriodElapsedCallback();
+		// }
+
+		//chariot.Chassis.Motor_Wheel[0].Set_Target_Omega(chariot.DR16.Get_Left_X()*10.0f);
     // 设备层回调函数
 
     // MPU的滤波器
-    boarda_mpu.TIM_Calculate_PeriodElapsedCallback();
+    //boarda_mpu.TIM_Calculate_PeriodElapsedCallback();
 
     // 电机调PID串口绘图
     //  float angle_target, angle_now, omega_target, omega_now, torque_target, torque_now;
@@ -496,40 +512,43 @@ void Task1ms_TIM5_Callback()
     //  serialplot.Set_Data(7, &tempq0, &tempq1, &tempq2, &tempq3, &tempyaw, &temppitch, &temproll);
 
     // 达妙电机测试
-    float tempangle = motor.Get_Now_Angle();
-    float tempvelocity = motor.Get_Now_Omega();
-    float temptorque = motor.Get_Now_Torque();
-    serialplot.Set_Data(3, &tempangle, &tempvelocity, &temptorque);
+    // float tempangle = motor.Get_Now_Angle();
+    // float tempvelocity = motor.Get_Now_Omega();
+    // float temptorque = motor.Get_Now_Torque();
+    // serialplot.Set_Data(3, &tempangle, &tempvelocity, &temptorque);
 
-    serialplot.TIM_Write_PeriodElapsedCallback();
+    // serialplot.TIM_Write_PeriodElapsedCallback();
 
-    motor.Set_DM_Control_Status(DM_Motor_Control_Status_ENABLE);
-    static int flag = 0;
-    flag++;
-    if (flag == 5000)
-    {
-        motor.Set_Target_Angle(PI);
-    }
-    else if (flag == 10000)
-    {
-        flag = 0;
-        motor.Set_Target_Angle(-PI);
-    }
-    motor.Set_Target_Omega(10.0f * PI);
-    motor.TIM_Process_PeriodElapsedCallback();
-
+    // motor.Set_DM_Control_Status(DM_Motor_Control_Status_ENABLE);
+    // static int flag = 0;
+    // flag++;
+    // if (flag == 5000)
+    // {
+    //     motor.Set_Target_Angle(PI);
+    // }
+    // else if (flag == 10000)
+    // {
+    //     flag = 0;
+    //     motor.Set_Target_Angle(-PI);
+    // }
+    // motor.Set_Target_Omega(10.0f * PI);
+    // motor.TIM_Process_PeriodElapsedCallback();
+    chariot.Chassis.Set_Target_Velocity_X(chariot.DR16.Get_Left_Y()*25);
+    chariot.Chassis.Set_Target_Velocity_Y(chariot.DR16.Get_Left_X()*25);
+    chariot.Chassis.Set_Target_Omega(0.0f);
+    chariot.Chassis.Set_Chassis_Control_Type(Chassis_Control_Type_ABSOLUTE);
+    chariot.Chassis.TIM_Calculate_PeriodElapsedCallback();
     // 驱动层回调函数
-
+    //统一打包发送
     TIM_CAN_PeriodElapsedCallback();
-    TIM_UART_PeriodElapsedCallback();
+//    TIM_UART_PeriodElapsedCallback();
 
     static int mod5 = 0;
     mod5++;
     if (mod5 == 5)
     {
         mod5 = 0;
-
-        TIM_USB_PeriodElapsedCallback();
+//        TIM_USB_PeriodElapsedCallback();
     }
 }
 
@@ -539,39 +558,45 @@ void Task1ms_TIM5_Callback()
  */
 void Task_Init()
 {
-    // 驱动层初始化
+    /*驱动层初始化*/
 
-    BSP_Init(BSP_DC24_LU_ON | BSP_DC24_LD_ON | BSP_DC24_RU_ON | BSP_DC24_RD_ON);
+   // BSP_Init(BSP_DC24_LU_ON | BSP_DC24_LD_ON | BSP_DC24_RU_ON | BSP_DC24_RD_ON);
 
-    ADC_Init(&hadc1, 1);
-
+    //ADC_Init(&hadc1, 1);
+    
+    //集中总线can1/can2
     CAN_Init(&hcan1, Device_CAN1_Callback);
     CAN_Init(&hcan2, Device_CAN2_Callback);
-
-    SPI_Init(&hspi5, Device_SPI5_Callback);
-
-    UART_Init(&huart1, DR16_UART1_Callback, 18);
-    UART_Init(&huart2, Serialplot_UART2_Callback, SERIALPLOT_RX_VARIABLE_ASSIGNMENT_MAX_LENGTH);
+    
+    //c板陀螺仪任务
+    //SPI_Init(&hspi5, Device_SPI5_Callback);
+    //遥控器接收
+    UART_Init(&huart3, DR16_UART3_Callback, 18);
+    
+    //UART_Init(&huart2, Serialplot_UART2_Callback, SERIALPLOT_RX_VARIABLE_ASSIGNMENT_MAX_LENGTH);
+    //裁判系统
     UART_Init(&huart6, Referee_UART6_Callback, 128);
-    UART_Init(&huart7, AHRS_UART7_Callback, 11);
-
-    USB_Init(MiniPC_USB_Callback, 64);
-
-    TIM_Init(&htim4, Task100us_TIM4_Callback);
+    //外挂imu接收
+    //UART_Init(&huart7, AHRS_UART7_Callback, 11);
+    //USB协议
+//    USB_Init(MiniPC_USB_Callback, 64);
+    //定时器循环任务
+//    TIM_Init(&htim4, Task100us_TIM4_Callback);
     TIM_Init(&htim5, Task1ms_TIM5_Callback);
 
-    // 设备层初始化
+    /*设备层初始化*/
 
-    boarda_mpu.Init();
-    serialplot.Init(&huart2, 6, (char **)Variable_Assignment_List);
-    motor.Init(&hcan1, DM_Motor_ID_0xA1, DM_Motor_Control_Method_POSITION_OMEGA);
+    //boarda_mpu.Init();
+    //serialplot.Init(&huart2, 6, (char **)Variable_Assignment_List);
+    //达妙电机设备层初始化
+    //motor.Init(&hcan1, DM_Motor_ID_0xA1, DM_Motor_Control_Method_POSITION_OMEGA);
 
-    // 交互层初始化
+    /*交互层初始化*/
 
     chariot.Init();
-
-    // 使能调度时钟
-    HAL_TIM_Base_Start_IT(&htim4);
+  
+    /*使能调度时钟*/
+    //HAL_TIM_Base_Start_IT(&htim4);
     HAL_TIM_Base_Start_IT(&htim5);
 
     init_finished = 1;

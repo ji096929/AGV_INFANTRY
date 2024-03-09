@@ -6,12 +6,13 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2016 STMicroelectronics.
-  * All rights reserved.
+  * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
+  * All rights reserved.</center></h2>
   *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
+  * This software component is licensed by ST under BSD 3-Clause license,
+  * the "License"; You may not use this file except in compliance with the
+  * License. You may obtain a copy of the License at:
+  *                        opensource.org/licenses/BSD-3-Clause
   *
   ******************************************************************************
   */
@@ -152,7 +153,7 @@ typedef struct __UART_HandleTypeDef
 
   UART_InitTypeDef              Init;             /*!< UART communication parameters      */
 
-  const uint8_t                 *pTxBuffPtr;      /*!< Pointer to UART Tx transfer Buffer */
+  uint8_t                       *pTxBuffPtr;      /*!< Pointer to UART Tx transfer Buffer */
 
   uint16_t                      TxXferSize;       /*!< UART Tx Transfer size              */
 
@@ -719,11 +720,11 @@ HAL_StatusTypeDef HAL_UART_UnRegisterRxEventCallback(UART_HandleTypeDef *huart);
   */
 
 /* IO operation functions *******************************************************/
-HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
 HAL_StatusTypeDef HAL_UART_Receive(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
+HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
 HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
-HAL_StatusTypeDef HAL_UART_Transmit_DMA(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
+HAL_StatusTypeDef HAL_UART_Transmit_DMA(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
 HAL_StatusTypeDef HAL_UART_Receive_DMA(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
 HAL_StatusTypeDef HAL_UART_DMAPause(UART_HandleTypeDef *huart);
 HAL_StatusTypeDef HAL_UART_DMAResume(UART_HandleTypeDef *huart);
@@ -882,3 +883,4 @@ HAL_StatusTypeDef UART_Start_Receive_DMA(UART_HandleTypeDef *huart, uint8_t *pDa
 
 #endif /* __STM32F4xx_HAL_UART_H */
 
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

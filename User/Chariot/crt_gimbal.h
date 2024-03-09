@@ -43,7 +43,7 @@ public:
     //陀螺仪获取云台角速度
     Class_WIT *WIT;
     //迷你主机获取底盘角速度补偿
-    Class_MiniPC *MiniPC;
+//    Class_MiniPC *MiniPC;
 
     void TIM_PID_PeriodElapsedCallback();
 
@@ -79,7 +79,8 @@ protected:
 
     //常量
 
-    float Gravity_Compensate = 1700.0f;
+    // 重力补偿
+float Gravity_Compensate = 1700.0f;
 
     //内部变量
 
@@ -103,7 +104,9 @@ public:
     Class_WIT WIT;
 
     //迷你主机
-    Class_MiniPC *MiniPC;
+//    Class_MiniPC *MiniPC;
+
+    /*后期yaw pitch这两个类要换成其父类，大疆电机类*/
 
     // yaw轴电机
     Class_Gimbal_Yaw_Motor_GM6020 Motor_Yaw;

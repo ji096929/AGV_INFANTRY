@@ -46,10 +46,10 @@ struct Struct_UART_Manage_Object
 extern bool init_finished;
 
 extern UART_HandleTypeDef huart1;
-extern UART_HandleTypeDef huart2;
+//extern UART_HandleTypeDef huart2;
 extern UART_HandleTypeDef huart3;
 extern UART_HandleTypeDef huart6;
-extern UART_HandleTypeDef huart7;
+//extern UART_HandleTypeDef huart7;
 
 extern Struct_UART_Manage_Object UART1_Manage_Object;
 extern Struct_UART_Manage_Object UART2_Manage_Object;

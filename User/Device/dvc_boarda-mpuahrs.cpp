@@ -31,8 +31,8 @@
 void Class_BoardA_MPU::Init()
 {
     SPI_Manage_Object = &SPI5_Manage_Object;
-    CS_GPIOx = BoardA_MPU6500_CS_GPIO_Port;
-    CS_GPIO_Pin = BoardA_MPU6500_CS_Pin;
+//    CS_GPIOx = BoardA_MPU6500_CS_GPIO_Port;
+//    CS_GPIO_Pin = BoardA_MPU6500_CS_Pin;
 
     PID_Mahony_X.Init(1000.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     PID_Mahony_Y.Init(1000.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);

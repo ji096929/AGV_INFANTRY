@@ -55,14 +55,14 @@ void Class_Manifold::Init(UART_HandleTypeDef *huart, uint16_t __Frame_Header)
     {
         UART_Manage_Object = &UART6_Manage_Object;
     }
-    else if (huart->Instance == UART7)
-    {
-        UART_Manage_Object = &UART7_Manage_Object;
-    }
-    else if (huart->Instance == UART8)
-    {
-        UART_Manage_Object = &UART8_Manage_Object;
-    }
+//    else if (huart->Instance == UART7)
+//    {
+//        UART_Manage_Object = &UART7_Manage_Object;
+//    }
+//    else if (huart->Instance == UART8)
+//    {
+//        UART_Manage_Object = &UART8_Manage_Object;
+//    }
 }
 
 /**

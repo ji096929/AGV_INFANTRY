@@ -12,12 +12,13 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.
+  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.</center></h2>
   *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
+  * This software component is licensed by ST under BSD 3-Clause license,
+  * the "License"; You may not use this file except in compliance with the
+  * License. You may obtain a copy of the License at:
+  *                        opensource.org/licenses/BSD-3-Clause
   *
   ******************************************************************************
   */
@@ -7092,7 +7093,7 @@ typedef struct
 #define FMC_BCR1_CBURSTRW           FMC_BCR1_CBURSTRW_Msk                      /*!<Write burst enable         */
 #define FMC_BCR1_CCLKEN_Pos         (20U)                                      
 #define FMC_BCR1_CCLKEN_Msk         (0x1UL << FMC_BCR1_CCLKEN_Pos)              /*!< 0x00100000 */
-#define FMC_BCR1_CCLKEN             FMC_BCR1_CCLKEN_Msk                        /*!<Continuous clock enable     */
+#define FMC_BCR1_CCLKEN             FMC_BCR1_CCLKEN_Msk                        /*!<Continous clock enable     */
 #define FMC_BCR1_WFDIS_Pos          (21U)                                      
 #define FMC_BCR1_WFDIS_Msk          (0x1UL << FMC_BCR1_WFDIS_Pos)               /*!< 0x00200000 */
 #define FMC_BCR1_WFDIS              FMC_BCR1_WFDIS_Msk                         /*!<Write FIFO Disable         */
@@ -8062,7 +8063,7 @@ typedef struct
 
 #define FMC_SDRTR_REIE_Pos          (14U)                                      
 #define FMC_SDRTR_REIE_Msk          (0x1UL << FMC_SDRTR_REIE_Pos)               /*!< 0x00004000 */
-#define FMC_SDRTR_REIE              FMC_SDRTR_REIE_Msk                         /*!<RES interrupt enable */
+#define FMC_SDRTR_REIE              FMC_SDRTR_REIE_Msk                         /*!<RES interupt enable */
 
 /******************  Bit definition for FMC_SDSR register  ******************/
 #define FMC_SDSR_RE_Pos             (0U)                                       
@@ -15651,7 +15652,7 @@ typedef struct
 #define IS_TIM_32B_COUNTER_INSTANCE(INSTANCE)(((INSTANCE) == TIM2) || \
                                               ((INSTANCE) == TIM5))
 
-/***************** TIM Instances : external trigger input available ************/
+/***************** TIM Instances : external trigger input availabe ************/
 #define IS_TIM_ETR_INSTANCE(INSTANCE)  (((INSTANCE) == TIM1) || \
                                         ((INSTANCE) == TIM2) || \
                                         ((INSTANCE) == TIM3) || \
@@ -15979,3 +15980,7 @@ typedef struct
 #endif /* __cplusplus */
 
 #endif /* __STM32F446xx_H */
+
+
+
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -82,20 +82,20 @@ void UART_Init(UART_HandleTypeDef *huart, UART_Call_Back Callback_Function, uint
         UART6_Manage_Object.Rx_Buffer_Length = Rx_Buffer_Length;
         HAL_UARTEx_ReceiveToIdle_DMA(huart, UART6_Manage_Object.Rx_Buffer, UART6_Manage_Object.Rx_Buffer_Length);
     }
-    else if (huart->Instance == UART7)
-    {
-        UART7_Manage_Object.UART_Handler = huart;
-        UART7_Manage_Object.Callback_Function = Callback_Function;
-        UART7_Manage_Object.Rx_Buffer_Length = Rx_Buffer_Length;
-        HAL_UARTEx_ReceiveToIdle_DMA(huart, UART7_Manage_Object.Rx_Buffer, UART7_Manage_Object.Rx_Buffer_Length);
-    }
-    else if (huart->Instance == UART8)
-    {
-        UART8_Manage_Object.UART_Handler = huart;
-        UART8_Manage_Object.Callback_Function = Callback_Function;
-        UART8_Manage_Object.Rx_Buffer_Length = Rx_Buffer_Length;
-        HAL_UARTEx_ReceiveToIdle_DMA(huart, UART8_Manage_Object.Rx_Buffer, UART8_Manage_Object.Rx_Buffer_Length);
-    }
+//    else if (huart->Instance == UART7)
+//    {
+//        UART7_Manage_Object.UART_Handler = huart;
+//        UART7_Manage_Object.Callback_Function = Callback_Function;
+//        UART7_Manage_Object.Rx_Buffer_Length = Rx_Buffer_Length;
+//        HAL_UARTEx_ReceiveToIdle_DMA(huart, UART7_Manage_Object.Rx_Buffer, UART7_Manage_Object.Rx_Buffer_Length);
+//    }
+//    else if (huart->Instance == UART8)
+//    {
+//        UART8_Manage_Object.UART_Handler = huart;
+//        UART8_Manage_Object.Callback_Function = Callback_Function;
+//        UART8_Manage_Object.Rx_Buffer_Length = Rx_Buffer_Length;
+//        HAL_UARTEx_ReceiveToIdle_DMA(huart, UART8_Manage_Object.Rx_Buffer, UART8_Manage_Object.Rx_Buffer_Length);
+//    }
 }
 
 /**
@@ -118,7 +118,7 @@ uint8_t UART_Send_Data(UART_HandleTypeDef *huart, uint8_t *Data, uint16_t Length
 void TIM_UART_PeriodElapsedCallback()
 {
     // UART2串口绘图
-    UART_Send_Data(&huart2, UART2_Manage_Object.Tx_Buffer, 1 + 12 * sizeof(float));
+    //UART_Send_Data(&huart2, UART2_Manage_Object.Tx_Buffer, 1 + 12 * sizeof(float));
 }
 
 /**
@@ -166,16 +166,16 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
         UART6_Manage_Object.Callback_Function(UART6_Manage_Object.Rx_Buffer, Size);
         HAL_UARTEx_ReceiveToIdle_DMA(huart, UART6_Manage_Object.Rx_Buffer, UART6_Manage_Object.Rx_Buffer_Length);
     }
-    else if (huart->Instance == UART7)
-    {
-        UART7_Manage_Object.Callback_Function(UART7_Manage_Object.Rx_Buffer, Size);
-        HAL_UARTEx_ReceiveToIdle_DMA(huart, UART7_Manage_Object.Rx_Buffer, UART7_Manage_Object.Rx_Buffer_Length);
-    }
-    else if (huart->Instance == UART8)
-    {
-        UART8_Manage_Object.Callback_Function(UART8_Manage_Object.Rx_Buffer, Size);
-        HAL_UARTEx_ReceiveToIdle_DMA(huart, UART8_Manage_Object.Rx_Buffer, UART8_Manage_Object.Rx_Buffer_Length);
-    }
+//    else if (huart->Instance == UART7)
+//    {
+//        UART7_Manage_Object.Callback_Function(UART7_Manage_Object.Rx_Buffer, Size);
+//        HAL_UARTEx_ReceiveToIdle_DMA(huart, UART7_Manage_Object.Rx_Buffer, UART7_Manage_Object.Rx_Buffer_Length);
+//    }
+//    else if (huart->Instance == UART8)
+//    {
+//        UART8_Manage_Object.Callback_Function(UART8_Manage_Object.Rx_Buffer, Size);
+//        HAL_UARTEx_ReceiveToIdle_DMA(huart, UART8_Manage_Object.Rx_Buffer, UART8_Manage_Object.Rx_Buffer_Length);
+//    }
 }
 
 /************************ COPYRIGHT(C) USTC-ROBOWALKER **************************/

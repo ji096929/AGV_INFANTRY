@@ -65,13 +65,13 @@ enum Enum_DR16_Status
  */
 enum Enum_DR16_Switch_Status
 {
-    DR16_Switch_Status_UP = 0,
-    DR16_Switch_Status_TRIG_UP_MIDDLE,
-    DR16_Switch_Status_TRIG_MIDDLE_UP,
-    DR16_Switch_Status_MIDDLE,
-    DR16_Switch_Status_TRIG_MIDDLE_DOWN,
-    DR16_Switch_Status_TRIG_DOWN_MIDDLE,
-    DR16_Switch_Status_DOWN,
+    DR16_Switch_Status_UP = 0,           //上状态
+    DR16_Switch_Status_TRIG_UP_MIDDLE,   //上到中的突变状态
+    DR16_Switch_Status_TRIG_MIDDLE_UP,   //中到上的突变状态
+    DR16_Switch_Status_MIDDLE,           //中状态
+    DR16_Switch_Status_TRIG_MIDDLE_DOWN, //中到下的突变状态
+    DR16_Switch_Status_TRIG_DOWN_MIDDLE, //下到中的突变状态
+    DR16_Switch_Status_DOWN,             //下状态
 };
 
 /**
@@ -80,10 +80,10 @@ enum Enum_DR16_Switch_Status
  */
 enum Enum_DR16_Key_Status
 {
-    DR16_Key_Status_FREE = 0,
-    DR16_Key_Status_TRIG_FREE_PRESSED,
-    DR16_Key_Status_TRIG_PRESSED_FREE,
-    DR16_Key_Status_PRESSED,
+    DR16_Key_Status_FREE = 0,           //松开状态
+    DR16_Key_Status_TRIG_FREE_PRESSED,  //松开到按下的突变状态
+    DR16_Key_Status_TRIG_PRESSED_FREE,  //按下到松开的突变状态
+    DR16_Key_Status_PRESSED,            //按下状态
 };
 
 /**

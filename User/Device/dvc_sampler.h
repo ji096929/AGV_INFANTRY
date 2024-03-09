@@ -43,7 +43,7 @@ public:
     Class_Filter_Kalman Filter_Kalman;
     Class_Filter_Fourier Filter_Fourier;
 
-    void Init(ADC_HandleTypeDef *hadc, uint16_t __Sampler_Serial, Enum_Sampler_Filter __Sampler_Filter);
+    //void Init(ADC_HandleTypeDef *hadc, uint16_t __Sampler_Serial, Enum_Sampler_Filter __Sampler_Filter);
 
     inline float Get_Value();
 
@@ -53,7 +53,7 @@ protected:
     //初始化相关常量
 
     //绑定的UART
-    Struct_ADC_Manage_Object *ADC_Manage_Object;
+    //Struct_ADC_Manage_Object *ADC_Manage_Object;
     //绑定的采样通道
     uint16_t Sampler_Serial;
     //采用的滤波器

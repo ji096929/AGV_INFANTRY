@@ -35,7 +35,7 @@ public:
     //遥控器
     Class_DR16 DR16;
     //迷你主机
-    Class_MiniPC MiniPC;
+//    Class_MiniPC MiniPC;
 
     //底盘
     Class_Tricycle_Chassis Chassis;

@@ -256,14 +256,14 @@ void Class_Gimbal_Pitch_Motor_GM6020::TIM_PID_PeriodElapsedCallback()
 void Class_Gimbal::Init()
 {
     //云台AHRS
-    WIT.Init(&huart7);
+    //WIT.Init(&huart7);
 
     //yaw轴电机
     Motor_Yaw.PID_Angle.Init(28.0f, 0.0f, 0.03f, 0.0f, 6.0f * PI, 6.0f * PI);
     Motor_Yaw.PID_Omega.Init(10000.0f, 100000.0f, 0.1f, 0.0f, Motor_Yaw.Get_Output_Max(), Motor_Yaw.Get_Output_Max());
     Motor_Yaw.PID_Torque.Init(0.78f, 100.0f, 0.0f, 0.0f, Motor_Yaw.Get_Output_Max(), Motor_Yaw.Get_Output_Max());
     Motor_Yaw.WIT = &WIT;
-    Motor_Yaw.MiniPC = MiniPC;
+//    Motor_Yaw.MiniPC = MiniPC;
     Motor_Yaw.Init(&hcan2, DJI_Motor_ID_0x205, DJI_Motor_Control_Method_ANGLE, 2048);
 
     //pitch轴电机
@@ -301,10 +301,12 @@ void Class_Gimbal::Output()
         //云台工作
         Motor_Yaw.Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_ANGLE);
         Motor_Pitch.Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_ANGLE);
-
+        
+        //限制角度范围
         Math_Constrain(&Target_Yaw_Angle, Min_Yaw_Angle, Max_Yaw_Angle);
         Math_Constrain(&Target_Pitch_Angle, Min_Pitch_Angle, Max_Pitch_Angle);
 
+        //设置目标角度
         Motor_Yaw.Set_Target_Angle(Target_Yaw_Angle);
         Motor_Pitch.Set_Target_Angle(Target_Pitch_Angle);
     }

@@ -1643,15 +1643,15 @@ uint16_t Class_Referee::Get_Booster_42mm_Speed_Max()
 uint16_t Class_Referee::Get_Chassis_Power_Max()
 {
 #ifdef Robot_SENTRY_7
-    // if (Robot_Status.Chassis_Power_Max == 0)
-    // {
+    if (Robot_Status.Chassis_Power_Max == 0)
+    {
         //裁判系统如果寄了
-        // return (80);
-        //高校联盟赛
+        return (80);
+        // //高校联盟赛
         // return (100);
-        //超级对抗赛
-        return (150);
-    // }
+        // //超级对抗赛
+        // return (150);
+    }
 #endif
     return (Robot_Status.Chassis_Power_Max);
 }

@@ -54,21 +54,21 @@ void SPI_Init(SPI_HandleTypeDef *hspi, SPI_Call_Back Callback_Function)
         SPI3_Manage_Object.SPI_Handler = hspi;
         SPI3_Manage_Object.Callback_Function = Callback_Function;
     }
-    else if (hspi->Instance == SPI4)
-    {
-        SPI4_Manage_Object.SPI_Handler = hspi;
-        SPI4_Manage_Object.Callback_Function = Callback_Function;
-    }
-    else if (hspi->Instance == SPI5)
-    {
-        SPI5_Manage_Object.SPI_Handler = hspi;
-        SPI5_Manage_Object.Callback_Function = Callback_Function;
-    }
-    else if (hspi->Instance == SPI6)
-    {
-        SPI6_Manage_Object.SPI_Handler = hspi;
-        SPI6_Manage_Object.Callback_Function = Callback_Function;
-    }
+//    else if (hspi->Instance == SPI4)
+//    {
+//        SPI4_Manage_Object.SPI_Handler = hspi;
+//        SPI4_Manage_Object.Callback_Function = Callback_Function;
+//    }
+//    else if (hspi->Instance == SPI5)
+//    {
+//        SPI5_Manage_Object.SPI_Handler = hspi;
+//        SPI5_Manage_Object.Callback_Function = Callback_Function;
+//    }
+//    else if (hspi->Instance == SPI6)
+//    {
+//        SPI6_Manage_Object.SPI_Handler = hspi;
+//        SPI6_Manage_Object.Callback_Function = Callback_Function;
+//    }
 }
 
 /**
@@ -111,33 +111,33 @@ uint8_t SPI_Send_Receive_Data(SPI_HandleTypeDef *hspi, GPIO_TypeDef* GPIOx, uint
         
         return (HAL_SPI_TransmitReceive_DMA(hspi, SPI3_Manage_Object.Tx_Buffer, SPI3_Manage_Object.Rx_Buffer, Tx_Length + Rx_Length));
     }
-    else if (hspi->Instance == SPI4)
-    {
-        SPI4_Manage_Object.Now_GPIOx = GPIOx;
-        SPI4_Manage_Object.Now_GPIO_Pin = GPIO_Pin;
-        SPI4_Manage_Object.Now_Tx_Length = Tx_Length;
-        SPI4_Manage_Object.Now_Rx_Length = Rx_Length;
-        
-        return (HAL_SPI_TransmitReceive_DMA(hspi, SPI4_Manage_Object.Tx_Buffer, SPI4_Manage_Object.Rx_Buffer, Tx_Length + Rx_Length));
-    }
-    else if (hspi->Instance == SPI5)
-    {
-        SPI5_Manage_Object.Now_GPIOx = GPIOx;
-        SPI5_Manage_Object.Now_GPIO_Pin = GPIO_Pin;
-        SPI5_Manage_Object.Now_Tx_Length = Tx_Length;
-        SPI5_Manage_Object.Now_Rx_Length = Rx_Length;
-        
-        return (HAL_SPI_TransmitReceive_DMA(hspi, SPI5_Manage_Object.Tx_Buffer, SPI5_Manage_Object.Rx_Buffer, Tx_Length + Rx_Length));
-    }
-    else if (hspi->Instance == SPI6)
-    {
-        SPI6_Manage_Object.Now_GPIOx = GPIOx;
-        SPI6_Manage_Object.Now_GPIO_Pin = GPIO_Pin;
-        SPI6_Manage_Object.Now_Tx_Length = Tx_Length;
-        SPI6_Manage_Object.Now_Rx_Length = Rx_Length;
-        
-        return (HAL_SPI_TransmitReceive_DMA(hspi, SPI6_Manage_Object.Tx_Buffer, SPI6_Manage_Object.Rx_Buffer, Tx_Length + Rx_Length));
-    }
+//    else if (hspi->Instance == SPI4)
+//    {
+//        SPI4_Manage_Object.Now_GPIOx = GPIOx;
+//        SPI4_Manage_Object.Now_GPIO_Pin = GPIO_Pin;
+//        SPI4_Manage_Object.Now_Tx_Length = Tx_Length;
+//        SPI4_Manage_Object.Now_Rx_Length = Rx_Length;
+//        
+//        return (HAL_SPI_TransmitReceive_DMA(hspi, SPI4_Manage_Object.Tx_Buffer, SPI4_Manage_Object.Rx_Buffer, Tx_Length + Rx_Length));
+//    }
+//    else if (hspi->Instance == SPI5)
+//    {
+//        SPI5_Manage_Object.Now_GPIOx = GPIOx;
+//        SPI5_Manage_Object.Now_GPIO_Pin = GPIO_Pin;
+//        SPI5_Manage_Object.Now_Tx_Length = Tx_Length;
+//        SPI5_Manage_Object.Now_Rx_Length = Rx_Length;
+//        
+//        return (HAL_SPI_TransmitReceive_DMA(hspi, SPI5_Manage_Object.Tx_Buffer, SPI5_Manage_Object.Rx_Buffer, Tx_Length + Rx_Length));
+//    }
+//    else if (hspi->Instance == SPI6)
+//    {
+//        SPI6_Manage_Object.Now_GPIOx = GPIOx;
+//        SPI6_Manage_Object.Now_GPIO_Pin = GPIO_Pin;
+//        SPI6_Manage_Object.Now_Tx_Length = Tx_Length;
+//        SPI6_Manage_Object.Now_Rx_Length = Rx_Length;
+//        
+//        return (HAL_SPI_TransmitReceive_DMA(hspi, SPI6_Manage_Object.Tx_Buffer, SPI6_Manage_Object.Rx_Buffer, Tx_Length + Rx_Length));
+//    }
 }
 
 /**
@@ -181,24 +181,24 @@ void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
         
         SPI3_Manage_Object.Callback_Function(SPI3_Manage_Object.Tx_Buffer, SPI3_Manage_Object.Rx_Buffer, SPI3_Manage_Object.Now_Tx_Length);
     }
-    else if (hspi->Instance == SPI4)
-    {
-        HAL_GPIO_TogglePin(SPI4_Manage_Object.Now_GPIOx, SPI4_Manage_Object.Now_GPIO_Pin);
-        
-        SPI4_Manage_Object.Callback_Function(SPI4_Manage_Object.Tx_Buffer, SPI4_Manage_Object.Rx_Buffer, SPI4_Manage_Object.Now_Tx_Length);
-    }
-    else if (hspi->Instance == SPI5)
-    {
-        HAL_GPIO_TogglePin(SPI5_Manage_Object.Now_GPIOx, SPI5_Manage_Object.Now_GPIO_Pin);
-        
-        SPI5_Manage_Object.Callback_Function(SPI5_Manage_Object.Tx_Buffer, SPI5_Manage_Object.Rx_Buffer, SPI5_Manage_Object.Now_Tx_Length);
-    }
-    else if (hspi->Instance == SPI6)
-    {
-        HAL_GPIO_TogglePin(SPI6_Manage_Object.Now_GPIOx, SPI6_Manage_Object.Now_GPIO_Pin);
-        
-        SPI6_Manage_Object.Callback_Function(SPI6_Manage_Object.Tx_Buffer, SPI6_Manage_Object.Rx_Buffer, SPI6_Manage_Object.Now_Tx_Length);
-    }
+//    else if (hspi->Instance == SPI4)
+//    {
+//        HAL_GPIO_TogglePin(SPI4_Manage_Object.Now_GPIOx, SPI4_Manage_Object.Now_GPIO_Pin);
+//        
+//        SPI4_Manage_Object.Callback_Function(SPI4_Manage_Object.Tx_Buffer, SPI4_Manage_Object.Rx_Buffer, SPI4_Manage_Object.Now_Tx_Length);
+//    }
+//    else if (hspi->Instance == SPI5)
+//    {
+//        HAL_GPIO_TogglePin(SPI5_Manage_Object.Now_GPIOx, SPI5_Manage_Object.Now_GPIO_Pin);
+//        
+//        SPI5_Manage_Object.Callback_Function(SPI5_Manage_Object.Tx_Buffer, SPI5_Manage_Object.Rx_Buffer, SPI5_Manage_Object.Now_Tx_Length);
+//    }
+//    else if (hspi->Instance == SPI6)
+//    {
+//        HAL_GPIO_TogglePin(SPI6_Manage_Object.Now_GPIOx, SPI6_Manage_Object.Now_GPIO_Pin);
+//        
+//        SPI6_Manage_Object.Callback_Function(SPI6_Manage_Object.Tx_Buffer, SPI6_Manage_Object.Rx_Buffer, SPI6_Manage_Object.Now_Tx_Length);
+//    }
 }
 
 /************************ COPYRIGHT(C) USTC-ROBOWALKER **************************/

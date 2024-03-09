@@ -12,38 +12,38 @@
 #ifndef DRV_ADC_H
 #define DRV_ADC_H
 
-/* Includes ------------------------------------------------------------------*/
+///* Includes ------------------------------------------------------------------*/
 
-#include "stm32f4xx_hal.h"
+//#include "stm32f4xx_hal.h"
 
-/* Exported macros -----------------------------------------------------------*/
+///* Exported macros -----------------------------------------------------------*/
 
-// ADC存储字节数, 与扫描内容有关
-#define SAMPLE_BUFFER_SIZE 4
+//// ADC存储字节数, 与扫描内容有关
+//#define SAMPLE_BUFFER_SIZE 4
 
-/* Exported types ------------------------------------------------------------*/
+///* Exported types ------------------------------------------------------------*/
 
-/**
- * @brief ADC采样信息结构体
- *
- */
-struct Struct_ADC_Manage_Object
-{
-    ADC_HandleTypeDef *ADC_Handler;
-    uint16_t ADC_Data[SAMPLE_BUFFER_SIZE];
-};
+///**
+// * @brief ADC采样信息结构体
+// *
+// */
+//struct Struct_ADC_Manage_Object
+//{
+//    ADC_HandleTypeDef *ADC_Handler;
+//    uint16_t ADC_Data[SAMPLE_BUFFER_SIZE];
+//};
 
-/* Exported variables --------------------------------------------------------*/
+///* Exported variables --------------------------------------------------------*/
 
-extern ADC_HandleTypeDef hadc1;
+//extern ADC_HandleTypeDef hadc1;
 
-extern Struct_ADC_Manage_Object ADC1_Manage_Object;
-extern Struct_ADC_Manage_Object ADC2_Manage_Object;
-extern Struct_ADC_Manage_Object ADC3_Manage_Object;
+//extern Struct_ADC_Manage_Object ADC1_Manage_Object;
+//extern Struct_ADC_Manage_Object ADC2_Manage_Object;
+//extern Struct_ADC_Manage_Object ADC3_Manage_Object;
 
-/* Exported function declarations --------------------------------------------*/
+///* Exported function declarations --------------------------------------------*/
 
-void ADC_Init(ADC_HandleTypeDef *hadc, uint16_t Sample_Number);
+//void ADC_Init(ADC_HandleTypeDef *hadc, uint16_t Sample_Number);
 
 #endif
 
