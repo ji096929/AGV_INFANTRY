@@ -11,7 +11,7 @@ void SW_control_task(void)
         
         Steering_Wheel_CommandUpdate(&steering_wheel);
         Steering_Wheel_StatusUpdate(&steering_wheel);
-		Steering_Wheel_CommandTransmit(&steering_wheel);
+				Steering_Wheel_CommandTransmit(&steering_wheel);
 		
 		
 		//É¾³ý²âÊÔ

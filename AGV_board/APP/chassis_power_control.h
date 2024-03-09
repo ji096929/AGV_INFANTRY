@@ -7,9 +7,9 @@
 #define VALUE_OF_SCALED_POWER_COEFFICIENT_WHEN_SET_VECTOR_SPEED_ONLY -114514
 typedef struct
 #define TOQUE_COEFFICIENT 2.7390496e-6 // (20/16384)*(0.3)*(1/14)/9.55
-#define K1  1//1为默认数值
-#define K2 1 // 1为默认数值
-#define CONSTANT  1//功率模型中的常数
+#define K1  4.535e-07//1为默认数值
+#define K2 1.79e-06 // 1为默认数值
+#define CONSTANT  -21.64//功率模型中的常数
 {
 
     uint16_t power_limit_max;     // 功率限制最大值
@@ -29,7 +29,7 @@ typedef struct
 
 extern chassis_power_control_t chassis_power_control;
 
-float calculate_torque_current_according_to_scaled_power(float scaled_power);
+long double calculate_torque_current_according_to_scaled_power(long double scaled_power);
 //  void Chassis_Power_Control_Init(void);
 
 #endif

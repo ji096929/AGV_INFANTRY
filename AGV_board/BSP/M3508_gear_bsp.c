@@ -9,7 +9,7 @@ void M3508_gear_feedback_process(M3508_gear_t *kit)
 	
 	// 电机转子力矩转换
 	kit->status.rotor_torque = kit->feedback.rotor_torque_current * M3508_TORQUE_COEFFICIENT;
-	
+	kit->status.actual_current	=	kit->feedback.rotor_torque_current/16384.f*20.0f;
 	// 单圈角度与多圈角度转换
 	if (kit->feedback.current_rotor_position_lsb - kit->feedback.last_rotor_position_lsb < -8191/2) 
 		kit->status.rotor_total_round++;

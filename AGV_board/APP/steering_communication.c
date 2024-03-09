@@ -340,7 +340,7 @@ steering_communication_pack_t steering_communication_SET_VELOCITY_VECTOR_handler
 	rx_pack.cmd_id = SET_VELOCITY_VECTOR;
 	int16_t rx_data1_byte[4];
 	memcpy(rx_data1_byte, rx_pack.data1, sizeof(rx_data1_byte));
-	memcpy(chassis_power_control.scaled_power_32, rx_data1_byte+2, 4);
+	memcpy(&chassis_power_control.scaled_power_32, rx_data1_byte+2, 4);
 	Steering_Wheel_SetProtocolPosition(steering, rx_data1_byte[0]);
 	Steering_Wheel_SetProtocolSpeed(steering,rx_data1_byte[1]);
 	if (chassis_power_control.scaled_power_32 != VALUE_OF_SCALED_POWER_COEFFICIENT_WHEN_SET_VECTOR_SPEED_ONLY)

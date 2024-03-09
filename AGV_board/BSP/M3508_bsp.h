@@ -97,7 +97,7 @@ typedef enum
 
 float M3508_from_lsb_to_position_deg(uint16_t lsb);
 float M3508_from_lsb_to_position_rad(uint16_t lsb);
-float M3508_from_lsb_to_torque_current(uint16_t lsb);
+float M3508_from_lsb_to_torque_current(int16_t lsb);
 float M3508_from_torque_current_to_torque(float current);
 
 M3508_FEEDBACK_PROCESS_RETURN_T M3508_feedback_process(M3508_motor_bus_t *motor_bus, uint16_t CAN_ID, uint8_t data[]);

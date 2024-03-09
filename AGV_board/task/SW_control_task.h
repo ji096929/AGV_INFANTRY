@@ -11,6 +11,13 @@ extern "C" {
 
 #include "steering_wheel.h"
 #include "steering_communication.h"
+typedef struct
+	{
+		float target_current;
+		uint8_t test_mode;
+		float temp_a;
+		float temp_b;
+	}TEST_POWER_T;
 
 void SW_control_task(void);
 void SW_control_task_init(void);

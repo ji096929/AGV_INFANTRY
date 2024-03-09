@@ -33,6 +33,7 @@ typedef struct
 	float	output_angle_rad;
 	float	output_angle_deg;
 	float	output_torque;
+	float actual_current;
 } M3508_gear_status_t;
 
 typedef struct

@@ -92,9 +92,9 @@ float M3508_from_lsb_to_position_rad(uint16_t lsb)
 	return ( lsb / 8191.f * PI*2 );
 }
 
-float M3508_from_lsb_to_torque_current(uint16_t lsb)
+float M3508_from_lsb_to_torque_current(int16_t lsb)
 {
-	return ( (lsb-16384) / 16384.f * 20.f );
+	return ( lsb / 16384.f * 20.f );
 }
 
 float M3508_from_torque_current_to_torque(float current)
