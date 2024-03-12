@@ -28,3 +28,17 @@ JLinkLog.txt
 *.Administrator
 *.uvopt
 *.uvguix.*
+
+*.rar
+*.ini
+*.scvd
+*.mxproject
+*.jdebug
+*.exf
+
+!*.uvprojx
+!*.h
+!*.c
+!*.ioc
+!*.bin
+!*.hex
