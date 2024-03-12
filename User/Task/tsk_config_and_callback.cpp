@@ -46,105 +46,104 @@
 /* Private variables ---------------------------------------------------------*/
 
 bool init_finished = 0;
+
 //机器人控制对象
 Class_Chariot chariot;
-//达妙电机对象
-Class_DM_Motor_J4310 motor;
-//imu对象
-Class_BoardA_MPU boarda_mpu;
+
+
+
 //串口裁判系统对象
 Class_Serialplot serialplot;
-
-//static char Variable_Assignment_List[][SERIALPLOT_RX_VARIABLE_ASSIGNMENT_MAX_LENGTH] = {
-    // 电机调PID
-    // "pa",
-    // "ia",
-    // "da",
-    // "po",
-    // "io",
-    // "do",
-    // "pt",
-    // "it",
-    // "dt",
-
-    // 摩擦轮标定
-    // "po",
-    // "io",
-    // "do",
-    // "omega",
-
-    // 功率控制调参
-    // "ps",
-    // "is",
-    // "ds",
-    // "pw",
-    // "iw",
-    // "dw",
-
-    // 陀螺仪调参
-//    "kp",
-//    "ki",
-//    "int",
-//};
 
 /* Private function declarations ---------------------------------------------*/
 
 /* Function prototypes -------------------------------------------------------*/
 
 /**
- * @brief CAN1回调函数
+ * @brief Chassis_CAN1回调函数
  *
  * @param CAN_RxMessage CAN1收到的消息
  */
-void Device_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
+void Chassis_Device_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 {
     switch (CAN_RxMessage->Header.StdId)
     {
-    case (0xf1):
-    {
-        motor.CAN_RxCpltCallback(CAN_RxMessage->Data);
-    }
-    break;
-    case (0x201):
-    {
-        chariot.Chassis.Motor_Wheel[0].CAN_RxCpltCallback(CAN_RxMessage->Data);
-    }
-    break;
-    case (0x202):
-    {
-        chariot.Chassis.Motor_Wheel[1].CAN_RxCpltCallback(CAN_RxMessage->Data);
-    }
-    break;
-    case (0x203):
-    {
-        chariot.Chassis.Motor_Wheel[2].CAN_RxCpltCallback(CAN_RxMessage->Data);
-    }
-    break;
-    case (0x204):
-    {
-        chariot.Chassis.Motor_Wheel[3].CAN_RxCpltCallback(CAN_RxMessage->Data);
-    }
-    break;
-    case (0x206):
-    {
-        //chariot.Chassis.Motor_Steer[1].CAN_RxCpltCallback(CAN_RxMessage->Data);
-    }
-    break;
-    case (0x207):
-    {
-        //chariot.Chassis.Motor_Steer[2].CAN_RxCpltCallback(CAN_RxMessage->Data);
-    }
-    break;
+        case (0x201):
+        {
+            chariot.Chassis.Motor_Wheel[0].CAN_RxCpltCallback(CAN_RxMessage->Data);
+        }
+        break;
+        case (0x202):
+        {
+            chariot.Chassis.Motor_Wheel[1].CAN_RxCpltCallback(CAN_RxMessage->Data);
+        }
+        break;
+        case (0x203):
+        {
+            chariot.Chassis.Motor_Wheel[2].CAN_RxCpltCallback(CAN_RxMessage->Data);
+        }
+        break;
+        case (0x204):
+        {
+            chariot.Chassis.Motor_Wheel[3].CAN_RxCpltCallback(CAN_RxMessage->Data);
+        }
+        break;
+        case (0x206):  
+        {
+            
+        }
+        break;
+        case (0x207):
+        {
+            
+        }
+        break;
     }
 }
 
 /**
- * @brief CAN2回调函数
+ * @brief Chassis_CAN2回调函数
  *
  * @param CAN_RxMessage CAN2收到的消息
  */
-bool get_flag=0;
-void Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
+void Chassis_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
+{
+    switch (CAN_RxMessage->Header.StdId)
+    {
+    case (0x202):  //留给yaw电机编码器回传
+    {
+        
+    }
+    break;
+    case (0x203):  //留给上板通讯
+    {
+        
+    }
+    break;
+    case (0x204):  //留给超级电容
+    {
+        
+    }
+    break;
+    case (0x205):
+    {
+        
+    }
+    break;
+    case (0x206):
+    {
+        
+    }
+    break;
+	}
+}
+
+/**
+ * @brief Gimbal_CAN1回调函数
+ *
+ * @param CAN_RxMessage CAN1收到的消息
+ */
+void Gimbal_Device_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 {
     switch (CAN_RxMessage->Header.StdId)
     {
@@ -165,16 +164,53 @@ void Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
     break;
     case (0x205):
     {
-        chariot.Gimbal.Motor_Yaw.CAN_RxCpltCallback(CAN_RxMessage->Data);
+        chariot.Gimbal.Motor_Pitch.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
     case (0x206):
     {
-        chariot.Gimbal.Motor_Pitch.CAN_RxCpltCallback(CAN_RxMessage->Data);
+        
     }
     break;
-	  }
+	}
 		
+}
+
+/**
+ * @brief Gimbal_CAN1回调函数
+ *
+ * @param CAN_RxMessage CAN2收到的消息
+ */
+void Gimbal_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
+{
+    switch (CAN_RxMessage->Header.StdId)
+    {
+    case (0x202):   //留给下板通讯
+    {
+        
+    }
+    break;
+    case (0x203):
+    {
+        
+    }
+    break;
+    case (0x204):
+    {
+        
+    }
+    break;
+    case (0x205):
+    {
+       
+    }
+    break;
+    case (0x206):
+    {
+        
+    }
+    break;
+	}
 }
 
 /**
@@ -193,6 +229,18 @@ void Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 //}
 
 /**
+ * @brief SPI1回调函数
+ *
+ * @param Tx_Buffer SPI1发送的消息
+ * @param Rx_Buffer SPI1接收的消息
+ * @param Length 长度
+ */
+void Device_SPI1_Callback(uint8_t *Tx_Buffer, uint8_t *Rx_Buffer, uint16_t Length)
+{
+
+}
+
+/**
  * @brief UART3遥控器回调函数
  *
  * @param Buffer UART1收到的消息
@@ -203,144 +251,16 @@ void DR16_UART3_Callback(uint8_t *Buffer, uint16_t Length)
     chariot.DR16.UART_RxCpltCallback(Buffer);
 }
 
+
 /**
- * @brief UART2串口绘图回调函数
+ * @brief IIC磁力计回调函数
  *
- * @param Buffer UART2收到的消息
+ * @param Buffer IIC收到的消息
  * @param Length 长度
  */
-void Serialplot_UART2_Callback(uint8_t *Buffer, uint16_t Length)
+void Ist8310_IIC3_Callback(uint8_t* Tx_Buffer, uint8_t* Rx_Buffer, uint16_t Tx_Length, uint16_t Rx_Length)
 {
-    serialplot.UART_RxCpltCallback(Buffer);
-    switch (serialplot.Get_Variable_Index())
-    {
-    // 电机调PID
-    //  case(0):
-    //  {
-    //      chariot.Gimbal.Motor_Yaw.PID_Angle.Set_K_P(serialplot.Get_Variable_Value());
-    //  }
-    //  break;
-    //  case(1):
-    //  {
-    //      chariot.Gimbal.Motor_Yaw.PID_Angle.Set_K_I(serialplot.Get_Variable_Value());
-    //  }
-    //  break;
-    //  case(2):
-    //  {
-    //      chariot.Gimbal.Motor_Yaw.PID_Angle.Set_K_D(serialplot.Get_Variable_Value());
-    //  }
-    //  break;
-    //  case(3):
-    //  {
-    //      chariot.Gimbal.Motor_Yaw.PID_Omega.Set_K_P(serialplot.Get_Variable_Value());
-    //  }
-    //  break;
-    //  case(4):
-    //  {
-    //      chariot.Gimbal.Motor_Yaw.PID_Omega.Set_K_I(serialplot.Get_Variable_Value());
-    //  }
-    //  break;
-    //  case(5):
-    //  {
-    //      chariot.Gimbal.Motor_Yaw.PID_Omega.Set_K_D(serialplot.Get_Variable_Value());
-    //  }
-    //  break;
-    //  case(6):
-    //  {
-    //      chariot.Gimbal.Motor_Yaw.PID_Torque.Set_K_P(serialplot.Get_Variable_Value());
-    //  }
-    //  break;
-    //  case(7):
-    //  {
-    //      chariot.Gimbal.Motor_Yaw.PID_Torque.Set_K_I(serialplot.Get_Variable_Value());
-    //  }
-    //  break;
-    //  case(8):
-    //  {
-    //      chariot.Gimbal.Motor_Yaw.PID_Torque.Set_K_D(serialplot.Get_Variable_Value());
-    //  }
-    //  break;
-
-    // 摩擦轮标定
-    //  case(0):
-    //  {
-    //      chariot.Booster.Motor_Friction_Left.PID_Omega.Set_K_P(serialplot.Get_Variable_Value());
-    //      chariot.Booster.Motor_Friction_Right.PID_Omega.Set_K_P(serialplot.Get_Variable_Value());
-    //  }
-    //  break;
-    //  case(1):
-    //  {
-    //      chariot.Booster.Motor_Friction_Left.PID_Omega.Set_K_I(serialplot.Get_Variable_Value());
-    //      chariot.Booster.Motor_Friction_Right.PID_Omega.Set_K_I(serialplot.Get_Variable_Value());
-    //  }
-    //  break;
-    //  case(2):
-    //  {
-    //      chariot.Booster.Motor_Friction_Left.PID_Omega.Set_K_D(serialplot.Get_Variable_Value());
-    //      chariot.Booster.Motor_Friction_Right.PID_Omega.Set_K_D(serialplot.Get_Variable_Value());
-    //  }
-    //  break;
-    //  case(3):
-    //  {
-    //      chariot.Booster.Set_Friction_Omega(serialplot.Get_Variable_Value());
-    //  }
-    //  break;
-
-    // 功率控制调参
-    //  case(0):
-    //  {
-    //      chariot.Chassis.PID_Power_Limit_Steer.Set_K_P(serialplot.Get_Variable_Value());
-    //  }
-    //  break;
-    //  case(1):
-    //  {
-    //      chariot.Chassis.PID_Power_Limit_Steer.Set_K_I(serialplot.Get_Variable_Value());
-    //  }
-    //  break;
-    //  case(2):
-    //  {
-    //      chariot.Chassis.PID_Power_Limit_Steer.Set_K_D(serialplot.Get_Variable_Value());
-    //  }
-    //  break;
-    //  case(3):
-    //  {
-    //      chariot.Chassis.PID_Power_Limit_Wheel.Set_K_P(serialplot.Get_Variable_Value());
-    //  }
-    //  break;
-    //  case(4):
-    //  {
-    //      chariot.Chassis.PID_Power_Limit_Wheel.Set_K_I(serialplot.Get_Variable_Value());
-    //  }
-    //  break;
-    //  case(5):
-    //  {
-    //      chariot.Chassis.PID_Power_Limit_Wheel.Set_K_D(serialplot.Get_Variable_Value());
-    //  }
-    //  break;
-
-    // 陀螺仪调参
-    case (0):
-    {
-        boarda_mpu.PID_Mahony_X.Set_K_P(serialplot.Get_Variable_Value());
-        boarda_mpu.PID_Mahony_Y.Set_K_P(serialplot.Get_Variable_Value());
-        boarda_mpu.PID_Mahony_Z.Set_K_P(serialplot.Get_Variable_Value());
-    }
-    break;
-    case (1):
-    {
-        boarda_mpu.PID_Mahony_X.Set_K_I(serialplot.Get_Variable_Value());
-        boarda_mpu.PID_Mahony_Y.Set_K_I(serialplot.Get_Variable_Value());
-        boarda_mpu.PID_Mahony_Z.Set_K_I(serialplot.Get_Variable_Value());
-    }
-    break;
-    case (2):
-    {
-        boarda_mpu.PID_Mahony_X.Set_Integral_Error(serialplot.Get_Variable_Value());
-        boarda_mpu.PID_Mahony_Y.Set_Integral_Error(serialplot.Get_Variable_Value());
-        boarda_mpu.PID_Mahony_Z.Set_Integral_Error(serialplot.Get_Variable_Value());
-    }
-    break;
-    }
+    
 }
 
 /**
@@ -362,7 +282,7 @@ void Referee_UART6_Callback(uint8_t *Buffer, uint16_t Length)
  */
 void AHRS_UART7_Callback(uint8_t *Buffer, uint16_t Length)
 {
-    chariot.Gimbal.WIT.UART_RxCpltCallback(Buffer);
+    
 }
 
 /**
@@ -383,8 +303,16 @@ void MiniPC_USB_Callback(uint8_t *Buffer, uint32_t Length)
  */
 void Task100us_TIM4_Callback()
 {
-    // 单给收发SPI消息开的定时器
-    //boarda_mpu.TIM100us_Send_PeriodElapsedCallback();
+    #ifdef CHASSIS
+        
+        //暂无云台tim4任务
+
+    #elif defined(GIMBAL)
+
+        // 单给IMU消息开的定时器
+        chariot.Boardc_BMI.TIM_Calculate_PeriodElapsedCallback();
+
+    #endif
 }
 
 /**
@@ -393,163 +321,29 @@ void Task100us_TIM4_Callback()
  */
 void Task1ms_TIM5_Callback()
 {
-    // 判断遥控器, WIT姿态传感器, 裁判系统是否断开连接
-    static int mod50 = 0;
-    mod50++;
-    if (mod50 == 50)
-    {
-        mod50 = 0;
+    /************ 判断设备在线状态判断 50ms (所有device:电机，遥控器，裁判系统等) ***************/
+    
+    chariot.TIM1msMod50_Alive_PeriodElapsedCallback();
 
-//        chariot.Referee.TIM1msMod50_Alive_PeriodElapsedCallback();
-        chariot.DR16.TIM1msMod50_Alive_PeriodElapsedCallback();
-        chariot.Referee.TIM1msMod50_Alive_PeriodElapsedCallback();
-        //chariot.Gimbal.WIT.TIM1msMod50_Alive_PeriodElapsedCallback();
-//        chariot.MiniPC.TIM1msMod50_Alive_PeriodElapsedCallback();
-        //判断达妙电机是否断开连接
-//        motor.TIM_Alive_PeriodElapsedCallback();
-    }
-
-    // 交互层回调函数 1ms
+    /****************************** 交互层回调函数 1ms *****************************************/
 
     chariot.TIM_Control_Callback();
-//    chariot.Chassis.Motor_Wheel[2].Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_OMEGA);
-    //chariot.Chassis.Motor_Wheel[0].Set_Target_Omega(0.5f); // 设置电机目标转速为0.5 rad/s
-//    chariot.Chassis.Motor_Wheel[2].TIM_PID_PeriodElapsedCallback(); // 调用PID回调函数，更新电机控制
 
-		// for(int i=0;i<4;i++){
-		// 	chariot.Chassis.Motor_Wheel[i].Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_OMEGA);
-		// 	chariot.Chassis.Motor_Wheel[i].TIM_PID_PeriodElapsedCallback(); 
-		// 	chariot.Chassis.Motor_Wheel[i].TIM_Alive_PeriodElapsedCallback();
-		// }
-
-		//chariot.Chassis.Motor_Wheel[0].Set_Target_Omega(chariot.DR16.Get_Left_X()*10.0f);
-    // 设备层回调函数
-
-    // MPU的滤波器
-    //boarda_mpu.TIM_Calculate_PeriodElapsedCallback();
-
-    // 电机调PID串口绘图
-    //  float angle_target, angle_now, omega_target, omega_now, torque_target, torque_now;
-    //  angle_now = chariot.Chassis.Motor_Steer[0].Get_Now_Angle();
-    //  angle_target = chariot.Chassis.Motor_Steer[0].Get_Target_Angle();
-    //  omega_now = chariot.Chassis.Motor_Steer[0].Get_Now_Omega();
-    //  omega_target = chariot.Chassis.Motor_Steer[0].Get_Target_Omega();
-    //  torque_now = chariot.Chassis.Motor_Steer[0].Get_Now_Torque();
-    //  torque_target = chariot.Chassis.Motor_Steer[0].Get_Target_Torque();
-    //  serialplot.Set_Data(6, &angle_now, &angle_target, &omega_now, &omega_target, &torque_now, &torque_target);
-
-    // 摩擦轮标定串口绘图
-    //  float omega_target, omega_now, torque_target, torque_now;
-    //  omega_now = chariot.Booster.Motor_Friction_Left.Get_Now_Omega();
-    //  omega_target = chariot.Booster.Motor_Friction_Left.Get_Target_Omega();
-    //  torque_now = chariot.Booster.Motor_Friction_Left.Get_Now_Torque();
-    //  torque_target = chariot.Booster.Motor_Friction_Left.Get_Target_Torque();
-    //  serialplot.Set_Data(4, &omega_now, &omega_target, &torque_now, &torque_target);
-
-    // 陀螺仪获取串口绘图
-    //  float omega_x, omega_y, omega_z;
-    //  omega_x = chariot.Gimbal.AHRS_WIT.Get_Omega_X();
-    //  omega_y = chariot.Gimbal.AHRS_WIT.Get_Omega_Y();
-    //  omega_z = chariot.Gimbal.AHRS_WIT.Get_Omega_Z();
-    //  serialplot.Set_Data(3, &omega_x, &omega_y, &omega_z);
-
-    // 功率控制串口绘图
-    //  float sampler_power, referee_power;
-    //  float target_steer_power, now_steer_power;
-    //  float target_wheel_power, now_wheel_power;
-    //  float sampler_out, out_steer_power, out_wheel_power;
-    //  sampler_power = chariot.Chassis.Get_Now_Power();
-    //  referee_power = chariot.Referee.Get_Chassis_Power();
-    //  target_steer_power = chariot.Chassis.Get_Target_Steer_Power();
-    //  now_steer_power = chariot.Chassis.Get_Now_Steer_Power();
-    //  target_wheel_power = chariot.Chassis.Get_Target_Wheel_Power();
-    //  now_wheel_power = chariot.Chassis.Get_Now_Wheel_Power();
-    //  sampler_out = chariot.Chassis.Sampler.Get_Value();
-    //  out_steer_power = chariot.Chassis.PID_Power_Limit_Steer.Get_Out();
-    //  out_wheel_power = chariot.Chassis.PID_Power_Limit_Wheel.Get_Out();
-    //  serialplot.Set_Data(9, &sampler_power, &referee_power, &target_steer_power, &now_steer_power, &target_wheel_power, &now_wheel_power, &sampler_out, &out_steer_power, &out_wheel_power);
-
-    // 底盘信息串口绘图
-    //  float target_vx, target_vy, target_omega, real_vx, real_vy, real_omega;
-    //  target_vx = chariot.Chassis.Get_Target_Velocity_X();
-    //  target_vy = chariot.Chassis.Get_Target_Velocity_Y();
-    //  target_omega = chariot.Chassis.Get_Target_Omega();
-    //  real_vx = chariot.Chassis.Slope_Velocity_X.Get_Out();
-    //  real_vy = chariot.Chassis.Slope_Velocity_Y.Get_Out();
-    //  real_omega = chariot.Chassis.Slope_Omega.Get_Out();
-    //  serialplot.Set_Data(6, &target_vx, &target_vy, &target_omega, &real_vx, &real_vy, &real_omega);
-
-    // 发射机构信息串口绘图
-    //  float heat, heat_max, heat_cd, friction_torque, friction_omega;
-    //  heat = chariot.Booster.FSM_Heat_Detect.Heat;
-    //  heat_max = chariot.Booster.Referee->Get_Booster_17mm_1_Heat_Max();
-    //  heat_cd = chariot.Booster.Referee->Get_Booster_17mm_1_Heat_CD();
-    //  friction_torque = chariot.Booster.Motor_Friction_Right.Get_Now_Torque();
-    //  friction_omega = chariot.Booster.Motor_Friction_Right.Get_Now_Omega();
-    //  serialplot.Set_Data(6, &heat, &heat_max, &heat_cd, &heat_cd, &friction_torque, &friction_omega);
-
-    // 陀螺仪基本数据测试
-    //  float tempax = boarda_mpu.Get_Accelerate_X();
-    //  float tempay = boarda_mpu.Get_Accelerate_Y();
-    //  float tempaz = boarda_mpu.Get_Accelerate_Z();
-    //  float temptemp = boarda_mpu.Get_Temperature();
-    //  float tempox = boarda_mpu.Get_Omega_X();
-    //  float tempoy = boarda_mpu.Get_Omega_Y();
-    //  float tempoz = boarda_mpu.Get_Omega_Z();
-    //  float tempmx = boarda_mpu.Get_Magnet_X();
-    //  float tempmy = boarda_mpu.Get_Magnet_Y();
-    //  float tempmz = boarda_mpu.Get_Magnet_Z();
-    //  serialplot.Set_Data(11, &tempax, &tempay, &tempaz, &temptemp, &tempox, &tempoy, &tempoz, &tempmx, &tempmy, &tempmz);
-
-    // 陀螺仪解算测试
-    //  float tempq0 = boarda_mpu.Get_Quaternion_0();
-    //  float tempq1 = boarda_mpu.Get_Quaternion_1();
-    //  float tempq2 = boarda_mpu.Get_Quaternion_2();
-    //  float tempq3 = boarda_mpu.Get_Quaternion_3();
-    //  float tempyaw = boarda_mpu.Get_Angle_Yaw();
-    //  float temppitch = boarda_mpu.Get_Angle_Pitch();
-    //  float temproll = boarda_mpu.Get_Angle_Roll();
-    //  serialplot.Set_Data(7, &tempq0, &tempq1, &tempq2, &tempq3, &tempyaw, &temppitch, &temproll);
-
-    // 达妙电机测试
-    // float tempangle = motor.Get_Now_Angle();
-    // float tempvelocity = motor.Get_Now_Omega();
-    // float temptorque = motor.Get_Now_Torque();
-    // serialplot.Set_Data(3, &tempangle, &tempvelocity, &temptorque);
-
-    // serialplot.TIM_Write_PeriodElapsedCallback();
-
-    // motor.Set_DM_Control_Status(DM_Motor_Control_Status_ENABLE);
-    // static int flag = 0;
-    // flag++;
-    // if (flag == 5000)
-    // {
-    //     motor.Set_Target_Angle(PI);
-    // }
-    // else if (flag == 10000)
-    // {
-    //     flag = 0;
-    //     motor.Set_Target_Angle(-PI);
-    // }
-    // motor.Set_Target_Omega(10.0f * PI);
-    // motor.TIM_Process_PeriodElapsedCallback();
-    chariot.Chassis.Set_Target_Velocity_X(chariot.DR16.Get_Left_Y()*25);
-    chariot.Chassis.Set_Target_Velocity_Y(chariot.DR16.Get_Left_X()*25);
-    chariot.Chassis.Set_Target_Omega(0.0f);
-    chariot.Chassis.Set_Chassis_Control_Type(Chassis_Control_Type_ABSOLUTE);
-    chariot.Chassis.TIM_Calculate_PeriodElapsedCallback();
-    // 驱动层回调函数
+    /****************************** 驱动层回调函数 1ms *****************************************/ 
+    
     //统一打包发送
     TIM_CAN_PeriodElapsedCallback();
-//    TIM_UART_PeriodElapsedCallback();
+
+    TIM_UART_PeriodElapsedCallback();
 
     static int mod5 = 0;
     mod5++;
     if (mod5 == 5)
     {
+        //TIM_USB_PeriodElapsedCallback();
         mod5 = 0;
-//        TIM_USB_PeriodElapsedCallback();
     }
+    
 }
 
 /**
@@ -557,46 +351,54 @@ void Task1ms_TIM5_Callback()
  *
  */
 void Task_Init()
-{
-    /*驱动层初始化*/
+{  
 
-   // BSP_Init(BSP_DC24_LU_ON | BSP_DC24_LD_ON | BSP_DC24_RU_ON | BSP_DC24_RD_ON);
+    DWT_Init(168);
 
-    //ADC_Init(&hadc1, 1);
-    
-    //集中总线can1/can2
-    CAN_Init(&hcan1, Device_CAN1_Callback);
-    CAN_Init(&hcan2, Device_CAN2_Callback);
-    
-    //c板陀螺仪任务
-    //SPI_Init(&hspi5, Device_SPI5_Callback);
-    //遥控器接收
-    UART_Init(&huart3, DR16_UART3_Callback, 18);
-    
-    //UART_Init(&huart2, Serialplot_UART2_Callback, SERIALPLOT_RX_VARIABLE_ASSIGNMENT_MAX_LENGTH);
-    //裁判系统
-    UART_Init(&huart6, Referee_UART6_Callback, 128);
-    //外挂imu接收
-    //UART_Init(&huart7, AHRS_UART7_Callback, 11);
-    //USB协议
-//    USB_Init(MiniPC_USB_Callback, 64);
+    /********************************** 驱动层初始化 **********************************/
+	#ifdef CHASSIS
+
+        //集中总线can1/can2
+        CAN_Init(&hcan1, Chassis_Device_CAN1_Callback);
+        CAN_Init(&hcan2, Chassis_Device_CAN2_Callback);
+
+        //裁判系统
+        UART_Init(&huart6, Referee_UART6_Callback, 128);
+
+    #endif
+
+    #ifdef GIMBAL
+
+        //集中总线can1/can2
+        CAN_Init(&hcan1, Gimbal_Device_CAN1_Callback);
+        CAN_Init(&hcan2, Gimbal_Device_CAN2_Callback);
+
+        //c板陀螺仪spi外设
+        SPI_Init(&hspi1,Device_SPI1_Callback);
+
+        //磁力计iic外设
+        IIC_Init(&hi2c3, Ist8310_IIC3_Callback);    
+        
+        //遥控器接收
+        UART_Init(&huart3, DR16_UART3_Callback, 18);
+
+    #endif
+
     //定时器循环任务
-//    TIM_Init(&htim4, Task100us_TIM4_Callback);
+    TIM_Init(&htim4, Task100us_TIM4_Callback);
     TIM_Init(&htim5, Task1ms_TIM5_Callback);
 
-    /*设备层初始化*/
+    /********************************* 设备层初始化 *********************************/
 
-    //boarda_mpu.Init();
-    //serialplot.Init(&huart2, 6, (char **)Variable_Assignment_List);
-    //达妙电机设备层初始化
-    //motor.Init(&hcan1, DM_Motor_ID_0xA1, DM_Motor_Control_Method_POSITION_OMEGA);
+     //设备层集成在交互层初始化中，没有显视地初始化
 
-    /*交互层初始化*/
+    /********************************* 交互层初始化 *********************************/
 
     chariot.Init();
-  
-    /*使能调度时钟*/
-    //HAL_TIM_Base_Start_IT(&htim4);
+
+    /********************************* 使能调度时钟 *********************************/
+
+    HAL_TIM_Base_Start_IT(&htim4);
     HAL_TIM_Base_Start_IT(&htim5);
 
     init_finished = 1;

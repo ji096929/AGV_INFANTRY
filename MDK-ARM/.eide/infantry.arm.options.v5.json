@@ -12,7 +12,7 @@
         "c99-mode": true,
         "C_FLAGS": "--cpp11",
         "CXX_FLAGS": "--cpp11",
-        "warnings": "all-warnings"
+        "warnings": "no-warnings"
     },
     "asm-compiler": {},
     "linker": {

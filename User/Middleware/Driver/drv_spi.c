@@ -82,7 +82,7 @@ void SPI_Init(SPI_HandleTypeDef *hspi, SPI_Call_Back Callback_Function)
  */
 uint8_t SPI_Send_Receive_Data(SPI_HandleTypeDef *hspi, GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, uint16_t Tx_Length, uint16_t Rx_Length)
 {
-    HAL_GPIO_TogglePin(GPIOx, GPIO_Pin);
+    //HAL_GPIO_TogglePin(GPIOx, GPIO_Pin);
 
     if (hspi->Instance == SPI1)
     {
@@ -90,8 +90,9 @@ uint8_t SPI_Send_Receive_Data(SPI_HandleTypeDef *hspi, GPIO_TypeDef* GPIOx, uint
         SPI1_Manage_Object.Now_GPIO_Pin = GPIO_Pin;
         SPI1_Manage_Object.Now_Tx_Length = Tx_Length;
         SPI1_Manage_Object.Now_Rx_Length = Rx_Length;
-
-        return (HAL_SPI_TransmitReceive_DMA(hspi, SPI1_Manage_Object.Tx_Buffer, SPI1_Manage_Object.Rx_Buffer, Tx_Length + Rx_Length));
+		
+		return (HAL_SPI_TransmitReceive(hspi, SPI1_Manage_Object.Tx_Buffer, SPI1_Manage_Object.Rx_Buffer, 1, 1000));
+        //return (HAL_SPI_TransmitReceive_DMA(hspi, SPI1_Manage_Object.Tx_Buffer, SPI1_Manage_Object.Rx_Buffer, Tx_Length + Rx_Length));
     }
     else if (hspi->Instance == SPI2)
     {

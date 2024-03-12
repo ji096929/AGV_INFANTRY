@@ -30,10 +30,13 @@
 
 #include "drv_bsp-boarda.h"
 #include "drv_tim.h"
-#include "dvc_boarda-mpuahrs.h"
+//#include "dvc_boarda-mpuahrs.h"
+#include "dvc_boardc_bmi088.h"
 #include "dvc_dmmotor.h"
 #include "dvc_serialplot.h"
 #include "ita_chariot.h"
+#include "dvc_boardc_ist8310.h"
+#include "dvc_imu.h"
 
 /* Exported macros -----------------------------------------------------------*/
 

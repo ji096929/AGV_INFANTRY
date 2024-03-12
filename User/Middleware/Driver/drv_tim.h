@@ -40,9 +40,12 @@ struct Struct_TIM_Manage_Object
 
 extern bool init_finished;
 
+
+
 extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim4;
 extern TIM_HandleTypeDef htim5;
+extern TIM_HandleTypeDef htim10;
 extern TIM_HandleTypeDef htim12;
 
 extern Struct_TIM_Manage_Object TIM1_Manage_Object;

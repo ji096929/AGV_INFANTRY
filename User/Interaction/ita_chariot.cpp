@@ -29,28 +29,33 @@
  */
 void Class_Chariot::Init(float __DR16_Dead_Zone)
 {
-    DR16_Dead_Zone = __DR16_Dead_Zone;
+    #ifdef CHASSIS
+    
+        //裁判系统
+        Referee.Init(&huart6);
 
-    //裁判系统
-    Referee.Init(&huart6);
+        //底盘
+        Chassis.Referee = &Referee;
+        Chassis.Init(10.0f, 10.0f, 2.0f);
 
-    //遥控器
-    DR16.Init(&huart3);
+    #elif defined(GIMBAL)
 
-    //迷你主机
-//    MiniPC.Init();
+        //遥控器
+        DR16.Init(&huart3);
+        DR16_Dead_Zone = __DR16_Dead_Zone;
 
-    //底盘
-    Chassis.Referee = &Referee;
-    Chassis.Init(10.0f, 10.0f, 2.0f);
+        //imu初始化
+        Boardc_BMI.Init();    
 
-    //云台
-//    Gimbal.MiniPC = &MiniPC;
-    Gimbal.Init();
+        //云台
+        //Gimbal.MiniPC = &MiniPC;
+        Gimbal.Init();
 
-    //发射机构
-    Booster.Referee = &Referee;
-    Booster.Init();
+        //发射机构
+        Booster.Referee = &Referee;
+        Booster.Init();
+
+    #endif
 }
 
 /**
@@ -105,36 +110,11 @@ void Class_Chariot::Control_Chassis()
         {
             tmp_chassis_velocity_y -= Chassis.Get_Velocity_Y_Max();
         }
-        // if (DR16.Get_Keyboard_Key_Shift() == DR16_Key_Status_PRESSED)
-        // {
-        //     tmp_chassis_omega += Chassis.Get_Omega_Max();
-        // }
-        // if (DR16.Get_Keyboard_Key_C() == DR16_Key_Status_PRESSED)
-        // {
-        //     tmp_chassis_omega -= Chassis.Get_Omega_Max();
-        // }
     }
     else if (DR16.Get_Left_Switch() == DR16_Switch_Status_UP)  //左上
     {
-//        //上方导航模式
-//        if (MiniPC.Get_MiniPC_Status() == MiniPC_Status_DISABLE)
-//        {
-//            //迷你主机离线
-//            Chassis.Set_Chassis_Control_Type(Chassis_Control_Type_DISABLE);
-//        }
-//        else
-//        {
-//            //迷你主机在线
-//            Chassis.Set_Chassis_Control_Type(Chassis_Control_Type_ABSOLUTE);
 
-//            //迷你主机操作逻辑
-//            Chassis.Set_Chassis_Control_Type(Chassis_Control_Type_ABSOLUTE);
-//            tmp_chassis_velocity_x = MiniPC.Get_Chassis_Target_Velocity_X();
-//            tmp_chassis_velocity_y = MiniPC.Get_Chassis_Target_Velocity_Y();
-//            tmp_chassis_omega = MiniPC.Get_Chassis_Target_Omega();
-//        }
     }
-
     // 设定速度
     Chassis.Set_Target_Velocity_X(tmp_chassis_velocity_x);
     Chassis.Set_Target_Velocity_Y(tmp_chassis_velocity_y);
@@ -183,24 +163,7 @@ void Class_Chariot::Control_Gimbal()
     else if (DR16.Get_Left_Switch() == DR16_Switch_Status_UP)  //左上
     {
         //上方导航模式
-
-//        if (MiniPC.Get_MiniPC_Status() == MiniPC_Status_DISABLE)
-//        {
-//            //迷你主机离线
-//            Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_DISABLE);
-//        }
-//        else
-//        {
-//            //迷你主机在线
-//            Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_NORMAL);
-
-//            //迷你主机操作逻辑
-
-//            tmp_gimbal_yaw += MiniPC_Autoaiming_Yaw_Angle_Resolution * Gimbal.MiniPC->Get_Gimbal_Target_Yaw_Angle();
-//            tmp_gimbal_pitch += MiniPC_Autoaiming_Pitch_Angle_Resolution * Gimbal.MiniPC->Get_Gimbal_Target_Pitch_Angle();
-//        }
     }
-
     // 设定角度
     Gimbal.Set_Target_Yaw_Angle(tmp_gimbal_yaw);
     Gimbal.Set_Target_Pitch_Angle(tmp_gimbal_pitch);
@@ -241,21 +204,6 @@ void Class_Chariot::Control_Booster()
     }
     else if (DR16.Get_Left_Switch() == DR16_Switch_Status_UP)
     {
-//        //上方导航模式
-//        if (MiniPC.Get_MiniPC_Status() == MiniPC_Status_DISABLE)
-//        {
-//            //迷你主机离线
-//            Booster.Set_Booster_Control_Type(Booster_Control_Type_DISABLE);
-//        }
-//        else
-//        {
-//            //迷你主机在线
-//            Booster.Set_Booster_Control_Type(Booster_Control_Type_REPEATED);
-
-//            //迷你主机操作逻辑
-
-//            Booster.Set_Driver_Omega(MiniPC.Get_Booster_Frequency() * PI / 4.0f);
-//        }
         //根据遥控器判断自家颜色, 上红下蓝
         if (DR16.Get_Right_Switch() == DR16_Switch_Status_UP)
         {
@@ -282,70 +230,55 @@ void Class_Chariot::Control_Booster()
  */
 void Class_Chariot::TIM_Control_Callback()
 {
-    //底盘云台发射机构的控制策略
-    Control_Chassis();
-    // Control_Gimbal();
-    // Control_Booster();
+    #ifdef CHASSIS
 
-    //迷你主机相关数据的设置
-    // MiniPC.Set_Game_Stage(static_cast<Enum_MiniPC_Game_Stage>(Referee.Get_Game_Stage()));
-    // MiniPC.Set_Gimbal_Now_Yaw_Angle(Gimbal.Motor_Yaw.Get_Now_Angle());
-    // if (Gimbal.WIT.Get_WIT_Status() == WIT_Status_DISABLE)
-    // {
-    //     MiniPC.Set_Gimbal_Now_Yaw_Omega(Gimbal.Motor_Yaw.Get_Now_Omega());
-    // }
-    // else
-    // {
-    //     MiniPC.Set_Gimbal_Now_Yaw_Omega(Gimbal.WIT.Get_Omega_Z());
-    // }
-    // MiniPC.Set_Gimbal_Now_Pitch_Angle(Gimbal.Motor_Pitch.Get_Now_Angle());
-    // if (Gimbal.WIT.Get_WIT_Status() == WIT_Status_DISABLE)
-    // {
-    //     MiniPC.Set_Gimbal_Now_Pitch_Omega(Gimbal.Motor_Pitch.Get_Now_Omega());
-    // }
-    // else
-    // {
-    //     MiniPC.Set_Gimbal_Now_Pitch_Omega(Gimbal.WIT.Get_Omega_Y());
-    // }
-    // MiniPC.Set_Armor_Attacked_ID(Referee.Get_Armor_Attacked_ID());
-    // if (Referee.Get_Attacked_Type() == Referee_Data_Robot_Damage_Type_ARMOR_ATTACKED)
-    // {
-    //     MiniPC.Set_Armor_Attacked_Ammo_Status(MiniPC_Data_Status_ENABLE);
-    // }
-    // else
-    // {
-    //     MiniPC.Set_Armor_Attacked_Ammo_Status(MiniPC_Data_Status_DISABLE);
-    // }
-    // if (Referee.Get_Attacked_Type() == Referee_Data_Robot_Damage_Type_ARMOR_ATTACKED)
-    // {
-    //     MiniPC.Set_Armor_Attacked_Ammo_Status(MiniPC_Data_Status_ENABLE);
-    // }
-    // else
-    // {
-    //     MiniPC.Set_Armor_Attacked_Ammo_Status(MiniPC_Data_Status_DISABLE);
-    // }
-    // if (Referee.Get_Event_Outpost_Status() == Referee_Data_Status_ENABLE)
-    // {
-    //     MiniPC.Set_Outpost_Status(MiniPC_Data_Status_ENABLE);
-    // }
-    // else
-    // {
-    //     MiniPC.Set_Outpost_Status(MiniPC_Data_Status_DISABLE);
-    // }
-    // if (Referee.Get_Remaining_Time() <= 240)
-    // {
-    //     MiniPC.Set_Outpost_Protect_Status(MiniPC_Data_Status_DISABLE);
-    // }
-    // else
-    // {
-    //     MiniPC.Set_Outpost_Protect_Status(MiniPC_Data_Status_ENABLE);
-    // }
+        //底盘的控制策略
+        Control_Chassis();
+        //各个模块的分别解算
+        Chassis.TIM_Calculate_PeriodElapsedCallback();
 
-    //各个模块的分别解算
-    Chassis.TIM_Calculate_PeriodElapsedCallback();
-    // Gimbal.TIM_Calculate_PeriodElapsedCallback();
-    // Booster.TIM_Calculate_PeriodElapsedCallback();
-    // MiniPC.TIM_Write_PeriodElapsedCallback();
+    #elif defined(GIMBAL)
+
+        //云台发射机构的控制策略
+        Control_Gimbal();
+        Control_Booster();
+        //各个模块的分别解算
+        Gimbal.TIM_Calculate_PeriodElapsedCallback();
+        Booster.TIM_Calculate_PeriodElapsedCallback();
+
+    #endif   
+}
+
+/**
+ * @brief 在线判断回调函数
+ *
+ */
+void Class_Chariot::TIM1msMod50_Alive_PeriodElapsedCallback()
+{
+    static int mod50 = 0;
+    mod50++;
+    if (mod50 == 50)
+    {
+        #ifdef CHASSIS
+
+            chariot.Referee.TIM1msMod50_Alive_PeriodElapsedCallback();
+            for (auto& wheel : chariot.Chassis.Motor_Wheel) {
+                wheel.TIM_Alive_PeriodElapsedCallback();
+            }
+
+        #elif defined(GIMBAL)
+
+            DR16.TIM1msMod50_Alive_PeriodElapsedCallback();
+            Gimbal.Motor_Pitch.TIM_Alive_PeriodElapsedCallback();
+            Gimbal.Motor_Yaw.TIM_Alive_PeriodElapsedCallback();
+            Booster.Motor_Driver.TIM_Alive_PeriodElapsedCallback();
+            Booster.Motor_Friction_Left.TIM_Alive_PeriodElapsedCallback();
+            Booster.Motor_Friction_Right.TIM_Alive_PeriodElapsedCallback();
+            
+        #endif
+
+        mod50 = 0;
+    }    
 }
 
 /************************ COPYRIGHT(C) USTC-ROBOWALKER **************************/

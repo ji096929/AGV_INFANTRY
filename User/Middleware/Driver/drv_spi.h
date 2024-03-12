@@ -52,6 +52,7 @@ struct Struct_SPI_Manage_Object
 
 extern bool init_finished;
 
+extern SPI_HandleTypeDef hspi1;
 extern SPI_HandleTypeDef hspi5;
 
 extern Struct_SPI_Manage_Object SPI1_Manage_Object;

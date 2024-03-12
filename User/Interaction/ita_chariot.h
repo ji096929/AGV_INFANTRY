@@ -18,8 +18,12 @@
 #include "crt_chassis.h"
 #include "crt_gimbal.h"
 #include "crt_booster.h"
+#include "dvc_imu.h"
 
 /* Exported macros -----------------------------------------------------------*/
+
+//#define CHASSIS
+#define GIMBAL
 
 /* Exported types ------------------------------------------------------------*/
 
@@ -34,8 +38,9 @@ public:
     Class_Referee Referee;
     //遥控器
     Class_DR16 DR16;
-    //迷你主机
-//    Class_MiniPC MiniPC;
+
+    //imu对象
+    Class_IMU Boardc_BMI;
 
     //底盘
     Class_Tricycle_Chassis Chassis;
@@ -48,6 +53,8 @@ public:
 
     void TIM_Control_Callback();
 
+    void TIM1msMod50_Alive_PeriodElapsedCallback();
+    
 protected:
     //初始化相关常量
 

@@ -6,7 +6,9 @@
     ],
     "settings": {
         "files.associations": {
-            "main.h": "c"
+            "i2c.h": "c",
+            "drv_spi.h": "c",
+            "drv_i2c.h": "c"
         }
     },
     "extensions": {}

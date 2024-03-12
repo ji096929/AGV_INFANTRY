@@ -320,7 +320,7 @@
             <PlainCh>0</PlainCh>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
-            <wLevel>2</wLevel>
+            <wLevel>1</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>1</uC99>
@@ -586,16 +586,6 @@
           <GroupName>Device</GroupName>
           <Files>
             <File>
-              <FileName>dvc_boarda-mpuahrs.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\User\Device\dvc_boarda-mpuahrs.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>dvc_boarda-mpuahrs-istmagnet.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\User\Device\dvc_boarda-mpuahrs-istmagnet.cpp</FilePath>
-            </File>
-            <File>
               <FileName>dvc_djimotor.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\User\Device\dvc_djimotor.cpp</FilePath>
@@ -650,6 +640,26 @@
               <FileType>8</FileType>
               <FilePath>..\User\Device\dvc_witahrs.cpp</FilePath>
             </File>
+            <File>
+              <FileName>dvc_boardc_bmi088.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\Device\dvc_boardc_bmi088.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>dvc_dwt.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\Device\dvc_dwt.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>dvc_boardc_ist8310.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\Device\dvc_boardc_ist8310.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>dvc_imu.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\Device\dvc_imu.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -684,6 +694,31 @@
               <FileName>alg_slope.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\User\Middleware\Algorithm\alg_slope.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>user_lib.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\Middleware\Algorithm\user_lib.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>QuaternionEKF.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\Middleware\Algorithm\QuaternionEKF.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>kalman_filter.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\Middleware\Algorithm\kalman_filter.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PID.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\Middleware\Algorithm\PID.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>alg_MahonyAHRS.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\Middleware\Algorithm\alg_MahonyAHRS.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -729,6 +764,11 @@
               <FileName>drv_uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\Middleware\Driver\drv_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>drv_dwt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\Middleware\Driver\drv_dwt.c</FilePath>
             </File>
           </Files>
         </Group>
