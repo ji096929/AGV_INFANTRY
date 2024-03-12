@@ -1,0 +1,9 @@
+chassis\kinematic.o: ..\app\chassis_move\kinematic.c
+chassis\kinematic.o: ..\app\chassis_move\kinematic.h
+chassis\kinematic.o: ..\app\chassis_move\chassis.h
+chassis\kinematic.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+chassis\kinematic.o: ../app/motor/motor.h
+chassis\kinematic.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+chassis\kinematic.o: ../bsp/PID/PID.h
+chassis\kinematic.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+chassis\kinematic.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

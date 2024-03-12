@@ -37,7 +37,10 @@ float Sqrt(float x)
 		
 long double calculate_torque_current_according_to_scaled_power(long double scaled_power)
 {
-     b = steering_wheel.motion_part.motor.M3508_kit.feedback.current_rotor_rpm * TOQUE_COEFFICIENT;
+
+
+
+	b = steering_wheel.motion_part.motor.M3508_kit.feedback.current_rotor_rpm * TOQUE_COEFFICIENT;
      c = K2 * steering_wheel.motion_part.motor.M3508_kit.feedback.current_rotor_rpm * steering_wheel.motion_part.motor.M3508_kit.feedback.current_rotor_rpm - scaled_power + CONSTANT;
     if (steering_wheel.motion_part.motor.command.torque > 0) // Selection of the calculation formula according to the direction of the original moment
     {

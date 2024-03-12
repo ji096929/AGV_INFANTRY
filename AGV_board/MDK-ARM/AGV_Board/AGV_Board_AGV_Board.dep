@@ -1,6 +1,6 @@
 Dependencies for Project 'AGV_Board', Target 'AGV_Board': (DO NOT MODIFY !)
 F (startup_stm32f105xc.s)(0x65EB2172)(--cpu Cortex-M3 -g --apcs=interwork -I.\RTE\_AGV_Board-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include--pd "__UVISION_VERSION SETA 523" --pd "_RTE_ SETA 1" --pd "STM32F10X_CL SETA 1"--list startup_stm32f105xc.lst --xref -o agv_board\startup_stm32f105xc.o --depend agv_board\startup_stm32f105xc.d)
-F (../Core/Src/main.c)(0x65EB21D4)(--c99 -c --cpu Cortex-M3 -g -W -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../BSP -I ../APP -I ../task -I ../refree-I.\RTE\_AGV_Board-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="523" -D_RTE_ -DSTM32F10X_CL -DUSE_HAL_DRIVER -DSTM32F105xC-o agv_board\main.o --omf_browse agv_board\main.crf --depend agv_board\main.d)
+F (../Core/Src/main.c)(0x65EDC022)(--c99 -c --cpu Cortex-M3 -g -W -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../BSP -I ../APP -I ../task -I ../refree-I.\RTE\_AGV_Board-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="523" -D_RTE_ -DSTM32F10X_CL -DUSE_HAL_DRIVER -DSTM32F105xC-o agv_board\main.o --omf_browse agv_board\main.crf --depend agv_board\main.d)
 I (../Core/Inc/main.h)(0x65E956E8)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x64FBE106)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x65E985DB)
@@ -42,7 +42,7 @@ I (../BSP/M3508_gear_bsp.h)(0x65EAE071)
 I (../APP/briter_encoder.h)(0x65E956E8)
 I (../BSP/briter_encoder_bsp.h)(0x65E956E8)
 I (../task/SW_control_task.h)(0x65EAE75F)
-I (../APP/steering_wheel.h)(0x65EB2520)
+I (../APP/steering_wheel.h)(0x65EDC091)
 I (../APP/pid_regulator.h)(0x65E956E8)
 I (../BSP/steering_wheel_bsp.h)(0x65E956E8)
 I (../APP/steering_communication.h)(0x65E956E8)
@@ -235,7 +235,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x64FBE106)
 I (../Core/Inc/stm32f1xx_it.h)(0x65EB2170)
 I (../Core/Inc/tim.h)(0x65E956E8)
 I (../task/SW_control_task.h)(0x65EAE75F)
-I (../APP/steering_wheel.h)(0x65EB2520)
+I (../APP/steering_wheel.h)(0x65EDC091)
 I (../APP/pid_regulator.h)(0x65E956E8)
 I (../BSP/steering_wheel_bsp.h)(0x65E956E8)
 I (../APP/M3508_gear.h)(0x65E956E8)
@@ -772,7 +772,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x64FBE106)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x64FBE106)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x57F606B6)
 I (../task/SW_control_task.h)(0x65EAE75F)
-I (../APP/steering_wheel.h)(0x65EB2520)
+I (../APP/steering_wheel.h)(0x65EDC091)
 I (../APP/pid_regulator.h)(0x65E956E8)
 I (../BSP/steering_wheel_bsp.h)(0x65E956E8)
 I (../APP/M3508_gear.h)(0x65E956E8)
@@ -787,7 +787,7 @@ I (../APP/chassis_power_control.h)(0x65EB1AFF)
 F (..\task\SW_control_task.c)(0x65E9C910)(--c99 -c --cpu Cortex-M3 -g -W -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../BSP -I ../APP -I ../task -I ../refree-I.\RTE\_AGV_Board-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="523" -D_RTE_ -DSTM32F10X_CL -DUSE_HAL_DRIVER -DSTM32F105xC-o agv_board\sw_control_task.o --omf_browse agv_board\sw_control_task.crf --depend agv_board\sw_control_task.d)
 I (..\task\SW_control_task.h)(0x65EAE75F)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
-I (../APP/steering_wheel.h)(0x65EB2520)
+I (../APP/steering_wheel.h)(0x65EDC091)
 I (../APP/pid_regulator.h)(0x65E956E8)
 I (../BSP/steering_wheel_bsp.h)(0x65E956E8)
 I (../APP/M3508_gear.h)(0x65E956E8)
@@ -813,7 +813,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
 F (..\BSP\steering_wheel_bsp.c)(0x65E956E8)(--c99 -c --cpu Cortex-M3 -g -W -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../BSP -I ../APP -I ../task -I ../refree-I.\RTE\_AGV_Board-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="523" -D_RTE_ -DSTM32F10X_CL -DUSE_HAL_DRIVER -DSTM32F105xC-o agv_board\steering_wheel_bsp.o --omf_browse agv_board\steering_wheel_bsp.crf --depend agv_board\steering_wheel_bsp.d)
 I (..\BSP\steering_wheel_bsp.h)(0x65E956E8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
-F (..\BSP\can_bsp.c)(0x65EB2467)(--c99 -c --cpu Cortex-M3 -g -W -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../BSP -I ../APP -I ../task -I ../refree-I.\RTE\_AGV_Board-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="523" -D_RTE_ -DSTM32F10X_CL -DUSE_HAL_DRIVER -DSTM32F105xC-o agv_board\can_bsp.o --omf_browse agv_board\can_bsp.crf --depend agv_board\can_bsp.d)
+F (..\BSP\can_bsp.c)(0x65F030E3)(--c99 -c --cpu Cortex-M3 -g -W -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../BSP -I ../APP -I ../task -I ../refree-I.\RTE\_AGV_Board-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="523" -D_RTE_ -DSTM32F10X_CL -DUSE_HAL_DRIVER -DSTM32F105xC-o agv_board\can_bsp.o --omf_browse agv_board\can_bsp.crf --depend agv_board\can_bsp.d)
 I (..\BSP\can_bsp.h)(0x65E9867B)
 I (../APP/briter_encoder.h)(0x65E956E8)
 I (../BSP/briter_encoder_bsp.h)(0x65E956E8)
@@ -823,7 +823,7 @@ I (../BSP/M3508_gear_bsp.h)(0x65EAE071)
 I (../APP/M3508.h)(0x65E956E8)
 I (../BSP/M3508_bsp.h)(0x65EAD84F)
 I (../task/SW_control_task.h)(0x65EAE75F)
-I (../APP/steering_wheel.h)(0x65EB2520)
+I (../APP/steering_wheel.h)(0x65EDC091)
 I (../APP/pid_regulator.h)(0x65E956E8)
 I (../BSP/steering_wheel_bsp.h)(0x65E956E8)
 I (../APP/steering_communication.h)(0x65E956E8)
@@ -861,7 +861,7 @@ F (..\BSP\pack_handler_bsp.c)(0x65E956E8)(--c99 -c --cpu Cortex-M3 -g -W -O1 --a
 F (..\BSP\steering_communication_bsp.c)(0x65E956E8)(--c99 -c --cpu Cortex-M3 -g -W -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../BSP -I ../APP -I ../task -I ../refree-I.\RTE\_AGV_Board-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="523" -D_RTE_ -DSTM32F10X_CL -DUSE_HAL_DRIVER -DSTM32F105xC-o agv_board\steering_communication_bsp.o --omf_browse agv_board\steering_communication_bsp.crf --depend agv_board\steering_communication_bsp.d)
 I (..\BSP\steering_communication_bsp.h)(0x65E956E8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
-F (..\APP\M3508.c)(0x65E956E8)(--c99 -c --cpu Cortex-M3 -g -W -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../BSP -I ../APP -I ../task -I ../refree-I.\RTE\_AGV_Board-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="523" -D_RTE_ -DSTM32F10X_CL -DUSE_HAL_DRIVER -DSTM32F105xC-o agv_board\m3508.o --omf_browse agv_board\m3508.crf --depend agv_board\m3508.d)
+F (..\APP\M3508.c)(0x65EDBB7E)(--c99 -c --cpu Cortex-M3 -g -W -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../BSP -I ../APP -I ../task -I ../refree-I.\RTE\_AGV_Board-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="523" -D_RTE_ -DSTM32F10X_CL -DUSE_HAL_DRIVER -DSTM32F105xC-o agv_board\m3508.o --omf_browse agv_board\m3508.crf --depend agv_board\m3508.d)
 I (..\APP\M3508.h)(0x65E956E8)
 I (../BSP/M3508_bsp.h)(0x65EAD84F)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
@@ -937,7 +937,7 @@ F (..\APP\pid_regulator.c)(0x65E956E8)(--c99 -c --cpu Cortex-M3 -g -W -O1 --apcs
 I (..\APP\pid_regulator.h)(0x65E956E8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
 F (..\APP\steering_wheel.c)(0x65E956E8)(--c99 -c --cpu Cortex-M3 -g -W -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../BSP -I ../APP -I ../task -I ../refree-I.\RTE\_AGV_Board-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="523" -D_RTE_ -DSTM32F10X_CL -DUSE_HAL_DRIVER -DSTM32F105xC-o agv_board\steering_wheel.o --omf_browse agv_board\steering_wheel.crf --depend agv_board\steering_wheel.d)
-I (..\APP\steering_wheel.h)(0x65EB2520)
+I (..\APP\steering_wheel.h)(0x65EDC091)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
 I (..\APP\pid_regulator.h)(0x65E956E8)
 I (../BSP/steering_wheel_bsp.h)(0x65E956E8)
@@ -985,7 +985,7 @@ F (..\APP\steering_communication.c)(0x65E98717)(--c99 -c --cpu Cortex-M3 -g -W -
 I (..\APP\steering_communication.h)(0x65E956E8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
 I (../BSP/steering_communication_bsp.h)(0x65E956E8)
-I (..\APP\steering_wheel.h)(0x65EB2520)
+I (..\APP\steering_wheel.h)(0x65EDC091)
 I (..\APP\pid_regulator.h)(0x65E956E8)
 I (../BSP/steering_wheel_bsp.h)(0x65E956E8)
 I (..\APP\M3508_gear.h)(0x65E956E8)
@@ -1024,11 +1024,11 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x64FBE106)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x64FBE106)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x64FBE106)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x64FBE106)
-F (..\APP\chassis_power_control.c)(0x65EB1EF2)(--c99 -c --cpu Cortex-M3 -g -W -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../BSP -I ../APP -I ../task -I ../refree-I.\RTE\_AGV_Board-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="523" -D_RTE_ -DSTM32F10X_CL -DUSE_HAL_DRIVER -DSTM32F105xC-o agv_board\chassis_power_control.o --omf_browse agv_board\chassis_power_control.crf --depend agv_board\chassis_power_control.d)
+F (..\APP\chassis_power_control.c)(0x65EDBDDF)(--c99 -c --cpu Cortex-M3 -g -W -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../BSP -I ../APP -I ../task -I ../refree-I.\RTE\_AGV_Board-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="523" -D_RTE_ -DSTM32F10X_CL -DUSE_HAL_DRIVER -DSTM32F105xC-o agv_board\chassis_power_control.o --omf_browse agv_board\chassis_power_control.crf --depend agv_board\chassis_power_control.d)
 I (..\APP\chassis_power_control.h)(0x65EB1AFF)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
 I (../task/SW_control_task.h)(0x65EAE75F)
-I (../APP/steering_wheel.h)(0x65EB2520)
+I (../APP/steering_wheel.h)(0x65EDC091)
 I (../APP/pid_regulator.h)(0x65E956E8)
 I (../BSP/steering_wheel_bsp.h)(0x65E956E8)
 I (../APP/M3508_gear.h)(0x65E956E8)

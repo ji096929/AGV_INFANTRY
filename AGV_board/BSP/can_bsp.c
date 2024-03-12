@@ -17,6 +17,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 		HAL_CAN_GetRxMessage(&hcan1,CAN_RX_FIFO0,&CAN_RxHeaderStruct,rxdata);
 
 		//briter_encoder_feedback_handler(&briter_encoder, rxdata);
+
 		M3508_feedback_handler(&M3508_bus_1, CAN_RxHeaderStruct.StdId, rxdata);
 		M3508_gear_feedback_handler(&steering_wheel.directive_part.motor.M3508_kit);
 		M3508_gear_feedback_handler(&steering_wheel.motion_part.motor.M3508_kit);
@@ -33,7 +34,10 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 	{
 
 		HAL_CAN_GetRxMessage(&hcan2,CAN_RX_FIFO0,&CAN_RxHeaderStruct,rxdata);
-	if (CAN_RxHeaderStruct.IDE == CAN_ID_EXT)
+
+
+
+		if (CAN_RxHeaderStruct.IDE == CAN_ID_EXT)
 			steering_communication_rx_handler(CAN_RxHeaderStruct.ExtId, rxdata);
 	}
 
@@ -74,6 +78,11 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan)
 
 void can_filter_set(CAN_FilterTypeDef *CAN_Filter,uint16_t equipment_id,uint8_t cmd_id,uint16_t data2_part,CAN_FILTER_IMPROVE_E 	improve)
 {
+	
+	  CAN_Filter->FilterIdHigh = 0x0000;
+		CAN_Filter->FilterIdLow = 0x0000;
+		CAN_Filter->FilterMaskIdHigh = 0x0000;
+		CAN_Filter->FilterMaskIdLow =  0x0000;
 	if(improve	&	EXT_ID_MODE)
 	{
 		CAN_Filter->FilterIdHigh = data2_part>>5|cmd_id<<5;
@@ -141,29 +150,28 @@ void platform_filtter_config_setting(void)
 		CAN_FilterStructure.FilterScale = CAN_FILTERSCALE_32BIT;
 		CAN_FilterStructure.FilterFIFOAssignment = CAN_FILTER_FIFO0;
 		can_filter_set(&CAN_FilterStructure,0x201,0,0,STD_ID_MODE|EQUIPMENT_ID_IMPROVE);
-		HAL_CAN_ConfigFilter(&hcan1,&CAN_FilterStructure);
-		CAN_FilterStructure.FilterBank = 1;
-		can_filter_set(&CAN_FilterStructure,0x202,0,0,STD_ID_MODE|EQUIPMENT_ID_IMPROVE);
-		HAL_CAN_ConfigFilter(&hcan1,&CAN_FilterStructure);
 
-		
+		can_filter_set(&CAN_FilterStructure,0x202,0,0,STD_ID_MODE|EQUIPMENT_ID_IMPROVE);
+
+
+		HAL_CAN_ConfigFilter(&hcan1,&CAN_FilterStructure);
 		CAN_FilterStructure.FilterFIFOAssignment = CAN_FILTER_FIFO1;
 		CAN_FilterStructure.FilterBank = 2;
 		#ifdef	AGV_BOARD_A
 		can_filter_set(&CAN_FilterStructure,0x0A,0,0,STD_ID_MODE|EQUIPMENT_ID_IMPROVE);
-		HAL_CAN_ConfigFilter(&hcan1,&CAN_FilterStructure);
+
 		#endif
 		#ifdef	AGV_BOARD_B
 		can_filter_set(&CAN_FilterStructure,0x0B,0,0,STD_ID_MODE|EQUIPMENT_ID_IMPROVE);
-		HAL_CAN_ConfigFilter(&hcan1,&CAN_FilterStructure);
+
 		#endif
 		#ifdef	AGV_BOARD_C
 		can_filter_set(&CAN_FilterStructure,0x0C,0,0,STD_ID_MODE|EQUIPMENT_ID_IMPROVE);
-		HAL_CAN_ConfigFilter(&hcan1,&CAN_FilterStructure);
+
 		#endif
 		#ifdef	AGV_BOARD_D
 		can_filter_set(&CAN_FilterStructure,0x0D,0,0,STD_ID_MODE|EQUIPMENT_ID_IMPROVE);
-		HAL_CAN_ConfigFilter(&hcan1,&CAN_FilterStructure);
+
 		#endif
 		CAN_FilterStructure.FilterFIFOAssignment = CAN_FILTER_FIFO1;
 	  CAN_FilterStructure.FilterBank = 15;
@@ -179,10 +187,6 @@ void platform_filtter_config_setting(void)
 		#ifdef	AGV_BOARD_D
 		can_filter_set(&CAN_FilterStructure,D_STEERING_CAN_ID,0,0,EXT_ID_MODE|EQUIPMENT_ID_IMPROVE);
 		#endif
-		CAN_FilterStructure.FilterIdHigh = 0x0000;
-		CAN_FilterStructure.FilterIdLow = 0x0000;
-		CAN_FilterStructure.FilterMaskIdHigh = 0x0000;
-		CAN_FilterStructure.FilterMaskIdLow =  0x0000;
 		HAL_CAN_ConfigFilter(&hcan2,&CAN_FilterStructure);
 	#endif
 }

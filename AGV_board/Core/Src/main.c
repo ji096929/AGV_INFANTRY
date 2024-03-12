@@ -151,7 +151,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 		// 目前还懒得丢到定时器中断�?
-		HAL_Delay(4);
+		//HAL_Delay(4);
 	  
 	   //briter_encoder_set_CAN_ID(&steering_wheel.directive_part.encoder.briter_encoder,0x10);
   }

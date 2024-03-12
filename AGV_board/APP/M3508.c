@@ -119,7 +119,11 @@ void M3508_set_all_motor_current(M3508_motor_bus_t *M3508_bus, uint16_t current[
 M3508_RETURN_T M3508_feedback_handler(M3508_motor_bus_t *M3508_bus, uint16_t CAN_ID, uint8_t data[])
 {
     M3508_ctx.handle = M3508_bus->handle;
-    if (M3508_feedback_process(M3508_bus, CAN_ID, data))
+    if (M3508_feedback_process(M3508_bus, CAN_ID, data)
+			
+		
+		
+		)
 		return M3508_ERROR;
 	return M3508_OK;
 }
