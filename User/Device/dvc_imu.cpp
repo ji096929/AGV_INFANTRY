@@ -34,7 +34,6 @@ void Class_IMU::Init()
     PID_IMU_Tempture.Init(2000, 3000, 0, 0.0, uint32_max, uint32_max);
     HAL_TIM_PWM_Start(&htim10, TIM_CHANNEL_1);
 
-    imu_start_flag = 1;
 }
 
 
@@ -43,37 +42,34 @@ void Class_IMU::TIM_Calculate_PeriodElapsedCallback(void)
     static uint8_t Tempture_Cnt_mod50 = 0;
     Tempture_Cnt_mod50++;
 
-    if(imu_start_flag)
-    {
-        IMU_BMI088.BMI088_Read(&BMI088_Raw_Data);
-			
-        //加速度计低通滤波
-        //accel low-pass filter
-        accel_fliter_1[0] = accel_fliter_2[0];
-        accel_fliter_2[0] = accel_fliter_3[0];
+    IMU_BMI088.BMI088_Read(&BMI088_Raw_Data);
+        
+    //加速度计低通滤波
+    //accel low-pass filter
+    accel_fliter_1[0] = accel_fliter_2[0];
+    accel_fliter_2[0] = accel_fliter_3[0];
 
-        accel_fliter_3[0] = accel_fliter_2[0] * fliter_num[0] + accel_fliter_1[0] * fliter_num[1] + BMI088_Raw_Data.Accel[0] * fliter_num[2];
+    accel_fliter_3[0] = accel_fliter_2[0] * fliter_num[0] + accel_fliter_1[0] * fliter_num[1] + BMI088_Raw_Data.Accel[0] * fliter_num[2];
 
-        accel_fliter_1[1] = accel_fliter_2[1];
-        accel_fliter_2[1] = accel_fliter_3[1];
+    accel_fliter_1[1] = accel_fliter_2[1];
+    accel_fliter_2[1] = accel_fliter_3[1];
 
-        accel_fliter_3[1] = accel_fliter_2[1] * fliter_num[0] + accel_fliter_1[1] * fliter_num[1] + BMI088_Raw_Data.Accel[1] * fliter_num[2];
+    accel_fliter_3[1] = accel_fliter_2[1] * fliter_num[0] + accel_fliter_1[1] * fliter_num[1] + BMI088_Raw_Data.Accel[1] * fliter_num[2];
 
-        accel_fliter_1[2] = accel_fliter_2[2];
-        accel_fliter_2[2] = accel_fliter_3[2];
+    accel_fliter_1[2] = accel_fliter_2[2];
+    accel_fliter_2[2] = accel_fliter_3[2];
 
-        accel_fliter_3[2] = accel_fliter_2[2] * fliter_num[0] + accel_fliter_1[2] * fliter_num[1] + BMI088_Raw_Data.Accel[2] * fliter_num[2];
-  
-        //角速度零值修正，目的是建立死区，mpu波纹浮动
-//        BMI088_Raw_Data.Gyro[0] = fabs(BMI088_Raw_Data.Gyro[0])<GIMBAL_GYRO_X_ZERO_CORRECT ? 0.0f : BMI088_Raw_Data.Gyro[0];
-//        BMI088_Raw_Data.Gyro[1] = fabs(BMI088_Raw_Data.Gyro[1])<GIMBAL_GYRO_Y_ZERO_CORRECT ? 0.0f : BMI088_Raw_Data.Gyro[1];
-//        BMI088_Raw_Data.Gyro[2] = fabs(BMI088_Raw_Data.Gyro[2])<GIMBAL_GYRO_Z_ZERO_CORRECT ? 0.0f : BMI088_Raw_Data.Gyro[2];
-//		
-        //IMU_IST8310.ist8310_read_mag(IST8310_Real_Data.mag);
+    accel_fliter_3[2] = accel_fliter_2[2] * fliter_num[0] + accel_fliter_1[2] * fliter_num[1] + BMI088_Raw_Data.Accel[2] * fliter_num[2];
 
-        IMU_MahonyAHRS.AHRS_update(INS_Quat, 0.001f, BMI088_Raw_Data.Gyro, BMI088_Raw_Data.Accel, IST8310_Real_Data.mag);
-        Get_Angle();
-    }
+    //角速度零值修正，目的是建立死区，mpu波纹浮动
+    BMI088_Raw_Data.Gyro[0] = fabs(BMI088_Raw_Data.Gyro[0])<GIMBAL_GYRO_X_ZERO_CORRECT ? 0.0f : BMI088_Raw_Data.Gyro[0];
+    BMI088_Raw_Data.Gyro[1] = fabs(BMI088_Raw_Data.Gyro[1])<GIMBAL_GYRO_Y_ZERO_CORRECT ? 0.0f : BMI088_Raw_Data.Gyro[1];
+    BMI088_Raw_Data.Gyro[2] = fabs(BMI088_Raw_Data.Gyro[2])<GIMBAL_GYRO_Z_ZERO_CORRECT ? 0.0f : BMI088_Raw_Data.Gyro[2];
+    
+//  IMU_IST8310.ist8310_read_mag(IST8310_Real_Data.mag);
+
+    IMU_MahonyAHRS.AHRS_update(INS_Quat, 0.001f, BMI088_Raw_Data.Gyro, BMI088_Raw_Data.Accel, IST8310_Real_Data.mag);
+    Get_Angle();
 
     if(Tempture_Cnt_mod50 % 50 == 0)
     {
@@ -81,6 +77,24 @@ void Class_IMU::TIM_Calculate_PeriodElapsedCallback(void)
         PID_IMU_Tempture.Set_Target(40.0f);
         PID_IMU_Tempture.TIM_Adjust_PeriodElapsedCallback();
         TIM_Set_PWM(&htim10, TIM_CHANNEL_1, (uint16_t)PID_IMU_Tempture.Get_Out());
+    }
+
+    imu_start_flag = 1;
+}
+
+void Class_IMU::TIM1msMod50_Alive_PeriodElapsedCallback(void)
+{
+    if(imu_start_flag)  //陀螺仪已经开启通讯
+    {
+        if((Pre_BMI088_Raw_Data.Accel[0] == BMI088_Raw_Data.Accel[0]) 
+        && (Pre_BMI088_Raw_Data.Accel[1] == BMI088_Raw_Data.Accel[1]) 
+        && (Pre_BMI088_Raw_Data.Accel[2] == BMI088_Raw_Data.Accel[2]))  //判断陀螺仪是否掉线
+        {
+            IMU_Status = IMU_Status_DISABLE;
+        }
+        else IMU_Status = IMU_Status_ENABLE;
+
+        memcpy(&Pre_BMI088_Raw_Data, &BMI088_Raw_Data, sizeof(IMU_Data_t));  //保留上一次的数据
     }
 }
 
@@ -115,6 +129,72 @@ void Class_IMU::TIM_Set_PWM(TIM_HandleTypeDef *tim_pwmHandle, uint8_t Channel, u
         tim_pwmHandle->Instance->CCR4 = value;
         break;
     }
+}
+
+float Class_IMU::Get_Angle_Roll(void)
+{
+    return INS_Angle[1];
+}
+
+float Class_IMU::Get_Angle_Pitch(void)
+{
+    return INS_Angle[2];
+}
+
+float Class_IMU::Get_Angle_Yaw(void)
+{
+    return INS_Angle[0];
+}
+
+float Class_IMU::Get_Accel_Roll(void)
+{
+    return BMI088_Raw_Data.Accel[1];
+}
+
+float Class_IMU::Get_Accel_Pitch(void)
+{
+    return BMI088_Raw_Data.Accel[2];
+}
+
+float Class_IMU::Get_Accel_Yaw(void)
+{
+    return BMI088_Raw_Data.Accel[0];
+}
+
+float Class_IMU::Get_Gyro_Roll(void)
+{
+    return BMI088_Raw_Data.Gyro[1];
+}
+
+float Class_IMU::Get_Gyro_Pitch(void)
+{
+    return BMI088_Raw_Data.Gyro[2];
+}
+
+float Class_IMU::Get_Gyro_Yaw(void)
+{
+    return BMI088_Raw_Data.Gyro[0];
+
+}
+
+float Class_IMU::Get_Rad_Roll(void)
+{
+    return INS_Rad[2];
+}
+
+float Class_IMU::Get_Rad_Pitch(void)
+{
+    return INS_Rad[1];
+}
+
+float Class_IMU::Get_Rad_Yaw(void)
+{
+    return INS_Rad[0];
+}
+
+Enum_IMU_Status Class_IMU::Get_IMU_Status(void)
+{
+    return IMU_Status;
 }
 
 //====================================================================================================

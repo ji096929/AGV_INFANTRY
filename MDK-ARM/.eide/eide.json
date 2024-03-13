@@ -111,6 +111,9 @@
             "path": "../User/Device/dvc_imu.cpp"
           },
           {
+            "path": "../User/Device/dvc_lkmotor.cpp"
+          },
+          {
             "path": "../User/Device/dvc_manifold.cpp"
           },
           {

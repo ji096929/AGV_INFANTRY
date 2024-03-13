@@ -586,6 +586,21 @@
           <GroupName>Device</GroupName>
           <Files>
             <File>
+              <FileName>dvc_imu.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\Device\dvc_imu.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>dvc_boardc_bmi088.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\Device\dvc_boardc_bmi088.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>dvc_boardc_ist8310.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\Device\dvc_boardc_ist8310.cpp</FilePath>
+            </File>
+            <File>
               <FileName>dvc_djimotor.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\User\Device\dvc_djimotor.cpp</FilePath>
@@ -596,9 +611,19 @@
               <FilePath>..\User\Device\dvc_dmmotor.cpp</FilePath>
             </File>
             <File>
+              <FileName>dvc_lkmotor.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\Device\dvc_lkmotor.cpp</FilePath>
+            </File>
+            <File>
               <FileName>dvc_dr16.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\User\Device\dvc_dr16.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>dvc_supercap.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\Device\dvc_supercap.cpp</FilePath>
             </File>
             <File>
               <FileName>dvc_manifold.cpp</FileName>
@@ -631,34 +656,14 @@
               <FilePath>..\User\Device\dvc_servo.cpp</FilePath>
             </File>
             <File>
-              <FileName>dvc_supercap.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\User\Device\dvc_supercap.cpp</FilePath>
-            </File>
-            <File>
               <FileName>dvc_witahrs.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\User\Device\dvc_witahrs.cpp</FilePath>
             </File>
             <File>
-              <FileName>dvc_boardc_bmi088.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\User\Device\dvc_boardc_bmi088.cpp</FilePath>
-            </File>
-            <File>
               <FileName>dvc_dwt.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\User\Device\dvc_dwt.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>dvc_boardc_ist8310.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\User\Device\dvc_boardc_ist8310.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>dvc_imu.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\User\Device\dvc_imu.cpp</FilePath>
             </File>
           </Files>
         </Group>

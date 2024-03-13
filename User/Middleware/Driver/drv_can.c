@@ -49,6 +49,25 @@ uint8_t CAN2_0xxf8_Tx_Data[8];
 
 uint8_t CAN_Supercap_Tx_Data[8];
 
+/*********LK电机 控制缓冲区***********/
+uint8_t CAN1_0x141_Tx_Data[8];
+uint8_t CAN1_0x142_Tx_Data[8];
+uint8_t CAN1_0x143_Tx_Data[8];
+uint8_t CAN1_0x144_Tx_Data[8];
+uint8_t CAN1_0x145_Tx_Data[8];
+uint8_t CAN1_0x146_Tx_Data[8];
+uint8_t CAN1_0x147_Tx_Data[8];
+uint8_t CAN1_0x148_Tx_Data[8];
+
+uint8_t CAN2_0x141_Tx_Data[8];    
+uint8_t CAN2_0x142_Tx_Data[8];
+uint8_t CAN2_0x143_Tx_Data[8];
+uint8_t CAN2_0x144_Tx_Data[8];
+uint8_t CAN2_0x145_Tx_Data[8];    
+uint8_t CAN2_0x146_Tx_Data[8];
+uint8_t CAN2_0x147_Tx_Data[8];
+uint8_t CAN2_0x148_Tx_Data[8];
+
 /* Private function declarations ---------------------------------------------*/
 
 /* function prototypes -------------------------------------------------------*/
@@ -116,12 +135,7 @@ void can_filter_mask_config(CAN_HandleTypeDef *hcan, uint8_t Object_Para, uint32
     {
         Error_Handler();
     }
-		
-		/*离开初始模式*/
- 	  HAL_CAN_Start(hcan);				
-		
-		/*开中断*/
-		HAL_CAN_ActivateNotification(hcan, CAN_IT_RX_FIFO0_MSG_PENDING);       //can1 接收fifo 0不为空中断
+	
 }
 
 /**
@@ -136,8 +150,10 @@ void CAN_Init(CAN_HandleTypeDef *hcan, CAN_Call_Back Callback_Function)
     {
         CAN1_Manage_Object.CAN_Handler = hcan;
         CAN1_Manage_Object.Callback_Function = Callback_Function;					
-         can_filter_mask_config(hcan, CAN_FILTER(0) | CAN_FIFO_0 | CAN_STDID | CAN_DATA_TYPE, 0x200 ,0x7F8);  //只接收0x200-0x207
-         can_filter_mask_config(hcan, CAN_FILTER(1) | CAN_FIFO_1 | CAN_STDID | CAN_DATA_TYPE, 0x200, 0x7F8);
+//         can_filter_mask_config(hcan, CAN_FILTER(0) | CAN_FIFO_0 | CAN_STDID | CAN_DATA_TYPE, 0x200 ,0x7F8);  //只接收0x200-0x207
+//         can_filter_mask_config(hcan, CAN_FILTER(1) | CAN_FIFO_1 | CAN_STDID | CAN_DATA_TYPE, 0x200, 0x7F8);
+			can_filter_mask_config(hcan, CAN_FILTER(0) | CAN_FIFO_0 | CAN_EXTID | CAN_DATA_TYPE, 0 ,0);
+			can_filter_mask_config(hcan, CAN_FILTER(1) | CAN_FIFO_1 | CAN_EXTID | CAN_DATA_TYPE, 0 ,0);
     }
     else if (hcan->Instance == CAN2)
     {
@@ -146,6 +162,12 @@ void CAN_Init(CAN_HandleTypeDef *hcan, CAN_Call_Back Callback_Function)
 		can_filter_mask_config(hcan, CAN_FILTER(14) | CAN_FIFO_0 | CAN_EXTID | CAN_DATA_TYPE, 0 ,0);  //只接收
 //	    can_filter_mask_config(hcan, CAN_FILTER(15) | CAN_FIFO_1 | CAN_EXTID | CAN_DATA_TYPE, 0x200, 0x7F8);
     }
+    /*离开初始模式*/
+    HAL_CAN_Start(hcan);				
+    
+    /*开中断*/
+    HAL_CAN_ActivateNotification(hcan, CAN_IT_RX_FIFO0_MSG_PENDING);       //can 接收fifo 0不为空中断
+	HAL_CAN_ActivateNotification(hcan, CAN_IT_RX_FIFO1_MSG_PENDING);       //can 接收fifo 1不为空中断
 }
 
 /**
@@ -192,7 +214,7 @@ void TIM_CAN_PeriodElapsedCallback()
     }
 
     // CAN1总线  四个底盘电机  
-    CAN_Send_Data(&hcan1, 0x1ff, CAN1_0x1ff_Tx_Data, 8);
+    //CAN_Send_Data(&hcan1, 0x1ff, CAN1_0x1ff_Tx_Data, 8);
     CAN_Send_Data(&hcan1, 0x200, CAN1_0x200_Tx_Data, 8);
 
     // CAN2电机  上板 超电  
@@ -202,12 +224,12 @@ void TIM_CAN_PeriodElapsedCallback()
     #elif defined (GIMBAL)
 
     // CAN1 摩擦轮*2 pitch
-    CAN_Send_Data(&hcan1, 0x1ff, CAN1_0x1ff_Tx_Data, 8);
-    CAN_Send_Data(&hcan1, 0x200, CAN1_0x200_Tx_Data, 8);
-
+    CAN_Send_Data(&hcan1, 0x1ff, CAN1_0x1ff_Tx_Data, 8); //pitch-GM6020  按照0x1ff ID 发送 可控制多个电机
+    CAN_Send_Data(&hcan1, 0x200, CAN1_0x200_Tx_Data, 8); //摩擦轮+拨弹轮 按照0x200 ID 发送 可控制多个电机
+    CAN_Send_Data(&hcan1, 0x141, CAN1_0x141_Tx_Data, 8); //pitch-LK6010  按照0x141 ID 发送 一次只能控制一个电机
+    
     // CAN2 yaw 下板
-    CAN_Send_Data(&hcan2, 0x1ff, CAN2_0x1ff_Tx_Data, 8);
-    CAN_Send_Data(&hcan2, 0x200, CAN2_0x200_Tx_Data, 8);
+    CAN_Send_Data(&hcan2, 0x1ff, CAN2_0x200_Tx_Data, 8); //yaw-GM6020  按照0x1ff ID 发送 可控制多个电机
 
     #endif
 	//测试拓展帧

@@ -88,11 +88,11 @@ typedef struct BMI088_REAL_DATA
     float time;
 } IMU_Real_Data_t;
 
-extern INS_t INS;
-extern IMU_Data_t BMI088;
-extern IMU_Real_Data_t BMI088_Real_Data;
-extern IMU_Param_t IMU_Param;
-extern class Class_BoardC_BMI BoardC_BMI;
+// extern INS_t INS;
+// extern IMU_Data_t BMI088;
+// extern IMU_Real_Data_t BMI088_Real_Data;
+// extern IMU_Param_t IMU_Param;
+// extern class Class_BoardC_BMI BoardC_BMI;
 
 enum
 {

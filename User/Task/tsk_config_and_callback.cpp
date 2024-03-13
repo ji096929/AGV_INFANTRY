@@ -50,8 +50,6 @@ bool init_finished = 0;
 //机器人控制对象
 Class_Chariot chariot;
 
-
-
 //串口裁判系统对象
 Class_Serialplot serialplot;
 
@@ -185,14 +183,14 @@ void Gimbal_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 {
     switch (CAN_RxMessage->Header.StdId)
     {
-    case (0x202):   //留给下板通讯
+    case (0x200):   //留给下板通讯
     {
         
     }
     break;
-    case (0x203):
+    case (0x141):
     {
-        
+        chariot.Gimbal.Motor_Pitch_LK6010.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
     case (0x204):
@@ -309,11 +307,13 @@ void Task100us_TIM4_Callback()
 
     #elif defined(GIMBAL)
 
-        // 单给IMU消息开的定时器
-        chariot.Boardc_BMI.TIM_Calculate_PeriodElapsedCallback();
+			// 单给IMU消息开的定时器 ims
+			chariot.Gimbal.Boardc_BMI.TIM_Calculate_PeriodElapsedCallback();     
 
     #endif
 }
+
+
 
 /**
  * @brief TIM5任务回调函数
@@ -343,6 +343,9 @@ void Task1ms_TIM5_Callback()
         //TIM_USB_PeriodElapsedCallback();
         mod5 = 0;
     }
+		
+		
+		
     
 }
 

@@ -42,17 +42,13 @@ void Class_Chariot::Init(float __DR16_Dead_Zone)
 
         //遥控器
         DR16.Init(&huart3);
-        DR16_Dead_Zone = __DR16_Dead_Zone;
-
-        //imu初始化
-        Boardc_BMI.Init();    
+        DR16_Dead_Zone = __DR16_Dead_Zone;   
 
         //云台
-        //Gimbal.MiniPC = &MiniPC;
         Gimbal.Init();
 
         //发射机构
-        Booster.Referee = &Referee;
+        // Booster.Referee = &Referee;
         Booster.Init();
 
     #endif
@@ -262,15 +258,20 @@ void Class_Chariot::TIM1msMod50_Alive_PeriodElapsedCallback()
         #ifdef CHASSIS
 
             chariot.Referee.TIM1msMod50_Alive_PeriodElapsedCallback();
+
             for (auto& wheel : chariot.Chassis.Motor_Wheel) {
                 wheel.TIM_Alive_PeriodElapsedCallback();
             }
 
         #elif defined(GIMBAL)
-
+           
             DR16.TIM1msMod50_Alive_PeriodElapsedCallback();
+
             Gimbal.Motor_Pitch.TIM_Alive_PeriodElapsedCallback();
             Gimbal.Motor_Yaw.TIM_Alive_PeriodElapsedCallback();
+            Gimbal.Motor_Pitch_LK6010.TIM_Alive_PeriodElapsedCallback();
+            Gimbal.Boardc_BMI.TIM1msMod50_Alive_PeriodElapsedCallback();
+
             Booster.Motor_Driver.TIM_Alive_PeriodElapsedCallback();
             Booster.Motor_Friction_Left.TIM_Alive_PeriodElapsedCallback();
             Booster.Motor_Friction_Right.TIM_Alive_PeriodElapsedCallback();

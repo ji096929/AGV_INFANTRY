@@ -17,6 +17,8 @@
 #include "dvc_djimotor.h"
 #include "dvc_witahrs.h"
 #include "dvc_minipc.h"
+#include "dvc_imu.h"
+#include "dvc_lkmotor.h"
 
 /* Exported macros -----------------------------------------------------------*/
 
@@ -41,10 +43,8 @@ class Class_Gimbal_Yaw_Motor_GM6020 : public Class_DJI_Motor_GM6020
 {
 public:
     //陀螺仪获取云台角速度
-    Class_WIT *WIT;
-    //迷你主机获取底盘角速度补偿
-//    Class_MiniPC *MiniPC;
-
+    Class_IMU *IMU;
+    
     void TIM_PID_PeriodElapsedCallback();
 
 protected:
@@ -70,7 +70,8 @@ protected:
 class Class_Gimbal_Pitch_Motor_GM6020 : public Class_DJI_Motor_GM6020
 {
 public:
-    Class_WIT *WIT;
+    //陀螺仪获取云台角速度
+    Class_IMU* IMU;
 
     void TIM_PID_PeriodElapsedCallback();
 
@@ -94,24 +95,60 @@ float Gravity_Compensate = 1700.0f;
 };
 
 /**
+ * @brief Specialized, pitch轴电机类
+ *
+ */
+class Class_Gimbal_Pitch_Motor_LK6010 : public Class_LK_Motor
+{
+public:
+    //陀螺仪获取云台角速度
+    Class_IMU* IMU;
+
+    void TIM_PID_PeriodElapsedCallback();
+
+protected:
+    //初始化相关变量
+
+    //常量
+
+    // 重力补偿
+float Gravity_Compensate = 0.0f;
+
+    //内部变量
+
+    //读变量
+
+    //写变量
+
+    //读写变量
+
+    //内部函数
+};
+
+/**
  * @brief Specialized, 云台类
  *
  */
 class Class_Gimbal
 {
 public:
-    //云台AHRS
-    Class_WIT WIT;
+
+    //imu对象
+    Class_IMU Boardc_BMI;
 
     //迷你主机
-//    Class_MiniPC *MiniPC;
+    //Class_MiniPC *MiniPC;
 
     /*后期yaw pitch这两个类要换成其父类，大疆电机类*/
 
     // yaw轴电机
     Class_Gimbal_Yaw_Motor_GM6020 Motor_Yaw;
+
     // pitch轴电机
     Class_Gimbal_Pitch_Motor_GM6020 Motor_Pitch;
+
+    // pithc轴电机
+    Class_Gimbal_Pitch_Motor_LK6010 Motor_Pitch_LK6010;
 
     void Init();
 
@@ -130,13 +167,13 @@ protected:
     //常量
 
     // yaw轴最小值
-    float Min_Yaw_Angle = -PI / 5.0f;
+    float Min_Yaw_Angle = - PI;
     // yaw轴最大值
-    float Max_Yaw_Angle = PI / 5.0f;
+    float Max_Yaw_Angle = PI;
     // pitch轴最小值
-    float Min_Pitch_Angle = -0.12f;
+    float Min_Pitch_Angle = -PI/12.0f;
     // pitch轴最大值
-    float Max_Pitch_Angle = 0.20f;
+    float Max_Pitch_Angle = PI/12.0f;
 
     //内部变量
 
@@ -145,7 +182,7 @@ protected:
     //写变量
 
     //云台状态
-    Enum_Gimbal_Control_Type Gimbal_Control_Type = Gimbal_Control_Type_DISABLE;
+    Enum_Gimbal_Control_Type Gimbal_Control_Type = Gimbal_Control_Type_NORMAL;
 
     //读写变量
 

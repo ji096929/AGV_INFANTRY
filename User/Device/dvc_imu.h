@@ -20,30 +20,57 @@
 #include "alg_pid.h"
 
 //----------------------------------------------------------------------------------------------------
+
+enum Enum_IMU_Status 
+{
+    IMU_Status_DISABLE = 0,
+    IMU_Status_ENABLE,
+};
+
 // Variable declaration
 
 class Class_IMU
 {
     public:
 
+    void Init(void);
+    void TIM_Calculate_PeriodElapsedCallback(void);
+    void TIM1msMod50_Alive_PeriodElapsedCallback(void);
+
+    float Get_Angle_Roll(void);
+    float Get_Angle_Pitch(void);
+    float Get_Angle_Yaw(void);
+
+    float Get_Rad_Roll(void);
+    float Get_Rad_Pitch(void);
+    float Get_Rad_Yaw(void);
+
+    float Get_Accel_Roll(void);
+    float Get_Accel_Pitch(void);
+    float Get_Accel_Yaw(void);
+
+    float Get_Gyro_Roll(void);
+    float Get_Gyro_Pitch(void);
+    float Get_Gyro_Yaw(void);
+
+    Enum_IMU_Status Get_IMU_Status(void);
+
+    protected:
+
     Class_MahonyAHRS IMU_MahonyAHRS;
     Class_BoardC_BMI IMU_BMI088;
     Class_BoardC_IST8310 IMU_IST8310;
     Class_PID PID_IMU_Tempture;
-
-    void Init(void);
-    void TIM_Calculate_PeriodElapsedCallback(void);
-
-    protected:
     
+    Enum_IMU_Status IMU_Status;
+
     void Get_Angle(void);
     void TIM_Set_PWM(TIM_HandleTypeDef *tim_pwmHandle, uint8_t Channel, uint16_t value);
 
     IMU_Data_t BMI088_Raw_Data;
+    IMU_Data_t Pre_BMI088_Raw_Data;
     IST8310_Real_Data_t IST8310_Real_Data;
-		
-		
-    
+			
     float INS_Quat[4] = {0.0f, 0.0f, 0.0f, 0.0f};
     float INS_Rad[3] = {0.0f, 0.0f, 0.0f};      //euler angle, unit rad.欧拉角 单位 rad
     float INS_Angle[3] = {0.0f, 0.0f, 0.0f};

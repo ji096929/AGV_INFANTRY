@@ -33,7 +33,7 @@ JLinkLog.txt
 *.ini
 *.scvd
 *.mxproject
-*.jdebug
+*.jdebug.*
 *.exf
 
 !*.uvprojx

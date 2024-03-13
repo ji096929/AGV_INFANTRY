@@ -38,10 +38,6 @@ public:
     Class_Referee Referee;
     //遥控器
     Class_DR16 DR16;
-
-    //imu对象
-    Class_IMU Boardc_BMI;
-
     //底盘
     Class_Tricycle_Chassis Chassis;
     //云台

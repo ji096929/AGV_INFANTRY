@@ -1,0 +1,765 @@
+[2024-03-13 15:55:44]	[done]
+	build successfully !
+
+[2024-03-13 16:02:41]	[done]
+	build successfully !
+
+[2024-03-13 16:13:53]	[done]
+	build successfully !
+
+[2024-03-13 16:21:58]	[done]
+	build successfully !
+
+[2024-03-13 16:48:18]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Device\dvc_lkmotor.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Device\dvc_lkmotor.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Device\dvc_lkmotor.d .\..\User\Device\dvc_lkmotor.cpp
+   at unify_builder.Program.compileByMulThread(Int32 thrNum, CmdInfo[] cmds_, List`1 errLogs)
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Device\dvc_lkmotor.cpp", line 150: Error:  #276: name followed by "::" must be a class or namespace name
+  void Class_DM_Motor_J4310::Init(CAN_HandleTypeDef *hcan, Enum_LK_Motor_ID __CAN_ID, Enum_DM_Motor_Control_Method __Control_Method, int32_t __Position_Offset, float __Omega_Max, float __Torque_Max)
+       ^
+".\..\User\Device\dvc_lkmotor.cpp", line 150: Error:  #20: identifier "Enum_DM_Motor_Control_Method" is undefined
+  void Class_DM_Motor_J4310::Init(CAN_HandleTypeDef *hcan, Enum_LK_Motor_ID __CAN_ID, Enum_DM_Motor_Control_Method __Control_Method, int32_t __Position_Offset, float __Omega_Max, float __Torque_Max)
+                                                                                      ^
+".\..\User\Device\dvc_lkmotor.cpp", line 154: Error:  #20: identifier "CAN_Manage_Object" is undefined
+          CAN_Manage_Object = &CAN1_Manage_Object;
+          ^
+".\..\User\Device\dvc_lkmotor.cpp", line 158: Error:  #20: identifier "CAN_Manage_Object" is undefined
+          CAN_Manage_Object = &CAN2_Manage_Object;
+          ^
+".\..\User\Device\dvc_lkmotor.cpp", line 160: Error:  #20: identifier "CAN_ID" is undefined
+      CAN_ID = __CAN_ID;
+      ^
+".\..\User\Device\dvc_lkmotor.cpp", line 161: Error:  #20: identifier "DM_Motor_Control_Method" is undefined
+      DM_Motor_Control_Method = __Control_Method;
+      ^
+".\..\User\Device\dvc_lkmotor.cpp", line 162: Error:  #20: identifier "Position_Offset" is undefined
+      Position_Offset = __Position_Offset;
+      ^
+".\..\User\Device\dvc_lkmotor.cpp", line 163: Error:  #20: identifier "Omega_Max" is undefined
+      Omega_Max = __Omega_Max;
+      ^
+".\..\User\Device\dvc_lkmotor.cpp", line 164: Error:  #20: identifier "Torque_Max" is undefined
+      Torque_Max = __Torque_Max;
+      ^
+".\..\User\Device\dvc_lkmotor.cpp", line 165: Error:  #20: identifier "CAN_Tx_Data" is undefined
+      CAN_Tx_Data = allocate_tx_data(hcan, __CAN_ID);
+      ^
+".\..\User\Device\dvc_lkmotor.cpp", line 172: Error:  #276: name followed by "::" must be a class or namespace name
+  void Class_DM_Motor_J4310::Data_Process()
+       ^
+".\..\User\Device\dvc_lkmotor.cpp", line 177: Error:  #20: identifier "Struct_DM_Motor_CAN_Rx_Data" is undefined
+      Struct_DM_Motor_CAN_Rx_Data *tmp_buffer = (Struct_DM_Motor_CAN_Rx_Data *)CAN_Manage_Object->Rx_Buffer.Data;
+      ^
+".\..\User\Device\dvc_lkmotor.cpp", line 177: Error:  #20: identifier "tmp_buffer" is undefined
+      Struct_DM_Motor_CAN_Rx_Data *tmp_buffer = (Struct_DM_Motor_CAN_Rx_Data *)CAN_Manage_Object->Rx_Buffer.Data;
+                                   ^
+".\..\User\Device\dvc_lkmotor.cpp", line 177: Error:  #29: expected an expression
+      Struct_DM_Motor_CAN_Rx_Data *tmp_buffer = (Struct_DM_Motor_CAN_Rx_Data *)CAN_Manage_Object->Rx_Buffer.Data;
+                                                                              ^
+".\..\User\Device\dvc_lkmotor.cpp", line 177: Error:  #65: expected a ";"
+      Struct_DM_Motor_CAN_Rx_Data *tmp_buffer = (Struct_DM_Motor_CAN_Rx_Data *)CAN_Manage_Object->Rx_Buffer.Data;
+                                                                               ^
+".\..\User\Device\dvc_lkmotor.cpp", line 184: Error:  #20: identifier "Data" is undefined
+      Data.CAN_ID = tmp_buffer->CAN_ID;
+      ^
+".\..\User\Device\dvc_lkmotor.cpp", line 188: Error:  #20: identifier "Position_Max" is undefined
+      if (delta_position < -(Position_Max / 2))
+                             ^
+".\..\User\Device\dvc_lkmotor.cpp", line 198: Error:  #20: identifier "Position_Offset" is undefined
+      Data.Total_Position = Data.Total_Round * Position_Max + tmp_position + Position_Offset;
+                                                                             ^
+".\..\User\Device\dvc_lkmotor.cpp", line 202: Error:  #20: identifier "Omega_Max" is undefined
+      Data.Now_Omega = Math_Int_To_Float(tmp_omega, 0, (1 << 12) - 1, -Omega_Max, Omega_Max);
+                                                                       ^
+".\..\User\Device\dvc_lkmotor.cpp", line 203: Error:  #20: identifier "Torque_Max" is undefined
+      Data.Now_Torque = Math_Int_To_Float(tmp_torque, 0, (1 << 12) - 1, -Torque_Max, Torque_Max);
+                                                                         ^
+".\..\User\Device\dvc_lkmotor.cpp", line 216: Error:  #276: name followed by "::" must be a class or namespace name
+  void Class_DM_Motor_J4310::CAN_RxCpltCallback(uint8_t *Rx_Data)
+       ^
+".\..\User\Device\dvc_lkmotor.cpp", line 219: Error:  #258: "this" may only be used inside a nonstatic member function
+      this->Flag += 1;
+      ^
+".\..\User\Device\dvc_lkmotor.cpp", line 221: Error:  #20: identifier "Data_Process" is undefined
+      Data_Process();
+      ^
+".\..\User\Device\dvc_lkmotor.cpp", line 228: Error:  #276: name followed by "::" must be a class or namespace name
+  void Class_DM_Motor_J4310::TIM_Alive_PeriodElapsedCallback()
+       ^
+".\..\User\Device\dvc_lkmotor.cpp", line 231: Error:  #20: identifier "Flag" is undefined
+      if (Flag == Pre_Flag)
+          ^
+".\..\User\Device\dvc_lkmotor.cpp", line 231: Error:  #20: identifier "Pre_Flag" is undefined
+      if (Flag == Pre_Flag)
+                  ^
+".\..\User\Device\dvc_lkmotor.cpp", line 234: Error:  #20: identifier "DM_Motor_Status" is undefined
+          DM_Motor_Status = DM_Motor_Status_DISABLE;
+          ^
+".\..\User\Device\dvc_lkmotor.cpp", line 234: Error:  #20: identifier "DM_Motor_Status_DISABLE" is undefined
+          DM_Motor_Status = DM_Motor_Status_DISABLE;
+                            ^
+".\..\User\Device\dvc_lkmotor.cpp", line 239: Error:  #20: identifier "DM_Motor_Status" is undefined
+          DM_Motor_Status = DM_Motor_Status_ENABLE;
+          ^
+".\..\User\Device\dvc_lkmotor.cpp", line 239: Error:  #20: identifier "DM_Motor_Status_ENABLE" is undefined
+          DM_Motor_Status = DM_Motor_Status_ENABLE;
+                            ^
+.\..\User\Device\dvc_lkmotor.cpp: 0 warnings, 30 errors
+
+[2024-03-13 16:51:24]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Device\dvc_lkmotor.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Device\dvc_lkmotor.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Device\dvc_lkmotor.d .\..\User\Device\dvc_lkmotor.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Device\dvc_lkmotor.cpp", line 216: Error:  #276: name followed by "::" must be a class or namespace name
+  void Class_LK_Motor_J4310::CAN_RxCpltCallback(uint8_t *Rx_Data)
+       ^
+".\..\User\Device\dvc_lkmotor.cpp", line 219: Error:  #258: "this" may only be used inside a nonstatic member function
+      this->Flag += 1;
+      ^
+".\..\User\Device\dvc_lkmotor.cpp", line 221: Error:  #20: identifier "Data_Process" is undefined
+      Data_Process();
+      ^
+".\..\User\Device\dvc_lkmotor.cpp", line 228: Error:  #276: name followed by "::" must be a class or namespace name
+  void Class_LK_Motor_J4310::TIM_Alive_PeriodElapsedCallback()
+       ^
+".\..\User\Device\dvc_lkmotor.cpp", line 231: Error:  #20: identifier "Flag" is undefined
+      if (Flag == Pre_Flag)
+          ^
+".\..\User\Device\dvc_lkmotor.cpp", line 231: Error:  #20: identifier "Pre_Flag" is undefined
+      if (Flag == Pre_Flag)
+                  ^
+".\..\User\Device\dvc_lkmotor.cpp", line 234: Error:  #20: identifier "LK_Motor_Status" is undefined
+          LK_Motor_Status = LK_Motor_Status_DISABLE;
+          ^
+".\..\User\Device\dvc_lkmotor.cpp", line 239: Error:  #20: identifier "LK_Motor_Status" is undefined
+          LK_Motor_Status = LK_Motor_Status_ENABLE;
+          ^
+".\..\User\Device\dvc_lkmotor.cpp", line 318: Error:  #276: name followed by "::" must be a class or namespace name
+  void Class_LK_Motor_J4310::TIM_Process_PeriodElapsedCallback()
+       ^
+".\..\User\Device\dvc_lkmotor.cpp", line 320: Error:  #20: identifier "LK_Motor_Control_Method" is undefined
+      switch (LK_Motor_Control_Method)
+              ^
+".\..\User\Device\dvc_lkmotor.cpp", line 324: Error:  #20: identifier "Target_Angle" is undefined
+          uint16_t tmp_position = Math_Float_To_Int(Target_Angle, -PI, PI, 0, (1 << 16) - 1);
+                                                    ^
+".\..\User\Device\dvc_lkmotor.cpp", line 325: Error:  #20: identifier "Target_Omega" is undefined
+          uint16_t tmp_velocity = Math_Float_To_Int(Target_Omega, -Omega_Max, Omega_Max, 0, (1 << 12) - 1);
+                                                    ^
+".\..\User\Device\dvc_lkmotor.cpp", line 325: Error:  #20: identifier "Omega_Max" is undefined
+          uint16_t tmp_velocity = Math_Float_To_Int(Target_Omega, -Omega_Max, Omega_Max, 0, (1 << 12) - 1);
+                                                                   ^
+".\..\User\Device\dvc_lkmotor.cpp", line 326: Error:  #20: identifier "MIT_K_P" is undefined
+          uint16_t tmp_k_p = Math_Float_To_Int(MIT_K_P, 0.0f, 500.0f, 0, (1 << 12) - 1);
+                                               ^
+".\..\User\Device\dvc_lkmotor.cpp", line 327: Error:  #20: identifier "MIT_K_D" is undefined
+          uint16_t tmp_k_d = Math_Float_To_Int(MIT_K_D, 0.0f, 5.0f, 0, (1 << 12) - 1);
+                                               ^
+".\..\User\Device\dvc_lkmotor.cpp", line 328: Error:  #20: identifier "Target_Torque" is undefined
+          uint16_t tmp_torque = Math_Float_To_Int(Target_Torque, -Torque_Max, Torque_Max, 0, (1 << 12) - 1);
+                                                  ^
+".\..\User\Device\dvc_lkmotor.cpp", line 328: Error:  #20: identifier "Torque_Max" is undefined
+          uint16_t tmp_torque = Math_Float_To_Int(Target_Torque, -Torque_Max, Torque_Max, 0, (1 << 12) - 1);
+                                                                  ^
+".\..\User\Device\dvc_lkmotor.cpp", line 331: Error:  #20: identifier "CAN_Tx_Data" is undefined
+          memcpy(&CAN_Tx_Data[0], &tmp_position, sizeof(uint16_t));
+                  ^
+".\..\User\Device\dvc_lkmotor.cpp", line 351: Error:  #20: identifier "CAN_Manage_Object" is undefined
+          CAN_Send_Data(CAN_Manage_Object->CAN_Handler, static_cast<Enum_LK_Motor_ID>(CAN_ID) + 0xf0, CAN_Tx_Data, 8);
+                        ^
+".\..\User\Device\dvc_lkmotor.cpp", line 351: Error:  #20: identifier "CAN_ID" is undefined
+          CAN_Send_Data(CAN_Manage_Object->CAN_Handler, static_cast<Enum_LK_Motor_ID>(CAN_ID) + 0xf0, CAN_Tx_Data, 8);
+                                                                                      ^
+".\..\User\Device\dvc_lkmotor.cpp", line 356: Error:  #20: identifier "Target_Angle" is undefined
+          uint16_t tmp_position = Math_Float_To_Int(Target_Angle, -PI, PI, 0, (1 << 16) - 1);
+                                                    ^
+".\..\User\Device\dvc_lkmotor.cpp", line 357: Error:  #20: identifier "Target_Omega" is undefined
+          uint16_t tmp_velocity = Math_Float_To_Int(Target_Omega, -Omega_Max, Omega_Max, 0, (1 << 12) - 1);
+                                                    ^
+".\..\User\Device\dvc_lkmotor.cpp", line 357: Error:  #20: identifier "Omega_Max" is undefined
+          uint16_t tmp_velocity = Math_Float_To_Int(Target_Omega, -Omega_Max, Omega_Max, 0, (1 << 12) - 1);
+                                                                   ^
+".\..\User\Device\dvc_lkmotor.cpp", line 359: Error:  #20: identifier "MIT_K_D" is undefined
+          uint16_t tmp_k_d = Math_Float_To_Int(MIT_K_D, 0.0f, 5.0f, 0, (1 << 12) - 1);
+                                               ^
+".\..\User\Device\dvc_lkmotor.cpp", line 360: Error:  #20: identifier "Target_Torque" is undefined
+          uint16_t tmp_torque = Math_Float_To_Int(Target_Torque, -Torque_Max, Torque_Max, 0, (1 << 12) - 1);
+                                                  ^
+".\..\User\Device\dvc_lkmotor.cpp", line 360: Error:  #20: identifier "Torque_Max" is undefined
+          uint16_t tmp_torque = Math_Float_To_Int(Target_Torque, -Torque_Max, Torque_Max, 0, (1 << 12) - 1);
+                                                                  ^
+".\..\User\Device\dvc_lkmotor.cpp", line 363: Error:  #20: identifier "CAN_Tx_Data" is undefined
+          memcpy(&CAN_Tx_Data[0], &tmp_position, sizeof(uint16_t));
+                  ^
+".\..\User\Device\dvc_lkmotor.cpp", line 383: Error:  #20: identifier "CAN_Manage_Object" is undefined
+          CAN_Send_Data(CAN_Manage_Object->CAN_Handler, static_cast<Enum_LK_Motor_ID>(CAN_ID) + 0xf0, CAN_Tx_Data, 8);
+                        ^
+".\..\User\Device\dvc_lkmotor.cpp", line 383: Error:  #20: identifier "CAN_ID" is undefined
+          CAN_Send_Data(CAN_Manage_Object->CAN_Handler, static_cast<Enum_LK_Motor_ID>(CAN_ID) + 0xf0, CAN_Tx_Data, 8);
+                                                                                      ^
+".\..\User\Device\dvc_lkmotor.cpp", line 388: Error:  #20: identifier "Target_Angle" is undefined
+          uint16_t tmp_position = Math_Float_To_Int(Target_Angle, -PI, PI, 0, (1 << 16) - 1);
+                                                    ^
+.\..\User\Device\dvc_lkmotor.cpp: 0 warnings, 30 errors
+
+[2024-03-13 16:51:48]	[done]
+	build successfully !
+
+[2024-03-13 16:58:41]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Chariot\crt_gimbal.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Chariot\crt_gimbal.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Chariot\crt_gimbal.d .\..\User\Chariot\crt_gimbal.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Chariot\crt_gimbal.cpp", line 265: Error:  #20: identifier "WIT" is undefined
+      Motor_Yaw.WIT = &WIT;
+                       ^
+.\..\User\Chariot\crt_gimbal.cpp: 0 warnings, 1 error
+
+[2024-03-13 17:12:25]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Chariot\crt_gimbal.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Chariot\crt_gimbal.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Chariot\crt_gimbal.d .\..\User\Chariot\crt_gimbal.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Chariot\crt_gimbal.cpp", line 52: Error:  #20: identifier "WIT" is undefined
+          if (WIT->Get_WIT_Status() == WIT_Status_DISABLE)
+              ^
+".\..\User\Chariot\crt_gimbal.cpp", line 93: Error:  #20: identifier "WIT" is undefined
+          if (WIT->Get_WIT_Status() == WIT_Status_DISABLE)
+              ^
+".\..\User\Chariot\crt_gimbal.cpp", line 165: Error:  #20: identifier "WIT" is undefined
+          if (WIT->Get_WIT_Status() == WIT_Status_DISABLE)
+              ^
+".\..\User\Chariot\crt_gimbal.cpp", line 206: Error:  #20: identifier "WIT" is undefined
+          if (WIT->Get_WIT_Status() == WIT_Status_DISABLE)
+              ^
+.\..\User\Chariot\crt_gimbal.cpp: 0 warnings, 4 errors
+
+[2024-03-13 17:13:25]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Chariot\crt_gimbal.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Chariot\crt_gimbal.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Chariot\crt_gimbal.d .\..\User\Chariot\crt_gimbal.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Chariot\crt_gimbal.cpp", line 165: Error:  #20: identifier "WIT" is undefined
+          if (WIT->Get_WIT_Status() == WIT_Status_DISABLE)
+              ^
+".\..\User\Chariot\crt_gimbal.cpp", line 206: Error:  #20: identifier "WIT" is undefined
+          if (WIT->Get_WIT_Status() == WIT_Status_DISABLE)
+              ^
+.\..\User\Chariot\crt_gimbal.cpp: 0 warnings, 2 errors
+
+[2024-03-13 17:18:13]	[done]
+	build successfully !
+
+[2024-03-13 19:29:35]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Device\dvc_lkmotor.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Device\dvc_lkmotor.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Device\dvc_lkmotor.d .\..\User\Device\dvc_lkmotor.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Device\dvc_lkmotor.h", line 126: Error:  #306: default argument not at end of parameter list
+      void Init(CAN_HandleTypeDef *hcan, Enum_LK_Motor_ID __CAN_ID, Enum_LK_Motor_Control_Method __Control_Method = LK_Motor_Control_Method_IMU_POSITION, int32_t __Position_Offset = 0, float __Omega_Max , float __Current_Max = 33.0f);
+                                                                                                                    ^
+".\..\User\Device\dvc_lkmotor.h", line 271: Error:  #302: function "Class_LK_Motor::Get_Now_Temperature"  has already been defined
+  float Class_LK_Motor::Get_Now_Temperature()
+                        ^
+".\..\User\Device\dvc_lkmotor.h", line 361: Error:  #135: class "Class_LK_Motor"  has no member "Set_MIT_K_P"
+  void Class_LK_Motor::Set_MIT_K_P(float __MIT_K_P)
+                       ^
+".\..\User\Device\dvc_lkmotor.h", line 363: Error:  #20: identifier "IMU_K_P" is undefined
+      IMU_K_P = __MIT_K_P;
+      ^
+".\..\User\Device\dvc_lkmotor.h", line 371: Error:  #135: class "Class_LK_Motor"  has no member "Set_MIT_K_D"
+  void Class_LK_Motor::Set_MIT_K_D(float __MIT_K_D)
+                       ^
+".\..\User\Device\dvc_lkmotor.h", line 373: Error:  #20: identifier "IMU_K_D" is undefined
+      IMU_K_D = __MIT_K_D;
+      ^
+".\..\User\Device\dvc_lkmotor.cpp", line 328: Error:  #20: identifier "LK_Motor_Control_Method_MIT_POSITION" is undefined
+      case (LK_Motor_Control_Method_MIT_POSITION):
+            ^
+".\..\User\Device\dvc_lkmotor.cpp", line 332: Error:  #20: identifier "MIT_K_P" is undefined
+          uint16_t tmp_k_p = Math_Float_To_Int(MIT_K_P, 0.0f, 500.0f, 0, (1 << 12) - 1);
+                                               ^
+".\..\User\Device\dvc_lkmotor.cpp", line 333: Error:  #20: identifier "MIT_K_D" is undefined
+          uint16_t tmp_k_d = Math_Float_To_Int(MIT_K_D, 0.0f, 5.0f, 0, (1 << 12) - 1);
+                                               ^
+".\..\User\Device\dvc_lkmotor.cpp", line 334: Error:  #20: identifier "Torque_Max" is undefined
+          uint16_t tmp_torque = Math_Float_To_Int(Target_Torque, -Torque_Max, Torque_Max, 0, (1 << 12) - 1);
+                                                                  ^
+".\..\User\Device\dvc_lkmotor.cpp", line 360: Error:  #20: identifier "LK_Motor_Control_Method_MIT_OMEGA" is undefined
+      case (LK_Motor_Control_Method_MIT_OMEGA):
+            ^
+".\..\User\Device\dvc_lkmotor.cpp", line 365: Error:  #20: identifier "MIT_K_D" is undefined
+          uint16_t tmp_k_d = Math_Float_To_Int(MIT_K_D, 0.0f, 5.0f, 0, (1 << 12) - 1);
+                                               ^
+".\..\User\Device\dvc_lkmotor.cpp", line 366: Error:  #20: identifier "Torque_Max" is undefined
+          uint16_t tmp_torque = Math_Float_To_Int(Target_Torque, -Torque_Max, Torque_Max, 0, (1 << 12) - 1);
+                                                                  ^
+".\..\User\Device\dvc_lkmotor.cpp", line 392: Error:  #20: identifier "LK_Motor_Control_Method_MIT_TORQUE" is undefined
+      case (LK_Motor_Control_Method_MIT_TORQUE):
+            ^
+".\..\User\Device\dvc_lkmotor.cpp", line 398: Error:  #20: identifier "Torque_Max" is undefined
+          uint16_t tmp_torque = Math_Float_To_Int(Target_Torque, -Torque_Max, Torque_Max, 0, (1 << 12) - 1);
+                                                                  ^
+.\..\User\Device\dvc_lkmotor.cpp: 0 warnings, 15 errors
+
+[2024-03-13 19:31:39]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Device\dvc_lkmotor.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Device\dvc_lkmotor.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Device\dvc_lkmotor.d .\..\User\Device\dvc_lkmotor.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Device\dvc_lkmotor.h", line 126: Error:  #306: default argument not at end of parameter list
+      void Init(CAN_HandleTypeDef *hcan, Enum_LK_Motor_ID __CAN_ID, Enum_LK_Motor_Control_Method __Control_Method = LK_Motor_Control_Method_IMU_POSITION, int32_t __Position_Offset = 0, float __Omega_Max , float __Current_Max = 33.0f);
+                                                                                                                    ^
+".\..\User\Device\dvc_lkmotor.h", line 351: Error:  #135: class "Class_LK_Motor"  has no member "Set_MIT_K_P"
+  void Class_LK_Motor::Set_MIT_K_P(float __MIT_K_P)
+                       ^
+".\..\User\Device\dvc_lkmotor.h", line 353: Error:  #20: identifier "IMU_K_P" is undefined
+      IMU_K_P = __MIT_K_P;
+      ^
+".\..\User\Device\dvc_lkmotor.h", line 361: Error:  #135: class "Class_LK_Motor"  has no member "Set_MIT_K_D"
+  void Class_LK_Motor::Set_MIT_K_D(float __MIT_K_D)
+                       ^
+".\..\User\Device\dvc_lkmotor.h", line 363: Error:  #20: identifier "IMU_K_D" is undefined
+      IMU_K_D = __MIT_K_D;
+      ^
+".\..\User\Device\dvc_lkmotor.cpp", line 328: Error:  #20: identifier "LK_Motor_Control_Method_MIT_POSITION" is undefined
+      case (LK_Motor_Control_Method_MIT_POSITION):
+            ^
+".\..\User\Device\dvc_lkmotor.cpp", line 332: Error:  #20: identifier "MIT_K_P" is undefined
+          uint16_t tmp_k_p = Math_Float_To_Int(MIT_K_P, 0.0f, 500.0f, 0, (1 << 12) - 1);
+                                               ^
+".\..\User\Device\dvc_lkmotor.cpp", line 333: Error:  #20: identifier "MIT_K_D" is undefined
+          uint16_t tmp_k_d = Math_Float_To_Int(MIT_K_D, 0.0f, 5.0f, 0, (1 << 12) - 1);
+                                               ^
+".\..\User\Device\dvc_lkmotor.cpp", line 334: Error:  #20: identifier "Torque_Max" is undefined
+          uint16_t tmp_torque = Math_Float_To_Int(Target_Torque, -Torque_Max, Torque_Max, 0, (1 << 12) - 1);
+                                                                  ^
+".\..\User\Device\dvc_lkmotor.cpp", line 360: Error:  #20: identifier "LK_Motor_Control_Method_MIT_OMEGA" is undefined
+      case (LK_Motor_Control_Method_MIT_OMEGA):
+            ^
+".\..\User\Device\dvc_lkmotor.cpp", line 365: Error:  #20: identifier "MIT_K_D" is undefined
+          uint16_t tmp_k_d = Math_Float_To_Int(MIT_K_D, 0.0f, 5.0f, 0, (1 << 12) - 1);
+                                               ^
+".\..\User\Device\dvc_lkmotor.cpp", line 366: Error:  #20: identifier "Torque_Max" is undefined
+          uint16_t tmp_torque = Math_Float_To_Int(Target_Torque, -Torque_Max, Torque_Max, 0, (1 << 12) - 1);
+                                                                  ^
+".\..\User\Device\dvc_lkmotor.cpp", line 392: Error:  #20: identifier "LK_Motor_Control_Method_MIT_TORQUE" is undefined
+      case (LK_Motor_Control_Method_MIT_TORQUE):
+            ^
+".\..\User\Device\dvc_lkmotor.cpp", line 398: Error:  #20: identifier "Torque_Max" is undefined
+          uint16_t tmp_torque = Math_Float_To_Int(Target_Torque, -Torque_Max, Torque_Max, 0, (1 << 12) - 1);
+                                                                  ^
+.\..\User\Device\dvc_lkmotor.cpp: 0 warnings, 14 errors
+
+[2024-03-13 19:32:45]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Device\dvc_lkmotor.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Device\dvc_lkmotor.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Device\dvc_lkmotor.d .\..\User\Device\dvc_lkmotor.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Device\dvc_lkmotor.h", line 126: Error:  #306: default argument not at end of parameter list
+      void Init(CAN_HandleTypeDef *hcan, Enum_LK_Motor_ID __CAN_ID, Enum_LK_Motor_Control_Method __Control_Method = LK_Motor_Control_Method_IMU_POSITION, int32_t __Position_Offset = 0, float __Omega_Max , float __Current_Max = 33.0f);
+                                                                                                                    ^
+".\..\User\Device\dvc_lkmotor.cpp", line 328: Error:  #20: identifier "LK_Motor_Control_Method_MIT_POSITION" is undefined
+      case (LK_Motor_Control_Method_MIT_POSITION):
+            ^
+".\..\User\Device\dvc_lkmotor.cpp", line 332: Error:  #20: identifier "MIT_K_P" is undefined
+          uint16_t tmp_k_p = Math_Float_To_Int(MIT_K_P, 0.0f, 500.0f, 0, (1 << 12) - 1);
+                                               ^
+".\..\User\Device\dvc_lkmotor.cpp", line 333: Error:  #20: identifier "MIT_K_D" is undefined
+          uint16_t tmp_k_d = Math_Float_To_Int(MIT_K_D, 0.0f, 5.0f, 0, (1 << 12) - 1);
+                                               ^
+".\..\User\Device\dvc_lkmotor.cpp", line 334: Error:  #20: identifier "Torque_Max" is undefined
+          uint16_t tmp_torque = Math_Float_To_Int(Target_Torque, -Torque_Max, Torque_Max, 0, (1 << 12) - 1);
+                                                                  ^
+".\..\User\Device\dvc_lkmotor.cpp", line 360: Error:  #20: identifier "LK_Motor_Control_Method_MIT_OMEGA" is undefined
+      case (LK_Motor_Control_Method_MIT_OMEGA):
+            ^
+".\..\User\Device\dvc_lkmotor.cpp", line 365: Error:  #20: identifier "MIT_K_D" is undefined
+          uint16_t tmp_k_d = Math_Float_To_Int(MIT_K_D, 0.0f, 5.0f, 0, (1 << 12) - 1);
+                                               ^
+".\..\User\Device\dvc_lkmotor.cpp", line 366: Error:  #20: identifier "Torque_Max" is undefined
+          uint16_t tmp_torque = Math_Float_To_Int(Target_Torque, -Torque_Max, Torque_Max, 0, (1 << 12) - 1);
+                                                                  ^
+".\..\User\Device\dvc_lkmotor.cpp", line 392: Error:  #20: identifier "LK_Motor_Control_Method_MIT_TORQUE" is undefined
+      case (LK_Motor_Control_Method_MIT_TORQUE):
+            ^
+".\..\User\Device\dvc_lkmotor.cpp", line 398: Error:  #20: identifier "Torque_Max" is undefined
+          uint16_t tmp_torque = Math_Float_To_Int(Target_Torque, -Torque_Max, Torque_Max, 0, (1 << 12) - 1);
+                                                                  ^
+.\..\User\Device\dvc_lkmotor.cpp: 0 warnings, 10 errors
+
+[2024-03-13 19:35:34]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Device\dvc_lkmotor.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Device\dvc_lkmotor.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Device\dvc_lkmotor.d .\..\User\Device\dvc_lkmotor.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Device\dvc_lkmotor.h", line 126: Error:  #306: default argument not at end of parameter list
+      void Init(CAN_HandleTypeDef *hcan, Enum_LK_Motor_ID __CAN_ID, Enum_LK_Motor_Control_Method __Control_Method = LK_Motor_Control_Method_IMU_POSITION, int32_t __Position_Offset = 0, float __Omega_Max , float __Current_Max = 33.0f);
+                                                                                                                    ^
+".\..\User\Device\dvc_lkmotor.h", line 323: Error:  #20: identifier "Target_Torque" is undefined
+      return (Target_Torque);
+              ^
+".\..\User\Device\dvc_lkmotor.h", line 393: Error:  #20: identifier "Target_Torque" is undefined
+      Target_Torque = __Target_Torque;
+      ^
+.\..\User\Device\dvc_lkmotor.cpp: 0 warnings, 3 errors
+
+[2024-03-13 19:42:48]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Device\dvc_lkmotor.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Device\dvc_lkmotor.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Device\dvc_lkmotor.d .\..\User\Device\dvc_lkmotor.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Device\dvc_lkmotor.h", line 126: Error:  #306: default argument not at end of parameter list
+      void Init(CAN_HandleTypeDef *hcan, Enum_LK_Motor_ID __CAN_ID, Enum_LK_Motor_Control_Method __Control_Method = LK_Motor_Control_Method_IMU_POSITION, int32_t __Position_Offset = 0, float __Omega_Max , float __Current_Max = 33.0f);
+                                                                                                                    ^
+.\..\User\Device\dvc_lkmotor.cpp: 0 warnings, 1 error
+
+[2024-03-13 19:47:01]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Device\dvc_lkmotor.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Device\dvc_lkmotor.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Device\dvc_lkmotor.d .\..\User\Device\dvc_lkmotor.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Device\dvc_lkmotor.h", line 126: Error:  #306: default argument not at end of parameter list
+      void Init(CAN_HandleTypeDef *hcan, Enum_LK_Motor_ID __CAN_ID, Enum_LK_Motor_Control_Method __Control_Method = LK_Motor_Control_Method_IMU_POSITION, int32_t __Position_Offset = 0, float __Omega_Max, float __Current_Max = 33.0f);
+                                                                                                                    ^
+.\..\User\Device\dvc_lkmotor.cpp: 0 warnings, 1 error
+
+[2024-03-13 19:51:11]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Device\dvc_lkmotor.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Device\dvc_lkmotor.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Device\dvc_lkmotor.d .\..\User\Device\dvc_lkmotor.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Device\dvc_lkmotor.cpp", line 150: Error:  #392: member function "Class_LK_Motor::Init"  may not be redeclared outside its class
+  void Class_LK_Motor::Init(CAN_HandleTypeDef *hcan, Enum_LK_Motor_ID __CAN_ID, Enum_LK_Motor_Control_Method __Control_Method, float __Omega_Max, int32_t __Position_Offset, float __Current_Max);
+                       ^
+".\..\User\Device\dvc_lkmotor.cpp", line 151: Error:  #169: expected a declaration
+  {
+  ^
+.\..\User\Device\dvc_lkmotor.cpp: 0 warnings, 2 errors
+
+[2024-03-13 19:52:12]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Device\dvc_lkmotor.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Device\dvc_lkmotor.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Device\dvc_lkmotor.d .\..\User\Device\dvc_lkmotor.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Device\dvc_lkmotor.cpp", line 150: Error:  #392: member function "Class_LK_Motor::Init"  may not be redeclared outside its class
+  void Class_LK_Motor::Init(CAN_HandleTypeDef *hcan, Enum_LK_Motor_ID __CAN_ID,  float __Omega_Max, int32_t __Position_Offset, float __Current_Max, Enum_LK_Motor_Control_Method __Control_Method);
+                       ^
+".\..\User\Device\dvc_lkmotor.cpp", line 151: Error:  #169: expected a declaration
+  {
+  ^
+.\..\User\Device\dvc_lkmotor.cpp: 0 warnings, 2 errors
+
+[2024-03-13 19:52:27]	[done]
+	build successfully !
+
+[2024-03-13 20:24:12]	[done]
+	build successfully !
+
+[2024-03-13 20:53:08]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\Core\Src\main.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\Core\Src\main.o --no_depend_system_headers --depend .\build\infantry\.obj\__\Core\Src\main.d .\..\Core\Src\main.c
+   at unify_builder.Program.Main(String[] args_)
+---
+"../User/Device/dvc_lkmotor.h", line 81: Error:  #101: "LK_Motor_Control_Method_IMU_ANGLE" has already been declared in the current scope
+      LK_Motor_Control_Method_IMU_ANGLE,
+      ^
+"../User/Device/dvc_lkmotor.h", line 126: Error:  #20: identifier "LK_Motor_Control_Method_IMU_POSITION" is undefined
+      void Init(CAN_HandleTypeDef *hcan, Enum_LK_Motor_ID __CAN_ID, float __Omega_Max, int32_t __Position_Offset = 0, float __Current_Max = 33.0f ,Enum_LK_Motor_Control_Method __Control_Method = LK_Motor_Control_Method_IMU_POSITION);
+                                                                                                                                                                                                   ^
+"../User/Device/dvc_lkmotor.h", line 195: Error:  #20: identifier "LK_Motor_Control_Method_IMU_POSITION" is undefined
+      Enum_LK_Motor_Control_Method LK_Motor_Control_Method = LK_Motor_Control_Method_IMU_POSITION;
+                                                             ^
+.\..\Core\Src\main.c: 0 warnings, 3 errors
+
+[2024-03-13 20:53:33]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\Core\Src\main.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\Core\Src\main.o --no_depend_system_headers --depend .\build\infantry\.obj\__\Core\Src\main.d .\..\Core\Src\main.c
+   at unify_builder.Program.Main(String[] args_)
+---
+"../User/Device/dvc_lkmotor.h", line 126: Error:  #20: identifier "LK_Motor_Control_Method_IMU_POSITION" is undefined
+      void Init(CAN_HandleTypeDef *hcan, Enum_LK_Motor_ID __CAN_ID, float __Omega_Max, int32_t __Position_Offset = 0, float __Current_Max = 33.0f ,Enum_LK_Motor_Control_Method __Control_Method = LK_Motor_Control_Method_IMU_POSITION);
+                                                                                                                                                                                                   ^
+"../User/Device/dvc_lkmotor.h", line 195: Error:  #20: identifier "LK_Motor_Control_Method_IMU_POSITION" is undefined
+      Enum_LK_Motor_Control_Method LK_Motor_Control_Method = LK_Motor_Control_Method_IMU_POSITION;
+                                                             ^
+.\..\Core\Src\main.c: 0 warnings, 2 errors
+
+[2024-03-13 20:54:11]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\Core\Src\main.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\Core\Src\main.o --no_depend_system_headers --depend .\build\infantry\.obj\__\Core\Src\main.d .\..\Core\Src\main.c
+   at unify_builder.Program.Main(String[] args_)
+---
+"../User/Device/dvc_lkmotor.h", line 195: Error:  #20: identifier "LK_Motor_Control_Method_IMU_POSITION" is undefined
+      Enum_LK_Motor_Control_Method LK_Motor_Control_Method = LK_Motor_Control_Method_IMU_POSITION;
+                                                             ^
+.\..\Core\Src\main.c: 0 warnings, 1 error
+
+[2024-03-13 20:55:25]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Chariot\crt_gimbal.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Chariot\crt_gimbal.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Chariot\crt_gimbal.d .\..\User\Chariot\crt_gimbal.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Chariot\crt_gimbal.cpp", line 262: Error:  #20: identifier "PID_Torque" is undefined
+          PID_Torque.Set_Target(Target_Torque);
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 262: Error:  #20: identifier "Target_Torque" is undefined
+          PID_Torque.Set_Target(Target_Torque);
+                                ^
+".\..\User\Chariot\crt_gimbal.cpp", line 263: Error:  #135: class "Struct_LK_Motor_Rx_Data"  has no member "Now_Torque"
+          PID_Torque.Set_Now(Data.Now_Torque);
+                                  ^
+".\..\User\Chariot\crt_gimbal.cpp", line 266: Error:  #20: identifier "Set_Out" is undefined
+          Set_Out(PID_Torque.Get_Out());
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 271: Error:  #20: identifier "PID_Omega" is undefined
+          PID_Omega.Set_Target(Target_Omega);
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 272: Error:  #20: identifier "WIT" is undefined
+          if (WIT->Get_WIT_Status() == WIT_Status_DISABLE)
+              ^
+".\..\User\Chariot\crt_gimbal.cpp", line 278: Error:  #20: identifier "PID_Torque" is undefined
+              PID_Torque.Set_K_P(2.0f);
+              ^
+".\..\User\Chariot\crt_gimbal.cpp", line 288: Error:  #20: identifier "PID_Torque" is undefined
+              PID_Torque.Set_K_P(0.8f);
+              ^
+".\..\User\Chariot\crt_gimbal.cpp", line 294: Error:  #20: identifier "Set_Out" is undefined
+          Set_Out(PID_Omega.Get_Out());
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 299: Error:  #20: identifier "PID_Angle" is undefined
+          PID_Angle.Set_Target(Target_Angle);
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 309: Error:  #20: identifier "PID_Omega" is undefined
+                  PID_Omega.Set_Target(Target_Omega);
+                  ^
+".\..\User\Chariot\crt_gimbal.cpp", line 336: Error:  #18: expected a ")"
+          Set_Out(PID_Omega.Get_Out(); + Gravity_Compensate);
+                                     ^
+".\..\User\Chariot\crt_gimbal.cpp", line 336: Error:  #20: identifier "Set_Out" is undefined
+          Set_Out(PID_Omega.Get_Out(); + Gravity_Compensate);
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 336: Error:  #65: expected a ";"
+          Set_Out(PID_Omega.Get_Out(); + Gravity_Compensate);
+                                                           ^
+".\..\User\Chariot\crt_gimbal.cpp", line 339: Error:  #2706: case label value has already appeared in this switch at line 297
+      case (LK_Motor_Control_Method_IMU_ANGLE):
+           ^
+".\..\User\Chariot\crt_gimbal.cpp", line 341: Error:  #20: identifier "PID_Angle" is undefined
+          PID_Angle.Set_Target(Target_Angle);
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 348: Error:  #20: identifier "PID_Omega" is undefined
+          PID_Omega.Set_Target(Target_Omega);
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 363: Error:  #20: identifier "Target_Torque" is undefined
+          Target_Torque = PID_Omega.Get_Out();
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 365: Error:  #20: identifier "PID_Torque" is undefined
+          PID_Torque.Set_Target(Target_Torque);
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 366: Error:  #135: class "Struct_LK_Motor_Rx_Data"  has no member "Now_Torque"
+          PID_Torque.Set_Now(Data.Now_Torque);
+                                  ^
+".\..\User\Chariot\crt_gimbal.cpp", line 369: Error:  #20: identifier "Set_Out" is undefined
+          Set_Out(PID_Torque.Get_Out() + Gravity_Compensate);
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 372: Error:  #2706: case label value has already appeared in this switch at line 297
+      case (LK_Motor_Control_Method_IMU_ANGLE):
+           ^
+".\..\User\Chariot\crt_gimbal.cpp", line 372: Error:  #2706: case label value has already appeared in this switch at line 339
+      case (LK_Motor_Control_Method_IMU_ANGLE):
+           ^
+".\..\User\Chariot\crt_gimbal.cpp", line 374: Error:  #20: identifier "PID_Angle" is undefined
+          PID_Angle.Set_Target(Target_Angle);
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 381: Error:  #20: identifier "PID_Omega" is undefined
+          PID_Omega.Set_Target(Target_Omega);
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 396: Error:  #20: identifier "Target_Torque" is undefined
+          Target_Torque = PID_Omega.Get_Out();
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 398: Error:  #20: identifier "PID_Torque" is undefined
+          PID_Torque.Set_Target(Target_Torque);
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 399: Error:  #135: class "Struct_LK_Motor_Rx_Data"  has no member "Now_Torque"
+          PID_Torque.Set_Now(Data.Now_Torque);
+                                  ^
+".\..\User\Chariot\crt_gimbal.cpp", line 402: Error:  #20: identifier "Set_Out" is undefined
+          Set_Out(PID_Torque.Get_Out() + Gravity_Compensate);
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 407: Error:  #20: identifier "Set_Out" is undefined
+          Set_Out(0.0f);
+          ^
+.\..\User\Chariot\crt_gimbal.cpp: 0 warnings, 30 errors
+
+[2024-03-13 20:56:36]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Chariot\crt_gimbal.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Chariot\crt_gimbal.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Chariot\crt_gimbal.d .\..\User\Chariot\crt_gimbal.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Chariot\crt_gimbal.cpp", line 262: Error:  #20: identifier "Target_Torque" is undefined
+          PID_Torque.Set_Target(Target_Torque);
+                                ^
+".\..\User\Chariot\crt_gimbal.cpp", line 263: Error:  #135: class "Struct_LK_Motor_Rx_Data"  has no member "Now_Torque"
+          PID_Torque.Set_Now(Data.Now_Torque);
+                                  ^
+".\..\User\Chariot\crt_gimbal.cpp", line 266: Error:  #20: identifier "Set_Out" is undefined
+          Set_Out(PID_Torque.Get_Out());
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 272: Error:  #20: identifier "WIT" is undefined
+          if (WIT->Get_WIT_Status() == WIT_Status_DISABLE)
+              ^
+".\..\User\Chariot\crt_gimbal.cpp", line 294: Error:  #20: identifier "Set_Out" is undefined
+          Set_Out(PID_Omega.Get_Out());
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 303: Error:  #165: too few arguments in function call
+                  PID_Angle.Set_Now();
+                                    ^
+".\..\User\Chariot\crt_gimbal.cpp", line 336: Error:  #18: expected a ")"
+          Set_Out(PID_Omega.Get_Out(); + Gravity_Compensate);
+                                     ^
+".\..\User\Chariot\crt_gimbal.cpp", line 336: Error:  #20: identifier "Set_Out" is undefined
+          Set_Out(PID_Omega.Get_Out(); + Gravity_Compensate);
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 336: Error:  #65: expected a ";"
+          Set_Out(PID_Omega.Get_Out(); + Gravity_Compensate);
+                                                           ^
+".\..\User\Chariot\crt_gimbal.cpp", line 339: Error:  #2706: case label value has already appeared in this switch at line 297
+      case (LK_Motor_Control_Method_IMU_ANGLE):
+           ^
+".\..\User\Chariot\crt_gimbal.cpp", line 363: Error:  #20: identifier "Target_Torque" is undefined
+          Target_Torque = PID_Omega.Get_Out();
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 366: Error:  #135: class "Struct_LK_Motor_Rx_Data"  has no member "Now_Torque"
+          PID_Torque.Set_Now(Data.Now_Torque);
+                                  ^
+".\..\User\Chariot\crt_gimbal.cpp", line 369: Error:  #20: identifier "Set_Out" is undefined
+          Set_Out(PID_Torque.Get_Out() + Gravity_Compensate);
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 372: Error:  #2706: case label value has already appeared in this switch at line 297
+      case (LK_Motor_Control_Method_IMU_ANGLE):
+           ^
+".\..\User\Chariot\crt_gimbal.cpp", line 372: Error:  #2706: case label value has already appeared in this switch at line 339
+      case (LK_Motor_Control_Method_IMU_ANGLE):
+           ^
+".\..\User\Chariot\crt_gimbal.cpp", line 396: Error:  #20: identifier "Target_Torque" is undefined
+          Target_Torque = PID_Omega.Get_Out();
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 399: Error:  #135: class "Struct_LK_Motor_Rx_Data"  has no member "Now_Torque"
+          PID_Torque.Set_Now(Data.Now_Torque);
+                                  ^
+".\..\User\Chariot\crt_gimbal.cpp", line 402: Error:  #20: identifier "Set_Out" is undefined
+          Set_Out(PID_Torque.Get_Out() + Gravity_Compensate);
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 407: Error:  #20: identifier "Set_Out" is undefined
+          Set_Out(0.0f);
+          ^
+".\..\User\Chariot\crt_gimbal.cpp", line 411: Error:  #20: identifier "Output" is undefined
+      Output();   
+      ^
+.\..\User\Chariot\crt_gimbal.cpp: 0 warnings, 20 errors
+
+[2024-03-13 22:01:15]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Task\tsk_config_and_callback.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Task\tsk_config_and_callback.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Task\tsk_config_and_callback.d .\..\User\Task\tsk_config_and_callback.cpp
+   at unify_builder.Program.compileByMulThread(Int32 thrNum, CmdInfo[] cmds_, List`1 errLogs)
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Task\tsk_config_and_callback.cpp", line 318: Error:  #135: class "Class_Chariot"  has no member "Boardc_BMI"
+              chariot.Boardc_BMI.TIM_Calculate_PeriodElapsedCallback();     
+                      ^
+.\..\User\Task\tsk_config_and_callback.cpp: 0 warnings, 1 error
+
+[2024-03-13 22:03:03]	[done]
+	build successfully !
+
+[2024-03-13 22:09:55]	[done]
+	build successfully !
+
+[2024-03-13 22:19:46]	[done]
+	build successfully !
+
+[2024-03-13 22:27:15]	[done]
+	build successfully !
+
+[2024-03-13 22:28:55]	[done]
+	build successfully !
+
+[2024-03-13 22:31:14]	[done]
+	build successfully !
+
+[2024-03-13 22:44:39]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Chariot\crt_booster.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Chariot\crt_booster.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Chariot\crt_booster.d .\..\User\Chariot\crt_booster.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Chariot\crt_booster.cpp", line 89: Error:  #135: class "Class_Booster"  has no member "Referee"
+          Heat -= Booster->Referee->Get_Booster_17mm_1_Heat_CD() / 1000.0f;
+                           ^
+".\..\User\Chariot\crt_booster.cpp", line 235: Error:  #20: identifier "Referee" is undefined
+          if (FSM_Heat_Detect.Heat + 30 < Referee->Get_Booster_17mm_1_Heat_Max())
+                                          ^
+".\..\User\Chariot\crt_booster.cpp", line 255: Error:  #20: identifier "Referee" is undefined
+          Default_Driver_Omega = Referee->Get_Booster_17mm_1_Heat_CD() / 10.0f / 8.0f * 2.0f * PI;
+                                 ^
+.\..\User\Chariot\crt_booster.cpp: 0 warnings, 3 errors
+
+[2024-03-13 22:45:21]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Chariot\crt_booster.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Chariot\crt_booster.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Chariot\crt_booster.d .\..\User\Chariot\crt_booster.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Chariot\crt_booster.cpp", line 265: Error:  #20: identifier "Referee" is undefined
+              tmp_omega = (Default_Driver_Omega - Driver_Omega) / Referee->Get_Booster_17mm_1_Heat_Max() * (FSM_Heat_Detect.Heat + 30.0f) + Driver_Omega;
+                                                                  ^
+.\..\User\Chariot\crt_booster.cpp: 0 warnings, 1 error
+
+[2024-03-13 22:45:30]	[done]
+	build successfully !
+
+[2024-03-13 22:45:39]	[done]
+	build successfully !
+
+[2024-03-13 23:53:02]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Device\dvc_imu.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Device\dvc_imu.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Device\dvc_imu.d .\..\User\Device\dvc_imu.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Device\dvc_imu.cpp", line 185: Error:  #392: member function "Class_IMU::Get_Rad_Pitch"  may not be redeclared outside its class
+  float Class_IMU::Get_Rad_Pitch(void);
+                   ^
+".\..\User\Device\dvc_imu.cpp", line 186: Error:  #169: expected a declaration
+  {
+  ^
+".\..\User\Device\dvc_imu.cpp", line 190: Error:  #392: member function "Class_IMU::Get_Rad_Yaw"  may not be redeclared outside its class
+  float Class_IMU::Get_Rad_Yaw(void);
+                   ^
+".\..\User\Device\dvc_imu.cpp", line 191: Error:  #169: expected a declaration
+  {
+  ^
+.\..\User\Device\dvc_imu.cpp: 0 warnings, 4 errors
+
+[2024-03-13 23:53:37]	[done]
+	build successfully !
+
+[2024-03-13 23:59:30]	[done]
+	build successfully !
+
+[2024-03-14 00:06:24]	[done]
+	build successfully !
+
+[2024-03-14 00:17:23]	[done]
+	build successfully !
+
+[2024-03-14 00:18:29]	[done]
+	build successfully !
+
+[2024-03-14 00:32:35]	[done]
+	build successfully !
+
+[2024-03-14 00:39:05]	[done]
+	build successfully !
+
