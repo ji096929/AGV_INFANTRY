@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2023 STMicroelectronics.
+  * Copyright (c) 2024 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -20,6 +20,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "usbd_cdc_if.h"
+#include "tsk_config_and_callback.h"
 
 /* USER CODE BEGIN INCLUDE */
 
@@ -31,8 +32,6 @@
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-
-Struct_USB_Manage_Object USBD_Manage_Object = {0};
 
 /* USER CODE END PV */
 
@@ -155,8 +154,8 @@ static int8_t CDC_Init_FS(void)
 {
   /* USER CODE BEGIN 3 */
   /* Set Application Buffers */
-  USBD_CDC_SetTxBuffer(&hUsbDeviceFS, USBD_Manage_Object.Tx_Buffer, 0);
-  USBD_CDC_SetRxBuffer(&hUsbDeviceFS, USBD_Manage_Object.Rx_Buffer);
+  USBD_CDC_SetTxBuffer(&hUsbDeviceFS, UserTxBufferFS, 0);
+  USBD_CDC_SetRxBuffer(&hUsbDeviceFS, UserRxBufferFS);
   return (USBD_OK);
   /* USER CODE END 3 */
 }
@@ -265,7 +264,9 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
   /* USER CODE BEGIN 6 */
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
   USBD_CDC_ReceivePacket(&hUsbDeviceFS);
-  USBD_Manage_Object.Callback_Function(USBD_Manage_Object.Rx_Buffer, *Len);
+	
+	memcpy(MiniPC_USB_Manage_Object.Rx_Buffer,Buf,*Len);
+	
   return (USBD_OK);
   /* USER CODE END 6 */
 }
@@ -319,39 +320,6 @@ static int8_t CDC_TransmitCplt_FS(uint8_t *Buf, uint32_t *Len, uint8_t epnum)
 }
 
 /* USER CODE BEGIN PRIVATE_FUNCTIONS_IMPLEMENTATION */
-
-/**
- * @brief 初始化USB
- * 
- * @param Callback_Function 处理回调函数
- * @param Rx_Buffer_Size 接收缓冲区长度
- */
-void USB_Init(USB_Call_Back Callback_Function, uint16_t Rx_Buffer_Size)
-{
-  USBD_Manage_Object.Callback_Function = Callback_Function;
-}
-
-/**
- * @brief 发送数据帧
- * 
- * @param Data 被发送的数据指针
- * @param Length 长度
- * @return uint8_t 执行状态
- */
-uint8_t USB_Send_Data(uint8_t *Data, uint16_t Length)
-{
-  return(CDC_Transmit_FS(Data, Length));
-}
-
-/**
- * @brief USB的TIM定时器中断发送回调函数
- *
- */
-void TIM_USB_PeriodElapsedCallback()
-{
-  // USB发给minipc
-  USB_Send_Data(USBD_Manage_Object.Tx_Buffer, 34);
-}
 
 /* USER CODE END PRIVATE_FUNCTIONS_IMPLEMENTATION */
 

@@ -35,37 +35,67 @@
                 "name": "Core",
                 "files": [
                   {
+                    "path": "../Core/Src/main.c"
+                  },
+                  {
+                    "path": "../Core/Src/gpio.c"
+                  },
+                  {
                     "path": "../Core/Src/can.c"
                   },
                   {
                     "path": "../Core/Src/dma.c"
                   },
                   {
-                    "path": "../Core/Src/gpio.c"
-                  },
-                  {
                     "path": "../Core/Src/i2c.c"
                   },
                   {
-                    "path": "../Core/Src/main.c"
-                  },
-                  {
                     "path": "../Core/Src/spi.c"
-                  },
-                  {
-                    "path": "../Core/Src/stm32f4xx_hal_msp.c"
-                  },
-                  {
-                    "path": "../Core/Src/stm32f4xx_it.c"
                   },
                   {
                     "path": "../Core/Src/tim.c"
                   },
                   {
                     "path": "../Core/Src/usart.c"
+                  },
+                  {
+                    "path": "../Core/Src/stm32f4xx_it.c"
+                  },
+                  {
+                    "path": "../Core/Src/stm32f4xx_hal_msp.c"
                   }
                 ],
                 "folders": []
+              },
+              {
+                "name": "USB_DEVICE",
+                "files": [],
+                "folders": [
+                  {
+                    "name": "App",
+                    "files": [
+                      {
+                        "path": "../USB_DEVICE/App/usb_device.c"
+                      },
+                      {
+                        "path": "../USB_DEVICE/App/usbd_desc.c"
+                      },
+                      {
+                        "path": "../USB_DEVICE/App/usbd_cdc_if.c"
+                      }
+                    ],
+                    "folders": []
+                  },
+                  {
+                    "name": "Target",
+                    "files": [
+                      {
+                        "path": "../USB_DEVICE/Target/usbd_conf.c"
+                      }
+                    ],
+                    "folders": []
+                  }
+                ]
               }
             ]
           }
@@ -160,7 +190,13 @@
             "name": "STM32F4xx_HAL_Driver",
             "files": [
               {
-                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c"
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.c"
               },
               {
                 "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c"
@@ -200,6 +236,9 @@
               },
               {
                 "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c"
               },
               {
                 "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c"
@@ -247,13 +286,16 @@
                 "path": "../User/Middleware/Algorithm/alg_fsm.cpp"
               },
               {
-                "path": "../User/Middleware/Algorithm/alg_MahonyAHRS.cpp"
-              },
-              {
                 "path": "../User/Middleware/Algorithm/alg_pid.cpp"
               },
               {
                 "path": "../User/Middleware/Algorithm/alg_slope.cpp"
+              },
+              {
+                "path": "../User/Middleware/Algorithm/user_lib.cpp"
+              },
+              {
+                "path": "../User/Middleware/Algorithm/QuaternionEKF.cpp"
               },
               {
                 "path": "../User/Middleware/Algorithm/kalman_filter.cpp"
@@ -262,10 +304,7 @@
                 "path": "../User/Middleware/Algorithm/PID.cpp"
               },
               {
-                "path": "../User/Middleware/Algorithm/QuaternionEKF.cpp"
-              },
-              {
-                "path": "../User/Middleware/Algorithm/user_lib.cpp"
+                "path": "../User/Middleware/Algorithm/alg_MahonyAHRS.cpp"
               }
             ],
             "folders": []
@@ -283,9 +322,6 @@
                 "path": "../User/Middleware/Driver/drv_can.c"
               },
               {
-                "path": "../User/Middleware/Driver/drv_dwt.c"
-              },
-              {
                 "path": "../User/Middleware/Driver/drv_i2c.c"
               },
               {
@@ -299,6 +335,36 @@
               },
               {
                 "path": "../User/Middleware/Driver/drv_uart.c"
+              },
+              {
+                "path": "../User/Middleware/Driver/drv_dwt.c"
+              },
+              {
+                "path": "../User/Middleware/Driver/drv_usb.c"
+              }
+            ],
+            "folders": []
+          }
+        ]
+      },
+      {
+        "name": "Middlewares",
+        "files": [],
+        "folders": [
+          {
+            "name": "USB_Device_Library",
+            "files": [
+              {
+                "path": "../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c"
+              },
+              {
+                "path": "../Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c"
+              },
+              {
+                "path": "../Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c"
+              },
+              {
+                "path": "../Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c"
               }
             ],
             "folders": []
@@ -320,7 +386,7 @@
   "deviceName": null,
   "packDir": ".pack/Keil/STM32F4xx_DFP.1.0.8",
   "miscInfo": {
-    "uid": "d3dda172da2b4989a1c79b21e8e46f0d"
+    "uid": "5e3ff82dc79dde142888f23479ff1b5b"
   },
   "targets": {
     "infantry": {
@@ -467,7 +533,12 @@
           "../User/Middleware/Driver",
           "../User/Task",
           "../Drivers/CMSIS/DSP/Include",
-          "RTE/_infantry"
+          "../USB_DEVICE/App",
+          "../USB_DEVICE/Target",
+          "../Middlewares/ST/STM32_USB_Device_Library/Core/Inc",
+          "../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc",
+          "RTE/_infantry",
+          ".eide/deps"
         ],
         "libList": [],
         "sourceDirList": [],

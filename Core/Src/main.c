@@ -24,6 +24,7 @@
 #include "spi.h"
 #include "tim.h"
 #include "usart.h"
+#include "usb_device.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -94,7 +95,6 @@ int main(void)
   MX_DMA_Init();
   MX_CAN2_Init();
   MX_TIM3_Init();
-  MX_USART1_UART_Init();
   MX_CAN1_Init();
   MX_USART3_UART_Init();
   MX_USART6_UART_Init();
@@ -103,6 +103,7 @@ int main(void)
   MX_TIM10_Init();
   MX_TIM4_Init();
   MX_TIM5_Init();
+  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
   Task_Init();
   /* USER CODE END 2 */
@@ -142,7 +143,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLM = 6;
   RCC_OscInitStruct.PLL.PLLN = 168;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
+  RCC_OscInitStruct.PLL.PLLQ = 7;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();

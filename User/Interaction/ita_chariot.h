@@ -19,6 +19,7 @@
 #include "crt_gimbal.h"
 #include "crt_booster.h"
 #include "dvc_imu.h"
+#include "tsk_config_and_callback.h"
 
 /* Exported macros -----------------------------------------------------------*/
 
@@ -40,6 +41,8 @@ public:
     Class_DR16 DR16;
     //底盘
     Class_Tricycle_Chassis Chassis;
+    //上位机
+    Class_MiniPC MiniPC;
     //云台
     Class_Gimbal Gimbal;
     //发射机构

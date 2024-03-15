@@ -50,6 +50,9 @@ void Class_Chariot::Init(float __DR16_Dead_Zone)
         //发射机构
         // Booster.Referee = &Referee;
         Booster.Init();
+				
+				//上位机
+				MiniPC.Init(&MiniPC_USB_Manage_Object);
 
     #endif
 }
@@ -241,6 +244,8 @@ void Class_Chariot::TIM_Control_Callback()
         //各个模块的分别解算
         Gimbal.TIM_Calculate_PeriodElapsedCallback();
         Booster.TIM_Calculate_PeriodElapsedCallback();
+	      //传输数据给上位机
+	      MiniPC.TIM_Write_PeriodElapsedCallback();
 
     #endif   
 }
@@ -275,6 +280,8 @@ void Class_Chariot::TIM1msMod50_Alive_PeriodElapsedCallback()
             Booster.Motor_Driver.TIM_Alive_PeriodElapsedCallback();
             Booster.Motor_Friction_Left.TIM_Alive_PeriodElapsedCallback();
             Booster.Motor_Friction_Right.TIM_Alive_PeriodElapsedCallback();
+						
+						MiniPC.TIM1msMod50_Alive_PeriodElapsedCallback();
             
         #endif
 

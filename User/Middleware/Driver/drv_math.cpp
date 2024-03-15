@@ -162,7 +162,7 @@ float Math_Sinc(float x)
 int32_t Math_Float_To_Int(float x, float Float_Min, float Float_Max, int32_t Int_Min, int32_t Int_Max)
 {
     float tmp = (x - Float_Min) / (Float_Max - Float_Min);
-    int32_t out = tmp * (float)(Int_Max - Int_Min) + Int_Max;
+    int32_t out = tmp * (float)(Int_Max - Int_Min) + Int_Min;
     return (out);
 }
 

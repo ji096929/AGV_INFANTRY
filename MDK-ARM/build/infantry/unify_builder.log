@@ -763,3 +763,666 @@ command:
 [2024-03-14 00:39:05]	[done]
 	build successfully !
 
+[2024-03-15 16:46:27]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.o --no_depend_system_headers --depend .\build\infantry\.obj\__\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.d .\..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c
+   at unify_builder.Program.compileByMulThread(Int32 thrNum, CmdInfo[] cmds_, List`1 errLogs)
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c", line 472: Error:  #513: a value of type "void *" cannot be assigned to an entity of type "USBD_CDC_HandleTypeDef *"
+    hcdc = 
+SBD_malloc(sizeof(USBD_CDC_HandleTypeDef));
+         ^
+.\..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c: 0 warnings, 1 error
+
+[2024-03-15 16:48:06]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\USB_DEVICE\Target\usbd_conf.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\USB_DEVICE\Target\usbd_conf.o --no_depend_system_headers --depend .\build\infantry\.obj\__\USB_DEVICE\Target\usbd_conf.d .\..\USB_DEVICE\Target\usbd_conf.c
+   at unify_builder.Program.compileByMulThread(Int32 thrNum, CmdInfo[] cmds_, List`1 errLogs)
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c", line 472: Error:  #513: a value of type "void *" cannot be assigned to an entity of type "USBD_CDC_HandleTypeDef *"
+    hcdc = 
+SBD_malloc(sizeof(USBD_CDC_HandleTypeDef));
+         ^
+.\..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c: 0 warnings, 1 error
+".\..\USB_DEVICE\Target\usbd_conf.c", line 382: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_DeInit(pdev->pData);
+                                ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 399: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_Start(pdev->pData);
+                               ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 416: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_Stop(pdev->pData);
+                              ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 436: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_Open(pdev->pData, ep_addr, ep_mps, ep_type);
+                                 ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 454: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_Close(pdev->pData, ep_addr);
+                                  ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 472: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_Flush(pdev->pData, ep_addr);
+                                  ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 490: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_SetStall(pdev->pData, ep_addr);
+                                     ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 508: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_ClrStall(pdev->pData, ep_addr);
+                                     ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 546: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_SetAddress(pdev->pData, dev_addr);
+                                    ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 566: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_Transmit(pdev->pData, ep_addr, pbuf, size);
+                                     ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 586: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_Receive(pdev->pData, ep_addr, pbuf, size);
+                                    ^
+.\..\USB_DEVICE\Target\usbd_conf.c: 0 warnings, 11 errors
+
+[2024-03-15 17:11:33]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\USB_DEVICE\App\usbd_cdc_if.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -O0 --split_sections -W --cpp11 -g --c99 --c99 -o .\build\infantry\.obj\__\USB_DEVICE\App\usbd_cdc_if.o --no_depend_system_headers --depend .\build\infantry\.obj\__\USB_DEVICE\App\usbd_cdc_if.d .\..\USB_DEVICE\App\usbd_cdc_if.c
+   at unify_builder.Program.compileByMulThread(Int32 thrNum, CmdInfo[] cmds_, List`1 errLogs)
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c", line 472: Error:  #513: a value of type "void *" cannot be assigned to an entity of type "USBD_CDC_HandleTypeDef *"
+    hcdc = 
+SBD_malloc(sizeof(USBD_CDC_HandleTypeDef));
+         ^
+.\..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c: 0 warnings, 1 error
+".\..\USB_DEVICE\Target\usbd_conf.c", line 382: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_DeInit(pdev->pData);
+                                ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 399: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_Start(pdev->pData);
+                               ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 416: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_Stop(pdev->pData);
+                              ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 436: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_Open(pdev->pData, ep_addr, ep_mps, ep_type);
+                                 ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 454: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_Close(pdev->pData, ep_addr);
+                                  ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 472: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_Flush(pdev->pData, ep_addr);
+                                  ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 490: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_SetStall(pdev->pData, ep_addr);
+                                     ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 508: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_ClrStall(pdev->pData, ep_addr);
+                                     ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 546: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_SetAddress(pdev->pData, dev_addr);
+                                    ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 566: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_Transmit(pdev->pData, ep_addr, pbuf, size);
+                                     ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 586: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_Receive(pdev->pData, ep_addr, pbuf, size);
+                                    ^
+.\..\USB_DEVICE\Target\usbd_conf.c: 0 warnings, 11 errors
+"../User/Middleware/Driver/drv_tim.h", line 41: Error:  #20: identifier "bool" is undefined
+  extern bool init_finished;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 51: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM1_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 52: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM2_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 53: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM3_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 54: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM4_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 55: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM5_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 56: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM6_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 57: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM7_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 58: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM8_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 59: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM9_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 60: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM10_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 61: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM11_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 62: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM12_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 63: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM13_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 64: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM14_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 53: Error:  #20: identifier "bool" is undefined
+  extern bool init_finished;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 58: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI1_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 59: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI2_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 60: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI3_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 61: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI4_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 62: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI5_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 63: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI6_Manage_Object;
+         ^
+"../User/Device/dvc_boardc_bmi088.h", line 119: Error:  #20: identifier "class" is undefined
+  class Class_BoardC_BMI{
+  ^
+"../User/Device/dvc_boardc_bmi088.h", line 119: Error:  #65: expected a ";"
+  class Class_BoardC_BMI{
+                        ^
+"../User/Device/dvc_boardc_bmi088.h", line 156: Error:  #169: expected a declaration
+  };
+  ^
+"../User/Middleware/Driver/drv_math.h", line 42: Error:  #147-D: declaration is incompatible with "void Math_Endian_Reverse_16(void *)"  (declared at line 41)
+  void Math_Endian_Reverse_16(void *Source, void *Destination);
+       ^
+"../User/Middleware/Driver/drv_math.h", line 44: Error:  #147-D: declaration is incompatible with "void Math_Endian_Reverse_32(void *)"  (declared at line 43)
+  void Math_Endian_Reverse_32(void *Source, void *Destination);
+       ^
+"../User/Middleware/Driver/drv_math.h", line 63: Error:  #77-D: this declaration has no storage class or type specifier
+  template <typename Type>
+  ^
+"../User/Middleware/Driver/drv_math.h", line 63: Error:  #65: expected a ";"
+  template <typename Type>
+           ^
+"../User/Middleware/Driver/drv_can.h", line 54: Error:  #20: identifier "Struct_CAN_Rx_Buffer" is undefined
+  typedef void (*CAN_Call_Back)(Struct_CAN_Rx_Buffer *);
+                                ^
+.\..\USB_DEVICE\App\usbd_cdc_if.c: 0 warnings, 30 errors
+
+[2024-03-15 17:14:40]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\USB_DEVICE\App\usbd_cdc_if.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -O0 --split_sections -W --cpp11 -g --c99 --c99 -o .\build\infantry\.obj\__\USB_DEVICE\App\usbd_cdc_if.o --no_depend_system_headers --depend .\build\infantry\.obj\__\USB_DEVICE\App\usbd_cdc_if.d .\..\USB_DEVICE\App\usbd_cdc_if.c
+   at unify_builder.Program.compileByMulThread(Int32 thrNum, CmdInfo[] cmds_, List`1 errLogs)
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c", line 472: Error:  #513: a value of type "void *" cannot be assigned to an entity of type "USBD_CDC_HandleTypeDef *"
+    hcdc = 
+SBD_malloc(sizeof(USBD_CDC_HandleTypeDef));
+         ^
+.\..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src\usbd_cdc.c: 0 warnings, 1 error
+".\..\USB_DEVICE\Target\usbd_conf.c", line 382: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_DeInit(pdev->pData);
+                                ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 399: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_Start(pdev->pData);
+                               ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 416: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_Stop(pdev->pData);
+                              ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 436: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_Open(pdev->pData, ep_addr, ep_mps, ep_type);
+                                 ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 454: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_Close(pdev->pData, ep_addr);
+                                  ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 472: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_Flush(pdev->pData, ep_addr);
+                                  ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 490: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_SetStall(pdev->pData, ep_addr);
+                                     ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 508: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_ClrStall(pdev->pData, ep_addr);
+                                     ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 546: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_SetAddress(pdev->pData, dev_addr);
+                                    ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 566: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_Transmit(pdev->pData, ep_addr, pbuf, size);
+                                     ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 586: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_Receive(pdev->pData, ep_addr, pbuf, size);
+                                    ^
+.\..\USB_DEVICE\Target\usbd_conf.c: 0 warnings, 11 errors
+"../User/Middleware/Driver/drv_tim.h", line 41: Error:  #20: identifier "bool" is undefined
+  extern bool init_finished;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 51: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM1_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 52: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM2_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 53: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM3_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 54: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM4_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 55: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM5_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 56: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM6_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 57: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM7_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 58: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM8_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 59: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM9_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 60: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM10_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 61: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM11_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 62: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM12_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 63: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM13_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 64: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM14_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 53: Error:  #20: identifier "bool" is undefined
+  extern bool init_finished;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 58: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI1_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 59: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI2_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 60: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI3_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 61: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI4_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 62: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI5_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 63: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI6_Manage_Object;
+         ^
+"../User/Device/dvc_boardc_bmi088.h", line 119: Error:  #20: identifier "class" is undefined
+  class Class_BoardC_BMI{
+  ^
+"../User/Device/dvc_boardc_bmi088.h", line 119: Error:  #65: expected a ";"
+  class Class_BoardC_BMI{
+                        ^
+"../User/Device/dvc_boardc_bmi088.h", line 156: Error:  #169: expected a declaration
+  };
+  ^
+"../User/Middleware/Driver/drv_math.h", line 42: Error:  #147-D: declaration is incompatible with "void Math_Endian_Reverse_16(void *)"  (declared at line 41)
+  void Math_Endian_Reverse_16(void *Source, void *Destination);
+       ^
+"../User/Middleware/Driver/drv_math.h", line 44: Error:  #147-D: declaration is incompatible with "void Math_Endian_Reverse_32(void *)"  (declared at line 43)
+  void Math_Endian_Reverse_32(void *Source, void *Destination);
+       ^
+"../User/Middleware/Driver/drv_math.h", line 63: Error:  #77-D: this declaration has no storage class or type specifier
+  template <typename Type>
+  ^
+"../User/Middleware/Driver/drv_math.h", line 63: Error:  #65: expected a ";"
+  template <typename Type>
+           ^
+"../User/Middleware/Driver/drv_can.h", line 54: Error:  #20: identifier "Struct_CAN_Rx_Buffer" is undefined
+  typedef void (*CAN_Call_Back)(Struct_CAN_Rx_Buffer *);
+                                ^
+.\..\USB_DEVICE\App\usbd_cdc_if.c: 0 warnings, 30 errors
+
+[2024-03-15 17:15:55]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\USB_DEVICE\App\usbd_cdc_if.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -O0 --split_sections -W --cpp11 -g --c99 --c99 -o .\build\infantry\.obj\__\USB_DEVICE\App\usbd_cdc_if.o --no_depend_system_headers --depend .\build\infantry\.obj\__\USB_DEVICE\App\usbd_cdc_if.d .\..\USB_DEVICE\App\usbd_cdc_if.c
+   at unify_builder.Program.compileByMulThread(Int32 thrNum, CmdInfo[] cmds_, List`1 errLogs)
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\USB_DEVICE\Target\usbd_conf.c", line 382: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_DeInit(pdev->pData);
+                                ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 399: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_Start(pdev->pData);
+                               ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 416: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_Stop(pdev->pData);
+                              ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 436: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_Open(pdev->pData, ep_addr, ep_mps, ep_type);
+                                 ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 454: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_Close(pdev->pData, ep_addr);
+                                  ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 472: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_Flush(pdev->pData, ep_addr);
+                                  ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 490: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_SetStall(pdev->pData, ep_addr);
+                                     ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 508: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_ClrStall(pdev->pData, ep_addr);
+                                     ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 546: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_SetAddress(pdev->pData, dev_addr);
+                                    ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 566: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_Transmit(pdev->pData, ep_addr, pbuf, size);
+                                     ^
+".\..\USB_DEVICE\Target\usbd_conf.c", line 586: Error:  #167: argument of type "void *" is incompatible with parameter of type "PCD_HandleTypeDef *"
+    hal_status = HAL_PCD_EP_Receive(pdev->pData, ep_addr, pbuf, size);
+                                    ^
+.\..\USB_DEVICE\Target\usbd_conf.c: 0 warnings, 11 errors
+"../User/Middleware/Driver/drv_tim.h", line 41: Error:  #20: identifier "bool" is undefined
+  extern bool init_finished;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 51: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM1_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 52: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM2_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 53: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM3_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 54: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM4_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 55: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM5_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 56: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM6_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 57: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM7_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 58: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM8_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 59: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM9_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 60: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM10_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 61: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM11_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 62: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM12_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 63: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM13_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 64: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM14_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 53: Error:  #20: identifier "bool" is undefined
+  extern bool init_finished;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 58: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI1_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 59: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI2_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 60: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI3_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 61: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI4_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 62: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI5_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 63: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI6_Manage_Object;
+         ^
+"../User/Device/dvc_boardc_bmi088.h", line 119: Error:  #20: identifier "class" is undefined
+  class Class_BoardC_BMI{
+  ^
+"../User/Device/dvc_boardc_bmi088.h", line 119: Error:  #65: expected a ";"
+  class Class_BoardC_BMI{
+                        ^
+"../User/Device/dvc_boardc_bmi088.h", line 156: Error:  #169: expected a declaration
+  };
+  ^
+"../User/Middleware/Driver/drv_math.h", line 42: Error:  #147-D: declaration is incompatible with "void Math_Endian_Reverse_16(void *)"  (declared at line 41)
+  void Math_Endian_Reverse_16(void *Source, void *Destination);
+       ^
+"../User/Middleware/Driver/drv_math.h", line 44: Error:  #147-D: declaration is incompatible with "void Math_Endian_Reverse_32(void *)"  (declared at line 43)
+  void Math_Endian_Reverse_32(void *Source, void *Destination);
+       ^
+"../User/Middleware/Driver/drv_math.h", line 63: Error:  #77-D: this declaration has no storage class or type specifier
+  template <typename Type>
+  ^
+"../User/Middleware/Driver/drv_math.h", line 63: Error:  #65: expected a ";"
+  template <typename Type>
+           ^
+"../User/Middleware/Driver/drv_can.h", line 54: Error:  #20: identifier "Struct_CAN_Rx_Buffer" is undefined
+  typedef void (*CAN_Call_Back)(Struct_CAN_Rx_Buffer *);
+                                ^
+.\..\USB_DEVICE\App\usbd_cdc_if.c: 0 warnings, 30 errors
+
+[2024-03-15 17:16:22]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\USB_DEVICE\App\usbd_cdc_if.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -O0 --split_sections -W --cpp11 -g --c99 --c99 -o .\build\infantry\.obj\__\USB_DEVICE\App\usbd_cdc_if.o --no_depend_system_headers --depend .\build\infantry\.obj\__\USB_DEVICE\App\usbd_cdc_if.d .\..\USB_DEVICE\App\usbd_cdc_if.c
+   at unify_builder.Program.compileByMulThread(Int32 thrNum, CmdInfo[] cmds_, List`1 errLogs)
+   at unify_builder.Program.Main(String[] args_)
+---
+"../User/Middleware/Driver/drv_tim.h", line 41: Error:  #20: identifier "bool" is undefined
+  extern bool init_finished;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 51: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM1_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 52: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM2_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 53: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM3_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 54: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM4_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 55: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM5_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 56: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM6_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 57: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM7_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 58: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM8_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 59: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM9_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 60: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM10_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 61: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM11_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 62: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM12_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 63: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM13_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 64: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM14_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 53: Error:  #20: identifier "bool" is undefined
+  extern bool init_finished;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 58: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI1_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 59: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI2_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 60: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI3_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 61: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI4_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 62: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI5_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 63: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI6_Manage_Object;
+         ^
+"../User/Device/dvc_boardc_bmi088.h", line 119: Error:  #20: identifier "class" is undefined
+  class Class_BoardC_BMI{
+  ^
+"../User/Device/dvc_boardc_bmi088.h", line 119: Error:  #65: expected a ";"
+  class Class_BoardC_BMI{
+                        ^
+"../User/Device/dvc_boardc_bmi088.h", line 156: Error:  #169: expected a declaration
+  };
+  ^
+"../User/Middleware/Driver/drv_math.h", line 42: Error:  #147-D: declaration is incompatible with "void Math_Endian_Reverse_16(void *)"  (declared at line 41)
+  void Math_Endian_Reverse_16(void *Source, void *Destination);
+       ^
+"../User/Middleware/Driver/drv_math.h", line 44: Error:  #147-D: declaration is incompatible with "void Math_Endian_Reverse_32(void *)"  (declared at line 43)
+  void Math_Endian_Reverse_32(void *Source, void *Destination);
+       ^
+"../User/Middleware/Driver/drv_math.h", line 63: Error:  #77-D: this declaration has no storage class or type specifier
+  template <typename Type>
+  ^
+"../User/Middleware/Driver/drv_math.h", line 63: Error:  #65: expected a ";"
+  template <typename Type>
+           ^
+"../User/Middleware/Driver/drv_can.h", line 54: Error:  #20: identifier "Struct_CAN_Rx_Buffer" is undefined
+  typedef void (*CAN_Call_Back)(Struct_CAN_Rx_Buffer *);
+                                ^
+.\..\USB_DEVICE\App\usbd_cdc_if.c: 0 warnings, 30 errors
+
+[2024-03-15 17:19:50]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\USB_DEVICE\App\usbd_cdc_if.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -O0 --split_sections -W --cpp11 -g --c99 --c99 -o .\build\infantry\.obj\__\USB_DEVICE\App\usbd_cdc_if.o --no_depend_system_headers --depend .\build\infantry\.obj\__\USB_DEVICE\App\usbd_cdc_if.d .\..\USB_DEVICE\App\usbd_cdc_if.c
+   at unify_builder.Program.compileByMulThread(Int32 thrNum, CmdInfo[] cmds_, List`1 errLogs)
+   at unify_builder.Program.Main(String[] args_)
+---
+"../User/Middleware/Driver/drv_tim.h", line 41: Error:  #20: identifier "bool" is undefined
+  extern bool init_finished;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 51: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM1_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 52: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM2_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 53: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM3_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 54: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM4_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 55: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM5_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 56: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM6_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 57: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM7_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 58: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM8_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 59: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM9_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 60: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM10_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 61: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM11_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 62: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM12_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 63: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM13_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_tim.h", line 64: Error:  #20: identifier "Struct_TIM_Manage_Object" is undefined
+  extern Struct_TIM_Manage_Object TIM14_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 53: Error:  #20: identifier "bool" is undefined
+  extern bool init_finished;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 58: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI1_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 59: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI2_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 60: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI3_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 61: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI4_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 62: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI5_Manage_Object;
+         ^
+"../User/Middleware/Driver/drv_spi.h", line 63: Error:  #20: identifier "Struct_SPI_Manage_Object" is undefined
+  extern Struct_SPI_Manage_Object SPI6_Manage_Object;
+         ^
+"../User/Device/dvc_boardc_bmi088.h", line 119: Error:  #20: identifier "class" is undefined
+  class Class_BoardC_BMI{
+  ^
+"../User/Device/dvc_boardc_bmi088.h", line 119: Error:  #65: expected a ";"
+  class Class_BoardC_BMI{
+                        ^
+"../User/Device/dvc_boardc_bmi088.h", line 156: Error:  #169: expected a declaration
+  };
+  ^
+"../User/Middleware/Driver/drv_math.h", line 42: Error:  #147-D: declaration is incompatible with "void Math_Endian_Reverse_16(void *)"  (declared at line 41)
+  void Math_Endian_Reverse_16(void *Source, void *Destination);
+       ^
+"../User/Middleware/Driver/drv_math.h", line 44: Error:  #147-D: declaration is incompatible with "void Math_Endian_Reverse_32(void *)"  (declared at line 43)
+  void Math_Endian_Reverse_32(void *Source, void *Destination);
+       ^
+"../User/Middleware/Driver/drv_math.h", line 63: Error:  #77-D: this declaration has no storage class or type specifier
+  template <typename Type>
+  ^
+"../User/Middleware/Driver/drv_math.h", line 63: Error:  #65: expected a ";"
+  template <typename Type>
+           ^
+"../User/Middleware/Driver/drv_can.h", line 54: Error:  #20: identifier "Struct_CAN_Rx_Buffer" is undefined
+  typedef void (*CAN_Call_Back)(Struct_CAN_Rx_Buffer *);
+                                ^
+.\..\USB_DEVICE\App\usbd_cdc_if.c: 0 warnings, 30 errors
+
+[2024-03-15 17:23:00]	[done]
+	build successfully !
+

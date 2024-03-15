@@ -43,7 +43,7 @@
 /* Exported types ------------------------------------------------------------*/
 
 /* Exported variables --------------------------------------------------------*/
-
+extern Struct_USB_Manage_Object MiniPC_USB_Manage_Object;
 /* Exported function declarations --------------------------------------------*/
 
 void Task_Init();

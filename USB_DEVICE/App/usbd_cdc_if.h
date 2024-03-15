@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2023 STMicroelectronics.
+  * Copyright (c) 2024 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -52,9 +52,6 @@
 #define APP_TX_DATA_SIZE  2048
 /* USER CODE BEGIN EXPORTED_DEFINES */
 
-// ???????
-#define USB_BUFFER_SIZE 256
-
 /* USER CODE END EXPORTED_DEFINES */
 
 /**
@@ -67,22 +64,6 @@
   */
 
 /* USER CODE BEGIN EXPORTED_TYPES */
-
-/**
- * @brief USB通信接收回调函数数据类型
- *
- */
-typedef void (*USB_Call_Back)(uint8_t *Buffer, uint32_t Length);
-
-/**
- * @brief USB通信处理结构�?
- */
-struct Struct_USB_Manage_Object
-{
-  uint8_t Tx_Buffer[USB_BUFFER_SIZE];
-  uint8_t Rx_Buffer[USB_BUFFER_SIZE];
-  USB_Call_Back Callback_Function;
-};
 
 /* USER CODE END EXPORTED_TYPES */
 
@@ -113,8 +94,6 @@ extern USBD_CDC_ItfTypeDef USBD_Interface_fops_FS;
 
 /* USER CODE BEGIN EXPORTED_VARIABLES */
 
-extern Struct_USB_Manage_Object USBD_Manage_Object;
-
 /* USER CODE END EXPORTED_VARIABLES */
 
 /**
@@ -129,12 +108,6 @@ extern Struct_USB_Manage_Object USBD_Manage_Object;
 uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len);
 
 /* USER CODE BEGIN EXPORTED_FUNCTIONS */
-
-void USB_Init(USB_Call_Back Callback_Function, uint16_t Rx_Buffer_Size);
-
-uint8_t USB_Send_Data(uint8_t *Data, uint16_t Length);
-
-void TIM_USB_PeriodElapsedCallback();
 
 /* USER CODE END EXPORTED_FUNCTIONS */
 

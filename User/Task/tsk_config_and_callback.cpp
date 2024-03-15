@@ -38,6 +38,8 @@
 /* Includes ------------------------------------------------------------------*/
 
 #include "tsk_config_and_callback.h"
+#include "usbd_cdc.h"
+#include "usbd_cdc_if.h"
 
 /* Private macros ------------------------------------------------------------*/
 
@@ -52,6 +54,9 @@ Class_Chariot chariot;
 
 //串口裁判系统对象
 Class_Serialplot serialplot;
+
+//上位机USB通讯对象
+Struct_USB_Manage_Object MiniPC_USB_Manage_Object = {0};
 
 /* Private function declarations ---------------------------------------------*/
 
@@ -286,13 +291,13 @@ void AHRS_UART7_Callback(uint8_t *Buffer, uint16_t Length)
 /**
  * @brief USB MiniPC回调函数
  *
- * @param Buffer UART7收到的消息
+ * @param Buffer USB收到的消息
  *
  * @param Length 长度
  */
 void MiniPC_USB_Callback(uint8_t *Buffer, uint32_t Length)
 {
-    //chariot.MiniPC.USB_RxCpltCallback(Buffer);
+    chariot.MiniPC.USB_RxCpltCallback(Buffer);
 }
 
 /**
@@ -335,13 +340,16 @@ void Task1ms_TIM5_Callback()
     TIM_CAN_PeriodElapsedCallback();
 
     TIM_UART_PeriodElapsedCallback();
-
+    
+	  TIM_USB_PeriodElapsedCallback(&MiniPC_USB_Manage_Object);
+	  
     static int mod5 = 0;
     mod5++;
     if (mod5 == 5)
     {
         //TIM_USB_PeriodElapsedCallback();
-        mod5 = 0;
+			
+       mod5 = 0;
     }
 		
 		
@@ -384,6 +392,9 @@ void Task_Init()
         
         //遥控器接收
         UART_Init(&huart3, DR16_UART3_Callback, 18);
+				
+				//上位机USB
+				USB_Init(&MiniPC_USB_Manage_Object,MiniPC_USB_Callback);
 
     #endif
 
