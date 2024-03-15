@@ -29,9 +29,9 @@
  * @param __frame_header 数据包头标
  * @param __frame_rear 数据包尾标
  */
-void Class_MiniPC::Init(Struct_USB_Manage_Object* USB_Manage_Object, uint8_t __frame_header, uint8_t __frame_rear)
+void Class_MiniPC::Init(Struct_USB_Manage_Object* __USB_Manage_Object, uint8_t __frame_header, uint8_t __frame_rear)
 {
-	  USB_Manage_Object = USB_Manage_Object;
+	  USB_Manage_Object = __USB_Manage_Object;
     Frame_Header = __frame_header;
     Frame_Rear = __frame_rear;
 }
@@ -43,6 +43,7 @@ void Class_MiniPC::Init(Struct_USB_Manage_Object* USB_Manage_Object, uint8_t __f
 void Class_MiniPC::Data_Process()
 {
     memcpy(&Data_NUC_To_MCU, ((Struct_MiniPC_USB_Data *)USB_Manage_Object->Rx_Buffer)->Data, sizeof(Struct_MiniPC_Rx_Data));
+    memset(USB_Manage_Object->Rx_Buffer, 0, USB_Manage_Object->Rx_Buffer_Length);
 }
 
 /**
@@ -55,7 +56,7 @@ void Class_MiniPC::Output()
 	  uint16_t tx_len = USB_Manage_Object->Tx_Buffer_Length;
     
     memset(tmp_buffer, 0, tx_len);
-
+    
     tmp_buffer[0] = Frame_Header; //帧头
     memcpy(&tmp_buffer[1], &Data_MCU_To_NUC, sizeof(Struct_MiniPC_Tx_Data));
     tmp_buffer[tx_len-1] = Frame_Rear; //帧尾

@@ -259,13 +259,16 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
   * @param  Len: Number of data received (in bytes)
   * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
   */
+
 static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 {
   /* USER CODE BEGIN 6 */
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
   USBD_CDC_ReceivePacket(&hUsbDeviceFS);
 	
+
 	memcpy(MiniPC_USB_Manage_Object.Rx_Buffer,Buf,*Len);
+	MiniPC_USB_Manage_Object.Rx_Buffer_Length = *Len;
 	
   return (USBD_OK);
   /* USER CODE END 6 */

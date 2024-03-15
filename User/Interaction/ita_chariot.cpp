@@ -51,8 +51,8 @@ void Class_Chariot::Init(float __DR16_Dead_Zone)
         // Booster.Referee = &Referee;
         Booster.Init();
 				
-				//上位机
-				MiniPC.Init(&MiniPC_USB_Manage_Object);
+        //上位机
+        MiniPC.Init(&MiniPC_USB_Manage_Object);
 
     #endif
 }

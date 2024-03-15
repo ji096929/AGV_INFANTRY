@@ -341,19 +341,14 @@ void Task1ms_TIM5_Callback()
 
     TIM_UART_PeriodElapsedCallback();
     
-	  TIM_USB_PeriodElapsedCallback(&MiniPC_USB_Manage_Object);
-	  
+	
     static int mod5 = 0;
     mod5++;
     if (mod5 == 5)
     {
-        //TIM_USB_PeriodElapsedCallback();
-			
+			TIM_USB_PeriodElapsedCallback(&MiniPC_USB_Manage_Object);
        mod5 = 0;
-    }
-		
-		
-		
+    }	
     
 }
 
@@ -393,8 +388,8 @@ void Task_Init()
         //遥控器接收
         UART_Init(&huart3, DR16_UART3_Callback, 18);
 				
-				//上位机USB
-				USB_Init(&MiniPC_USB_Manage_Object,MiniPC_USB_Callback);
+        //上位机USB
+        USB_Init(&MiniPC_USB_Manage_Object,MiniPC_USB_Callback);
 
     #endif
 
