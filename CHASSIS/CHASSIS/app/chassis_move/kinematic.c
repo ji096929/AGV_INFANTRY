@@ -84,7 +84,7 @@ void AGV_Vector_Composition_In_ChassisCoordinate(CHASSIS_T *chassis, float Motio
 	chassis->C_motor.ChassisCoordinate_Angle = -atan2(Y_Components,X_Components)/3.1415/2* 8191;
 
 	chassis->C_motor.target_speed.linear_vel = Square(X_Components) + Square(Y_Components);
-	chassis->C_motor.target_speed.linear_vel = sqrt(chassis->C_motor.target_speed.linear_vel);
+	chassis->C_motor.target_speed.linear_vel = -sqrt(chassis->C_motor.target_speed.linear_vel);
 
 	if (Radian_Conversion_Angle > 0)
 		 Y_Components = Gimbal_V*  Float_Abs(Sine)  - Chassis_Vr;

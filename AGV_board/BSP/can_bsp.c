@@ -143,51 +143,61 @@ void can_filter_set(CAN_FilterTypeDef *CAN_Filter,uint16_t equipment_id,uint8_t 
 void platform_filtter_config_setting(void)
 {
 	#if defined(STM32F105) | defined(STM32F407)
-		CAN_FilterTypeDef CAN_FilterStructure;
-		CAN_FilterStructure.FilterActivation = ENABLE;
-		CAN_FilterStructure.FilterBank = 0;
-		CAN_FilterStructure.FilterMode = CAN_FILTERMODE_IDMASK;
-		CAN_FilterStructure.FilterScale = CAN_FILTERSCALE_32BIT;
-		CAN_FilterStructure.FilterFIFOAssignment = CAN_FILTER_FIFO0;
-		can_filter_set(&CAN_FilterStructure,0x201,0,0,STD_ID_MODE|EQUIPMENT_ID_IMPROVE);
+		CAN_FilterTypeDef CAN_FilterStructure_1;
+		CAN_FilterStructure_1.FilterActivation = ENABLE;
+		CAN_FilterStructure_1.FilterBank = 0;
+		CAN_FilterStructure_1.FilterMode = CAN_FILTERMODE_IDMASK;
+		CAN_FilterStructure_1.FilterScale = CAN_FILTERSCALE_32BIT;
+		CAN_FilterStructure_1.FilterFIFOAssignment = CAN_FILTER_FIFO0;
+	
+		can_filter_set(&CAN_FilterStructure_1,0x201,0,0,STD_ID_MODE|EQUIPMENT_ID_IMPROVE);
 
-		can_filter_set(&CAN_FilterStructure,0x202,0,0,STD_ID_MODE|EQUIPMENT_ID_IMPROVE);
-
-
-		HAL_CAN_ConfigFilter(&hcan1,&CAN_FilterStructure);
-		CAN_FilterStructure.FilterFIFOAssignment = CAN_FILTER_FIFO1;
-		CAN_FilterStructure.FilterBank = 2;
+		can_filter_set(&CAN_FilterStructure_1,0x202,0,0,STD_ID_MODE|EQUIPMENT_ID_IMPROVE);
+		HAL_CAN_ConfigFilter(&hcan1,&CAN_FilterStructure_1);
+		CAN_FilterTypeDef CAN_FilterStructure_3;
+	CAN_FilterStructure_3.FilterActivation = ENABLE;
+		CAN_FilterStructure_3.FilterBank = 7;
+		CAN_FilterStructure_3.FilterMode = CAN_FILTERMODE_IDMASK;
+		CAN_FilterStructure_3.FilterScale = CAN_FILTERSCALE_32BIT;
+		CAN_FilterStructure_3.FilterFIFOAssignment = CAN_FILTER_FIFO1;
 		#ifdef	AGV_BOARD_A
-		can_filter_set(&CAN_FilterStructure,0x0A,0,0,STD_ID_MODE|EQUIPMENT_ID_IMPROVE);
+		can_filter_set(&CAN_FilterStructure_3,0x0A,0,0,STD_ID_MODE|EQUIPMENT_ID_IMPROVE);
 
 		#endif
 		#ifdef	AGV_BOARD_B
-		can_filter_set(&CAN_FilterStructure,0x0B,0,0,STD_ID_MODE|EQUIPMENT_ID_IMPROVE);
+		can_filter_set(&CAN_FilterStructure_3,0x0B,0,0,STD_ID_MODE|EQUIPMENT_ID_IMPROVE);
 
 		#endif
 		#ifdef	AGV_BOARD_C
-		can_filter_set(&CAN_FilterStructure,0x0C,0,0,STD_ID_MODE|EQUIPMENT_ID_IMPROVE);
+		can_filter_set(&CAN_FilterStructure_3,0x0C,0,0,STD_ID_MODE|EQUIPMENT_ID_IMPROVE);
 
 		#endif
 		#ifdef	AGV_BOARD_D
-		can_filter_set(&CAN_FilterStructure,0x0D,0,0,STD_ID_MODE|EQUIPMENT_ID_IMPROVE);
-
+		can_filter_set(&CAN_FilterStructure_3,0x0D,0,0,STD_ID_MODE|EQUIPMENT_ID_IMPROVE);
+		
 		#endif
-		CAN_FilterStructure.FilterFIFOAssignment = CAN_FILTER_FIFO1;
-	  CAN_FilterStructure.FilterBank = 15;
+		HAL_CAN_ConfigFilter(&hcan1,&CAN_FilterStructure_3);
+		CAN_FilterTypeDef CAN_FilterStructure_2;
+		CAN_FilterStructure_2.FilterActivation = ENABLE;
+		CAN_FilterStructure_2.FilterBank = 0;
+		CAN_FilterStructure_2.FilterMode = CAN_FILTERMODE_IDMASK;
+		CAN_FilterStructure_2.FilterScale = CAN_FILTERSCALE_32BIT;
+		CAN_FilterStructure_2.FilterFIFOAssignment = CAN_FILTER_FIFO0;
+	  CAN_FilterStructure_2.FilterBank = 15;
+
 		#ifdef	AGV_BOARD_A
-		can_filter_set(&CAN_FilterStructure,A_STEERING_CAN_ID,0,0,EXT_ID_MODE|EQUIPMENT_ID_IMPROVE);
+		can_filter_set(&CAN_FilterStructure_2,A_STEERING_CAN_ID,0,0,EXT_ID_MODE|EQUIPMENT_ID_IMPROVE);
 		#endif
 		#ifdef	AGV_BOARD_B
-		can_filter_set(&CAN_FilterStructure,B_STEERING_CAN_ID,0,0,EXT_ID_MODE|EQUIPMENT_ID_IMPROVE);
+		can_filter_set(&CAN_FilterStructure_2,B_STEERING_CAN_ID,0,0,EXT_ID_MODE|EQUIPMENT_ID_IMPROVE);
 		#endif
 		#ifdef	AGV_BOARD_C
-		can_filter_set(&CAN_FilterStructure,C_STEERING_CAN_ID,0,0,EXT_ID_MODE|EQUIPMENT_ID_IMPROVE);
+		can_filter_set(&CAN_FilterStructure_2,C_STEERING_CAN_ID,0,0,EXT_ID_MODE|EQUIPMENT_ID_IMPROVE);
 		#endif
 		#ifdef	AGV_BOARD_D
-		can_filter_set(&CAN_FilterStructure,D_STEERING_CAN_ID,0,0,EXT_ID_MODE|EQUIPMENT_ID_IMPROVE);
+		can_filter_set(&CAN_FilterStructure_2,D_STEERING_CAN_ID,0,0,EXT_ID_MODE|EQUIPMENT_ID_IMPROVE);
 		#endif
-		HAL_CAN_ConfigFilter(&hcan2,&CAN_FilterStructure);
+		HAL_CAN_ConfigFilter(&hcan2,&CAN_FilterStructure_2);
 	#endif
 }
 

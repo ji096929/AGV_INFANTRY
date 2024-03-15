@@ -29,7 +29,7 @@ typedef struct
 
 extern chassis_power_control_t chassis_power_control;
 
-long double calculate_torque_current_according_to_scaled_power(long double scaled_power);
+float calculate_torque_current_according_to_scaled_power(float scaled_power);
 //  void Chassis_Power_Control_Init(void);
 
 #endif

@@ -14,92 +14,55 @@ void Set_AGV_Velocity_Vector_Data_Update(uint8_t tx_data[],int16_t	angle,int16_t
 }
 void AGV_connoection(int ms_cnt)
 {
-	 if(chassis_power_control.all_mscb_ready_flag&0x01	&& ms_cnt%5==0)
+	 if( ms_cnt%10==0)
     {
         if (chassis.parameter.mode != CHASSIS_REMOTE_CLOSE)
-        {
-            chassis_power_control.set_vector_speed_only_cnt++;
-            if (chassis_power_control.set_vector_speed_only_cnt <= DEFAULT_SET_VECTOR_SPEED_ONLY_CNT)
-            {
-                Set_AGV_Velocity_Vector_Data_Update(AGV_A_Tx_Data, chassis.A_motor.target_angle, chassis.A_motor.target_speed.output, VALUE_OF_SCALED_POWER_COEFFICIENT_WHEN_SET_VECTOR_SPEED_ONLY);       
-            }
-            else
-            {
-							  Set_AGV_Velocity_Vector_Data_Update(AGV_A_Tx_Data, chassis.A_motor.target_angle, chassis.A_motor.target_speed.output, chassis_power_control.scaled_power_32[0]);   
-            }
+        {          
+							  Set_AGV_Velocity_Vector_Data_Update(AGV_A_Tx_Data, chassis.A_motor.target_angle, chassis.A_motor.target_speed.output, chassis_power_control.scaled_power_32[0]);            
         }
         else
         {
 								Set_AGV_Velocity_Vector_Data_Update(AGV_A_Tx_Data, chassis.A_motor.target_angle, 0, chassis_power_control.scaled_power_32[0]);   
         }
-				CAN_Send_EXT_Data(&hcan2,EXT_ID_Set(chassis.A_motor.ID,0,0x03),AGV_A_Tx_Data,8);
-        chassis_power_control.all_mscb_ready_flag = chassis_power_control.all_mscb_ready_flag&0x0E;
+				CAN_Send_EXT_Data(&hcan2,EXT_ID_Set(chassis.A_motor.ID,0,0x03),AGV_A_Tx_Data,8);        
     }
-		if(chassis_power_control.all_mscb_ready_flag&0x02	&& ms_cnt%5==1)
+			 if( ms_cnt%10==2)
     {
         if (chassis.parameter.mode != CHASSIS_REMOTE_CLOSE)
-        {
-            chassis_power_control.set_vector_speed_only_cnt++;
-            if (chassis_power_control.set_vector_speed_only_cnt <= DEFAULT_SET_VECTOR_SPEED_ONLY_CNT)
-            {
-                Set_AGV_Velocity_Vector_Data_Update(AGV_B_Tx_Data, chassis.B_motor.target_angle, chassis.B_motor.target_speed.output, VALUE_OF_SCALED_POWER_COEFFICIENT_WHEN_SET_VECTOR_SPEED_ONLY);       
-            }
-            else
-            {
-							  Set_AGV_Velocity_Vector_Data_Update(AGV_B_Tx_Data, chassis.B_motor.target_angle, chassis.B_motor.target_speed.output, chassis_power_control.scaled_power_32[1]);   
-            }
+        {          
+							  Set_AGV_Velocity_Vector_Data_Update(AGV_B_Tx_Data, chassis.B_motor.target_angle, chassis.B_motor.target_speed.output, chassis_power_control.scaled_power_32[1]);            
         }
         else
         {
 								Set_AGV_Velocity_Vector_Data_Update(AGV_B_Tx_Data, chassis.B_motor.target_angle, 0, chassis_power_control.scaled_power_32[1]);   
         }
-				CAN_Send_EXT_Data(&hcan2,EXT_ID_Set(chassis.B_motor.ID,0,0x03),AGV_B_Tx_Data,8);
-        chassis_power_control.all_mscb_ready_flag = chassis_power_control.all_mscb_ready_flag&0x0D;
+				CAN_Send_EXT_Data(&hcan2,EXT_ID_Set(chassis.B_motor.ID,0,0x03),AGV_B_Tx_Data,8);        
     }
-		if(chassis_power_control.all_mscb_ready_flag&0x04	&& ms_cnt%5==2)
+			 if( ms_cnt%10==4)
     {
         if (chassis.parameter.mode != CHASSIS_REMOTE_CLOSE)
-        {
-            chassis_power_control.set_vector_speed_only_cnt++;
-            if (chassis_power_control.set_vector_speed_only_cnt <= DEFAULT_SET_VECTOR_SPEED_ONLY_CNT)
-            {
-                Set_AGV_Velocity_Vector_Data_Update(AGV_C_Tx_Data, chassis.C_motor.target_angle, chassis.C_motor.target_speed.output, VALUE_OF_SCALED_POWER_COEFFICIENT_WHEN_SET_VECTOR_SPEED_ONLY);       
-            }
-            else
-            {
-							  Set_AGV_Velocity_Vector_Data_Update(AGV_C_Tx_Data, chassis.C_motor.target_angle, chassis.C_motor.target_speed.output, chassis_power_control.scaled_power_32[2]);   
-            }
+        {          
+							  Set_AGV_Velocity_Vector_Data_Update(AGV_C_Tx_Data, chassis.C_motor.target_angle, chassis.C_motor.target_speed.output, chassis_power_control.scaled_power_32[2]);            
         }
         else
         {
 								Set_AGV_Velocity_Vector_Data_Update(AGV_C_Tx_Data, chassis.C_motor.target_angle, 0, chassis_power_control.scaled_power_32[2]);   
         }
-				CAN_Send_EXT_Data(&hcan2,EXT_ID_Set(chassis.C_motor.ID,0,0x03),AGV_C_Tx_Data,8);
-        chassis_power_control.all_mscb_ready_flag = chassis_power_control.all_mscb_ready_flag&0x0B;
+				CAN_Send_EXT_Data(&hcan2,EXT_ID_Set(chassis.C_motor.ID,0,0x03),AGV_C_Tx_Data,8);        
     }
-		if(chassis_power_control.all_mscb_ready_flag&0x08	&& ms_cnt%5==3)
+			 if( ms_cnt%10==6)
     {
         if (chassis.parameter.mode != CHASSIS_REMOTE_CLOSE)
-        {
-            chassis_power_control.set_vector_speed_only_cnt++;
-            if (chassis_power_control.set_vector_speed_only_cnt <= DEFAULT_SET_VECTOR_SPEED_ONLY_CNT)
-            {
-                Set_AGV_Velocity_Vector_Data_Update(AGV_D_Tx_Data, chassis.D_motor.target_angle, chassis.A_motor.target_speed.output, VALUE_OF_SCALED_POWER_COEFFICIENT_WHEN_SET_VECTOR_SPEED_ONLY);       
-            }
-            else
-            {
-							  Set_AGV_Velocity_Vector_Data_Update(AGV_D_Tx_Data, chassis.D_motor.target_angle, chassis.A_motor.target_speed.output, chassis_power_control.scaled_power_32[3]);   
-            }
+        {          
+							  Set_AGV_Velocity_Vector_Data_Update(AGV_D_Tx_Data, chassis.D_motor.target_angle, chassis.D_motor.target_speed.output, chassis_power_control.scaled_power_32[0]);            
         }
         else
         {
-								Set_AGV_Velocity_Vector_Data_Update(AGV_D_Tx_Data, chassis.D_motor.target_angle, 0, chassis_power_control.scaled_power_32[3]);   
+								Set_AGV_Velocity_Vector_Data_Update(AGV_D_Tx_Data, chassis.D_motor.target_angle, 0, chassis_power_control.scaled_power_32[0]);   
         }
-
-        CAN_Send_EXT_Data(&hcan2,EXT_ID_Set(chassis.D_motor.ID,0,0x03),AGV_D_Tx_Data,8);
-				chassis_power_control.all_mscb_ready_flag = chassis_power_control.all_mscb_ready_flag&0x07;
+				CAN_Send_EXT_Data(&hcan2,EXT_ID_Set(chassis.D_motor.ID,0,0x03),AGV_D_Tx_Data,8);        
     }
-
+		
 	
 }
 
@@ -107,7 +70,10 @@ void AGV_connoection(int ms_cnt)
 
 void calculate_true_power(void)
 {
-    float sum = 0;
+    
+		float sum = 0;
+	if(chassis_power_control.all_mscb_ready_flag)
+	{
     for (uint8_t i = 0; i < 4; i++)
     {
         sum+=chassis_power_control.expect_power_32[i];
@@ -128,10 +94,13 @@ void calculate_true_power(void)
         }
 
     }
-       
+	}  
 }
 
 void Chassis_Power_Control_Init(void)
 {
-    
+   for(int i=0;i<4;i++)
+	{
+		chassis_power_control.scaled_power_32[i]=20.0f;
+	}
 }

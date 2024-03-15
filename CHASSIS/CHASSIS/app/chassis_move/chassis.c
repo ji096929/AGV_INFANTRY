@@ -16,22 +16,22 @@
 CHASSIS_T chassis;
 YAW_T   yaw;
 PID_T   yaw_pid;
-float yaw_position_loop_data[10]= {0.f,0.f,0.f,0.f,0.f,0.f,0.f,0.f,0.f,0.f};
+float yaw_position_loop_data[10]= {0.07f,0.0f,0.f,2.5f,0.0f,5.0f,0.f,0.f,0.f,0.f};
 
 void Chassis_Inveter_Judge(void)
 {
 		chassis.parameter.invert_flag	=	connection.connection_rx.invert_flag;
     if(chassis.parameter.invert_flag)
     {
-        chassis.command.vx = connection.connection_rx.vx;
-        chassis.command.vy = connection.connection_rx.vy;
-        chassis.command.vw = connection.connection_rx.vw/10.0f;
-    }
-    else
-    {
         chassis.command.vx = -connection.connection_rx.vx;
         chassis.command.vy = -connection.connection_rx.vy;
         chassis.command.vw = -connection.connection_rx.vw/10.0f;
+    }
+    else
+    {
+        chassis.command.vx = connection.connection_rx.vx;
+        chassis.command.vy = connection.connection_rx.vy;
+        chassis.command.vw = connection.connection_rx.vw/10.0f;
     }
 }
 
@@ -49,7 +49,7 @@ void Gimbal_To_Chassis_Relative_Angle_Update(void)
     float gimbal_angle,chassis_angle;
     chassis_angle   =   yaw.status.actual_angle;
     gimbal_angle    =   GIMBAL_HEAD_ANGLE+180.0f*chassis.parameter.invert_flag;
-    chassis.parameter.relative_angle =   gimbal_angle-chassis_angle;
+    chassis.parameter.relative_angle =   chassis_angle-gimbal_angle;
     if(chassis.parameter.relative_angle>180.0f) chassis.parameter.relative_angle-=360.0f;
     if(chassis.parameter.relative_angle<-180.0f) chassis.parameter.relative_angle+=360.0f;
 }
@@ -70,6 +70,7 @@ void Chassis_Mode_Command_Update(void)
     switch(chassis.parameter.mode)
     {
         case    CHASSIS_REMOTE_CLOSE:
+				case	CHASSIS_PRECISIOUS:
         chassis.command.vx =  0;
         chassis.command.vy =  0;
         chassis.command.vw =  0;
@@ -88,8 +89,8 @@ void Chassis_Mode_Command_Update(void)
 
 void Chassis_Init(void)
 {
-    chassis.parameter.mode =   CHASSIS_REMOTE_CLOSE;
-    chassis.parameter.invert_flag =  0;//1:正转，0：反转
+    chassis.parameter.mode =   CHASSIS_NORMAL;
+    chassis.parameter.invert_flag =  1;//1:正转，0：反转
     chassis.parameter.break_mode    =   1;
     chassis.parameter.relative_angle    =   0.f;
 		chassis.A_motor.zero_position = 0x1202;
@@ -105,8 +106,9 @@ void Chassis_Init(void)
 
 void Yaw_Init(void)
 {
-    yaw.parameter.number_ratio = 2.0f;
-    PID_Init(&yaw_pid.angle_loop,yaw_position_loop_data,Integral_Limit|ChangingIntegralRate);
+    yaw.motor.parameter.calibrate_state	=	1;
+		yaw.parameter.number_ratio = 2.0f;
+    PID_Init(&yaw_pid.angle_loop,yaw_position_loop_data,NONE);
 }
 
 void Chassis_Move(void)

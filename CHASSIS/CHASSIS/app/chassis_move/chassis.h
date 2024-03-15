@@ -15,13 +15,14 @@
 #include "motor.h"
 #include "PID.h"
 
-#define GIMBAL_HEAD_ANGLE 7.0f
+#define GIMBAL_HEAD_ANGLE -28.5f
 
 typedef enum	
 {
 	CHASSIS_REMOTE_CLOSE	=	0x00u,
 	CHASSIS_NORMAL	=		0x01u,
 	CHASSIS_SPIN		=		0x02u,
+	CHASSIS_PRECISIOUS		=		0x03u,
 	
 }CHASSIS_MODE_E;
 

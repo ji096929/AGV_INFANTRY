@@ -226,7 +226,7 @@ uint8_t CAN_Send_EXT_Data(CAN_HandleTypeDef *hcan, uint32_t ID, uint8_t *Data, u
 
     tx_header.ExtId = ID;
     tx_header.StdId = 0;
-    tx_header.IDE = 0;
+    tx_header.IDE = 4;
     tx_header.RTR = 0;
     tx_header.DLC = Length;
 

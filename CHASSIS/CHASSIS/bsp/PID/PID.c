@@ -96,13 +96,19 @@ float PID_Calculate(PID_TypeDef *pid, float measure, float target)
 
         //Proportional limit
         f_Proportion_Limit(pid);
-    }
+    
     pid->Last_Measure = pid->Measure;
     pid->Last_Output = pid->Output;
     pid->Last_Dout = pid->Dout;
     pid->Last_Err = pid->Err;
 
     return pid->Output;
+		}
+		else
+		{
+			pid->Output=0;
+			return pid->Output;
+		}
 }
 
 /*****************PID Improvement Function*********************/

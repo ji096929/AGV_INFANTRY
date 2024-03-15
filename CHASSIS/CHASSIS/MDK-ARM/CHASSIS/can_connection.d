@@ -42,3 +42,4 @@ chassis\can_connection.o: ../app/chassis_move/chassis.h
 chassis\can_connection.o: ../app/motor/motor.h
 chassis\can_connection.o: ../bsp/PID/PID.h
 chassis\can_connection.o: ..\app\gimbal_connoection\gimbal_connection.h
+chassis\can_connection.o: ../app/chassis_move/agv_control.h

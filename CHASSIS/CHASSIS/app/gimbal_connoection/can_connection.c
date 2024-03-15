@@ -9,21 +9,23 @@
  * Copyright (c) 2024 by ${git_name_email}, All Rights Reserved. 
  */
 #include "can_connection.h"
+#include "agv_control.h"
 
 void CAN1_Call_Back(struct Struct_CAN_Rx_Buffer *rx)
 {
     switch(rx->Header.StdId)
     {
         case 0x150:
-        connection.connection_rx.vx = (float)(rx->Data[0]<<8|rx->Data[1]);
-        connection.connection_rx.vy = (float)(rx->Data[2]<<8|rx->Data[3]);
-        connection.connection_rx.vw = (float)(rx->Data[4]<<8|rx->Data[5]);
+        connection.connection_rx.vx = (int16_t)(rx->Data[0]<<8|rx->Data[1]);
+        connection.connection_rx.vy = (int16_t)(rx->Data[2]<<8|rx->Data[3]);
+        connection.connection_rx.vw = (int16_t)(rx->Data[4]<<8|rx->Data[5]);
         break;
 
         case 0x152:
         connection.connection_rx.mode = rx->Data[0];
         connection.connection_rx.invert_flag = rx->Data[1];
         connection.connection_rx.follow_flag = rx->Data[2];
+//				yaw.motor.parameter.calibrate_state	=	rx->Data[3];
         break;
 
         case 0x206:
@@ -46,12 +48,16 @@ void CAN2_Call_Back(struct Struct_CAN_Rx_Buffer *rx)
     switch(rx->Header.ExtId&0xff)
     {
         case 0x1a:
+					memcpy(&chassis_power_control.expect_power_32[0],rx->Data,4);
         break;
         case 0x1b:
+					memcpy(&chassis_power_control.expect_power_32[0],rx->Data,4);
         break;
         case 0x1c:
+					memcpy(&chassis_power_control.expect_power_32[0],rx->Data,4);
         break;
         case 0x1d:
+					memcpy(&chassis_power_control.expect_power_32[0],rx->Data,4);
         break;
     }
 }

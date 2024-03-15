@@ -17,6 +17,7 @@ void Task_Init(void)
     Yaw_Init();
     Chassis_Init();
     Can_Connection_Init();
+		Chassis_Power_Control_Init();
 }
 
 void Time_Count_Task(TIME_T *time)
@@ -41,7 +42,10 @@ void Chassis_Task()
         }
 				
         AGV_connoection(time.ms_count);
-				
+				if(time.ms_count%20==17)
+				{
+				calculate_true_power();
+				}
 				if(time.ms_count%5==1)
 				{
 					GM6020_Status_Update(&yaw.motor);
