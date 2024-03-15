@@ -53,6 +53,8 @@ void Class_MiniPC::Data_Process()
 void Class_MiniPC::Output()
 {
     uint8_t *tmp_buffer = USB_Manage_Object->Tx_Buffer;
+	
+	  USB_Manage_Object->Tx_Buffer_Length = sizeof(Data_MCU_To_NUC);
 	  uint16_t tx_len = USB_Manage_Object->Tx_Buffer_Length;
     
     memset(tmp_buffer, 0, tx_len);
