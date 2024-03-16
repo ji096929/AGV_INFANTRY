@@ -113,9 +113,9 @@ void Chassis_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 {
     switch (CAN_RxMessage->Header.StdId)
     {
-    case (0x202):  //留给yaw电机编码器回传
+    case (0x202):  //留给yaw电机编码器回传 用于底盘随动
     {
-        
+        chariot.Chassis.Motor_Yaw.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
     case (0x203):  //留给上板通讯
@@ -170,9 +170,9 @@ void Gimbal_Device_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
         chariot.Gimbal.Motor_Pitch.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
-    case (0x206):
+    case (0x141):
     {
-        
+        chariot.Gimbal.Motor_Pitch_LK6010.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
 	}
@@ -193,9 +193,9 @@ void Gimbal_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
         
     }
     break;
-    case (0x141):
+    case (0x141):   //保留can2对6020编码器的接口
     {
-        chariot.Gimbal.Motor_Pitch_LK6010.CAN_RxCpltCallback(CAN_RxMessage->Data);
+        chariot.Gimbal.Motor_Yaw.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
     case (0x204):

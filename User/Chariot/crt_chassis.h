@@ -36,7 +36,8 @@
 enum Enum_Chassis_Control_Type
 {
     Chassis_Control_Type_DISABLE = 0,
-    Chassis_Control_Type_ABSOLUTE,
+    Chassis_Control_Type_FLLOW,
+    Chassis_Control_Type_SPIN,
 };
 
 /**
@@ -47,11 +48,8 @@ enum Enum_Chassis_Control_Type
 class Class_Tricycle_Chassis
 {
 public:
-    // //功率控制舵向电机PID
-    // Class_PID PID_Power_Limit_Steer;
-    // //功率控制轮向电机PID
-    // Class_PID PID_Power_Limit_Wheel;
-
+    //底盘随动PID环
+    Class_PID PID_Chassis_Fllow;
     //斜坡函数加减速速度X
     Class_Slope Slope_Velocity_X;
     //斜坡函数加减速速度Y
@@ -62,15 +60,13 @@ public:
     //裁判系统
     Class_Referee *Referee;
 
-    //电流采样数据, 提供功率测量
- //   Class_Sampler Sampler;
-
     //下方转动电机
     Class_DJI_Motor_C620 Motor_Wheel[4];
-    // //舵向控制电机
-    // Class_DJI_Motor_GM6020 Motor_Steer[3];
 
-    void Init(float __Velocity_X_Max = 2.0f, float __Velocity_Y_Max = 2.0f, float __Omega_Max = 4.0f, float __Steer_Power_Ratio = 0.5);
+    //获取yaw电机编码器值 用于底盘和云台坐标系的转换
+    Class_DJI_Motor_GM6020 Motor_Yaw;
+
+    void Init(float __Velocity_X_Max = 4.0f, float __Velocity_Y_Max = 4.0f, float __Omega_Max = 4.0f, float __Steer_Power_Ratio = 0.5);
 
     inline Enum_Chassis_Control_Type Get_Chassis_Control_Type();
     inline float Get_Velocity_X_Max();
@@ -84,6 +80,7 @@ public:
     inline float Get_Target_Velocity_X();
     inline float Get_Target_Velocity_Y();
     inline float Get_Target_Omega();
+    inline float Get_Spin_Omega();
 
     inline void Set_Chassis_Control_Type(Enum_Chassis_Control_Type __Chassis_Control_Type);
     inline void Set_Target_Velocity_X(float __Target_Velocity_X);
@@ -106,7 +103,8 @@ protected:
     float Omega_Max;
     //舵向电机功率上限比率
     float Steer_Power_Ratio = 0.5f;
-
+    //底盘小陀螺模式角速度
+    float Spin_Omega = 2.0f;
     //常量
 
     //电机理论上最大输出
@@ -138,7 +136,7 @@ protected:
     //读写变量
 
     //底盘控制方法
-    Enum_Chassis_Control_Type Chassis_Control_Type = Chassis_Control_Type_DISABLE;
+    Enum_Chassis_Control_Type Chassis_Control_Type = Chassis_Control_Type_FLLOW;
     //目标速度X
     float Target_Velocity_X = 0.0f;
     //目标速度Y
@@ -272,6 +270,17 @@ float Class_Tricycle_Chassis::Get_Target_Velocity_Y()
 float Class_Tricycle_Chassis::Get_Target_Omega()
 {
     return (Target_Omega);
+}
+
+
+/**
+ * @brief 获取小陀螺角速度
+ *
+ * @return float 小陀螺角速度
+ */
+float Class_Tricycle_Chassis::Get_Spin_Omega()
+{
+    return (Spin_Omega);
 }
 
 /**

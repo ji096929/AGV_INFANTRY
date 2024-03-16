@@ -57,21 +57,32 @@ void Class_Chariot::Init(float __DR16_Dead_Zone)
     #endif
 }
 
+
+/**
+ * @brief 云台坐标系到底盘坐标系的转换（遥控器目标速度的转换）
+ *
+ */
+void Class_Chariot::Transfer_Axes()
+{
+
+
+
+}
+
 /**
  * @brief 底盘控制逻辑
  *
  */
 void Class_Chariot::Control_Chassis()
 {
-    //速度目标值
-    float tmp_chassis_velocity_x = 0, tmp_chassis_velocity_y = 0, tmp_chassis_omega = 0;
+    //云台坐标系速度目标值
+    float gimbal_velocity_x = 0, gimbal_velocity_y = 0, tmp_chassis_omega = 0;
+    //底盘坐标系速度目标值
+    float tmp_chassis_velocity_x = 0, tmp_chassis_velocity_y = 0;
+    //底盘和云台夹角（弧度制）
+    float derta_angle;
     //遥控器摇杆值
     float dr16_l_x, dr16_l_y, dr16_r_x;
-
-    //排除遥控器死区
-    dr16_l_x = (Math_Abs(DR16.Get_Left_X()) > DR16_Dead_Zone) ? DR16.Get_Left_X() : 0;
-    dr16_l_y = (Math_Abs(DR16.Get_Left_Y()) > DR16_Dead_Zone) ? DR16.Get_Left_Y() : 0;
-    dr16_r_x = (Math_Abs(DR16.Get_Right_X()) > DR16_Dead_Zone) ? DR16.Get_Right_X() : 0;
 
     if (DR16.Get_DR16_Status() == DR16_Status_DISABLE || DR16.Get_Left_Switch() == DR16_Switch_Status_DOWN) //左下失能
     {
@@ -80,41 +91,61 @@ void Class_Chariot::Control_Chassis()
 
         return;
     }
-    else if (DR16.Get_Left_Switch() == DR16_Switch_Status_MIDDLE)  //左中正常随动
+    else 
     {
-        //中间遥控模式
-        Chassis.Set_Chassis_Control_Type(Chassis_Control_Type_ABSOLUTE);
-
         //遥控器操作逻辑
 
+        //排除遥控器死区
+        dr16_l_x = (Math_Abs(DR16.Get_Left_X()) > DR16_Dead_Zone) ? DR16.Get_Left_X() : 0;
+        dr16_l_y = (Math_Abs(DR16.Get_Left_Y()) > DR16_Dead_Zone) ? DR16.Get_Left_Y() : 0;
+        dr16_r_x = (Math_Abs(DR16.Get_Right_X()) > DR16_Dead_Zone) ? DR16.Get_Right_X() : 0;
+
         //设定矩形到圆形映射进行控制
-        tmp_chassis_velocity_x = dr16_l_x * sqrt(1 - dr16_l_y * dr16_l_y / 2) * Chassis.Get_Velocity_X_Max() * Chassis.Get_Velocity_X_Max();
-        tmp_chassis_velocity_y = dr16_l_y * sqrt(1 - dr16_l_x * dr16_l_x / 2) * Chassis.Get_Velocity_Y_Max() * Chassis.Get_Velocity_Y_Max();
-        tmp_chassis_omega = -dr16_r_x * Chassis.Get_Omega_Max();
+        gimbal_velocity_x = dr16_l_x * sqrt(1 - dr16_l_y * dr16_l_y / 2) * Chassis.Get_Velocity_X_Max() * Chassis.Get_Velocity_X_Max();
+        gimbal_velocity_y = dr16_l_y * sqrt(1 - dr16_l_x * dr16_l_x / 2) * Chassis.Get_Velocity_Y_Max() * Chassis.Get_Velocity_Y_Max();
 
         //键盘遥控器操作逻辑
-        if (DR16.Get_Keyboard_Key_A() == DR16_Key_Status_PRESSED)
+        if (DR16.Get_Left_Switch() == DR16_Switch_Status_MIDDLE)  //左中 随动模式
         {
-            tmp_chassis_velocity_x -= Chassis.Get_Velocity_X_Max();
+            //底盘随动
+            Chassis.Set_Chassis_Control_Type(Chassis_Control_Type_FLLOW);   
+            Chassis.PID_Chassis_Fllow.Set_Target(Reference_Angle);
+            Chassis.PID_Chassis_Fllow.Set_Now(Chassis.Motor_Yaw.Get_Now_Angle());
+            Chassis.PID_Chassis_Fllow.TIM_Adjust_PeriodElapsedCallback();
+            tmp_chassis_omega = Chassis.PID_Chassis_Fllow.Get_Out();
+        }
+        if (DR16.Get_Left_Switch() == DR16_Switch_Status_UP)  //左上 小陀螺模式
+        {
+            Chassis.Set_Chassis_Control_Type(Chassis_Control_Type_SPIN);
+            tmp_chassis_omega = Chassis.Get_Spin_Omega();
+        }
+
+        if (DR16.Get_Keyboard_Key_A() == DR16_Key_Status_PRESSED)  //x轴
+        {
+            gimbal_velocity_x -= Chassis.Get_Velocity_X_Max();
         }
         if (DR16.Get_Keyboard_Key_D() == DR16_Key_Status_PRESSED)
         {
-            tmp_chassis_velocity_x += Chassis.Get_Velocity_X_Max();
+            gimbal_velocity_x += Chassis.Get_Velocity_X_Max();
         }
-        if (DR16.Get_Keyboard_Key_W() == DR16_Key_Status_PRESSED)
+        if (DR16.Get_Keyboard_Key_W() == DR16_Key_Status_PRESSED)  //y轴
         {
-            tmp_chassis_velocity_y += Chassis.Get_Velocity_Y_Max();
+            gimbal_velocity_y += Chassis.Get_Velocity_Y_Max();
         }
         if (DR16.Get_Keyboard_Key_S() == DR16_Key_Status_PRESSED)
         {
-            tmp_chassis_velocity_y -= Chassis.Get_Velocity_Y_Max();
+            gimbal_velocity_y -= Chassis.Get_Velocity_Y_Max();
         }
     }
-    else if (DR16.Get_Left_Switch() == DR16_Switch_Status_UP)  //左上
-    {
 
-    }
-    // 设定速度
+    Chassis_Angle = Chassis.Motor_Yaw.Get_Now_Angle();
+    derta_angle = Chassis_Angle - Reference_Angle;  //获取云台坐标系和底盘坐标系的夹角（弧度制）
+
+    //云台坐标系的目标速度转为底盘坐标系的目标速度
+    tmp_chassis_velocity_x = (float)(gimbal_velocity_x * cos(derta_angle) - gimbal_velocity_y * sin(derta_angle));
+    tmp_chassis_velocity_y = (float)(gimbal_velocity_x * sin(derta_angle) + gimbal_velocity_y * cos(derta_angle));
+    
+    //设定速度
     Chassis.Set_Target_Velocity_X(tmp_chassis_velocity_x);
     Chassis.Set_Target_Velocity_Y(tmp_chassis_velocity_y);
     Chassis.Set_Target_Omega(tmp_chassis_omega);

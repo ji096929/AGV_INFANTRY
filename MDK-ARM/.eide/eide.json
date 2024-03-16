@@ -3,7 +3,8 @@
   "type": "ARM",
   "dependenceList": [],
   "srcDirs": [
-    ".eide/deps"
+    ".eide/deps",
+    "../USB_DEVICE"
   ],
   "virtualFolder": {
     "name": "<virtual_root>",
@@ -120,6 +121,9 @@
         "name": "Device",
         "files": [
           {
+            "path": "../User/Device/dvc_imu.cpp"
+          },
+          {
             "path": "../User/Device/dvc_boardc_bmi088.cpp"
           },
           {
@@ -132,16 +136,13 @@
             "path": "../User/Device/dvc_dmmotor.cpp"
           },
           {
+            "path": "../User/Device/dvc_lkmotor.cpp"
+          },
+          {
             "path": "../User/Device/dvc_dr16.cpp"
           },
           {
-            "path": "../User/Device/dvc_dwt.cpp"
-          },
-          {
-            "path": "../User/Device/dvc_imu.cpp"
-          },
-          {
-            "path": "../User/Device/dvc_lkmotor.cpp"
+            "path": "../User/Device/dvc_supercap.cpp"
           },
           {
             "path": "../User/Device/dvc_manifold.cpp"
@@ -162,10 +163,10 @@
             "path": "../User/Device/dvc_servo.cpp"
           },
           {
-            "path": "../User/Device/dvc_supercap.cpp"
+            "path": "../User/Device/dvc_witahrs.cpp"
           },
           {
-            "path": "../User/Device/dvc_witahrs.cpp"
+            "path": "../User/Device/dvc_dwt.cpp"
           }
         ],
         "folders": []
@@ -174,18 +175,6 @@
         "name": "Drivers",
         "files": [],
         "folders": [
-          {
-            "name": "CMSIS",
-            "files": [
-              {
-                "path": "../Drivers/CMSIS/Lib/ARM/arm_cortexM4lf_math.lib"
-              },
-              {
-                "path": "../Core/Src/system_stm32f4xx.c"
-              }
-            ],
-            "folders": []
-          },
           {
             "name": "STM32F4xx_HAL_Driver",
             "files": [
@@ -257,6 +246,18 @@
               },
               {
                 "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c"
+              }
+            ],
+            "folders": []
+          },
+          {
+            "name": "CMSIS",
+            "files": [
+              {
+                "path": "../Drivers/CMSIS/Lib/ARM/arm_cortexM4lf_math.lib"
+              },
+              {
+                "path": "../Core/Src/system_stm32f4xx.c"
               }
             ],
             "folders": []
@@ -386,7 +387,7 @@
   "deviceName": null,
   "packDir": ".pack/Keil/STM32F4xx_DFP.1.0.8",
   "miscInfo": {
-    "uid": "5e3ff82dc79dde142888f23479ff1b5b"
+    "uid": "1309c5ab28cb4ed883195acd73c089e1"
   },
   "targets": {
     "infantry": {
@@ -537,8 +538,7 @@
           "../USB_DEVICE/Target",
           "../Middlewares/ST/STM32_USB_Device_Library/Core/Inc",
           "../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc",
-          "RTE/_infantry",
-          ".eide/deps"
+          "RTE/_infantry"
         ],
         "libList": [],
         "sourceDirList": [],

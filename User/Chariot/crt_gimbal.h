@@ -136,9 +136,6 @@ public:
     //imu对象
     Class_IMU Boardc_BMI;
 
-    //迷你主机
-    //Class_MiniPC *MiniPC;
-
     /*后期yaw pitch这两个类要换成其父类，大疆电机类*/
 
     // yaw轴电机

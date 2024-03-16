@@ -61,6 +61,10 @@ protected:
     float DR16_Dead_Zone;
 
     //常量
+    //底盘标定参考正方向角度(数据来源yaw电机)
+    float Reference_Angle = 0.5f;
+    //底盘转换后的角度（数据来源yaw电机）
+    float Chassis_Angle;
 
     //DR16底盘加速灵敏度系数(0.001表示底盘加速度最大为1m/s2)
     float DR16_Keyboard_Chassis_Speed_Resolution_Small = 0.001f;
@@ -91,6 +95,7 @@ protected:
     //读写变量
 
     //内部函数
+	void Transfer_Axes();	
 
     void Control_Chassis();
     void Control_Gimbal();
