@@ -326,7 +326,7 @@ STEERING_WHEEL_RETURN_T Steering_Wheel_MotorCommandUpdate(steering_wheel_t *stee
 			temp_min = abs(temp_err);
 			else
 			temp_min = PROTOCOL_POSITION_LSBS-abs(temp_err);
-			if (temp_min > HALF_PROTOCOL_POSITION_LSBS*0.8f)
+			if (temp_min > HALF_PROTOCOL_POSITION_LSBS*0.3f)
 			steering_wheel->parameter.invert_flag=-steering_wheel->parameter.invert_flag;
 			temp_err = steering_wheel->directive_part.command.protocol_position - steering_wheel->directive_part.status.protocol_position + ((steering_wheel->parameter.invert_flag-1)/2.0f)*HALF_PROTOCOL_POSITION_LSBS;
 		}

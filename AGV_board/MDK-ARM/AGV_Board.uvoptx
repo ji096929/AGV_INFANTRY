@@ -166,7 +166,12 @@
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>steering_wheel</ItemText>
+          <ItemText>steering_wheel,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>1</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>CAN_RxHeaderStruct</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
