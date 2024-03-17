@@ -121,9 +121,6 @@
         "name": "Device",
         "files": [
           {
-            "path": "../User/Device/dvc_imu.cpp"
-          },
-          {
             "path": "../User/Device/dvc_boardc_bmi088.cpp"
           },
           {
@@ -136,13 +133,16 @@
             "path": "../User/Device/dvc_dmmotor.cpp"
           },
           {
-            "path": "../User/Device/dvc_lkmotor.cpp"
-          },
-          {
             "path": "../User/Device/dvc_dr16.cpp"
           },
           {
-            "path": "../User/Device/dvc_supercap.cpp"
+            "path": "../User/Device/dvc_dwt.cpp"
+          },
+          {
+            "path": "../User/Device/dvc_imu.cpp"
+          },
+          {
+            "path": "../User/Device/dvc_lkmotor.cpp"
           },
           {
             "path": "../User/Device/dvc_manifold.cpp"
@@ -163,10 +163,10 @@
             "path": "../User/Device/dvc_servo.cpp"
           },
           {
-            "path": "../User/Device/dvc_witahrs.cpp"
+            "path": "../User/Device/dvc_supercap.cpp"
           },
           {
-            "path": "../User/Device/dvc_dwt.cpp"
+            "path": "../User/Device/dvc_witahrs.cpp"
           }
         ],
         "folders": []
@@ -175,6 +175,18 @@
         "name": "Drivers",
         "files": [],
         "folders": [
+          {
+            "name": "CMSIS",
+            "files": [
+              {
+                "path": "../Drivers/CMSIS/Lib/ARM/arm_cortexM4lf_math.lib"
+              },
+              {
+                "path": "../Core/Src/system_stm32f4xx.c"
+              }
+            ],
+            "folders": []
+          },
           {
             "name": "STM32F4xx_HAL_Driver",
             "files": [
@@ -249,18 +261,6 @@
               }
             ],
             "folders": []
-          },
-          {
-            "name": "CMSIS",
-            "files": [
-              {
-                "path": "../Drivers/CMSIS/Lib/ARM/arm_cortexM4lf_math.lib"
-              },
-              {
-                "path": "../Core/Src/system_stm32f4xx.c"
-              }
-            ],
-            "folders": []
           }
         ]
       },
@@ -323,6 +323,9 @@
                 "path": "../User/Middleware/Driver/drv_can.c"
               },
               {
+                "path": "../User/Middleware/Driver/drv_dwt.c"
+              },
+              {
                 "path": "../User/Middleware/Driver/drv_i2c.c"
               },
               {
@@ -336,9 +339,6 @@
               },
               {
                 "path": "../User/Middleware/Driver/drv_uart.c"
-              },
-              {
-                "path": "../User/Middleware/Driver/drv_dwt.c"
               },
               {
                 "path": "../User/Middleware/Driver/drv_usb.c"
