@@ -37,7 +37,7 @@ enum Enum_PID_D_First
 class Class_PID
 {
 public:
-    void Init(float __K_P, float __K_I, float __K_D, float __K_F = 0.0f, float __I_Out_Max = 0.0f, float __Out_Max = 0.0f, float __D_T = 0.001f, float __Dead_Zone = 0.0f, float __I_Variable_Speed_A = 0.0f, float __I_Variable_Speed_B = 0.0f, float __I_Separate_Threshold = 0.0f, Enum_PID_D_First __D_First = PID_D_First_DISABLE);
+    void Init(float __K_P, float __K_I, float __K_D, float __K_F = 0.0f, float __I_Out_Max = 0.0f, float __Out_Max = 0.0f,  float __I_Variable_Speed_A = 0.0f, float __I_Variable_Speed_B = 0.0f, float __I_Separate_Threshold = 0.0f, float __D_T = 0.001f, float __Dead_Zone = 0.0f,Enum_PID_D_First __D_First = PID_D_First_DISABLE);
 
     inline float Get_Integral_Error();
     inline float Get_Out();

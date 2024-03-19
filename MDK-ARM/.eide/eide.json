@@ -36,34 +36,34 @@
                 "name": "Core",
                 "files": [
                   {
-                    "path": "../Core/Src/main.c"
-                  },
-                  {
-                    "path": "../Core/Src/gpio.c"
-                  },
-                  {
                     "path": "../Core/Src/can.c"
                   },
                   {
                     "path": "../Core/Src/dma.c"
                   },
                   {
+                    "path": "../Core/Src/gpio.c"
+                  },
+                  {
                     "path": "../Core/Src/i2c.c"
                   },
                   {
+                    "path": "../Core/Src/main.c"
+                  },
+                  {
                     "path": "../Core/Src/spi.c"
+                  },
+                  {
+                    "path": "../Core/Src/stm32f4xx_hal_msp.c"
+                  },
+                  {
+                    "path": "../Core/Src/stm32f4xx_it.c"
                   },
                   {
                     "path": "../Core/Src/tim.c"
                   },
                   {
                     "path": "../Core/Src/usart.c"
-                  },
-                  {
-                    "path": "../Core/Src/stm32f4xx_it.c"
-                  },
-                  {
-                    "path": "../Core/Src/stm32f4xx_hal_msp.c"
                   }
                 ],
                 "folders": []
@@ -287,16 +287,13 @@
                 "path": "../User/Middleware/Algorithm/alg_fsm.cpp"
               },
               {
+                "path": "../User/Middleware/Algorithm/alg_MahonyAHRS.cpp"
+              },
+              {
                 "path": "../User/Middleware/Algorithm/alg_pid.cpp"
               },
               {
                 "path": "../User/Middleware/Algorithm/alg_slope.cpp"
-              },
-              {
-                "path": "../User/Middleware/Algorithm/user_lib.cpp"
-              },
-              {
-                "path": "../User/Middleware/Algorithm/QuaternionEKF.cpp"
               },
               {
                 "path": "../User/Middleware/Algorithm/kalman_filter.cpp"
@@ -305,7 +302,10 @@
                 "path": "../User/Middleware/Algorithm/PID.cpp"
               },
               {
-                "path": "../User/Middleware/Algorithm/alg_MahonyAHRS.cpp"
+                "path": "../User/Middleware/Algorithm/QuaternionEKF.cpp"
+              },
+              {
+                "path": "../User/Middleware/Algorithm/user_lib.cpp"
               }
             ],
             "folders": []
@@ -356,9 +356,6 @@
             "name": "USB_Device_Library",
             "files": [
               {
-                "path": "../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c"
-              },
-              {
                 "path": "../Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c"
               },
               {
@@ -366,6 +363,9 @@
               },
               {
                 "path": "../Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c"
+              },
+              {
+                "path": "../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c"
               }
             ],
             "folders": []

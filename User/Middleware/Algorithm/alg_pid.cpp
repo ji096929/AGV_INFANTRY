@@ -34,7 +34,7 @@
  * @param __Out_Max 输出限幅
  * @param __D_T 时间片长度
  */
-void Class_PID::Init(float __K_P, float __K_I, float __K_D, float __K_F, float __I_Out_Max, float __Out_Max, float __D_T, float __Dead_Zone, float __I_Variable_Speed_A, float __I_Variable_Speed_B, float __I_Separate_Threshold, Enum_PID_D_First __D_First)
+void Class_PID::Init(float __K_P, float __K_I, float __K_D, float __K_F, float __I_Out_Max, float __Out_Max, float __I_Variable_Speed_A, float __I_Variable_Speed_B, float __I_Separate_Threshold,float __D_T, float __Dead_Zone,  Enum_PID_D_First __D_First)
 {
     K_P = __K_P;
     K_I = __K_I;

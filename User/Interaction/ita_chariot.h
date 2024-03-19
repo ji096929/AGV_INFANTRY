@@ -23,8 +23,8 @@
 
 /* Exported macros -----------------------------------------------------------*/
 
-//#define CHASSIS
-#define GIMBAL
+#define CHASSIS
+//#define GIMBAL
 
 /* Exported types ------------------------------------------------------------*/
 
@@ -50,13 +50,21 @@ public:
 
     void Init(float __DR16_Dead_Zone = 0);
 
+    void CAN_Chassis_Control_RxCpltCallback();
+    void CAN_Gimbal_RxCpltCallback();
+    
     void TIM_Control_Callback();
-
+    void TIM_Calculate_PeriodElapsedCallback();
     void TIM1msMod50_Alive_PeriodElapsedCallback();
     
 protected:
     //初始化相关常量
 
+    //绑定的CAN
+    Struct_CAN_Manage_Object *CAN_Manage_Object = &CAN2_Manage_Object;
+    //发送缓存区
+    uint8_t *CAN_Tx_Data = CAN2_Gimbal_Tx_Data;
+    uint8_t *CAN_Rx_Data = CAN2_Chassis_Tx_Data;
     //遥控器拨动的死区, 0~1
     float DR16_Dead_Zone;
 
@@ -95,11 +103,11 @@ protected:
     //读写变量
 
     //内部函数
-	void Transfer_Axes();	
 
     void Control_Chassis();
     void Control_Gimbal();
     void Control_Booster();
+
 };
 
 /* Exported variables --------------------------------------------------------*/

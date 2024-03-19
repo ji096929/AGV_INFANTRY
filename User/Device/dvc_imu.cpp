@@ -179,12 +179,12 @@ float Class_IMU::Get_Gyro_Yaw(void)
 
 float Class_IMU::Get_Rad_Roll(void)
 {
-    return INS_Rad[2];
+    return INS_Rad[1];
 }
 
 float Class_IMU::Get_Rad_Pitch(void)
 {
-    return INS_Rad[1];
+    return INS_Rad[2];
 }
 
 float Class_IMU::Get_Rad_Yaw(void)

@@ -1659,3 +1659,329 @@ command:
 [2024-03-17 22:27:54]	[done]
 	build successfully !
 
+[2024-03-19 00:37:49]	[done]
+	build successfully !
+
+[2024-03-19 00:51:30]	[done]
+	build successfully !
+
+[2024-03-19 00:57:26]	[done]
+	build successfully !
+
+[2024-03-19 00:57:36]	[done]
+	build successfully !
+
+[2024-03-19 01:04:48]	[done]
+	build successfully !
+
+[2024-03-19 01:08:17]	[done]
+	build successfully !
+
+[2024-03-19 01:12:29]	[done]
+	build successfully !
+
+[2024-03-19 01:39:57]	[done]
+	build successfully !
+
+[2024-03-19 01:40:30]	[done]
+	build successfully !
+
+[2024-03-19 01:46:02]	[done]
+	build successfully !
+
+[2024-03-19 02:09:42]	link failed !, exit code: 1
+   at unify_builder.Program.Main(String[] args_)
+---
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle() multiply defined (by usbd_cdc_if.o and main.o).
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle() multiply defined (by crt_gimbal.o and main.o).
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle() multiply defined (by ita_chariot.o and main.o).
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle() multiply defined (by drv_can.o and main.o).
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle() multiply defined (by drv_usb.o and main.o).
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle() multiply defined (by tsk_config_and_callback.o and main.o).
+Not enough information to list image symbols.
+Not enough information to list the image map.
+Finished: 2 information, 0 warning and 6 error messages.
+
+
+[2024-03-19 02:12:55]	link failed !, exit code: 1
+   at unify_builder.Program.Main(String[] args_)
+---
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle() multiply defined (by usbd_cdc_if.o and main.o).
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle() multiply defined (by crt_gimbal.o and main.o).
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle() multiply defined (by ita_chariot.o and main.o).
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle() multiply defined (by drv_can.o and main.o).
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle() multiply defined (by drv_usb.o and main.o).
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle() multiply defined (by tsk_config_and_callback.o and main.o).
+Not enough information to list image symbols.
+Not enough information to list the image map.
+Finished: 2 information, 0 warning and 6 error messages.
+
+
+[2024-03-19 02:13:45]	link failed !, exit code: 1
+   at unify_builder.Program.Main(String[] args_)
+---
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle_1() multiply defined (by usbd_cdc_if.o and main.o).
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle_1() multiply defined (by crt_gimbal.o and main.o).
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle_1() multiply defined (by ita_chariot.o and main.o).
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle_1() multiply defined (by drv_can.o and main.o).
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle_1() multiply defined (by drv_usb.o and main.o).
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle_1() multiply defined (by tsk_config_and_callback.o and main.o).
+Not enough information to list image symbols.
+Not enough information to list the image map.
+Finished: 2 information, 0 warning and 6 error messages.
+
+
+[2024-03-19 02:17:40]	link failed !, exit code: 1
+   at unify_builder.Program.Main(String[] args_)
+---
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle() multiply defined (by usbd_cdc_if.o and main.o).
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle() multiply defined (by crt_gimbal.o and main.o).
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle() multiply defined (by ita_chariot.o and main.o).
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle() multiply defined (by drv_can.o and main.o).
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle() multiply defined (by drv_usb.o and main.o).
+Error: L6200E: Symbol Class_Gimbal::Transform_Angle() multiply defined (by tsk_config_and_callback.o and main.o).
+Not enough information to list image symbols.
+Not enough information to list the image map.
+Finished: 2 information, 0 warning and 6 error messages.
+
+
+[2024-03-19 02:19:45]	[done]
+	build successfully !
+
+[2024-03-19 02:20:34]	[done]
+	build successfully !
+
+[2024-03-19 02:42:27]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\Core\Src\main.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\Core\Src\main.o --no_depend_system_headers --depend .\build\infantry\.obj\__\Core\Src\main.d .\..\Core\Src\main.c
+   at unify_builder.Program.Main(String[] args_)
+---
+"../User/Chariot/crt_gimbal.h", line 299: Error:  #135: class "Class_Gimbal"  has no member "Get_True_Rad_Pitch"
+  float Class_Gimbal::Get_True_Rad_Pitch()
+                      ^
+"../User/Chariot/crt_gimbal.h", line 301: Error:  #20: identifier "True_Rad_Pitch" is undefined
+      return (True_Rad_Pitch);
+              ^
+"../User/Chariot/crt_gimbal.h", line 304: Error:  #135: class "Class_Gimbal"  has no member "Get_True_Rad_Roll"
+  float Class_Gimbal::Get_True_Rad_Roll()
+                      ^
+"../User/Chariot/crt_gimbal.h", line 306: Error:  #20: identifier "True_Rad_Roll" is undefined
+      return (True_Rad_Roll);
+              ^
+"../User/Chariot/crt_gimbal.h", line 309: Error:  #135: class "Class_Gimbal"  has no member "Get_True_Rad_Yaw"
+  float Class_Gimbal::Get_True_Rad_Yaw()
+                      ^
+"../User/Chariot/crt_gimbal.h", line 311: Error:  #20: identifier "True_Rad_Yaw" is undefined
+      return (True_Rad_Yaw);
+              ^
+"../User/Chariot/crt_gimbal.h", line 314: Error:  #135: class "Class_Gimbal"  has no member "Get_True_Gyro_Pitch"
+  float Class_Gimbal::Get_True_Gyro_Pitch()
+                      ^
+"../User/Chariot/crt_gimbal.h", line 316: Error:  #20: identifier "True_Gyro_Pitch" is undefined
+      return (True_Gyro_Pitch);
+              ^
+"../User/Chariot/crt_gimbal.h", line 319: Error:  #135: class "Class_Gimbal"  has no member "Get_True_Gyro_Roll"
+  float Class_Gimbal::Get_True_Gyro_Roll()
+                      ^
+"../User/Chariot/crt_gimbal.h", line 321: Error:  #20: identifier "True_Gyro_Roll" is undefined
+      return (True_Gyro_Roll);
+              ^
+"../User/Chariot/crt_gimbal.h", line 324: Error:  #135: class "Class_Gimbal"  has no member "Get_True_Gyro_Yaw"
+  float Class_Gimbal::Get_True_Gyro_Yaw()
+                      ^
+"../User/Chariot/crt_gimbal.h", line 326: Error:  #20: identifier "True_Gyro_Yaw" is undefined
+      return (True_Gyro_Yaw);
+              ^
+"../User/Chariot/crt_gimbal.h", line 329: Error:  #135: class "Class_Gimbal"  has no member "Set_True_Rad_Pitch"
+  void Class_Gimbal::Set_True_Rad_Pitch(float __True_Rad_Pitch)
+                     ^
+"../User/Chariot/crt_gimbal.h", line 331: Error:  #20: identifier "True_Rad_Pitch" is undefined
+      True_Rad_Pitch = __True_Rad_Pitch;
+      ^
+"../User/Chariot/crt_gimbal.h", line 334: Error:  #135: class "Class_Gimbal"  has no member "Set_True_Rad_Roll"
+  void Class_Gimbal::Set_True_Rad_Roll(float __True_Rad_Roll)
+                     ^
+"../User/Chariot/crt_gimbal.h", line 336: Error:  #20: identifier "True_Rad_Roll" is undefined
+      True_Rad_Roll = __True_Rad_Roll;
+      ^
+"../User/Chariot/crt_gimbal.h", line 339: Error:  #135: class "Class_Gimbal"  has no member "Set_True_Rad_Yaw"
+  void Class_Gimbal::Set_True_Rad_Yaw(float __True_Rad_Yaw)
+                     ^
+"../User/Chariot/crt_gimbal.h", line 341: Error:  #20: identifier "True_Rad_Yaw" is undefined
+      True_Rad_Yaw = __True_Rad_Yaw;
+      ^
+.\..\Core\Src\main.c: 0 warnings, 18 errors
+
+[2024-03-19 02:42:47]	[done]
+	build successfully !
+
+[2024-03-19 03:28:14]	[done]
+	build successfully !
+
+[2024-03-19 11:31:12]	link failed !, exit code: 1
+   at unify_builder.Program.Main(String[] args_)
+---
+Error: L6218E: Undefined symbol CAN_Supercap_Tx_Data (referred from dvc_supercap.o).
+Not enough information to list image symbols.
+Finished: 1 information, 0 warning and 1 error messages.
+
+
+[2024-03-19 11:32:23]	link failed !, exit code: 1
+   at unify_builder.Program.Main(String[] args_)
+---
+Error: L6218E: Undefined symbol CAN_Supercap_Tx_Data (referred from dvc_supercap.o).
+Not enough information to list image symbols.
+Finished: 1 information, 0 warning and 1 error messages.
+
+
+[2024-03-19 11:33:12]	[done]
+	build successfully !
+
+[2024-03-19 11:40:26]	[done]
+	build successfully !
+
+[2024-03-19 11:43:43]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Interaction\ita_chariot.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Interaction\ita_chariot.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Interaction\ita_chariot.d .\..\User\Interaction\ita_chariot.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Interaction\ita_chariot.cpp", line 206: Error:  #101: "chassis_control_type" has already been declared in the current scope
+      Enum_Chassis_Control_Type chassis_control_type = Chassis.Get_Chassis_Control_Type();
+                                ^
+.\..\User\Interaction\ita_chariot.cpp: 0 warnings, 1 error
+
+[2024-03-19 11:43:56]	[done]
+	build successfully !
+
+[2024-03-19 11:47:31]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Interaction\ita_chariot.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Interaction\ita_chariot.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Interaction\ita_chariot.d .\..\User\Interaction\ita_chariot.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Interaction\ita_chariot.cpp", line 205: Error:  #101: "chassis_control_type" has already been declared in the current scope
+      Enum_Chassis_Control_Type chassis_control_type = Chassis.Get_Chassis_Control_Type();
+                                ^
+.\..\User\Interaction\ita_chariot.cpp: 0 warnings, 1 error
+
+[2024-03-19 11:47:47]	[done]
+	build successfully !
+
+[2024-03-19 13:11:30]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\Core\Src\main.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\Core\Src\main.o --no_depend_system_headers --depend .\build\infantry\.obj\__\Core\Src\main.d .\..\Core\Src\main.c
+   at unify_builder.Program.Main(String[] args_)
+---
+"../User/Chariot/crt_chassis.h", line 94: Error:  #403: invalid redeclaration of member function "Class_Tricycle_Chassis::Set_Velocity_X_Max(float)"  (declared at line 93)
+      inline void Set_Velocity_X_Max(float __Velocity_X_Max);
+                  ^
+"../User/Chariot/crt_chassis.h", line 424: Error:  #302: function "Class_Tricycle_Chassis::Set_Velocity_X_Max"  has already been defined
+  void Class_Tricycle_Chassis::Set_Velocity_X_Max(float __Velocity_X_Max)
+                               ^
+.\..\Core\Src\main.c: 0 warnings, 2 errors
+
+[2024-03-19 13:13:01]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\Core\Src\main.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\Core\Src\main.o --no_depend_system_headers --depend .\build\infantry\.obj\__\Core\Src\main.d .\..\Core\Src\main.c
+   at unify_builder.Program.Main(String[] args_)
+---
+"../User/Chariot/crt_chassis.h", line 94: Error:  #403: invalid redeclaration of member function "Class_Tricycle_Chassis::Set_Velocity_X_Max(float)"  (declared at line 93)
+      inline void Set_Velocity_X_Max(float __Velocity_X_Max);
+                  ^
+"../User/Chariot/crt_chassis.h", line 414: Error:  #135: class "Class_Tricycle_Chassis"  has no member "Set_Velocity_Y_Max"
+  void Class_Tricycle_Chassis::Set_Velocity_Y_Max(float __Velocity_Y_Max)
+                               ^
+"../User/Chariot/crt_chassis.h", line 416: Error:  #20: identifier "Velocity_Y_Max" is undefined
+      Velocity_Y_Max = __Velocity_Y_Max;
+      ^
+.\..\Core\Src\main.c: 0 warnings, 3 errors
+
+[2024-03-19 13:13:24]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Interaction\ita_chariot.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Interaction\ita_chariot.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Interaction\ita_chariot.d .\..\User\Interaction\ita_chariot.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Interaction\ita_chariot.cpp", line 49: Error:  #65: expected a ";"
+          Gimbal.Init();
+          ^
+.\..\User\Interaction\ita_chariot.cpp: 0 warnings, 1 error
+
+[2024-03-19 13:14:30]	[done]
+	build successfully !
+
+[2024-03-19 13:46:06]	[done]
+	build successfully !
+
+[2024-03-19 14:41:34]	[done]
+	build successfully !
+
+[2024-03-19 15:03:27]	[done]
+	build successfully !
+
+[2024-03-19 15:06:11]	[done]
+	build successfully !
+
+[2024-03-19 15:06:38]	[done]
+	build successfully !
+
+[2024-03-19 15:50:53]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Middleware\Driver\drv_can.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Middleware\Driver\drv_can.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Middleware\Driver\drv_can.d .\..\User\Middleware\Driver\drv_can.c
+   at unify_builder.Program.compileByMulThread(Int32 thrNum, CmdInfo[] cmds_, List`1 errLogs)
+   at unify_builder.Program.Main(String[] args_)
+---
+"../User/Task/tsk_config_and_callback.h", line 48: Error:  #20: identifier "Class_Chariot" is undefined
+  extern Class_Chariot chariot;
+         ^
+.\..\User\Interaction\ita_chariot.cpp: 0 warnings, 1 error
+"../User/Task/tsk_config_and_callback.h", line 48: Error:  #20: identifier "Class_Chariot" is undefined
+  extern Class_Chariot chariot;
+         ^
+.\..\User\Middleware\Driver\drv_can.c: 0 warnings, 1 error
+
+[2024-03-19 15:51:52]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Device\dvc_dr16.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Device\dvc_dr16.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Device\dvc_dr16.d .\..\User\Device\dvc_dr16.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Device\dvc_dr16.cpp", line 244: Error:  #20: identifier "chariot" is undefined
+      chariot.Control_Chassis();
+      ^
+.\..\User\Device\dvc_dr16.cpp: 0 warnings, 1 error
+
+[2024-03-19 15:52:43]	[done]
+	build successfully !
+
+[2024-03-19 15:56:47]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Task\tsk_config_and_callback.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Task\tsk_config_and_callback.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Task\tsk_config_and_callback.d .\..\User\Task\tsk_config_and_callback.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Task\tsk_config_and_callback.cpp", line 257: Error:  #265-D: function "Class_Chariot::Control_Chassis"  (declared at line 107 of "../User/Interaction/ita_chariot.h") is inaccessible
+      chariot.Control_Chassis();
+              ^
+".\..\User\Task\tsk_config_and_callback.cpp", line 258: Error:  #265-D: function "Class_Chariot::Control_Gimbal"  (declared at line 108 of "../User/Interaction/ita_chariot.h") is inaccessible
+      chariot.Control_Gimbal();
+              ^
+".\..\User\Task\tsk_config_and_callback.cpp", line 259: Error:  #265-D: function "Class_Chariot::Control_Booster"  (declared at line 109 of "../User/Interaction/ita_chariot.h") is inaccessible
+      chariot.Control_Booster();
+              ^
+.\..\User\Task\tsk_config_and_callback.cpp: 0 warnings, 3 errors
+
+[2024-03-19 15:57:13]	[done]
+	build successfully !
+
+[2024-03-19 16:04:47]	[done]
+	build successfully !
+
+[2024-03-19 16:15:36]	[done]
+	build successfully !
+
+[2024-03-19 16:16:11]	[done]
+	build successfully !
+
+[2024-03-19 19:34:39]	[done]
+	build successfully !
+
+[2024-03-19 19:38:37]	[done]
+	build successfully !
+

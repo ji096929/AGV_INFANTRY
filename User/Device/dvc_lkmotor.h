@@ -450,7 +450,7 @@ void Class_LK_Motor::Set_Out(float __Out)
 
 float Class_LK_Motor::Get_Output_Max()
 {
-    return (Current_Max);
+    return (Current_Max_Cmd);
 }
 
 #endif

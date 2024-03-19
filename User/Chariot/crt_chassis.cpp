@@ -42,6 +42,7 @@ void Class_Tricycle_Chassis::Init(float __Velocity_X_Max, float __Velocity_Y_Max
     Omega_Max = __Omega_Max;
     Steer_Power_Ratio = __Steer_Power_Ratio;
 
+
     //斜坡函数加减速速度X  0.005f, 0.01f
     Slope_Velocity_X.Init(0.25f,1.0f);
     //斜坡函数加减速速度Y  0.005f, 0.01f
@@ -139,22 +140,20 @@ void Class_Tricycle_Chassis::Speed_Resolution(){
     }   
 }
 
+
 /**
  * @brief TIM定时器中断计算回调函数
  *
  */
 void Class_Tricycle_Chassis::TIM_Calculate_PeriodElapsedCallback()
 {
-    //采样获取电流值
- //   Sampler.TIM_Sampler_PeriodElapsedCallback();
-
     //斜坡函数计算用于速度解算初始值获取
     Slope_Velocity_X.Set_Target(Target_Velocity_X);
     Slope_Velocity_X.TIM_Calculate_PeriodElapsedCallback();
     Slope_Velocity_Y.Set_Target(Target_Velocity_Y);
     Slope_Velocity_Y.TIM_Calculate_PeriodElapsedCallback();
-     Slope_Omega.Set_Target(Target_Omega);
-     Slope_Omega.TIM_Calculate_PeriodElapsedCallback();
+    Slope_Omega.Set_Target(Target_Omega);
+    Slope_Omega.TIM_Calculate_PeriodElapsedCallback();
 
     //速度解算
     Speed_Resolution();
@@ -166,8 +165,6 @@ void Class_Tricycle_Chassis::TIM_Calculate_PeriodElapsedCallback()
     for (int i = 0; i < 4; i++)
     {
         Motor_Wheel[i].TIM_PID_PeriodElapsedCallback();
-        Motor_Wheel[i].TIM_Alive_PeriodElapsedCallback();
-       // Motor_Steer[i].TIM_PID_PeriodElapsedCallback();
     }
 }
 

@@ -113,14 +113,14 @@ void Chassis_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 {
     switch (CAN_RxMessage->Header.StdId)
     {
-    case (0x202):  //留给yaw电机编码器回传 用于底盘随动
+    case (0x208):  //留给yaw电机编码器回传 用于底盘随动
     {
         chariot.Chassis.Motor_Yaw.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
-    case (0x203):  //留给上板通讯
+    case (0x77):  //留给上板通讯
     {
-        
+        chariot.CAN_Chassis_Control_RxCpltCallback();
     }
     break;
     case (0x204):  //留给超级电容
@@ -150,17 +150,17 @@ void Gimbal_Device_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 {
     switch (CAN_RxMessage->Header.StdId)
     {
-    case (0x202):
+    case (0x203):
     {
         chariot.Booster.Motor_Driver.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
-    case (0x203):
+    case (0x201):
     {
         chariot.Booster.Motor_Friction_Left.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
-    case (0x204):
+    case (0x202):
     {
         chariot.Booster.Motor_Friction_Right.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
@@ -193,7 +193,7 @@ void Gimbal_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
         
     }
     break;
-    case (0x141):   //保留can2对6020编码器的接口
+    case (0x208):   //保留can2对6020编码器的接口
     {
         chariot.Gimbal.Motor_Yaw.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
@@ -252,6 +252,9 @@ void Device_SPI1_Callback(uint8_t *Tx_Buffer, uint8_t *Rx_Buffer, uint16_t Lengt
 void DR16_UART3_Callback(uint8_t *Buffer, uint16_t Length)
 {
     chariot.DR16.UART_RxCpltCallback(Buffer);
+
+    //底盘 云台 发射机构 的控制策略
+    chariot.TIM_Control_Callback();
 }
 
 
@@ -311,7 +314,6 @@ void Task100us_TIM4_Callback()
         //暂无云台tim4任务
 
     #elif defined(GIMBAL)
-
 			// 单给IMU消息开的定时器 ims
 			chariot.Gimbal.Boardc_BMI.TIM_Calculate_PeriodElapsedCallback();     
 
@@ -332,7 +334,7 @@ void Task1ms_TIM5_Callback()
 
     /****************************** 交互层回调函数 1ms *****************************************/
 
-    chariot.TIM_Control_Callback();
+    chariot.TIM_Calculate_PeriodElapsedCallback();
 
     /****************************** 驱动层回调函数 1ms *****************************************/ 
     

@@ -61,6 +61,8 @@ enum Enum_DJI_Motor_Control_Method
     DJI_Motor_Control_Method_TORQUE,
     DJI_Motor_Control_Method_OMEGA,
     DJI_Motor_Control_Method_ANGLE,
+    DJI_Motor_Control_Method_IMU_OMEGA,
+    DJI_Motor_Control_Method_IMU_ANGLE,
 };
 
 /**

@@ -174,15 +174,15 @@ void Class_Booster::Init()
     //拨弹盘电机
     Motor_Driver.PID_Angle.Init(50.0f, 0.0f, 0.0f, 0.0f, 2.0f * PI, 2.0f * PI);
     Motor_Driver.PID_Omega.Init(3400.0f, 200000.0f, 0.0f, 0.0f, Motor_Driver.Get_Output_Max(), Motor_Driver.Get_Output_Max());
-    Motor_Driver.Init(&hcan1, DJI_Motor_ID_0x202, DJI_Motor_Control_Method_OMEGA);
+    Motor_Driver.Init(&hcan1, DJI_Motor_ID_0x203, DJI_Motor_Control_Method_OMEGA);
 
     //摩擦轮电机左
     Motor_Friction_Left.PID_Omega.Init(120.0f, 1000.0f, 0.5f, 0.0f, 2000.0f, Motor_Friction_Left.Get_Output_Max());
-    Motor_Friction_Left.Init(&hcan1, DJI_Motor_ID_0x203, DJI_Motor_Control_Method_OMEGA, 1.0f);
+    Motor_Friction_Left.Init(&hcan1, DJI_Motor_ID_0x201, DJI_Motor_Control_Method_OMEGA, 1.0f);
 
     //摩擦轮电机右
     Motor_Friction_Right.PID_Omega.Init(120.0f, 1000.0f, 0.5f, 0.0f, 2000.0f, Motor_Friction_Right.Get_Output_Max());
-    Motor_Friction_Right.Init(&hcan1, DJI_Motor_ID_0x204, DJI_Motor_Control_Method_OMEGA, 1.0f);
+    Motor_Friction_Right.Init(&hcan1, DJI_Motor_ID_0x202, DJI_Motor_Control_Method_OMEGA, 1.0f);
 }
 
 /**
@@ -215,13 +215,14 @@ void Class_Booster::Output()
         // 停火
         if (Motor_Driver.Get_Control_Method() == DJI_Motor_Control_Method_ANGLE)
         {
+//            Motor_Driver.Set_Target_Angle(Motor_Driver.Get_Now_Angle());
         }
         else if (Motor_Driver.Get_Control_Method() == DJI_Motor_Control_Method_OMEGA)
         {
             Motor_Driver.Set_Target_Omega(0.0f);
         }
-        Motor_Friction_Left.Set_Target_Omega(-Friction_Omega);
-        Motor_Friction_Right.Set_Target_Omega(Friction_Omega);
+        Motor_Friction_Left.Set_Target_Omega(Friction_Omega);
+        Motor_Friction_Right.Set_Target_Omega(-Friction_Omega);
     }
     break;
     case (Booster_Control_Type_SINGLE):
@@ -234,11 +235,12 @@ void Class_Booster::Output()
         //热量控制
         // if (FSM_Heat_Detect.Heat + 30 < Referee->Get_Booster_17mm_1_Heat_Max())
         // {
-        //     Motor_Driver.Set_Target_Angle(Motor_Driver.Get_Now_Angle() + 2.0f * PI / 8.0f);
+             Drvier_Angle -= 2.0f * PI / 8.0f;
+             Motor_Driver.Set_Target_Angle(Drvier_Angle);
         // }
 
-        Motor_Friction_Left.Set_Target_Omega(-Friction_Omega);
-        Motor_Friction_Right.Set_Target_Omega(Friction_Omega);
+        Motor_Friction_Left.Set_Target_Omega(Friction_Omega);
+        Motor_Friction_Right.Set_Target_Omega(-Friction_Omega);
 
         //点一发立刻停火
         Booster_Control_Type = Booster_Control_Type_CEASEFIRE;
@@ -266,8 +268,8 @@ void Class_Booster::Output()
             Motor_Driver.Set_Target_Omega(tmp_omega);
         }
 
-        Motor_Friction_Left.Set_Target_Omega(-Friction_Omega);
-        Motor_Friction_Right.Set_Target_Omega(Friction_Omega);
+        Motor_Friction_Left.Set_Target_Omega(Friction_Omega);
+        Motor_Friction_Right.Set_Target_Omega(-Friction_Omega);
     }
     break;
     }
@@ -278,11 +280,13 @@ void Class_Booster::Output()
  *
  */
 void Class_Booster::TIM_Calculate_PeriodElapsedCallback()
-{
+{     
+    
     //无需裁判系统的热量控制计算
-    FSM_Heat_Detect.Reload_TIM_Status_PeriodElapsedCallback();
-    //卡弹处理
-    FSM_Antijamming.Reload_TIM_Status_PeriodElapsedCallback();
+    // FSM_Heat_Detect.Reload_TIM_Status_PeriodElapsedCallback();
+    // //卡弹处理
+    // FSM_Antijamming.Reload_TIM_Status_PeriodElapsedCallback();
+    Output();
 
     Motor_Driver.TIM_PID_PeriodElapsedCallback();
     Motor_Friction_Left.TIM_PID_PeriodElapsedCallback();

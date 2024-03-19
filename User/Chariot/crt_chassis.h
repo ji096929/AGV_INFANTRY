@@ -33,7 +33,7 @@
  * @brief 底盘控制类型
  *
  */
-enum Enum_Chassis_Control_Type
+enum Enum_Chassis_Control_Type :uint8_t
 {
     Chassis_Control_Type_DISABLE = 0,
     Chassis_Control_Type_FLLOW,
@@ -90,6 +90,9 @@ public:
     inline void Set_Now_Velocity_Y(float __Now_Velocity_Y);
     inline void Set_Now_Omega(float __Now_Omega);
 
+    inline void Set_Velocity_Y_Max(float __Velocity_Y_Max);
+    inline void Set_Velocity_X_Max(float __Velocity_X_Max);
+
     void TIM_Calculate_PeriodElapsedCallback();
 
 protected:
@@ -136,7 +139,7 @@ protected:
     //读写变量
 
     //底盘控制方法
-    Enum_Chassis_Control_Type Chassis_Control_Type = Chassis_Control_Type_FLLOW;
+    Enum_Chassis_Control_Type Chassis_Control_Type = Chassis_Control_Type_DISABLE;
     //目标速度X
     float Target_Velocity_X = 0.0f;
     //目标速度Y
@@ -398,10 +401,31 @@ void Class_Tricycle_Chassis::Set_Now_Velocity_Y(float __Now_Velocity_Y)
  *
  * @param __Now_Omega 当前角速度
  */
-void Class_Tricycle_Chassis::Set_Now_Omega(float __Now_Omega)
+void Class_Tricycle_Chassis::Set_Now_Omega(float __Velocity_Y_Max)
 {
-    Now_Omega = __Now_Omega;
+    Now_Omega = __Velocity_Y_Max;
 }
+
+/**
+ * @brief 设定当前最大X速度
+ *
+ * @param __Velocity_Y_Max 输入
+ */
+void Class_Tricycle_Chassis::Set_Velocity_Y_Max(float __Velocity_Y_Max)
+{
+    Velocity_Y_Max = __Velocity_Y_Max;
+}
+
+/**
+ * @brief 设定当前最大Y速度
+ *
+ * @param __Velocity_X_Max 输入
+ */
+void Class_Tricycle_Chassis::Set_Velocity_X_Max(float __Velocity_X_Max)
+{
+    Velocity_X_Max = __Velocity_X_Max;
+}
+
 
 #endif
 
