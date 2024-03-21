@@ -93,6 +93,7 @@
         "../User/Chariot/crt_booster.cpp",
         "../User/Chariot/crt_chassis.cpp",
         "../User/Chariot/crt_gimbal.cpp",
+        "../User/Device/alg_power_limit.cpp",
         "../User/Device/dvc_boardc_bmi088.cpp",
         "../User/Device/dvc_boardc_ist8310.cpp",
         "../User/Device/dvc_djimotor.cpp",

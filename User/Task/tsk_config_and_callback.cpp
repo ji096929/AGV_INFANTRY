@@ -47,8 +47,8 @@
 
 /* Private variables ---------------------------------------------------------*/
 
-bool init_finished = 0;
-
+uint32_t init_finished =0 ;
+bool start_flag=0;
 //机器人控制对象
 Class_Chariot chariot;
 
@@ -328,29 +328,36 @@ void Task100us_TIM4_Callback()
  */
 void Task1ms_TIM5_Callback()
 {
+    init_finished++;
+    if(init_finished>5000)
+    start_flag=1;
+
     /************ 判断设备在线状态判断 50ms (所有device:电机，遥控器，裁判系统等) ***************/
     
     chariot.TIM1msMod50_Alive_PeriodElapsedCallback();
 
     /****************************** 交互层回调函数 1ms *****************************************/
-
-    chariot.TIM_Calculate_PeriodElapsedCallback();
+    if(start_flag==1)
+    {
+        chariot.TIM_Calculate_PeriodElapsedCallback();
 
     /****************************** 驱动层回调函数 1ms *****************************************/ 
-    
-    //统一打包发送
-    TIM_CAN_PeriodElapsedCallback();
+        
+        //统一打包发送
+        TIM_CAN_PeriodElapsedCallback();
 
-    TIM_UART_PeriodElapsedCallback();
-    
-	
-    static int mod5 = 0;
-    mod5++;
-    if (mod5 == 5)
-    {
-			TIM_USB_PeriodElapsedCallback(&MiniPC_USB_Manage_Object);
-       mod5 = 0;
-    }	
+        TIM_UART_PeriodElapsedCallback();
+        
+        
+        static int mod5 = 0;
+        mod5++;
+        if (mod5 == 5)
+        {
+            TIM_USB_PeriodElapsedCallback(&MiniPC_USB_Manage_Object);
+        mod5 = 0;
+        }	        
+    }
+
     
 }
 
@@ -372,6 +379,8 @@ void Task_Init()
 
         //裁判系统
         UART_Init(&huart6, Referee_UART6_Callback, 128);
+
+        
 
     #endif
 

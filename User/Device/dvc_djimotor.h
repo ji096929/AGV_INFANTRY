@@ -16,6 +16,7 @@
 
 #include "alg_pid.h"
 #include "drv_can.h"
+#include "alg_power_limit.h"
 
 /* Exported macros -----------------------------------------------------------*/
 
@@ -171,7 +172,7 @@ protected:
     //读写变量
 
     //电机控制方式
-    Enum_DJI_Motor_Control_Method DJI_Motor_Control_Method = DJI_Motor_Control_Method_ANGLE;
+    Enum_DJI_Motor_Control_Method DJI_Motor_Control_Method = DJI_Motor_Control_Method_IMU_ANGLE;
     //目标的角度, rad
     float Target_Angle = 0.0f;
     //目标的速度, rad/s
@@ -290,6 +291,9 @@ public:
     Class_PID PID_Angle;
     // PID角速度环控制
     Class_PID PID_Omega;
+    
+    //功率限制友元函数
+    friend class Class_Power_Limit;
 
     void Init(CAN_HandleTypeDef *__hcan, Enum_DJI_Motor_ID __CAN_ID, Enum_DJI_Motor_Control_Method __Control_Method = DJI_Motor_Control_Method_OMEGA, float __Gearbox_Rate = 3591.0f / 187.0f, float __Torque_Max = 16384.0f);
 

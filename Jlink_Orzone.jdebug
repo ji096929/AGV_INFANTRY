@@ -4,8 +4,8 @@
 *                         www.segger.com                             *
 **********************************************************************
 
-File          : D:/RM/RM_code/2024/new_one_4/Orzone.jdebug
-Created       : 2 Mar 2024 23:18
+File          : D:/RM/RM_code/Standard_4_Cpp_Structure_ByRoboWalker/Jlink_Orzone.jdebug
+Created       : 21 Mar 2024 21:50
 Ozone Version : V3.30a
 */
 
@@ -22,18 +22,18 @@ void OnProjectLoad (void) {
   //
   // Dialog-generated settings
   //
-  Project.AddPathSubstitute ("D:/RM/RM_code/2024/new_one_4", "$(ProjectDir)");
-  Project.AddPathSubstitute ("d:/rm/rm_code/2024/new_one_4", "$(ProjectDir)");
+  Project.AddPathSubstitute ("D:/RM/RM_code/Standard_4_Cpp_Structure_ByRoboWalker", "$(ProjectDir)");
+  Project.AddPathSubstitute ("d:/rm/rm_code/standard_4_cpp_structure_byrobowalker", "$(ProjectDir)");
   Project.SetDevice ("STM32F407IG");
-  Project.SetHostIF ("USB", "69531183");
+  Project.SetHostIF ("USB", "69531172");
   Project.SetTargetIF ("SWD");
   Project.SetTIFSpeed ("4 MHz");
   Project.AddSvdFile ("$(InstallDir)/Config/CPU/Cortex-M4F.svd");
-  Project.AddSvdFile ("C:/Program Files/SEGGER/Ozone V3.30c/Config/Peripherals/STM32F407IG.svd");
+  Project.AddSvdFile ("$(InstallDir)/Config/Peripherals/STM32F407IG.svd");
   //
   // User settings
   //
-  File.Open ("$(ProjectDir)/MDK-ARM/build/infantry/infantry.elf");
+  File.Open ("$(ProjectDir)/MDK-ARM/infantry/infantry.axf");
 }
 
 /*********************************************************************
@@ -325,25 +325,8 @@ void AfterTargetDownload (void) {
 **********************************************************************
 */
 void _SetupTarget(void) {
-  unsigned int SP;
-  unsigned int PC;
-  unsigned int VectorTableAddr;
-
-  VectorTableAddr = Elf.GetBaseAddr();
   //
-  // Set up initial stack pointer
+  // this function is intentionally empty because both inital PC and
+  // initial SP were chosen not to be set
   //
-  SP = Target.ReadU32(VectorTableAddr);
-  if (SP != 0xFFFFFFFF) {
-    Target.SetReg("SP", SP);
-  }
-  //
-  // Set up entry point PC
-  //
-  PC = Elf.GetEntryPointPC();
-  if (PC != 0xFFFFFFFF) {
-    Target.SetReg("PC", PC);
-  } else {
-    Util.Error("Project script error: failed to set up entry point PC", 1);
-  }
 }

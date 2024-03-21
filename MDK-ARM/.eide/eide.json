@@ -36,34 +36,34 @@
                 "name": "Core",
                 "files": [
                   {
+                    "path": "../Core/Src/main.c"
+                  },
+                  {
+                    "path": "../Core/Src/gpio.c"
+                  },
+                  {
                     "path": "../Core/Src/can.c"
                   },
                   {
                     "path": "../Core/Src/dma.c"
                   },
                   {
-                    "path": "../Core/Src/gpio.c"
-                  },
-                  {
                     "path": "../Core/Src/i2c.c"
                   },
                   {
-                    "path": "../Core/Src/main.c"
-                  },
-                  {
                     "path": "../Core/Src/spi.c"
-                  },
-                  {
-                    "path": "../Core/Src/stm32f4xx_hal_msp.c"
-                  },
-                  {
-                    "path": "../Core/Src/stm32f4xx_it.c"
                   },
                   {
                     "path": "../Core/Src/tim.c"
                   },
                   {
                     "path": "../Core/Src/usart.c"
+                  },
+                  {
+                    "path": "../Core/Src/stm32f4xx_it.c"
+                  },
+                  {
+                    "path": "../Core/Src/stm32f4xx_hal_msp.c"
                   }
                 ],
                 "folders": []
@@ -176,18 +176,6 @@
         "files": [],
         "folders": [
           {
-            "name": "CMSIS",
-            "files": [
-              {
-                "path": "../Drivers/CMSIS/Lib/ARM/arm_cortexM4lf_math.lib"
-              },
-              {
-                "path": "../Core/Src/system_stm32f4xx.c"
-              }
-            ],
-            "folders": []
-          },
-          {
             "name": "STM32F4xx_HAL_Driver",
             "files": [
               {
@@ -261,6 +249,18 @@
               }
             ],
             "folders": []
+          },
+          {
+            "name": "CMSIS",
+            "files": [
+              {
+                "path": "../Drivers/CMSIS/Lib/ARM/arm_cortexM4lf_math.lib"
+              },
+              {
+                "path": "../Core/Src/system_stm32f4xx.c"
+              }
+            ],
+            "folders": []
           }
         ]
       },
@@ -280,6 +280,9 @@
           {
             "name": "Algorithm",
             "files": [
+              {
+                "path": "../User/Device/alg_power_limit.cpp"
+              },
               {
                 "path": "../User/Middleware/Algorithm/alg_filter.cpp"
               },

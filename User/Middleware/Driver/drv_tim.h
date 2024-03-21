@@ -38,8 +38,6 @@ struct Struct_TIM_Manage_Object
 
 /* Exported variables --------------------------------------------------------*/
 
-extern bool init_finished;
-
 
 
 extern TIM_HandleTypeDef htim3;

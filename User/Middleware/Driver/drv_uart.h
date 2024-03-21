@@ -43,7 +43,7 @@ struct Struct_UART_Manage_Object
 
 /* Exported variables --------------------------------------------------------*/
 
-extern bool init_finished;
+
 
 extern UART_HandleTypeDef huart1;
 //extern UART_HandleTypeDef huart2;

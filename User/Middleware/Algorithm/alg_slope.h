@@ -40,9 +40,9 @@ public:
 protected:
     //初始化相关常量
 
-    //绝对值增量, 一次计算周期改变值
+    //绝对值增量, 一次计算周期改变值  1ms为一个周期
     float Increase_Value;
-    //绝对值减量, 一次计算周期改变值
+   //绝对值减量, 一次计算周期改变值  1ms为一个周期
     float Decrease_Value;
 
     //常量

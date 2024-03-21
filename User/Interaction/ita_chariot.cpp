@@ -64,10 +64,7 @@ void Class_Chariot::Init(float __DR16_Dead_Zone)
  * @brief can回调函数处理云台发来的数据
  *
  */
-
-void Class_Chariot::CAN_Chassis_Control_RxCpltCallback()
-{
-    //底盘和云台夹角（弧度制）
+     //底盘和云台夹角（弧度制）
     float derta_angle;
     //float映射到int16之后的速度
     uint16_t tmp_velocity_x ,tmp_velocity_y;
@@ -79,15 +76,19 @@ void Class_Chariot::CAN_Chassis_Control_RxCpltCallback()
     float gimbal_velocity_x, gimbal_velocity_y;
     //底盘坐标系的目标速度
     float chassis_velocity_x, chassis_velocity_y;
-    
+void Class_Chariot::CAN_Chassis_Control_RxCpltCallback()
+{
+
+
+	
     memcpy(&tmp_velocity_x,&CAN_Manage_Object->Rx_Buffer.Data[0],sizeof(int16_t));
     memcpy(&tmp_velocity_y,&CAN_Manage_Object->Rx_Buffer.Data[2],sizeof(int16_t));
     memcpy(&tmp_chassis_control_type,&CAN_Manage_Object->Rx_Buffer.Data[4],sizeof(uint8_t)); 
     // Math_Endian_Reverse_16((void *)CAN_Manage_Object->Rx_Buffer.Data[0], (void *)&tmp_velocity_x);
     // Math_Endian_Reverse_16((void *)CAN_Manage_Object->Rx_Buffer.Data[2], (void *)&tmp_velocity_y);
     
-    gimbal_velocity_x = Math_Int_To_Float(tmp_velocity_x,0,0x7FFF,-1 * Chassis.Get_Velocity_X_Max()* Chassis.Get_Velocity_X_Max(),Chassis.Get_Velocity_X_Max()*Chassis.Get_Velocity_X_Max());
-    gimbal_velocity_y = Math_Int_To_Float(tmp_velocity_y,0,0x7FFF,-1 * Chassis.Get_Velocity_Y_Max()* Chassis.Get_Velocity_Y_Max(),Chassis.Get_Velocity_Y_Max()*Chassis.Get_Velocity_Y_Max());
+    gimbal_velocity_x = Math_Int_To_Float(tmp_velocity_x,0,0x7FFF,-1 * Chassis.Get_Velocity_X_Max(),Chassis.Get_Velocity_X_Max());
+    gimbal_velocity_y = Math_Int_To_Float(tmp_velocity_y,0,0x7FFF,-1 * Chassis.Get_Velocity_Y_Max(),Chassis.Get_Velocity_Y_Max());
 
 //    //获取云台坐标系和底盘坐标系的夹角（弧度制）
 //    Chassis_Angle = Chassis.Motor_Yaw.Get_Now_Angle();
@@ -124,7 +125,7 @@ void Class_Chariot::CAN_Chassis_Control_RxCpltCallback()
     //设定底盘目标速度
     Chassis.Set_Target_Velocity_X(gimbal_velocity_x);
     Chassis.Set_Target_Velocity_Y(gimbal_velocity_y);
-    Chassis.Set_Target_Omega(target_omega);
+    Chassis.Set_Target_Omega(-target_omega);
 }
 
 /**
@@ -140,17 +141,19 @@ void Class_Chariot::CAN_Gimbal_RxCpltCallback()
  * @brief 底盘控制逻辑
  *
  */  		
+
+void Class_Chariot::Control_Chassis()
+{
     //遥控器摇杆值
 		float dr16_l_x, dr16_l_y;    
 		//云台坐标系速度目标值 float
 		float gimbal_velocity_x = 0, gimbal_velocity_y = 0;    
 		//映射之后的目标速度 int16_t
 		uint16_t tmp_chassis_velocity_x = 0, tmp_chassis_velocity_y = 0;
+	
     //底盘控制类型
     Enum_Chassis_Control_Type chassis_control_type; 
-void Class_Chariot::Control_Chassis()
-{
-
+	
     if (DR16.Get_DR16_Status() == DR16_Status_DISABLE || DR16.Get_Left_Switch() == DR16_Switch_Status_DOWN) //左下失能
     {
         //遥控器离线或左下方失能
@@ -166,8 +169,8 @@ void Class_Chariot::Control_Chassis()
         dr16_l_y = (Math_Abs(DR16.Get_Left_Y()) > DR16_Dead_Zone) ? DR16.Get_Left_Y() : 0;
 
         //设定矩形到圆形映射进行控制
-        gimbal_velocity_x = dr16_l_x * sqrt(1.0f - dr16_l_y * dr16_l_y / 2.0f) * Chassis.Get_Velocity_X_Max() * Chassis.Get_Velocity_X_Max();
-        gimbal_velocity_y = dr16_l_y * sqrt(1.0f - dr16_l_x * dr16_l_x / 2.0f) * Chassis.Get_Velocity_Y_Max() * Chassis.Get_Velocity_Y_Max();
+        gimbal_velocity_x = dr16_l_x * sqrt(1.0f - dr16_l_y * dr16_l_y / 2.0f) * Chassis.Get_Velocity_X_Max() ;
+        gimbal_velocity_y = dr16_l_y * sqrt(1.0f - dr16_l_x * dr16_l_x / 2.0f) * Chassis.Get_Velocity_Y_Max() ;
 
         //键盘遥控器操作逻辑
         if (DR16.Get_Left_Switch() == DR16_Switch_Status_MIDDLE)  //左中 随动模式
@@ -199,10 +202,10 @@ void Class_Chariot::Control_Chassis()
     }
     
     //设定速度
-    tmp_chassis_velocity_x = Math_Float_To_Int(gimbal_velocity_x,-1 * Chassis.Get_Velocity_X_Max() * Chassis.Get_Velocity_X_Max(),Chassis.Get_Velocity_X_Max() * Chassis.Get_Velocity_X_Max(),0,0x7FFF);
+    tmp_chassis_velocity_x = Math_Float_To_Int(gimbal_velocity_x,-1 * Chassis.Get_Velocity_X_Max() ,Chassis.Get_Velocity_X_Max() ,0,0x7FFF);
     memcpy(CAN2_Chassis_Tx_Data, &tmp_chassis_velocity_x, sizeof(int16_t));
 
-    tmp_chassis_velocity_y = Math_Float_To_Int(gimbal_velocity_y,-1 * Chassis.Get_Velocity_Y_Max() * Chassis.Get_Velocity_Y_Max(),Chassis.Get_Velocity_Y_Max() * Chassis.Get_Velocity_Y_Max(),0,0x7FFF);
+    tmp_chassis_velocity_y = Math_Float_To_Int(gimbal_velocity_y,-1 * Chassis.Get_Velocity_Y_Max() ,Chassis.Get_Velocity_Y_Max() ,0,0x7FFF);
     memcpy(CAN2_Chassis_Tx_Data + 2, &tmp_chassis_velocity_y, sizeof(int16_t));
     
     chassis_control_type = Chassis.Get_Chassis_Control_Type();
@@ -213,19 +216,20 @@ void Class_Chariot::Control_Chassis()
  * @brief 云台控制逻辑
  *
  */
-void Class_Chariot::Control_Gimbal()
-{
     //角度目标值
     float tmp_gimbal_yaw, tmp_gimbal_pitch;
     //遥控器摇杆值
     float dr16_y, dr16_r_y;
+void Class_Chariot::Control_Gimbal()
+{
+
 
     //获取当前角度值
     tmp_gimbal_yaw = Gimbal.Get_Target_Yaw_Angle();
     tmp_gimbal_pitch = Gimbal.Get_Target_Pitch_Angle();
 
     // 排除遥控器死区
-    dr16_y = (Math_Abs(DR16.Get_Yaw()) > DR16_Dead_Zone) ? DR16.Get_Yaw() : 0;
+    dr16_y = (Math_Abs(DR16.Get_Right_X()) > DR16_Dead_Zone) ? DR16.Get_Right_X() : 0;
     dr16_r_y = (Math_Abs(DR16.Get_Right_Y()) > DR16_Dead_Zone) ? DR16.Get_Right_Y() : 0;
 
     if (DR16.Get_DR16_Status() == DR16_Status_DISABLE || DR16.Get_Left_Switch() == DR16_Switch_Status_DOWN) //左下失能

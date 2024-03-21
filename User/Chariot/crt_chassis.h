@@ -24,6 +24,7 @@
 #include "dvc_sampler.h"
 #include "dvc_referee.h"
 #include "dvc_djimotor.h"
+#include "alg_power_limit.h"
 
 /* Exported macros -----------------------------------------------------------*/
 
@@ -56,6 +57,9 @@ public:
     Class_Slope Slope_Velocity_Y;
     //斜坡函数加减速角速度
     Class_Slope Slope_Omega;
+
+    //功率限制
+    Class_Power_Limit Power_Limit;
 
     //裁判系统
     Class_Referee *Referee;
@@ -107,7 +111,7 @@ protected:
     //舵向电机功率上限比率
     float Steer_Power_Ratio = 0.5f;
     //底盘小陀螺模式角速度
-    float Spin_Omega = 2.0f;
+    float Spin_Omega = 5.0f;
     //常量
 
     //电机理论上最大输出
@@ -184,7 +188,7 @@ const float FRONT_TO_FRONT_CENTER_DISTANCE = 0.176f;
 const float WHEEL_AZIMUTH[3] = {0.0f, atan2f(-FRONT_TO_FRONT_CENTER_DISTANCE, -FRONT_CENTER_TO_CORE_DISTANCE), atan2f(FRONT_TO_FRONT_CENTER_DISTANCE, -FRONT_CENTER_TO_CORE_DISTANCE)};
 
 //轮子直径
-const float WHELL_DIAMETER = 15.400000f;	
+const float WHELL_DIAMETER = 13.200000f;	
 
 //底盘半宽
 const float HALF_WIDTH = 0.15000000f;		

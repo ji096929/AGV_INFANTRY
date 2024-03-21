@@ -217,7 +217,6 @@ void TIM_CAN_PeriodElapsedCallback()
     }
 
     // CAN1总线  四个底盘电机  
-    //CAN_Send_Data(&hcan1, 0x1ff, CAN1_0x1ff_Tx_Data, 8);
     CAN_Send_Data(&hcan1, 0x200, CAN1_0x200_Tx_Data, 8);
 
     // CAN2电机  上板 超电  
@@ -233,9 +232,8 @@ void TIM_CAN_PeriodElapsedCallback()
     CAN_Send_Data(&hcan1, 0x141, CAN1_0x141_Tx_Data, 8); //pitch-LK6010  按照0x141 ID 发送 一次只能控制一个电机
     
     // CAN2 yaw 下板
-    CAN_Send_Data(&hcan2, 0x1ff, CAN2_0x200_Tx_Data, 8); //yaw-GM6020  按照0x1ff ID 发送 可控制多个电机
+//    CAN_Send_Data(&hcan2, 0x1ff, CAN2_0x1ff_Tx_Data, 8); //yaw-GM6020  按照0x1ff ID 发送 可控制多个电机
     CAN_Send_Data(&hcan2, 0x77, CAN2_Chassis_Tx_Data, 8); //给底盘发送控制命令 按照0x77 ID 发送
-    
     #endif
 	//测试拓展帧
 	// CAN_TxHeaderTypeDef tx_header;

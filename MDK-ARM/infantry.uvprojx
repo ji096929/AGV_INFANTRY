@@ -890,6 +890,11 @@
               <FileType>8</FileType>
               <FilePath>..\User\Middleware\Algorithm\alg_MahonyAHRS.cpp</FilePath>
             </File>
+            <File>
+              <FileName>alg_power_limit.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\Device\alg_power_limit.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

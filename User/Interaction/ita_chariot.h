@@ -70,7 +70,7 @@ protected:
 
     //常量
     //底盘标定参考正方向角度(数据来源yaw电机)
-    float Reference_Angle = 0.5f;
+    float Reference_Angle = 0.520019531f;
     //底盘转换后的角度（数据来源yaw电机）
     float Chassis_Angle;
 
@@ -80,9 +80,9 @@ protected:
     float DR16_Keyboard_Chassis_Speed_Resolution_Big = 0.01f;
 
     //DR16云台yaw灵敏度系数(0.001PI表示yaw速度最大时为1rad/s)
-    float DR16_Yaw_Resolution = 0.0005f * PI;
+    float DR16_Yaw_Resolution = 0.003f * PI;
     //DR16云台pitch灵敏度系数(0.001PI表示pitch速度最大时为1rad/s)
-    float DR16_Pitch_Resolution = 0.0005f * PI;
+    float DR16_Pitch_Resolution = 0.003f * PI;
 
     //DR16鼠标云台yaw灵敏度系数, 不同鼠标不同参数
     float DR16_Mouse_Yaw_Angle_Resolution = 1.0f;

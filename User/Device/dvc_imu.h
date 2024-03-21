@@ -45,9 +45,9 @@ class Class_IMU
     float Get_Rad_Pitch(void);
     float Get_Rad_Yaw(void);
 
-    float Get_Accel_Roll(void);
-    float Get_Accel_Pitch(void);
-    float Get_Accel_Yaw(void);
+    float Get_Accel_X(void);
+    float Get_Accel_Y(void);
+    float Get_Accel_Z(void);
 
     float Get_Gyro_Roll(void);
     float Get_Gyro_Pitch(void);

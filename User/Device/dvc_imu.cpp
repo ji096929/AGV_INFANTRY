@@ -146,35 +146,34 @@ float Class_IMU::Get_Angle_Yaw(void)
     return INS_Angle[0];
 }
 
-float Class_IMU::Get_Accel_Roll(void)
-{
-    return BMI088_Raw_Data.Accel[1];
-}
-
-float Class_IMU::Get_Accel_Pitch(void)
-{
-    return BMI088_Raw_Data.Accel[2];
-}
-
-float Class_IMU::Get_Accel_Yaw(void)
+float Class_IMU::Get_Accel_X(void)
 {
     return BMI088_Raw_Data.Accel[0];
 }
 
-float Class_IMU::Get_Gyro_Roll(void)
+float Class_IMU::Get_Accel_Y(void)
 {
-    return BMI088_Raw_Data.Gyro[1];
+    return BMI088_Raw_Data.Accel[1];
 }
 
-float Class_IMU::Get_Gyro_Pitch(void)
+float Class_IMU::Get_Accel_Z(void)
+{
+    return BMI088_Raw_Data.Accel[2];
+}
+
+float Class_IMU::Get_Gyro_Roll(void)
 {
     return BMI088_Raw_Data.Gyro[2];
 }
 
-float Class_IMU::Get_Gyro_Yaw(void)
+float Class_IMU::Get_Gyro_Pitch(void)
 {
     return BMI088_Raw_Data.Gyro[0];
+}
 
+float Class_IMU::Get_Gyro_Yaw(void)
+{
+    return BMI088_Raw_Data.Gyro[1];
 }
 
 float Class_IMU::Get_Rad_Roll(void)

@@ -172,16 +172,16 @@ void Class_Booster::Init()
     FSM_Antijamming.Init(4, 0);
 
     //拨弹盘电机
-    Motor_Driver.PID_Angle.Init(50.0f, 0.0f, 0.0f, 0.0f, 2.0f * PI, 2.0f * PI);
-    Motor_Driver.PID_Omega.Init(3400.0f, 200000.0f, 0.0f, 0.0f, Motor_Driver.Get_Output_Max(), Motor_Driver.Get_Output_Max());
+    Motor_Driver.PID_Angle.Init(5.0f, 0.0f, 0.0f, 0.0f, 2.0f * PI, 2.0f * PI);
+    Motor_Driver.PID_Omega.Init(4000.0f, 100.0f, 0.0f, 0.0f, Motor_Driver.Get_Output_Max(), Motor_Driver.Get_Output_Max());
     Motor_Driver.Init(&hcan1, DJI_Motor_ID_0x203, DJI_Motor_Control_Method_OMEGA);
 
     //摩擦轮电机左
-    Motor_Friction_Left.PID_Omega.Init(120.0f, 1000.0f, 0.5f, 0.0f, 2000.0f, Motor_Friction_Left.Get_Output_Max());
+    Motor_Friction_Left.PID_Omega.Init(120.0f, 10.0f, 0.1f, 0.0f, 2000.0f, Motor_Friction_Left.Get_Output_Max());
     Motor_Friction_Left.Init(&hcan1, DJI_Motor_ID_0x201, DJI_Motor_Control_Method_OMEGA, 1.0f);
 
     //摩擦轮电机右
-    Motor_Friction_Right.PID_Omega.Init(120.0f, 1000.0f, 0.5f, 0.0f, 2000.0f, Motor_Friction_Right.Get_Output_Max());
+    Motor_Friction_Right.PID_Omega.Init(120.0f, 10.0f, 0.1f, 0.0f, 2000.0f, Motor_Friction_Right.Get_Output_Max());
     Motor_Friction_Right.Init(&hcan1, DJI_Motor_ID_0x202, DJI_Motor_Control_Method_OMEGA, 1.0f);
 }
 

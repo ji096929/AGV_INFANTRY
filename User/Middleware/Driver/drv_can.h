@@ -66,8 +66,6 @@ struct Struct_CAN_Manage_Object
 
 /* Exported variables ---------------------------------------------------------*/
 
-extern bool init_finished;
-
 extern CAN_HandleTypeDef hcan1;
 extern CAN_HandleTypeDef hcan2;
 

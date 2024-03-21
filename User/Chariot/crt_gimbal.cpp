@@ -23,6 +23,8 @@
 
 /* Function prototypes -------------------------------------------------------*/
 
+ float __Target_Omega;
+
 /**
  * @brief TIM定时器中断计算回调函数
  *
@@ -154,6 +156,7 @@ void Class_Gimbal_Yaw_Motor_GM6020::Transform_Angle()
     True_Rad_Yaw = IMU->Get_Rad_Yaw();
     True_Gyro_Yaw = IMU->Get_Gyro_Yaw();    
 }
+
 
 /**
  * @brief TIM定时器中断计算回调函数
@@ -408,11 +411,11 @@ void Class_Gimbal::Init()
     Boardc_BMI.Init(); 
 
     //yaw轴电机
-    Motor_Yaw.PID_Angle.Init(0.0f, 0.0f, 0.03f, 0.0f, 6.0f * PI, 6.0f * PI);
-    Motor_Yaw.PID_Omega.Init(500.0f, 15000.0f, 0.0f, 0.0f, Motor_Yaw.Get_Output_Max(), Motor_Yaw.Get_Output_Max());
+    Motor_Yaw.PID_Angle.Init(0.5f, 0.0f, 0.0f, 0.0f, 6.0f * PI, 6.0f * PI);
+    Motor_Yaw.PID_Omega.Init(20000.0f, 100.0f, 0.0f, 0.0f, Motor_Yaw.Get_Output_Max(), Motor_Yaw.Get_Output_Max());
     Motor_Yaw.PID_Torque.Init(0.78f, 100.0f, 0.0f, 0.0f, Motor_Yaw.Get_Output_Max(), Motor_Yaw.Get_Output_Max());
     Motor_Yaw.IMU = &Boardc_BMI;
-    Motor_Yaw.Init(&hcan2, DJI_Motor_ID_0x208, DJI_Motor_Control_Method_ANGLE, 2048);
+    Motor_Yaw.Init(&hcan2, DJI_Motor_ID_0x208, DJI_Motor_Control_Method_IMU_ANGLE, 2048);
 
     //pitch轴电机
     Motor_Pitch.PID_Angle.Init(0.0f, 0.0f, 0.0f, 0.0f, 6.0f * PI, 6.0f * PI);
@@ -459,7 +462,7 @@ void Class_Gimbal::Output()
     else if (Gimbal_Control_Type == Gimbal_Control_Type_NORMAL)
     {
         //云台工作
-        Motor_Yaw.Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_ANGLE);
+        Motor_Yaw.Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_IMU_ANGLE);
         Motor_Pitch.Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_IMU_ANGLE);
         Motor_Pitch_LK6010.Set_LK_Motor_Control_Method(LK_Motor_Control_Method_IMU_ANGLE);
         

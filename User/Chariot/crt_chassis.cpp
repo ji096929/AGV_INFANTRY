@@ -50,8 +50,11 @@ void Class_Tricycle_Chassis::Init(float __Velocity_X_Max, float __Velocity_Y_Max
     //斜坡函数加减速角速度
     Slope_Omega.Init(0.05f, 0.05f);
 
+    //功率限制参数初始化
+    Power_Limit.Parameter_Init();
+
     //底盘随动PID环初始化
-    PID_Chassis_Fllow.Init(10.0f, 5.0f, 0.01f, 0.0f, 10000.0f, 10000.0f);
+    PID_Chassis_Fllow.Init(10.0f, 0.0f, 0.0f, 0.0f, 20.0f, 20.0f);
 
     //电机PID批量初始化
     for (int i = 0; i < 4; i++)
@@ -112,10 +115,11 @@ void Class_Tricycle_Chassis::Speed_Resolution(){
             }
 
             //速度换算，正运动学分解
-            float motor1_temp_linear_vel = -Slope_Velocity_X.Get_Out() + Slope_Velocity_Y.Get_Out() + Slope_Omega.Get_Out()*(HALF_WIDTH+HALF_LENGTH);
-            float motor2_temp_linear_vel = -Slope_Velocity_X.Get_Out() - Slope_Velocity_Y.Get_Out() - Slope_Omega.Get_Out()*(HALF_WIDTH+HALF_LENGTH);
-            float motor3_temp_linear_vel = -Slope_Velocity_X.Get_Out() - Slope_Velocity_Y.Get_Out() + Slope_Omega.Get_Out()*(HALF_WIDTH+HALF_LENGTH);
-            float motor4_temp_linear_vel = -Slope_Velocity_X.Get_Out() + Slope_Velocity_Y.Get_Out() - Slope_Omega.Get_Out()*(HALF_WIDTH+HALF_LENGTH);
+            float motor1_temp_linear_vel = Slope_Velocity_Y.Get_Out() - Slope_Velocity_X.Get_Out() + Slope_Omega.Get_Out()*(HALF_WIDTH+HALF_LENGTH);
+            float motor2_temp_linear_vel = Slope_Velocity_Y.Get_Out() + Slope_Velocity_X.Get_Out() - Slope_Omega.Get_Out()*(HALF_WIDTH+HALF_LENGTH);
+            float motor3_temp_linear_vel = Slope_Velocity_Y.Get_Out() + Slope_Velocity_X.Get_Out() + Slope_Omega.Get_Out()*(HALF_WIDTH+HALF_LENGTH);
+            float motor4_temp_linear_vel = Slope_Velocity_Y.Get_Out() - Slope_Velocity_X.Get_Out() - Slope_Omega.Get_Out()*(HALF_WIDTH+HALF_LENGTH);
+
             //线速度 cm/s  转角速度  RAD 
             float motor1_temp_rad = motor1_temp_linear_vel * VEL2RPM * RPM2RAD;
             float motor2_temp_rad = motor2_temp_linear_vel * VEL2RPM * RPM2RAD;
@@ -157,15 +161,18 @@ void Class_Tricycle_Chassis::TIM_Calculate_PeriodElapsedCallback()
 
     //速度解算
     Speed_Resolution();
-
-    //功率限制
-    // Power_Limit();
-
+    
     //各个电机具体PID
-    for (int i = 0; i < 4; i++)
-    {
+    for (int i = 0; i < 4; i++){
         Motor_Wheel[i].TIM_PID_PeriodElapsedCallback();
     }
+
+   //功率限制
+   Power_Limit.Set_Power_Limit(45.0f);   //功率限制45w
+   Power_Limit.Set_Motor(Motor_Wheel);   //添加四个电机的控制电流和当前转速
+   Power_Limit.TIM_Adjust_PeriodElapsedCallback();  //功率限制算法
+   Power_Limit.Output(Motor_Wheel);    //修改缓冲区
+
 }
 
 /************************ COPYRIGHT(C) USTC-ROBOWALKER **************************/
