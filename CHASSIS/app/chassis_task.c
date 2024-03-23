@@ -40,6 +40,7 @@ void Chassis_Task()
         if(time.ms_count%5==0)
         {
             Chassis_Move();
+						
         }
 				
         AGV_connoection(time.ms_count);

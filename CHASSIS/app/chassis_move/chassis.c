@@ -74,6 +74,7 @@ void Chassis_Inveter_Judge(void)
         chassis.command.set_vy = connection.connection_rx.vy;
         chassis.command.set_vw = connection.connection_rx.vw/10.0f;
     }
+		Chassis_Speed_Slow_Motion(&chassis);
 }
 
 void Yaw_Angle_Process(YAW_T  *yaw)

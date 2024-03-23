@@ -11,6 +11,7 @@
 #include "can_connection.h"
 #include "agv_control.h"
 
+M3508_T trigger;
 
 void CAN1_Call_Back(struct Struct_CAN_Rx_Buffer *rx)
 {
@@ -27,6 +28,8 @@ void CAN1_Call_Back(struct Struct_CAN_Rx_Buffer *rx)
         case 0x206:
         GM6020_Feedback_Update(&yaw.motor,rx->Data);
         break;
+				
+				
     }
      switch(rx->Header.ExtId)
     {
