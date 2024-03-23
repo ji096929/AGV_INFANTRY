@@ -20,11 +20,14 @@
 #include "crt_booster.h"
 #include "dvc_imu.h"
 #include "tsk_config_and_callback.h"
+#include "dvc_supercap.h"
 
 /* Exported macros -----------------------------------------------------------*/
 
-#define CHASSIS
-//#define GIMBAL
+//#define CHASSIS
+#define GIMBAL
+
+//#define POWER_LIMIT
 
 /* Exported types ------------------------------------------------------------*/
 
@@ -35,25 +38,39 @@
 class Class_Chariot
 {
 public:
+    #ifdef CHASSIS
     //裁判系统
     Class_Referee Referee;
-    //遥控器
-    Class_DR16 DR16;
+
+        #ifdef POWER_LIMIT
+        //超级电容
+        Class_Supercap Supercap;
+        #endif
+
+    #endif
     //底盘
     Class_Tricycle_Chassis Chassis;
+    #ifdef GIMBAL
+    //遥控器
+    Class_DR16 DR16;
     //上位机
     Class_MiniPC MiniPC;
     //云台
     Class_Gimbal Gimbal;
     //发射机构
     Class_Booster Booster;
+    #endif
 
     void Init(float __DR16_Dead_Zone = 0);
-
-    void CAN_Chassis_Control_RxCpltCallback();
-    void CAN_Gimbal_RxCpltCallback();
     
+    #ifdef CHASSIS
+    void CAN_Chassis_Control_RxCpltCallback();
+
+    #elif defined(GIMBAL)
+    void CAN_Gimbal_RxCpltCallback();
     void TIM_Control_Callback();
+    #endif
+
     void TIM_Calculate_PeriodElapsedCallback();
     void TIM1msMod50_Alive_PeriodElapsedCallback();
     
@@ -78,6 +95,11 @@ protected:
     float DR16_Keyboard_Chassis_Speed_Resolution_Small = 0.001f;
     //DR16底盘减速灵敏度系数(0.001表示底盘加速度最大为1m/s2)
     float DR16_Keyboard_Chassis_Speed_Resolution_Big = 0.01f;
+
+    //DR16云台yaw灵敏度系数(0.001PI表示yaw速度最大时为1rad/s)
+    float DR16_Yaw_Angle_Resolution = 0.005f * PI * 57.29577951308232;
+    //DR16云台pitch灵敏度系数(0.001PI表示pitch速度最大时为1rad/s)
+    float DR16_Pitch_Angle_Resolution = 0.003f * PI * 57.29577951308232;
 
     //DR16云台yaw灵敏度系数(0.001PI表示yaw速度最大时为1rad/s)
     float DR16_Yaw_Resolution = 0.003f * PI;

@@ -10,8 +10,8 @@
     "rootDir": "d:\\RM\\RM_code\\Standard_4_Cpp_Structure_ByRoboWalker\\MDK-ARM",
     "dumpPath": "build\\infantry",
     "outDir": "build\\infantry",
-    "ram": 131072,
-    "rom": 1048576,
+    "ram": 20480,
+    "rom": 65536,
     "incDirs": [
         "../Core/Inc",
         "../Drivers/STM32F4xx_HAL_Driver/Inc",
@@ -148,15 +148,15 @@
             }
         ],
         "global": {
-            "use-microLIB": true,
             "output-debug-info": "enable",
+            "use-microLIB": true,
             "microcontroller-cpu": "cortex-m4-sp",
             "microcontroller-fpu": "cortex-m4-sp",
             "microcontroller-float": "cortex-m4-sp",
             "target": "cortex-m4-sp"
         },
         "c/cpp-compiler": {
-            "optimization": "level-0",
+            "optimization": "level-speed",
             "one-elf-section-per-function": true,
             "c99-mode": true,
             "C_FLAGS": "--cpp11",
@@ -166,9 +166,6 @@
         "asm-compiler": {},
         "linker": {
             "output-format": "elf",
-            "xo-base": "",
-            "ro-base": "",
-            "rw-base": "",
             "link-scatter": [
                 "\"d:/RM/RM_code/Standard_4_Cpp_Structure_ByRoboWalker/MDK-ARM/build/infantry/infantry.sct\""
             ]
@@ -196,9 +193,9 @@
         "c/cpp-defines": "0178c6535f763739713d81c6ee26e46f",
         "beforeBuildTasks": "d751713988987e9331980363e24189ce",
         "afterBuildTasks": "27876c2a993e0fdb3f534c85e2b80cff",
-        "global": "3ae75cac734e7a166338bea4b35ae2e0",
-        "c/cpp-compiler": "083a8ddb6d4c642d90bc4776406e7b63",
+        "global": "76b18e7c6a3f72e7563f6c5d729643cb",
+        "c/cpp-compiler": "3fa922ffbb3d897ba00b04e50187fc28",
         "asm-compiler": "99914b932bd37a50b983c5e7c90ae93b",
-        "linker": "06e58f2bc73151bf0e2170d5199dbd27"
+        "linker": "5f5a8c87d55f6f666b056f0cd93e9bbc"
     }
 }

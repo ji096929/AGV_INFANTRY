@@ -38,6 +38,11 @@ void Class_Chariot::Init(float __DR16_Dead_Zone)
         Chassis.Referee = &Referee;
         Chassis.Init(10.0f, 10.0f, 2.0f);
 
+        #ifdef POWER_LIMIT
+        //串口超电
+        Supercap.Init_UART(&huart1);
+        #endif
+
     #elif defined(GIMBAL)
         
         Chassis.Set_Velocity_X_Max(10.0f);
@@ -64,7 +69,14 @@ void Class_Chariot::Init(float __DR16_Dead_Zone)
  * @brief can回调函数处理云台发来的数据
  *
  */
-     //底盘和云台夹角（弧度制）
+#ifdef CHASSIS    
+void Class_Chariot::CAN_Chassis_Control_RxCpltCallback()
+{
+    //云台坐标系的目标速度
+    float gimbal_velocity_x, gimbal_velocity_y;
+    //底盘坐标系的目标速度
+    float chassis_velocity_x, chassis_velocity_y;
+    //底盘和云台夹角（弧度制）
     float derta_angle;
     //float映射到int16之后的速度
     uint16_t tmp_velocity_x ,tmp_velocity_y;
@@ -72,15 +84,8 @@ void Class_Chariot::Init(float __DR16_Dead_Zone)
     Enum_Chassis_Control_Type tmp_chassis_control_type;
     //底盘角速度
     float target_omega;
-    //云台坐标系的目标速度
-    float gimbal_velocity_x, gimbal_velocity_y;
-    //底盘坐标系的目标速度
-    float chassis_velocity_x, chassis_velocity_y;
-void Class_Chariot::CAN_Chassis_Control_RxCpltCallback()
-{
 
 
-	
     memcpy(&tmp_velocity_x,&CAN_Manage_Object->Rx_Buffer.Data[0],sizeof(int16_t));
     memcpy(&tmp_velocity_y,&CAN_Manage_Object->Rx_Buffer.Data[2],sizeof(int16_t));
     memcpy(&tmp_chassis_control_type,&CAN_Manage_Object->Rx_Buffer.Data[4],sizeof(uint8_t)); 
@@ -90,13 +95,13 @@ void Class_Chariot::CAN_Chassis_Control_RxCpltCallback()
     gimbal_velocity_x = Math_Int_To_Float(tmp_velocity_x,0,0x7FFF,-1 * Chassis.Get_Velocity_X_Max(),Chassis.Get_Velocity_X_Max());
     gimbal_velocity_y = Math_Int_To_Float(tmp_velocity_y,0,0x7FFF,-1 * Chassis.Get_Velocity_Y_Max(),Chassis.Get_Velocity_Y_Max());
 
-//    //获取云台坐标系和底盘坐标系的夹角（弧度制）
-//    Chassis_Angle = Chassis.Motor_Yaw.Get_Now_Angle();
-//    derta_angle = Chassis_Angle - Reference_Angle;  
+   //获取云台坐标系和底盘坐标系的夹角（弧度制）
+   Chassis_Angle = Chassis.Motor_Yaw.Get_Now_Angle();
+   derta_angle = Chassis_Angle - Reference_Angle;  
 
-//    //云台坐标系的目标速度转为底盘坐标系的目标速度
-//    chassis_velocity_x = (float)(gimbal_velocity_x * cos(derta_angle) - gimbal_velocity_y * sin(derta_angle));
-//    chassis_velocity_y = (float)(gimbal_velocity_x * sin(derta_angle) + gimbal_velocity_y * cos(derta_angle));
+   //云台坐标系的目标速度转为底盘坐标系的目标速度
+   chassis_velocity_x = (float)(gimbal_velocity_x * cos(derta_angle) - gimbal_velocity_y * sin(derta_angle));
+   chassis_velocity_y = (float)(gimbal_velocity_x * sin(derta_angle) + gimbal_velocity_y * cos(derta_angle));
 
     //设定底盘控制类型
     Chassis.Set_Chassis_Control_Type(tmp_chassis_control_type);
@@ -123,25 +128,27 @@ void Class_Chariot::CAN_Chassis_Control_RxCpltCallback()
     }
     
     //设定底盘目标速度
-    Chassis.Set_Target_Velocity_X(gimbal_velocity_x);
-    Chassis.Set_Target_Velocity_Y(gimbal_velocity_y);
+    Chassis.Set_Target_Velocity_X(chassis_velocity_x);
+    Chassis.Set_Target_Velocity_Y(chassis_velocity_y);
     Chassis.Set_Target_Omega(-target_omega);
 }
+#endif
 
 /**
  * @brief can回调函数处理底盘发来的数据
  *
  */
+#ifdef GIMBAL
 void Class_Chariot::CAN_Gimbal_RxCpltCallback()
 {
 
 }
-
+#endif
 /**
  * @brief 底盘控制逻辑
  *
  */  		
-
+#ifdef GIMBAL
 void Class_Chariot::Control_Chassis()
 {
     //遥控器摇杆值
@@ -178,10 +185,10 @@ void Class_Chariot::Control_Chassis()
             //底盘随动
             Chassis.Set_Chassis_Control_Type(Chassis_Control_Type_FLLOW);   
         }
-        if (DR16.Get_Left_Switch() == DR16_Switch_Status_UP)  //左上 小陀螺模式
-        {
-            Chassis.Set_Chassis_Control_Type(Chassis_Control_Type_SPIN);
-        }
+        // if (DR16.Get_Left_Switch() == DR16_Switch_Status_UP)  //左上 小陀螺模式
+        // {
+        //     Chassis.Set_Chassis_Control_Type(Chassis_Control_Type_SPIN);
+        // }
 
         if (DR16.Get_Keyboard_Key_A() == DR16_Key_Status_PRESSED)  //x轴
         {
@@ -211,21 +218,22 @@ void Class_Chariot::Control_Chassis()
     chassis_control_type = Chassis.Get_Chassis_Control_Type();
     memcpy(CAN2_Chassis_Tx_Data + 4,&chassis_control_type ,sizeof(Enum_Chassis_Control_Type));
 }
-
+#endif
 /**
  * @brief 云台控制逻辑
  *
  */
+#ifdef GIMBAL
+void Class_Chariot::Control_Gimbal()
+{
     //角度目标值
     float tmp_gimbal_yaw, tmp_gimbal_pitch;
     //遥控器摇杆值
     float dr16_y, dr16_r_y;
-void Class_Chariot::Control_Gimbal()
-{
-
-
     //获取当前角度值
+
     tmp_gimbal_yaw = Gimbal.Get_Target_Yaw_Angle();
+    // tmp_gimbal_yaw = Gimbal.Boardc_BMI.Get_Angle_Yaw();
     tmp_gimbal_pitch = Gimbal.Get_Target_Pitch_Angle();
 
     // 排除遥控器死区
@@ -243,28 +251,31 @@ void Class_Chariot::Control_Gimbal()
         Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_NORMAL);
 
         //遥控器操作逻辑
-
-        tmp_gimbal_yaw -= dr16_y * DR16_Yaw_Resolution;
+        tmp_gimbal_yaw -= dr16_y * DR16_Yaw_Angle_Resolution;
         tmp_gimbal_pitch += dr16_r_y * DR16_Pitch_Resolution;
 
         //键盘遥控器操作逻辑
-
         tmp_gimbal_yaw += DR16.Get_Mouse_X() * DR16_Mouse_Yaw_Angle_Resolution;
         tmp_gimbal_pitch -= DR16.Get_Mouse_Y() * DR16_Mouse_Pitch_Angle_Resolution;
     }
-    else if (DR16.Get_Left_Switch() == DR16_Switch_Status_UP)  //左上
+    else if (DR16.Get_Left_Switch() == DR16_Switch_Status_TRIG_MIDDLE_UP)  //中-上的突变
     {
-        //上方导航模式
+        __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_3, 1700);  //开启
+    }
+    else if(DR16.Get_Left_Switch() == DR16_Switch_Status_TRIG_UP_MIDDLE)  //上-中的突变
+    {
+        __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_3, 400);  //开启
     }
     // 设定角度
     Gimbal.Set_Target_Yaw_Angle(tmp_gimbal_yaw);
     Gimbal.Set_Target_Pitch_Angle(tmp_gimbal_pitch);
 }
-
+#endif
 /**
  * @brief 发射机构控制逻辑
  *
  */
+#ifdef GIMBAL
 void Class_Chariot::Control_Booster()
 {
 
@@ -293,6 +304,10 @@ void Class_Chariot::Control_Booster()
         {
             Booster.Set_Booster_Control_Type(Booster_Control_Type_CEASEFIRE);
         }
+        else if(DR16.Get_Mouse_Right_Key() == DR16_Key_Status_TRIG_FREE_PRESSED)  //按下左键 五连发
+        {
+            Booster.Set_Booster_Control_Type(Booster_Control_Type_MULTI);
+        }
     }
     else if (DR16.Get_Left_Switch() == DR16_Switch_Status_UP)
     {
@@ -315,7 +330,7 @@ void Class_Chariot::Control_Booster()
         Booster.Set_Booster_Control_Type(Booster_Control_Type_DISABLE);
     }
 }
-
+#endif
 
 /**
  * @brief 计算回调函数
@@ -329,6 +344,10 @@ void Class_Chariot::TIM_Calculate_PeriodElapsedCallback()
 //        Control_Chassis();
         //各个模块的分别解算
         Chassis.TIM_Calculate_PeriodElapsedCallback();
+
+        Supercap.Set_Now_Power(Chassis.Referee->Get_Chassis_Power());
+        Supercap.Set_Limit_Power(Chassis.Referee->Get_Chassis_Power_Max());
+        Supercap.TIM_UART_PeriodElapsedCallback();
 
     #elif defined(GIMBAL)
 
@@ -345,6 +364,7 @@ void Class_Chariot::TIM_Calculate_PeriodElapsedCallback()
  * @brief 控制回调函数
  *
  */
+#ifdef GIMBAL
 void Class_Chariot::TIM_Control_Callback()
 {
     //底盘，云台，发射机构控制逻辑
@@ -352,7 +372,7 @@ void Class_Chariot::TIM_Control_Callback()
     Control_Gimbal();
     Control_Booster();
 }
-
+#endif
 /**
  * @brief 在线判断回调函数
  *
@@ -366,6 +386,10 @@ void Class_Chariot::TIM1msMod50_Alive_PeriodElapsedCallback()
         #ifdef CHASSIS
 
             Referee.TIM1msMod50_Alive_PeriodElapsedCallback();
+
+            #ifdef POWER_LIMIT
+            Supercap.TIM_Alive_PeriodElapsedCallback();
+            #endif
 
             for (auto& wheel : Chassis.Motor_Wheel) {
                 wheel.TIM_Alive_PeriodElapsedCallback();

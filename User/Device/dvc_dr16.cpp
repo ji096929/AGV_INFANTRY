@@ -189,11 +189,32 @@ void Class_DR16::Judge_Key(Enum_DR16_Key_Status *Key, uint8_t Status, uint8_t Pr
 }
 
 /**
+ * @brief 判断遥控器更新状态
+ *
+ */
+void Class_DR16::Judge_Updata(Struct_DR16_UART_Data Pre_UART_Rx_Data,Struct_DR16_UART_Data Now_UART_Rx_Data)
+{
+    if((Pre_UART_Rx_Data.Channel_0 == Now_UART_Rx_Data.Channel_0)&&
+       (Pre_UART_Rx_Data.Channel_1 == Now_UART_Rx_Data.Channel_1)&&
+       (Pre_UART_Rx_Data.Channel_2 == Now_UART_Rx_Data.Channel_2)&&
+       (Pre_UART_Rx_Data.Channel_3 == Now_UART_Rx_Data.Channel_3))
+    {
+        DR16_Updata_Status = DR16_Status_DisUpdata;
+    }
+    else
+    {
+        DR16_Updata_Status = DR16_Status_Updata;
+    }
+}
+
+/**
  * @brief 数据处理过程
  *
  */
 void Class_DR16::Data_Process()
 {
+    //获取当前原始值数据
+    memcpy(&Now_UART_Rx_Data, UART_Manage_Object->Rx_Buffer, 18 * sizeof(uint8_t));
     //数据处理过程
     Struct_DR16_UART_Data *tmp_buffer = (Struct_DR16_UART_Data *)UART_Manage_Object->Rx_Buffer;
 
@@ -226,6 +247,8 @@ void Class_DR16::Data_Process()
 
     //左前轮信息
     Data.Yaw = (tmp_buffer->Channel_Yaw - Rocker_Offset) / Rocker_Num;
+
+    Judge_Updata(Pre_UART_Rx_Data,Now_UART_Rx_Data);
 }
 
 /**
@@ -240,7 +263,7 @@ void Class_DR16::UART_RxCpltCallback(uint8_t *Rx_Data)
 
     Data_Process();
 
-    //保留数据
+    //保留上一次数据
     memcpy(&Pre_UART_Rx_Data, UART_Manage_Object->Rx_Buffer, 18 * sizeof(uint8_t));
 }
 

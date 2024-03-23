@@ -117,8 +117,8 @@ uint8_t UART_Send_Data(UART_HandleTypeDef *huart, uint8_t *Data, uint16_t Length
  */
 void TIM_UART_PeriodElapsedCallback()
 {
-    // UART2串口绘图
-    //UART_Send_Data(&huart2, UART2_Manage_Object.Tx_Buffer, 1 + 12 * sizeof(float));
+    // UART1超电通讯
+    UART_Send_Data(&huart1, UART1_Manage_Object.Tx_Buffer, 10);
 }
 
 /**
@@ -128,13 +128,7 @@ void TIM_UART_PeriodElapsedCallback()
  * @param Size 长度
  */
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
-{
-    // //判断程序初始化完成
-    // if(init_finished == 0)
-    // {
-    //     return;
-    // }
-    
+{    
     //选择回调函数
     if (huart->Instance == USART1)
     {

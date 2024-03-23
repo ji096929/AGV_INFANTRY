@@ -44,6 +44,7 @@
 
 /* Exported variables --------------------------------------------------------*/
 extern Struct_USB_Manage_Object MiniPC_USB_Manage_Object;
+extern uint16_t pwmVal;
 /* Exported function declarations --------------------------------------------*/
 
 void Task_Init();

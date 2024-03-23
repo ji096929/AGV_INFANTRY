@@ -2980,3 +2980,2042 @@ command:
 [2024-03-21 22:00:17]	[done]
 	build successfully !
 
+[2024-03-21 22:41:33]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\Core\Src\stm32f4xx_hal_msp.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCLANG\bin\armclang.exe" --target=arm-arm-none-eabi -c -xc -std=c99 -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" -mfloat-abi=hard -mfpu=fpv4-sp-d16 -mcpu=cortex-m4 -mlittle-endian -D__MICROLIB -O0 -fno-function-sections -funsigned-char -fno-rtti -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -g -o ./build/infantry/.obj/__/Core/Src/stm32f4xx_hal_msp.o -MMD ./../Core/Src/stm32f4xx_hal_msp.c
+   at unify_builder.Program.compileByMulThread(Int32 thrNum, CmdInfo[] cmds_, List`1 errLogs)
+   at unify_builder.Program.Main(String[] args_)
+---
+In file included from ./../Core/Src/main.c:20:
+In file included from ../Core/Inc\main.h:30:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:52:9: warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+#define __FPU_PRESENT             1U       /*!< FPU present                                   */
+        ^
+<command line>:8:9: note: previous definition is here
+#define __FPU_PRESENT 1
+        ^
+In file included from ./../Core/Src/main.c:20:
+In file included from ../Core/Inc\main.h:30:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:167:
+In file included from ../Drivers/CMSIS/Include\core_cm4.h:162:
+In file included from ../Drivers/CMSIS/Include/cmsis_compiler.h:34:
+../Drivers/CMSIS/Include/cmsis_armcc.h:132:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:144:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:156:46: error: unknown register name 'ipsr' in asm
+  register uint32_t __regIPSR          __ASM("ipsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:168:46: error: unknown register name 'apsr' in asm
+  register uint32_t __regAPSR          __ASM("apsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:180:46: error: unknown register name 'xpsr' in asm
+  register uint32_t __regXPSR          __ASM("xpsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:192:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:204:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:216:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:228:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:240:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:252:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:283:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:295:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:308:48: error: unknown register name 'basepri_max' in asm
+  register uint32_t __regBasePriMax      __ASM("basepri_max");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:320:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:332:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:349:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:366:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:463:57: error: expected identifier or '('
+__attribute__((section(".rev16_text"))) __STATIC_INLINE __ASM uint32_t __REV16(uint32_t value)
+                                                        ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:53:50: note: expanded from macro '__ASM'
+  #define __ASM                                  __asm
+                                                 ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+1 warning and 20 errors generated.
+In file included from ./../Core/Src/can.c:21:
+In file included from ../Core/Inc\can.h:29:
+In file included from ../Core/Inc/main.h:30:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:52:9: warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+#define __FPU_PRESENT             1U       /*!< FPU present                                   */
+        ^
+<command line>:8:9: note: previous definition is here
+#define __FPU_PRESENT 1
+        ^
+In file included from ./../Core/Src/can.c:21:
+In file included from ../Core/Inc\can.h:29:
+In file included from ../Core/Inc/main.h:30:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:167:
+In file included from ../Drivers/CMSIS/Include\core_cm4.h:162:
+In file included from ../Drivers/CMSIS/Include/cmsis_compiler.h:34:
+../Drivers/CMSIS/Include/cmsis_armcc.h:132:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:144:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:156:46: error: unknown register name 'ipsr' in asm
+  register uint32_t __regIPSR          __ASM("ipsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:168:46: error: unknown register name 'apsr' in asm
+  register uint32_t __regAPSR          __ASM("apsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:180:46: error: unknown register name 'xpsr' in asm
+  register uint32_t __regXPSR          __ASM("xpsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:192:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:204:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:216:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:228:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:240:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:252:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:283:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:295:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:308:48: error: unknown register name 'basepri_max' in asm
+  register uint32_t __regBasePriMax      __ASM("basepri_max");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:320:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:332:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:349:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:366:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:463:57: error: expected identifier or '('
+__attribute__((section(".rev16_text"))) __STATIC_INLINE __ASM uint32_t __REV16(uint32_t value)
+                                                        ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:53:50: note: expanded from macro '__ASM'
+  #define __ASM                                  __asm
+                                                 ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+1 warning and 20 errors generated.
+In file included from ./../Core/Src/dma.c:22:
+In file included from ../Core/Inc\dma.h:29:
+In file included from ../Core/Inc/main.h:30:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:52:9: warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+#define __FPU_PRESENT             1U       /*!< FPU present                                   */
+        ^
+<command line>:8:9: note: previous definition is here
+#define __FPU_PRESENT 1
+        ^
+In file included from ./../Core/Src/dma.c:22:
+In file included from ../Core/Inc\dma.h:29:
+In file included from ../Core/Inc/main.h:30:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:167:
+In file included from ../Drivers/CMSIS/Include\core_cm4.h:162:
+In file included from ../Drivers/CMSIS/Include/cmsis_compiler.h:34:
+../Drivers/CMSIS/Include/cmsis_armcc.h:132:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:144:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:156:46: error: unknown register name 'ipsr' in asm
+  register uint32_t __regIPSR          __ASM("ipsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:168:46: error: unknown register name 'apsr' in asm
+  register uint32_t __regAPSR          __ASM("apsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:180:46: error: unknown register name 'xpsr' in asm
+  register uint32_t __regXPSR          __ASM("xpsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:192:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:204:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:216:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:228:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:240:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:252:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:283:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:295:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:308:48: error: unknown register name 'basepri_max' in asm
+  register uint32_t __regBasePriMax      __ASM("basepri_max");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:320:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:332:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:349:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:366:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:463:57: error: expected identifier or '('
+__attribute__((section(".rev16_text"))) __STATIC_INLINE __ASM uint32_t __REV16(uint32_t value)
+                                                        ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:53:50: note: expanded from macro '__ASM'
+  #define __ASM                                  __asm
+                                                 ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+1 warning and 20 errors generated.
+In file included from ./../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c:36:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:52:9: warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+#define __FPU_PRESENT             1U       /*!< FPU present                                   */
+        ^
+<command line>:8:9: note: previous definition is here
+#define __FPU_PRESENT 1
+        ^
+In file included from ./../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c:36:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:167:
+In file included from ../Drivers/CMSIS/Include\core_cm4.h:162:
+In file included from ../Drivers/CMSIS/Include/cmsis_compiler.h:34:
+../Drivers/CMSIS/Include/cmsis_armcc.h:132:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:144:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:156:46: error: unknown register name 'ipsr' in asm
+  register uint32_t __regIPSR          __ASM("ipsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:168:46: error: unknown register name 'apsr' in asm
+  register uint32_t __regAPSR          __ASM("apsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:180:46: error: unknown register name 'xpsr' in asm
+  register uint32_t __regXPSR          __ASM("xpsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:192:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:204:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:216:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:228:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:240:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:252:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:283:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:295:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:308:48: error: unknown register name 'basepri_max' in asm
+  register uint32_t __regBasePriMax      __ASM("basepri_max");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:320:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:332:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:349:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:366:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:463:57: error: expected identifier or '('
+__attribute__((section(".rev16_text"))) __STATIC_INLINE __ASM uint32_t __REV16(uint32_t value)
+                                                        ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:53:50: note: expanded from macro '__ASM'
+  #define __ASM                                  __asm
+                                                 ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+1 warning and 20 errors generated.
+In file included from ./../Core/Src/system_stm32f4xx.c:49:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:52:9: warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+#define __FPU_PRESENT             1U       /*!< FPU present                                   */
+        ^
+<command line>:8:9: note: previous definition is here
+#define __FPU_PRESENT 1
+        ^
+In file included from ./../Core/Src/system_stm32f4xx.c:49:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:167:
+In file included from ../Drivers/CMSIS/Include\core_cm4.h:162:
+In file included from ../Drivers/CMSIS/Include/cmsis_compiler.h:34:
+../Drivers/CMSIS/Include/cmsis_armcc.h:132:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:144:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:156:46: error: unknown register name 'ipsr' in asm
+  register uint32_t __regIPSR          __ASM("ipsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:168:46: error: unknown register name 'apsr' in asm
+  register uint32_t __regAPSR          __ASM("apsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:180:46: error: unknown register name 'xpsr' in asm
+  register uint32_t __regXPSR          __ASM("xpsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:192:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:204:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:216:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:228:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:240:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:252:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:283:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:295:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:308:48: error: unknown register name 'basepri_max' in asm
+  register uint32_t __regBasePriMax      __ASM("basepri_max");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:320:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:332:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:349:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:366:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:463:57: error: expected identifier or '('
+__attribute__((section(".rev16_text"))) __STATIC_INLINE __ASM uint32_t __REV16(uint32_t value)
+                                                        ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:53:50: note: expanded from macro '__ASM'
+  #define __ASM                                  __asm
+                                                 ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+1 warning and 20 errors generated.
+In file included from ./../Core/Src/spi.c:21:
+In file included from ../Core/Inc\spi.h:29:
+In file included from ../Core/Inc/main.h:30:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:52:9: warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+#define __FPU_PRESENT             1U       /*!< FPU present                                   */
+        ^
+<command line>:8:9: note: previous definition is here
+#define __FPU_PRESENT 1
+        ^
+In file included from ./../Core/Src/spi.c:21:
+In file included from ../Core/Inc\spi.h:29:
+In file included from ../Core/Inc/main.h:30:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:167:
+In file included from ../Drivers/CMSIS/Include\core_cm4.h:162:
+In file included from ../Drivers/CMSIS/Include/cmsis_compiler.h:34:
+../Drivers/CMSIS/Include/cmsis_armcc.h:132:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:144:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:156:46: error: unknown register name 'ipsr' in asm
+  register uint32_t __regIPSR          __ASM("ipsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:168:46: error: unknown register name 'apsr' in asm
+  register uint32_t __regAPSR          __ASM("apsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:180:46: error: unknown register name 'xpsr' in asm
+  register uint32_t __regXPSR          __ASM("xpsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:192:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:204:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:216:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:228:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:240:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:252:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:283:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:295:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:308:48: error: unknown register name 'basepri_max' in asm
+  register uint32_t __regBasePriMax      __ASM("basepri_max");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:320:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:332:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:349:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:366:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:463:57: error: expected identifier or '('
+__attribute__((section(".rev16_text"))) __STATIC_INLINE __ASM uint32_t __REV16(uint32_t value)
+                                                        ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:53:50: note: expanded from macro '__ASM'
+  #define __ASM                                  __asm
+                                                 ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+1 warning and 20 errors generated.
+In file included from ./../Core/Src/gpio.c:22:
+In file included from ../Core/Inc\gpio.h:29:
+In file included from ../Core/Inc/main.h:30:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:52:9: warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+#define __FPU_PRESENT             1U       /*!< FPU present                                   */
+        ^
+<command line>:8:9: note: previous definition is here
+#define __FPU_PRESENT 1
+        ^
+In file included from ./../Core/Src/gpio.c:22:
+In file included from ../Core/Inc\gpio.h:29:
+In file included from ../Core/Inc/main.h:30:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:167:
+In file included from ../Drivers/CMSIS/Include\core_cm4.h:162:
+In file included from ../Drivers/CMSIS/Include/cmsis_compiler.h:34:
+../Drivers/CMSIS/Include/cmsis_armcc.h:132:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:144:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:156:46: error: unknown register name 'ipsr' in asm
+  register uint32_t __regIPSR          __ASM("ipsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:168:46: error: unknown register name 'apsr' in asm
+  register uint32_t __regAPSR          __ASM("apsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:180:46: error: unknown register name 'xpsr' in asm
+  register uint32_t __regXPSR          __ASM("xpsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:192:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:204:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:216:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:228:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:240:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:252:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:283:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:295:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:308:48: error: unknown register name 'basepri_max' in asm
+  register uint32_t __regBasePriMax      __ASM("basepri_max");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:320:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:332:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:349:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:366:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:463:57: error: expected identifier or '('
+__attribute__((section(".rev16_text"))) __STATIC_INLINE __ASM uint32_t __REV16(uint32_t value)
+                                                        ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:53:50: note: expanded from macro '__ASM'
+  #define __ASM                                  __asm
+                                                 ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+1 warning and 20 errors generated.
+In file included from ./../Core/Src/i2c.c:21:
+In file included from ../Core/Inc\i2c.h:29:
+In file included from ../Core/Inc/main.h:30:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:52:9: warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+#define __FPU_PRESENT             1U       /*!< FPU present                                   */
+        ^
+<command line>:8:9: note: previous definition is here
+#define __FPU_PRESENT 1
+        ^
+In file included from ./../Core/Src/i2c.c:21:
+In file included from ../Core/Inc\i2c.h:29:
+In file included from ../Core/Inc/main.h:30:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:167:
+In file included from ../Drivers/CMSIS/Include\core_cm4.h:162:
+In file included from ../Drivers/CMSIS/Include/cmsis_compiler.h:34:
+../Drivers/CMSIS/Include/cmsis_armcc.h:132:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:144:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:156:46: error: unknown register name 'ipsr' in asm
+  register uint32_t __regIPSR          __ASM("ipsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:168:46: error: unknown register name 'apsr' in asm
+  register uint32_t __regAPSR          __ASM("apsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:180:46: error: unknown register name 'xpsr' in asm
+  register uint32_t __regXPSR          __ASM("xpsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:192:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:204:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:216:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:228:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:240:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:252:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:283:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:295:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:308:48: error: unknown register name 'basepri_max' in asm
+  register uint32_t __regBasePriMax      __ASM("basepri_max");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:320:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:332:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:349:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:366:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:463:57: error: expected identifier or '('
+__attribute__((section(".rev16_text"))) __STATIC_INLINE __ASM uint32_t __REV16(uint32_t value)
+                                                        ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:53:50: note: expanded from macro '__ASM'
+  #define __ASM                                  __asm
+                                                 ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+1 warning and 20 errors generated.
+In file included from ./../Core/Src/usart.c:21:
+In file included from ../Core/Inc\usart.h:29:
+In file included from ../Core/Inc/main.h:30:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:52:9: warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+#define __FPU_PRESENT             1U       /*!< FPU present                                   */
+        ^
+<command line>:8:9: note: previous definition is here
+#define __FPU_PRESENT 1
+        ^
+In file included from ./../Core/Src/usart.c:21:
+In file included from ../Core/Inc\usart.h:29:
+In file included from ../Core/Inc/main.h:30:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:167:
+In file included from ../Drivers/CMSIS/Include\core_cm4.h:162:
+In file included from ../Drivers/CMSIS/Include/cmsis_compiler.h:34:
+../Drivers/CMSIS/Include/cmsis_armcc.h:132:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:144:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:156:46: error: unknown register name 'ipsr' in asm
+  register uint32_t __regIPSR          __ASM("ipsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:168:46: error: unknown register name 'apsr' in asm
+  register uint32_t __regAPSR          __ASM("apsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:180:46: error: unknown register name 'xpsr' in asm
+  register uint32_t __regXPSR          __ASM("xpsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:192:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:204:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:216:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:228:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:240:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:252:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:283:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:295:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:308:48: error: unknown register name 'basepri_max' in asm
+  register uint32_t __regBasePriMax      __ASM("basepri_max");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:320:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:332:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:349:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:366:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:463:57: error: expected identifier or '('
+__attribute__((section(".rev16_text"))) __STATIC_INLINE __ASM uint32_t __REV16(uint32_t value)
+                                                        ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:53:50: note: expanded from macro '__ASM'
+  #define __ASM                                  __asm
+                                                 ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+1 warning and 20 errors generated.
+In file included from ./../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c:83:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:52:9: warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+#define __FPU_PRESENT             1U       /*!< FPU present                                   */
+        ^
+<command line>:8:9: note: previous definition is here
+#define __FPU_PRESENT 1
+        ^
+In file included from ./../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c:83:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:167:
+In file included from ../Drivers/CMSIS/Include\core_cm4.h:162:
+In file included from ../Drivers/CMSIS/Include/cmsis_compiler.h:34:
+../Drivers/CMSIS/Include/cmsis_armcc.h:132:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:144:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:156:46: error: unknown register name 'ipsr' in asm
+  register uint32_t __regIPSR          __ASM("ipsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:168:46: error: unknown register name 'apsr' in asm
+  register uint32_t __regAPSR          __ASM("apsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:180:46: error: unknown register name 'xpsr' in asm
+  register uint32_t __regXPSR          __ASM("xpsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:192:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:204:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:216:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:228:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:240:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:252:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:283:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:295:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:308:48: error: unknown register name 'basepri_max' in asm
+  register uint32_t __regBasePriMax      __ASM("basepri_max");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:320:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:332:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:349:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:366:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:463:57: error: expected identifier or '('
+__attribute__((section(".rev16_text"))) __STATIC_INLINE __ASM uint32_t __REV16(uint32_t value)
+                                                        ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:53:50: note: expanded from macro '__ASM'
+  #define __ASM                                  __asm
+                                                 ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+1 warning and 20 errors generated.
+In file included from ./../Core/Src/stm32f4xx_it.c:21:
+In file included from ../Core/Inc\main.h:30:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:52:9: warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+#define __FPU_PRESENT             1U       /*!< FPU present                                   */
+        ^
+<command line>:8:9: note: previous definition is here
+#define __FPU_PRESENT 1
+        ^
+In file included from ./../Core/Src/stm32f4xx_it.c:21:
+In file included from ../Core/Inc\main.h:30:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:167:
+In file included from ../Drivers/CMSIS/Include\core_cm4.h:162:
+In file included from ../Drivers/CMSIS/Include/cmsis_compiler.h:34:
+../Drivers/CMSIS/Include/cmsis_armcc.h:132:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:144:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:156:46: error: unknown register name 'ipsr' in asm
+  register uint32_t __regIPSR          __ASM("ipsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:168:46: error: unknown register name 'apsr' in asm
+  register uint32_t __regAPSR          __ASM("apsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:180:46: error: unknown register name 'xpsr' in asm
+  register uint32_t __regXPSR          __ASM("xpsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:192:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:204:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:216:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:228:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:240:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:252:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:283:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:295:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:308:48: error: unknown register name 'basepri_max' in asm
+  register uint32_t __regBasePriMax      __ASM("basepri_max");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:320:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:332:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:349:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:366:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:463:57: error: expected identifier or '('
+__attribute__((section(".rev16_text"))) __STATIC_INLINE __ASM uint32_t __REV16(uint32_t value)
+                                                        ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:53:50: note: expanded from macro '__ASM'
+  #define __ASM                                  __asm
+                                                 ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+1 warning and 20 errors generated.
+In file included from ./../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c:98:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:52:9: warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+#define __FPU_PRESENT             1U       /*!< FPU present                                   */
+        ^
+<command line>:8:9: note: previous definition is here
+#define __FPU_PRESENT 1
+        ^
+In file included from ./../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c:98:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:167:
+In file included from ../Drivers/CMSIS/Include\core_cm4.h:162:
+In file included from ../Drivers/CMSIS/Include/cmsis_compiler.h:34:
+../Drivers/CMSIS/Include/cmsis_armcc.h:132:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:144:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:156:46: error: unknown register name 'ipsr' in asm
+  register uint32_t __regIPSR          __ASM("ipsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:168:46: error: unknown register name 'apsr' in asm
+  register uint32_t __regAPSR          __ASM("apsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:180:46: error: unknown register name 'xpsr' in asm
+  register uint32_t __regXPSR          __ASM("xpsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:192:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:204:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:216:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:228:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:240:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:252:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:283:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:295:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:308:48: error: unknown register name 'basepri_max' in asm
+  register uint32_t __regBasePriMax      __ASM("basepri_max");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:320:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:332:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:349:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:366:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:463:57: error: expected identifier or '('
+__attribute__((section(".rev16_text"))) __STATIC_INLINE __ASM uint32_t __REV16(uint32_t value)
+                                                        ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:53:50: note: expanded from macro '__ASM'
+  #define __ASM                                  __asm
+                                                 ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+1 warning and 20 errors generated.
+In file included from ./../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c:213:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:52:9: warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+#define __FPU_PRESENT             1U       /*!< FPU present                                   */
+        ^
+<command line>:8:9: note: previous definition is here
+#define __FPU_PRESENT 1
+        ^
+In file included from ./../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c:213:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:167:
+In file included from ../Drivers/CMSIS/Include\core_cm4.h:162:
+In file included from ../Drivers/CMSIS/Include/cmsis_compiler.h:34:
+../Drivers/CMSIS/Include/cmsis_armcc.h:132:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:144:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:156:46: error: unknown register name 'ipsr' in asm
+  register uint32_t __regIPSR          __ASM("ipsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:168:46: error: unknown register name 'apsr' in asm
+  register uint32_t __regAPSR          __ASM("apsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:180:46: error: unknown register name 'xpsr' in asm
+  register uint32_t __regXPSR          __ASM("xpsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:192:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:204:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:216:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:228:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:240:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:252:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:283:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:295:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:308:48: error: unknown register name 'basepri_max' in asm
+  register uint32_t __regBasePriMax      __ASM("basepri_max");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:320:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:332:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:349:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:366:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:463:57: error: expected identifier or '('
+__attribute__((section(".rev16_text"))) __STATIC_INLINE __ASM uint32_t __REV16(uint32_t value)
+                                                        ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:53:50: note: expanded from macro '__ASM'
+  #define __ASM                                  __asm
+                                                 ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+1 warning and 20 errors generated.
+In file included from ./../Core/Src/tim.c:21:
+In file included from ../Core/Inc\tim.h:29:
+In file included from ../Core/Inc/main.h:30:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:52:9: warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+#define __FPU_PRESENT             1U       /*!< FPU present                                   */
+        ^
+<command line>:8:9: note: previous definition is here
+#define __FPU_PRESENT 1
+        ^
+In file included from ./../Core/Src/tim.c:21:
+In file included from ../Core/Inc\tim.h:29:
+In file included from ../Core/Inc/main.h:30:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:167:
+In file included from ../Drivers/CMSIS/Include\core_cm4.h:162:
+In file included from ../Drivers/CMSIS/Include/cmsis_compiler.h:34:
+../Drivers/CMSIS/Include/cmsis_armcc.h:132:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:144:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:156:46: error: unknown register name 'ipsr' in asm
+  register uint32_t __regIPSR          __ASM("ipsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:168:46: error: unknown register name 'apsr' in asm
+  register uint32_t __regAPSR          __ASM("apsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:180:46: error: unknown register name 'xpsr' in asm
+  register uint32_t __regXPSR          __ASM("xpsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:192:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:204:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:216:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:228:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:240:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:252:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:283:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:295:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:308:48: error: unknown register name 'basepri_max' in asm
+  register uint32_t __regBasePriMax      __ASM("basepri_max");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:320:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:332:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:349:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:366:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:463:57: error: expected identifier or '('
+__attribute__((section(".rev16_text"))) __STATIC_INLINE __ASM uint32_t __REV16(uint32_t value)
+                                                        ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:53:50: note: expanded from macro '__ASM'
+  #define __ASM                                  __asm
+                                                 ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+1 warning and 20 errors generated.
+In file included from ./../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c:40:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:52:9: warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+#define __FPU_PRESENT             1U       /*!< FPU present                                   */
+        ^
+<command line>:8:9: note: previous definition is here
+#define __FPU_PRESENT 1
+        ^
+In file included from ./../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c:40:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:167:
+In file included from ../Drivers/CMSIS/Include\core_cm4.h:162:
+In file included from ../Drivers/CMSIS/Include/cmsis_compiler.h:34:
+../Drivers/CMSIS/Include/cmsis_armcc.h:132:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:144:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:156:46: error: unknown register name 'ipsr' in asm
+  register uint32_t __regIPSR          __ASM("ipsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:168:46: error: unknown register name 'apsr' in asm
+  register uint32_t __regAPSR          __ASM("apsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:180:46: error: unknown register name 'xpsr' in asm
+  register uint32_t __regXPSR          __ASM("xpsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:192:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:204:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:216:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:228:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:240:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:252:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:283:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:295:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:308:48: error: unknown register name 'basepri_max' in asm
+  register uint32_t __regBasePriMax      __ASM("basepri_max");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:320:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:332:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:349:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:366:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:463:57: error: expected identifier or '('
+__attribute__((section(".rev16_text"))) __STATIC_INLINE __ASM uint32_t __REV16(uint32_t value)
+                                                        ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:53:50: note: expanded from macro '__ASM'
+  #define __ASM                                  __asm
+                                                 ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+1 warning and 20 errors generated.
+In file included from ./../Core/Src/stm32f4xx_hal_msp.c:22:
+In file included from ../Core/Inc\main.h:30:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:52:9: warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+#define __FPU_PRESENT             1U       /*!< FPU present                                   */
+        ^
+<command line>:8:9: note: previous definition is here
+#define __FPU_PRESENT 1
+        ^
+In file included from ./../Core/Src/stm32f4xx_hal_msp.c:22:
+In file included from ../Core/Inc\main.h:30:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal.h:30:
+In file included from ../Core/Inc\stm32f4xx_hal_conf.h:275:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc\stm32f4xx_hal_rcc.h:29:
+In file included from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f4xx.h:133:
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h:167:
+In file included from ../Drivers/CMSIS/Include\core_cm4.h:162:
+In file included from ../Drivers/CMSIS/Include/cmsis_compiler.h:34:
+../Drivers/CMSIS/Include/cmsis_armcc.h:132:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:144:48: error: unknown register name 'control' in asm
+  register uint32_t __regControl         __ASM("control");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:156:46: error: unknown register name 'ipsr' in asm
+  register uint32_t __regIPSR          __ASM("ipsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:168:46: error: unknown register name 'apsr' in asm
+  register uint32_t __regAPSR          __ASM("apsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:180:46: error: unknown register name 'xpsr' in asm
+  register uint32_t __regXPSR          __ASM("xpsr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:192:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:204:53: error: unknown register name 'psp' in asm
+  register uint32_t __regProcessStackPointer  __ASM("psp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:216:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:228:53: error: unknown register name 'msp' in asm
+  register uint32_t __regMainStackPointer     __ASM("msp");
+                                                    ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:240:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:252:48: error: unknown register name 'primask' in asm
+  register uint32_t __regPriMask         __ASM("primask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:283:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:295:48: error: unknown register name 'basepri' in asm
+  register uint32_t __regBasePri         __ASM("basepri");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:308:48: error: unknown register name 'basepri_max' in asm
+  register uint32_t __regBasePriMax      __ASM("basepri_max");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:320:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:332:48: error: unknown register name 'faultmask' in asm
+  register uint32_t __regFaultMask       __ASM("faultmask");
+                                               ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:349:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:366:46: error: unknown register name 'fpscr' in asm
+  register uint32_t __regfpscr         __ASM("fpscr");
+                                             ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:463:57: error: expected identifier or '('
+__attribute__((section(".rev16_text"))) __STATIC_INLINE __ASM uint32_t __REV16(uint32_t value)
+                                                        ^
+../Drivers/CMSIS/Include/cmsis_armcc.h:53:50: note: expanded from macro '__ASM'
+  #define __ASM                                  __asm
+                                                 ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+1 warning and 20 errors generated.
+
+[2024-03-21 23:05:36]	[done]
+	build successfully !
+
+[2024-03-21 23:22:54]	[done]
+	build successfully !
+
+[2024-03-22 00:20:43]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\USB_DEVICE\App\usbd_cdc_if.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\USB_DEVICE\App\usbd_cdc_if.o --no_depend_system_headers --depend .\build\infantry\.obj\__\USB_DEVICE\App\usbd_cdc_if.d .\..\USB_DEVICE\App\usbd_cdc_if.c
+   at unify_builder.Program.compileByMulThread(Int32 thrNum, CmdInfo[] cmds_, List`1 errLogs)
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\USB_DEVICE\App\usbd_cdc_if.c", line 268: Error:  #20: identifier "MiniPC_USB_Manage_Object" is undefined
+  	memcpy(MiniPC_USB_Manage_Object.Rx_Buffer,Buf,*Len);
+  	       ^
+.\..\USB_DEVICE\App\usbd_cdc_if.c: 0 warnings, 1 error
+
+[2024-03-22 00:21:44]	[done]
+	build successfully !
+
+[2024-03-22 00:22:57]	[done]
+	build successfully !
+
+[2024-03-22 00:24:22]	[done]
+	build successfully !
+
+[2024-03-22 00:24:39]	[done]
+	build successfully !
+
+[2024-03-22 00:25:00]	[done]
+	build successfully !
+
+[2024-03-22 00:25:26]	[done]
+	build successfully !
+
+[2024-03-22 00:25:42]	[done]
+	build successfully !
+
+[2024-03-22 00:25:59]	[done]
+	build successfully !
+
+[2024-03-22 00:27:18]	[done]
+	build successfully !
+
+[2024-03-22 00:27:31]	[done]
+	build successfully !
+
+[2024-03-22 00:29:32]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\Core\Src\main.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -Otime --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\Core\Src\main.o --no_depend_system_headers --depend .\build\infantry\.obj\__\Core\Src\main.d .\..\Core\Src\main.c
+   at unify_builder.Program.Main(String[] args_)
+---
+"../User/Interaction/ita_chariot.h", line 121: Error:  #36: the #if for this directive is missing
+  #endif
+   ^
+.\..\Core\Src\main.c: 0 warnings, 1 error
+
+[2024-03-22 00:31:00]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Interaction\ita_chariot.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -Otime --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Interaction\ita_chariot.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Interaction\ita_chariot.d .\..\User\Interaction\ita_chariot.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Interaction\ita_chariot.cpp", line 135: Error:  #135: class "Class_Chariot"  has no member "CAN_Gimbal_RxCpltCallback"
+  void Class_Chariot::CAN_Gimbal_RxCpltCallback()
+                      ^
+".\..\User\Interaction\ita_chariot.cpp", line 157: Error:  #20: identifier "DR16" is undefined
+      if (DR16.Get_DR16_Status() == DR16_Status_DISABLE || DR16.Get_Left_Switch() == DR16_Switch_Status_DOWN) //左下失能
+          ^
+".\..\User\Interaction\ita_chariot.cpp", line 228: Error:  #20: identifier "Gimbal" is undefined
+      tmp_gimbal_yaw = Gimbal.Get_Target_Yaw_Angle();
+                       ^
+".\..\User\Interaction\ita_chariot.cpp", line 232: Error:  #20: identifier "DR16" is undefined
+      dr16_y = (Math_Abs(DR16.Get_Right_X()) > DR16_Dead_Zone) ? DR16.Get_Right_X() : 0;
+                         ^
+".\..\User\Interaction\ita_chariot.cpp", line 271: Error:  #20: identifier "DR16" is undefined
+      if (DR16.Get_DR16_Status() == DR16_Status_DISABLE || DR16.Get_Left_Switch() == DR16_Switch_Status_DOWN)  //左下失能
+          ^
+".\..\User\Interaction\ita_chariot.cpp", line 274: Error:  #20: identifier "Booster" is undefined
+          Booster.Set_Booster_Control_Type(Booster_Control_Type_DISABLE);
+          ^
+".\..\User\Interaction\ita_chariot.cpp", line 286: Error:  #20: identifier "Booster" is undefined
+              Booster.Set_Booster_Control_Type(Booster_Control_Type_SINGLE);
+              ^
+".\..\User\Interaction\ita_chariot.cpp", line 290: Error:  #20: identifier "Booster" is undefined
+              Booster.Set_Booster_Control_Type(Booster_Control_Type_REPEATED);
+              ^
+".\..\User\Interaction\ita_chariot.cpp", line 294: Error:  #20: identifier "Booster" is undefined
+              Booster.Set_Booster_Control_Type(Booster_Control_Type_CEASEFIRE);
+              ^
+".\..\User\Interaction\ita_chariot.cpp", line 313: Error:  #20: identifier "Booster" is undefined
+          Booster.Set_Driver_Omega(Booster.Get_Default_Driver_Omega());
+          ^
+.\..\User\Interaction\ita_chariot.cpp: 0 warnings, 10 errors
+
+[2024-03-22 00:32:11]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Interaction\ita_chariot.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -Otime --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Interaction\ita_chariot.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Interaction\ita_chariot.d .\..\User\Interaction\ita_chariot.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Interaction\ita_chariot.cpp", line 158: Error:  #20: identifier "DR16" is undefined
+      if (DR16.Get_DR16_Status() == DR16_Status_DISABLE || DR16.Get_Left_Switch() == DR16_Switch_Status_DOWN) //左下失能
+          ^
+".\..\User\Interaction\ita_chariot.cpp", line 229: Error:  #20: identifier "Gimbal" is undefined
+      tmp_gimbal_yaw = Gimbal.Get_Target_Yaw_Angle();
+                       ^
+".\..\User\Interaction\ita_chariot.cpp", line 233: Error:  #20: identifier "DR16" is undefined
+      dr16_y = (Math_Abs(DR16.Get_Right_X()) > DR16_Dead_Zone) ? DR16.Get_Right_X() : 0;
+                         ^
+".\..\User\Interaction\ita_chariot.cpp", line 272: Error:  #20: identifier "DR16" is undefined
+      if (DR16.Get_DR16_Status() == DR16_Status_DISABLE || DR16.Get_Left_Switch() == DR16_Switch_Status_DOWN)  //左下失能
+          ^
+".\..\User\Interaction\ita_chariot.cpp", line 275: Error:  #20: identifier "Booster" is undefined
+          Booster.Set_Booster_Control_Type(Booster_Control_Type_DISABLE);
+          ^
+".\..\User\Interaction\ita_chariot.cpp", line 287: Error:  #20: identifier "Booster" is undefined
+              Booster.Set_Booster_Control_Type(Booster_Control_Type_SINGLE);
+              ^
+".\..\User\Interaction\ita_chariot.cpp", line 291: Error:  #20: identifier "Booster" is undefined
+              Booster.Set_Booster_Control_Type(Booster_Control_Type_REPEATED);
+              ^
+".\..\User\Interaction\ita_chariot.cpp", line 295: Error:  #20: identifier "Booster" is undefined
+              Booster.Set_Booster_Control_Type(Booster_Control_Type_CEASEFIRE);
+              ^
+".\..\User\Interaction\ita_chariot.cpp", line 314: Error:  #20: identifier "Booster" is undefined
+          Booster.Set_Driver_Omega(Booster.Get_Default_Driver_Omega());
+          ^
+.\..\User\Interaction\ita_chariot.cpp: 0 warnings, 9 errors
+
+[2024-03-22 00:33:04]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Interaction\ita_chariot.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -Otime --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Interaction\ita_chariot.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Interaction\ita_chariot.d .\..\User\Interaction\ita_chariot.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Interaction\ita_chariot.cpp", line 158: Error:  #20: identifier "DR16" is undefined
+      if (DR16.Get_DR16_Status() == DR16_Status_DISABLE || DR16.Get_Left_Switch() == DR16_Switch_Status_DOWN) //左下失能
+          ^
+".\..\User\Interaction\ita_chariot.cpp", line 229: Error:  #20: identifier "Gimbal" is undefined
+      tmp_gimbal_yaw = Gimbal.Get_Target_Yaw_Angle();
+                       ^
+".\..\User\Interaction\ita_chariot.cpp", line 233: Error:  #20: identifier "DR16" is undefined
+      dr16_y = (Math_Abs(DR16.Get_Right_X()) > DR16_Dead_Zone) ? DR16.Get_Right_X() : 0;
+                         ^
+".\..\User\Interaction\ita_chariot.cpp", line 272: Error:  #20: identifier "DR16" is undefined
+      if (DR16.Get_DR16_Status() == DR16_Status_DISABLE || DR16.Get_Left_Switch() == DR16_Switch_Status_DOWN)  //左下失能
+          ^
+".\..\User\Interaction\ita_chariot.cpp", line 275: Error:  #20: identifier "Booster" is undefined
+          Booster.Set_Booster_Control_Type(Booster_Control_Type_DISABLE);
+          ^
+".\..\User\Interaction\ita_chariot.cpp", line 287: Error:  #20: identifier "Booster" is undefined
+              Booster.Set_Booster_Control_Type(Booster_Control_Type_SINGLE);
+              ^
+".\..\User\Interaction\ita_chariot.cpp", line 291: Error:  #20: identifier "Booster" is undefined
+              Booster.Set_Booster_Control_Type(Booster_Control_Type_REPEATED);
+              ^
+".\..\User\Interaction\ita_chariot.cpp", line 295: Error:  #20: identifier "Booster" is undefined
+              Booster.Set_Booster_Control_Type(Booster_Control_Type_CEASEFIRE);
+              ^
+".\..\User\Interaction\ita_chariot.cpp", line 314: Error:  #20: identifier "Booster" is undefined
+          Booster.Set_Driver_Omega(Booster.Get_Default_Driver_Omega());
+          ^
+.\..\User\Interaction\ita_chariot.cpp: 0 warnings, 9 errors
+
+[2024-03-22 00:34:14]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Task\tsk_config_and_callback.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -Otime --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Task\tsk_config_and_callback.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Task\tsk_config_and_callback.d .\..\User\Task\tsk_config_and_callback.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Task\tsk_config_and_callback.cpp", line 155: Error:  #135: class "Class_Chariot"  has no member "Booster"
+          chariot.Booster.Motor_Driver.CAN_RxCpltCallback(CAN_RxMessage->Data);
+                  ^
+".\..\User\Task\tsk_config_and_callback.cpp", line 160: Error:  #135: class "Class_Chariot"  has no member "Booster"
+          chariot.Booster.Motor_Friction_Left.CAN_RxCpltCallback(CAN_RxMessage->Data);
+                  ^
+".\..\User\Task\tsk_config_and_callback.cpp", line 165: Error:  #135: class "Class_Chariot"  has no member "Booster"
+          chariot.Booster.Motor_Friction_Right.CAN_RxCpltCallback(CAN_RxMessage->Data);
+                  ^
+".\..\User\Task\tsk_config_and_callback.cpp", line 170: Error:  #135: class "Class_Chariot"  has no member "Gimbal"
+          chariot.Gimbal.Motor_Pitch.CAN_RxCpltCallback(CAN_RxMessage->Data);
+                  ^
+".\..\User\Task\tsk_config_and_callback.cpp", line 175: Error:  #135: class "Class_Chariot"  has no member "Gimbal"
+          chariot.Gimbal.Motor_Pitch_LK6010.CAN_RxCpltCallback(CAN_RxMessage->Data);
+                  ^
+".\..\User\Task\tsk_config_and_callback.cpp", line 198: Error:  #135: class "Class_Chariot"  has no member "Gimbal"
+          chariot.Gimbal.Motor_Yaw.CAN_RxCpltCallback(CAN_RxMessage->Data);
+                  ^
+".\..\User\Task\tsk_config_and_callback.cpp", line 254: Error:  #135: class "Class_Chariot"  has no member "DR16"
+      chariot.DR16.UART_RxCpltCallback(Buffer);
+              ^
+".\..\User\Task\tsk_config_and_callback.cpp", line 257: Error:  #135: class "Class_Chariot"  has no member "TIM_Control_Callback"
+      chariot.TIM_Control_Callback();
+              ^
+".\..\User\Task\tsk_config_and_callback.cpp", line 303: Error:  #135: class "Class_Chariot"  has no member "MiniPC"
+      chariot.MiniPC.USB_RxCpltCallback(Buffer);
+              ^
+.\..\User\Task\tsk_config_and_callback.cpp: 0 warnings, 9 errors
+
+[2024-03-22 00:35:03]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Task\tsk_config_and_callback.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -Otime --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Task\tsk_config_and_callback.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Task\tsk_config_and_callback.d .\..\User\Task\tsk_config_and_callback.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Task\tsk_config_and_callback.cpp", line 258: Error:  #135: class "Class_Chariot"  has no member "DR16"
+      chariot.DR16.UART_RxCpltCallback(Buffer);
+              ^
+".\..\User\Task\tsk_config_and_callback.cpp", line 261: Error:  #135: class "Class_Chariot"  has no member "TIM_Control_Callback"
+      chariot.TIM_Control_Callback();
+              ^
+".\..\User\Task\tsk_config_and_callback.cpp", line 307: Error:  #135: class "Class_Chariot"  has no member "MiniPC"
+      chariot.MiniPC.USB_RxCpltCallback(Buffer);
+              ^
+.\..\User\Task\tsk_config_and_callback.cpp: 0 warnings, 3 errors
+
+[2024-03-22 00:35:52]	[done]
+	build successfully !
+
+[2024-03-22 00:56:14]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Device\dvc_supercap.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -Otime --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Device\dvc_supercap.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Device\dvc_supercap.d .\..\User\Device\dvc_supercap.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Device\dvc_supercap.cpp", line 86: Error:  #65: expected a ";"
+  }
+  ^
+.\..\User\Device\dvc_supercap.cpp: 0 warnings, 1 error
+
+[2024-03-22 00:56:23]	[done]
+	build successfully !
+
+[2024-03-22 01:05:08]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Device\dvc_supercap.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -Otime --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Device\dvc_supercap.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Device\dvc_supercap.d .\..\User\Device\dvc_supercap.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Device\dvc_supercap.cpp", line 143: Error:  #302: function "Class_Supercap::CAN_RxCpltCallback"  has already been defined
+  void Class_Supercap::CAN_RxCpltCallback(uint8_t *Rx_Data)
+                       ^
+.\..\User\Device\dvc_supercap.cpp: 0 warnings, 1 error
+
+[2024-03-22 01:05:37]	[done]
+	build successfully !
+
+[2024-03-22 01:15:27]	[done]
+	build successfully !
+
+[2024-03-22 01:16:49]	[done]
+	build successfully !
+
+[2024-03-22 01:17:48]	[done]
+	build successfully !
+
+[2024-03-22 01:19:38]	[done]
+	build successfully !
+
+[2024-03-22 01:26:25]	[done]
+	build successfully !
+
+[2024-03-22 01:29:59]	[done]
+	build successfully !
+
+[2024-03-22 04:38:27]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\Core\Src\main.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -Otime --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\Core\Src\main.o --no_depend_system_headers --depend .\build\infantry\.obj\__\Core\Src\main.d .\..\Core\Src\main.c
+   at unify_builder.Program.Main(String[] args_)
+---
+"../User/Interaction/ita_chariot.h", line 48: Error:  #40: expected an identifier
+      #ifdef (GIMBAL)
+             ^
+"../User/Interaction/ita_chariot.h", line 63: Error:  #29: expected an expression
+      #elif (
+IMBAL)
+                   ^
+.\..\Core\Src\main.c: 0 warnings, 2 errors
+
+[2024-03-22 04:38:52]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\Core\Src\main.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -Otime --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\Core\Src\main.o --no_depend_system_headers --depend .\build\infantry\.obj\__\Core\Src\main.d .\..\Core\Src\main.c
+   at unify_builder.Program.Main(String[] args_)
+---
+"../User/Interaction/ita_chariot.h", line 63: Error:  #29: expected an expression
+      #elif (
+IMBAL)
+                   ^
+.\..\Core\Src\main.c: 0 warnings, 1 error
+
+[2024-03-22 04:39:28]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Interaction\ita_chariot.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -Otime --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Interaction\ita_chariot.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Interaction\ita_chariot.d .\..\User\Interaction\ita_chariot.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Interaction\ita_chariot.cpp", line 43: Error:  #20: identifier "Chassis" is undefined
+          Chassis.Set_Velocity_X_Max(10.0f);
+          ^
+".\..\User\Interaction\ita_chariot.cpp", line 161: Error:  #20: identifier "Chassis" is undefined
+          Chassis.Set_Chassis_Control_Type(Chassis_Control_Type_DISABLE);
+          ^
+".\..\User\Interaction\ita_chariot.cpp", line 173: Error:  #20: identifier "Chassis" is undefined
+          gimbal_velocity_x = dr16_l_x * sqrt(1.0f - dr16_l_y * dr16_l_y / 2.0f) * Chassis.Get_Velocity_X_Max() ;
+                                                                                   ^
+".\..\User\Interaction\ita_chariot.cpp", line 206: Error:  #20: identifier "Chassis" is undefined
+      tmp_chassis_velocity_x = Math_Float_To_Int(gimbal_velocity_x,-1 * Chassis.Get_Velocity_X_Max() ,Chassis.Get_Velocity_X_Max() ,0,0x7FFF);
+                                                                        ^
+.\..\User\Interaction\ita_chariot.cpp: 0 warnings, 4 errors
+
+[2024-03-22 04:40:12]	[done]
+	build successfully !
+
+[2024-03-22 04:42:19]	[done]
+	build successfully !
+
+[2024-03-22 04:42:26]	[done]
+	build successfully !
+
+[2024-03-22 05:11:18]	[done]
+	build successfully !
+
+[2024-03-22 15:47:38]	[done]
+	build successfully !
+
+[2024-03-22 15:59:55]	[done]
+	build successfully !
+
+[2024-03-22 16:15:18]	[done]
+	build successfully !
+
+[2024-03-22 16:40:28]	[done]
+	build successfully !
+
+[2024-03-22 16:40:44]	[done]
+	build successfully !
+
+[2024-03-22 16:43:47]	[done]
+	build successfully !
+
+[2024-03-22 17:00:14]	[done]
+	build successfully !
+
+[2024-03-22 17:01:48]	[done]
+	build successfully !
+
+[2024-03-22 17:30:48]	[done]
+	build successfully !
+
+[2024-03-22 17:47:07]	[done]
+	build successfully !
+
+[2024-03-22 17:55:50]	[done]
+	build successfully !
+
+[2024-03-22 19:15:52]	[done]
+	build successfully !
+
+[2024-03-22 19:19:42]	[done]
+	build successfully !
+
+[2024-03-22 20:25:40]	[done]
+	build successfully !
+
+[2024-03-23 02:16:42]	[done]
+	build successfully !
+
+[2024-03-23 02:25:25]	[done]
+	build successfully !
+
+[2024-03-23 02:32:50]	[done]
+	build successfully !
+
+[2024-03-23 03:01:16]	[done]
+	build successfully !
+
+[2024-03-23 03:31:33]	[done]
+	build successfully !
+
+[2024-03-23 03:33:07]	[done]
+	build successfully !
+
+[2024-03-23 03:34:23]	[done]
+	build successfully !
+
+[2024-03-23 03:37:15]	[done]
+	build successfully !
+
+[2024-03-23 03:48:34]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Task\tsk_config_and_callback.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -Otime --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Task\tsk_config_and_callback.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Task\tsk_config_and_callback.d .\..\User\Task\tsk_config_and_callback.cpp
+   at unify_builder.Program.compileByMulThread(Int32 thrNum, CmdInfo[] cmds_, List`1 errLogs)
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Interaction\ita_chariot.cpp", line 139: Error:  #135: class "Class_Chariot"  has no member "CAN_Gimbal_RxCpltCallback"
+  void Class_Chariot::CAN_Gimbal_RxCpltCallback()
+                      ^
+".\..\User\Interaction\ita_chariot.cpp", line 359: Error:  #135: class "Class_Chariot"  has no member "TIM_Control_Callback"
+  void Class_Chariot::TIM_Control_Callback()
+                      ^
+".\..\User\Interaction\ita_chariot.cpp", line 362: Error:  #20: identifier "Control_Chassis" is undefined
+      Control_Chassis();
+      ^
+".\..\User\Interaction\ita_chariot.cpp", line 363: Error:  #20: identifier "Control_Gimbal" is undefined
+      Control_Gimbal();
+      ^
+".\..\User\Interaction\ita_chariot.cpp", line 364: Error:  #20: identifier "Control_Booster" is undefined
+      Control_Booster();
+      ^
+.\..\User\Interaction\ita_chariot.cpp: 0 warnings, 5 errors
+".\..\User\Task\tsk_config_and_callback.cpp", line 262: Error:  #135: class "Class_Chariot"  has no member "TIM_Control_Callback"
+      chariot.TIM_Control_Callback();
+              ^
+.\..\User\Task\tsk_config_and_callback.cpp: 0 warnings, 1 error
+
+[2024-03-23 03:48:50]	[done]
+	build successfully !
+
+[2024-03-23 03:49:00]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Interaction\ita_chariot.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -Otime --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Interaction\ita_chariot.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Interaction\ita_chariot.d .\..\User\Interaction\ita_chariot.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Interaction\ita_chariot.cpp", line 139: Error:  #135: class "Class_Chariot"  has no member "CAN_Gimbal_RxCpltCallback"
+  void Class_Chariot::CAN_Gimbal_RxCpltCallback()
+                      ^
+".\..\User\Interaction\ita_chariot.cpp", line 359: Error:  #135: class "Class_Chariot"  has no member "TIM_Control_Callback"
+  void Class_Chariot::TIM_Control_Callback()
+                      ^
+".\..\User\Interaction\ita_chariot.cpp", line 362: Error:  #20: identifier "Control_Chassis" is undefined
+      Control_Chassis();
+      ^
+".\..\User\Interaction\ita_chariot.cpp", line 363: Error:  #20: identifier "Control_Gimbal" is undefined
+      Control_Gimbal();
+      ^
+".\..\User\Interaction\ita_chariot.cpp", line 364: Error:  #20: identifier "Control_Booster" is undefined
+      Control_Booster();
+      ^
+.\..\User\Interaction\ita_chariot.cpp: 0 warnings, 5 errors
+
+[2024-03-23 03:49:18]	[done]
+	build successfully !
+
+[2024-03-23 03:50:17]	[done]
+	build successfully !
+
+[2024-03-23 03:56:39]	[done]
+	build successfully !
+
+[2024-03-23 03:57:07]	[done]
+	build successfully !
+
+[2024-03-23 03:57:38]	[done]
+	build successfully !
+
+[2024-03-23 03:58:54]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Interaction\ita_chariot.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -Otime --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Interaction\ita_chariot.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Interaction\ita_chariot.d .\..\User\Interaction\ita_chariot.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Interaction\ita_chariot.cpp", line 383: Error:  #20: identifier "Supercap" is undefined
+              Supercap.TIM_Alive_PeriodElapsedCallback();
+              ^
+.\..\User\Interaction\ita_chariot.cpp: 0 warnings, 1 error
+
+[2024-03-23 03:59:17]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Task\tsk_config_and_callback.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -Otime --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Task\tsk_config_and_callback.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Task\tsk_config_and_callback.d .\..\User\Task\tsk_config_and_callback.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Task\tsk_config_and_callback.cpp", line 298: Error:  #135: class "Class_Chariot"  has no member "Supercap"
+      chariot.Supercap.UART_RxCpltCallback(Buffer);
+              ^
+.\..\User\Task\tsk_config_and_callback.cpp: 0 warnings, 1 error
+
+[2024-03-23 04:00:16]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Task\tsk_config_and_callback.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -Otime --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Task\tsk_config_and_callback.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Task\tsk_config_and_callback.d .\..\User\Task\tsk_config_and_callback.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Task\tsk_config_and_callback.cpp", line 298: Error:  #135: class "Class_Chariot"  has no member "Supercap"
+      chariot.Supercap.UART_RxCpltCallback(Buffer);
+              ^
+.\..\User\Task\tsk_config_and_callback.cpp: 0 warnings, 1 error
+
+[2024-03-23 04:00:40]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Task\tsk_config_and_callback.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -Otime --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Task\tsk_config_and_callback.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Task\tsk_config_and_callback.d .\..\User\Task\tsk_config_and_callback.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Task\tsk_config_and_callback.cpp", line 295: Error:  #14-D: extra text after expected end of preprocessing directive
+  #if define 
+HASSIS && define POWER_LIMIT
+                               ^
+.\..\User\Task\tsk_config_and_callback.cpp: 0 warnings, 1 error
+
+[2024-03-23 04:01:03]	[done]
+	build successfully !
+
+[2024-03-23 04:04:29]	[done]
+	build successfully !
+
+[2024-03-23 04:19:03]	[done]
+	build successfully !
+
+[2024-03-23 04:19:24]	[done]
+	build successfully !
+
+[2024-03-23 04:19:37]	[done]
+	build successfully !
+
+[2024-03-23 04:36:46]	[done]
+	build successfully !
+
+[2024-03-23 04:52:29]	[done]
+	build successfully !
+
+[2024-03-23 04:55:07]	[done]
+	build successfully !
+
+[2024-03-23 04:55:36]	[done]
+	build successfully !
+
+[2024-03-23 05:02:21]	[done]
+	build successfully !
+
+[2024-03-23 05:03:23]	[done]
+	build successfully !
+
+[2024-03-23 05:35:34]	[done]
+	build successfully !
+
+[2024-03-23 05:37:16]	[done]
+	build successfully !
+
+[2024-03-23 05:41:15]	[done]
+	build successfully !
+
+[2024-03-23 05:41:41]	[done]
+	build successfully !
+
+[2024-03-23 05:53:47]	[done]
+	build successfully !
+
+[2024-03-23 05:54:30]	[done]
+	build successfully !
+
+[2024-03-23 05:55:43]	[done]
+	build successfully !
+
+[2024-03-23 06:02:00]	[done]
+	build successfully !
+
+[2024-03-23 06:10:11]	[done]
+	build successfully !
+
+[2024-03-23 06:19:01]	[done]
+	build successfully !
+
+[2024-03-23 06:19:07]	[done]
+	build successfully !
+
+[2024-03-23 06:44:17]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\Core\Src\main.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -Otime --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\Core\Src\main.o --no_depend_system_headers --depend .\build\infantry\.obj\__\Core\Src\main.d .\..\Core\Src\main.c
+   at unify_builder.Program.compileByMulThread(Int32 thrNum, CmdInfo[] cmds_, List`1 errLogs)
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Chariot\crt_gimbal.h", line 84: Error:  #302: function "Class_Gimbal_Yaw_Motor_GM6020::Get_True_Gyro_Yaw"  has already been defined
+  float Class_Gimbal_Yaw_Motor_GM6020::Get_True_Gyro_Yaw()
+                                       ^
+.\..\User\Chariot\crt_gimbal.cpp: 0 warnings, 1 error
+"../User/Chariot/crt_gimbal.h", line 84: Error:  #302: function "Class_Gimbal_Yaw_Motor_GM6020::Get_True_Gyro_Yaw"  has already been defined
+  float Class_Gimbal_Yaw_Motor_GM6020::Get_True_Gyro_Yaw()
+                                       ^
+.\..\User\Device\dvc_dr16.cpp: 0 warnings, 1 error
+"../User/Chariot/crt_gimbal.h", line 84: Error:  #302: function "Class_Gimbal_Yaw_Motor_GM6020::Get_True_Gyro_Yaw"  has already been defined
+  float Class_Gimbal_Yaw_Motor_GM6020::Get_True_Gyro_Yaw()
+                                       ^
+.\..\USB_DEVICE\App\usbd_cdc_if.c: 0 warnings, 1 error
+"../User/Chariot/crt_gimbal.h", line 84: Error:  #302: function "Class_Gimbal_Yaw_Motor_GM6020::Get_True_Gyro_Yaw"  has already been defined
+  float Class_Gimbal_Yaw_Motor_GM6020::Get_True_Gyro_Yaw()
+                                       ^
+.\..\Core\Src\main.c: 0 warnings, 1 error
+
+[2024-03-23 06:44:37]	[done]
+	build successfully !
+
+[2024-03-23 06:49:17]	[done]
+	build successfully !
+
+[2024-03-23 06:50:20]	[done]
+	build successfully !
+
+[2024-03-23 06:50:41]	[done]
+	build successfully !
+
+[2024-03-23 07:12:33]	compilation failed at : "d:\RM\RM_code\Standard_4_Cpp_Structure_ByRoboWalker\User\Interaction\ita_chariot.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -Otime --split_sections -W --cpp11 -g -o .\build\infantry\.obj\__\User\Interaction\ita_chariot.o --no_depend_system_headers --depend .\build\infantry\.obj\__\User\Interaction\ita_chariot.d .\..\User\Interaction\ita_chariot.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Interaction\ita_chariot.cpp", line 348: Error:  #20: identifier "Supercap" is undefined
+          Supercap.Set_Now_Power(Chassis.Referee->Get_Chassis_Power());
+          ^
+.\..\User\Interaction\ita_chariot.cpp: 0 warnings, 1 error
+
+[2024-03-23 07:13:59]	[done]
+	build successfully !
+
+[2024-03-23 07:17:27]	[done]
+	build successfully !
+
+[2024-03-23 07:17:40]	[done]
+	build successfully !
+
+[2024-03-23 07:17:55]	[done]
+	build successfully !
+
+[2024-03-23 07:18:34]	[done]
+	build successfully !
+
+[2024-03-23 07:21:19]	[done]
+	build successfully !
+
+[2024-03-23 08:38:32]	[done]
+	build successfully !
+
+[2024-03-23 08:39:58]	[done]
+	build successfully !
+
+[2024-03-23 08:43:42]	[done]
+	build successfully !
+
+[2024-03-23 08:50:47]	[done]
+	build successfully !
+
+[2024-03-23 08:58:29]	[done]
+	build successfully !
+
+[2024-03-23 09:02:29]	[done]
+	build successfully !
+
+[2024-03-23 09:14:04]	[done]
+	build successfully !
+
+[2024-03-23 09:34:39]	[done]
+	build successfully !
+
+[2024-03-23 09:35:46]	[done]
+	build successfully !
+
+[2024-03-23 09:37:44]	[done]
+	build successfully !
+
+[2024-03-23 09:45:28]	[done]
+	build successfully !
+
+[2024-03-23 09:48:18]	[done]
+	build successfully !
+
+[2024-03-23 10:04:01]	[done]
+	build successfully !
+
+[2024-03-23 10:17:43]	[done]
+	build successfully !
+
+[2024-03-23 10:18:04]	[done]
+	build successfully !
+
+[2024-03-23 10:34:01]	[done]
+	build successfully !
+
+[2024-03-23 10:50:14]	[done]
+	build successfully !
+
+[2024-03-23 10:58:24]	[done]
+	build successfully !
+
+[2024-03-23 11:09:56]	[done]
+	build successfully !
+
+[2024-03-23 11:46:04]	[done]
+	build successfully !
+

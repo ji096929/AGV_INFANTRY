@@ -16,7 +16,7 @@
 
 #include "drv_math.h"
 #include "drv_can.h"
-
+#include "drv_uart.h"
 /* Exported macros -----------------------------------------------------------*/
 
 /* Exported types ------------------------------------------------------------*/
@@ -59,15 +59,20 @@ class Class_Supercap
 {
 public:
     void Init(CAN_HandleTypeDef *__hcan, uint16_t __CAN_ID = 0x210, float __Limit_Power_Max = 0);
+    void Init_UART(UART_HandleTypeDef *__huart, uint8_t __fame_header = '*', uint8_t __fame_tail = ';', float __Limit_Power_Max = 45.0f);
 
     inline Enum_Supercap_Status Get_Supercap_Status();
     inline float Get_Stored_Energy();
     inline float Get_Now_Power();
 
     inline void Set_Limit_Power(float __Limit_Power);
+    inline void Set_Now_Power(float __Now_Power);
 
     void CAN_RxCpltCallback(uint8_t *Rx_Data);
+    void UART_RxCpltCallback(uint8_t *Rx_Data);
+
     void TIM_Alive_PeriodElapsedCallback();
+    void TIM_UART_PeriodElapsedCallback();
 
 protected:
     //初始化相关常量
@@ -81,6 +86,10 @@ protected:
     //绝对最大限制功率, 0表示不限制
     float Limit_Power_Max;
 
+    //串口模式
+    Struct_UART_Manage_Object *UART_Manage_Object;
+    uint8_t Fame_Header;
+    uint8_t Fame_Tail;
     //常量
 
     //内部变量
@@ -107,7 +116,10 @@ protected:
     //内部函数
 
     void Data_Process();
+    void Data_Process_UART();
+
     void Output();
+    void Output_UART();
 };
 
 /* Exported variables --------------------------------------------------------*/
@@ -142,6 +154,15 @@ float Class_Supercap::Get_Stored_Energy()
 float Class_Supercap::Get_Now_Power()
 {
     return (Supercap_Data.Now_Power);
+}
+/**
+ * @brief 设置底盘当前的功率
+ *
+ * @return float 输入的功率
+ */
+void Class_Supercap::Set_Now_Power(float __Now_Power)
+{
+    Supercap_Data.Now_Power = __Now_Power;
 }
 
 /**

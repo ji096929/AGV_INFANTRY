@@ -109,13 +109,13 @@ void Class_Gimbal_Yaw_Motor_GM6020::TIM_PID_PeriodElapsedCallback()
         }
         else
         {
-            PID_Angle.Set_Now(True_Rad_Yaw);
+            PID_Angle.Set_Now(True_Angle_Yaw);
             PID_Angle.TIM_Adjust_PeriodElapsedCallback();
 
             Target_Omega = PID_Angle.Get_Out();
 
             PID_Omega.Set_Target(Target_Omega);
-            PID_Omega.Set_Now(True_Gyro_Yaw);
+            PID_Omega.Set_Now(Data.Now_Omega*RAD_TO_RPM);
             // PID_Angle.Set_K_P(28.0f);
             // PID_Angle.Set_K_I(0.0f);
             // PID_Angle.Set_K_D(0.03f);
@@ -154,7 +154,8 @@ void Class_Gimbal_Yaw_Motor_GM6020::TIM_PID_PeriodElapsedCallback()
 void Class_Gimbal_Yaw_Motor_GM6020::Transform_Angle()
 {
     True_Rad_Yaw = IMU->Get_Rad_Yaw();
-    True_Gyro_Yaw = IMU->Get_Gyro_Yaw();    
+    True_Gyro_Yaw = IMU->Get_Gyro_Yaw(); 
+    True_Angle_Yaw = IMU->Get_Angle_Yaw();   
 }
 
 
@@ -411,8 +412,8 @@ void Class_Gimbal::Init()
     Boardc_BMI.Init(); 
 
     //yaw轴电机
-    Motor_Yaw.PID_Angle.Init(0.5f, 0.0f, 0.0f, 0.0f, 6.0f * PI, 6.0f * PI);
-    Motor_Yaw.PID_Omega.Init(20000.0f, 100.0f, 0.0f, 0.0f, Motor_Yaw.Get_Output_Max(), Motor_Yaw.Get_Output_Max());
+    Motor_Yaw.PID_Angle.Init(1.0f, 0.0f, 0.015f, 0.0f, 100, 100);
+    Motor_Yaw.PID_Omega.Init(150.0f, 15000.0f, 0.0f, 0.0f, Motor_Yaw.Get_Output_Max(), Motor_Yaw.Get_Output_Max());
     Motor_Yaw.PID_Torque.Init(0.78f, 100.0f, 0.0f, 0.0f, Motor_Yaw.Get_Output_Max(), Motor_Yaw.Get_Output_Max());
     Motor_Yaw.IMU = &Boardc_BMI;
     Motor_Yaw.Init(&hcan2, DJI_Motor_ID_0x208, DJI_Motor_Control_Method_IMU_ANGLE, 2048);
@@ -425,7 +426,7 @@ void Class_Gimbal::Init()
     Motor_Pitch.Init(&hcan1, DJI_Motor_ID_0x206, DJI_Motor_Control_Method_IMU_ANGLE, 3413);
 
     //pitch轴电机 LK6010
-    Motor_Pitch_LK6010.PID_Angle.Init(10.0f, 0.0f, 1.0f, 0.0f, 6.0f * PI, 6.0f * PI);
+    Motor_Pitch_LK6010.PID_Angle.Init(10.0f, 0.0f, 0.1f, 0.0f, 6.0f * PI, 6.0f * PI);
     Motor_Pitch_LK6010.PID_Omega.Init(65.0f, 0.5f, 0.0f, 0, Motor_Pitch_LK6010.Get_Output_Max(), Motor_Pitch_LK6010.Get_Output_Max(),0.0f,0.0f);
     Motor_Pitch_LK6010.PID_Torque.Init(0.8f, 100.0f, 0.0f, 0.0f, Motor_Pitch_LK6010.Get_Output_Max(), Motor_Pitch_LK6010.Get_Output_Max());
     Motor_Pitch_LK6010.IMU = &Boardc_BMI;
@@ -466,8 +467,16 @@ void Class_Gimbal::Output()
         Motor_Pitch.Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_IMU_ANGLE);
         Motor_Pitch_LK6010.Set_LK_Motor_Control_Method(LK_Motor_Control_Method_IMU_ANGLE);
         
-        //限制角度范围
-        Math_Constrain(&Target_Yaw_Angle, Min_Yaw_Angle, Max_Yaw_Angle);
+        //限制角度范围 处理yaw轴180度问题
+        if((Target_Yaw_Angle-Motor_Yaw.Get_True_Angle_Yaw())>Max_Yaw_Angle)
+        {
+            Target_Yaw_Angle -= (2 * Max_Yaw_Angle);
+        }
+        else if((Target_Yaw_Angle-Motor_Yaw.Get_True_Angle_Yaw())<-Max_Yaw_Angle)
+        {
+            Target_Yaw_Angle += (2 * Max_Yaw_Angle);
+        }
+        //pitch限位
         Math_Constrain(&Target_Pitch_Angle, Min_Pitch_Angle, Max_Pitch_Angle);
 
         //设置目标角度
@@ -477,6 +486,13 @@ void Class_Gimbal::Output()
     }
 }
 
+/**
+ * @brief 计算云台yaw总角度
+ *
+ */
+void Class_Gimbal::Calculate_Total_Angle()
+{   
+}
 
 /**
  * @brief TIM定时器中断计算回调函数

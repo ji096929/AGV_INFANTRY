@@ -60,6 +60,16 @@ enum Enum_DR16_Status
 };
 
 /**
+ * @brief 遥控器数据更新状态
+ *
+ */
+enum Enum_DR16_Updata_Status
+{
+    DR16_Status_DisUpdata = 0,
+    DR16_Status_Updata,
+};
+
+/**
  * @brief 拨动开关状态
  *
  */
@@ -138,6 +148,7 @@ public:
     void Init(UART_HandleTypeDef *huart);
 
     inline Enum_DR16_Status Get_DR16_Status();
+    inline Enum_DR16_Updata_Status Get_DR16_Updata_Status();
     inline float Get_Right_X();
     inline float Get_Right_Y();
     inline float Get_Left_X();
@@ -165,6 +176,7 @@ public:
     inline Enum_DR16_Key_Status Get_Keyboard_Key_C();
     inline Enum_DR16_Key_Status Get_Keyboard_Key_V();
     inline Enum_DR16_Key_Status Get_Keyboard_Key_B();
+    
     inline float Get_Yaw();
 
     void UART_RxCpltCallback(uint8_t *Rx_Data);
@@ -184,7 +196,8 @@ protected:
     float Rocker_Num = 660.0f;
 
     //内部变量
-
+    //前一时刻的遥控器状态信息
+    Struct_DR16_UART_Data Now_UART_Rx_Data;
     //前一时刻的遥控器状态信息
     Struct_DR16_UART_Data Pre_UART_Rx_Data;
     //当前时刻的遥控器接收flag
@@ -196,6 +209,8 @@ protected:
 
     //遥控器状态
     Enum_DR16_Status DR16_Status = DR16_Status_DISABLE;
+    //遥控器数据更新状态
+    Enum_DR16_Updata_Status DR16_Updata_Status = DR16_Status_DisUpdata;
     // DR16对外接口信息
     Struct_DR16_Data Data;
 
@@ -207,6 +222,7 @@ protected:
 
     void Judge_Switch(Enum_DR16_Switch_Status *Switch, uint8_t Status, uint8_t Pre_Status);
     void Judge_Key(Enum_DR16_Key_Status *Key, uint8_t Status, uint8_t Pre_Status);
+    void Judge_Updata(Struct_DR16_UART_Data Pre_UART_Rx_Data,Struct_DR16_UART_Data Now_UART_Rx_Data);
     void Data_Process();
 };
 
@@ -222,6 +238,16 @@ protected:
 Enum_DR16_Status Class_DR16::Get_DR16_Status()
 {
     return (DR16_Status);
+}
+
+/**
+ * @brief 获取遥控器数据更新状态
+ *
+ * @return Enum_DR16_Updata_Status 遥控器在线状态
+ */
+Enum_DR16_Updata_Status Class_DR16::Get_DR16_Updata_Status()
+{
+    return (DR16_Updata_Status);
 }
 
 /**

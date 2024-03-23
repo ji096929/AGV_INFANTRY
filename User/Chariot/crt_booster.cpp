@@ -246,6 +246,26 @@ void Class_Booster::Output()
         Booster_Control_Type = Booster_Control_Type_CEASEFIRE;
     }
     break;
+    case (Booster_Control_Type_MULTI):
+    {
+        // 连发模式
+        Motor_Driver.Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_ANGLE);
+        Motor_Friction_Left.Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_OMEGA);
+        Motor_Friction_Right.Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_OMEGA);
+
+        //热量控制
+        // if (FSM_Heat_Detect.Heat + 30 < Referee->Get_Booster_17mm_1_Heat_Max())
+        // {
+             Drvier_Angle -= 2.0f * PI / 8.0f * 5.0f; //五连发
+             Motor_Driver.Set_Target_Angle(Drvier_Angle);
+        // }
+
+        Motor_Friction_Left.Set_Target_Omega(Friction_Omega);
+        Motor_Friction_Right.Set_Target_Omega(-Friction_Omega);
+
+        //点一发立刻停火
+        Booster_Control_Type = Booster_Control_Type_CEASEFIRE;
+    }
     case (Booster_Control_Type_REPEATED):
     {
         // 连发模式

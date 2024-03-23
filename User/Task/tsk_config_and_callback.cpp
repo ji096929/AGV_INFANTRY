@@ -67,6 +67,7 @@ Struct_USB_Manage_Object MiniPC_USB_Manage_Object = {0};
  *
  * @param CAN_RxMessage CAN1收到的消息
  */
+#ifdef CHASSIS
 void Chassis_Device_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 {
     switch (CAN_RxMessage->Header.StdId)
@@ -103,12 +104,13 @@ void Chassis_Device_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
         break;
     }
 }
-
+#endif
 /**
  * @brief Chassis_CAN2回调函数
  *
  * @param CAN_RxMessage CAN2收到的消息
  */
+#ifdef CHASSIS
 void Chassis_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 {
     switch (CAN_RxMessage->Header.StdId)
@@ -140,12 +142,13 @@ void Chassis_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
     break;
 	}
 }
-
+#endif
 /**
  * @brief Gimbal_CAN1回调函数
  *
  * @param CAN_RxMessage CAN1收到的消息
  */
+#ifdef GIMBAL
 void Gimbal_Device_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 {
     switch (CAN_RxMessage->Header.StdId)
@@ -178,12 +181,13 @@ void Gimbal_Device_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 	}
 		
 }
-
+#endif
 /**
  * @brief Gimbal_CAN1回调函数
  *
  * @param CAN_RxMessage CAN2收到的消息
  */
+#ifdef GIMBAL
 void Gimbal_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 {
     switch (CAN_RxMessage->Header.StdId)
@@ -215,7 +219,7 @@ void Gimbal_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
     break;
 	}
 }
-
+#endif
 /**
  * @brief SPI5回调函数
  *
@@ -249,6 +253,7 @@ void Device_SPI1_Callback(uint8_t *Tx_Buffer, uint8_t *Rx_Buffer, uint16_t Lengt
  * @param Buffer UART1收到的消息
  * @param Length 长度
  */
+#ifdef GIMBAL
 void DR16_UART3_Callback(uint8_t *Buffer, uint16_t Length)
 {
     chariot.DR16.UART_RxCpltCallback(Buffer);
@@ -256,7 +261,7 @@ void DR16_UART3_Callback(uint8_t *Buffer, uint16_t Length)
     //底盘 云台 发射机构 的控制策略
     chariot.TIM_Control_Callback();
 }
-
+#endif
 
 /**
  * @brief IIC磁力计回调函数
@@ -275,22 +280,24 @@ void Ist8310_IIC3_Callback(uint8_t* Tx_Buffer, uint8_t* Rx_Buffer, uint16_t Tx_L
  * @param Buffer UART收到的消息
  * @param Length 长度
  */
+#ifdef CHASSIS
 void Referee_UART6_Callback(uint8_t *Buffer, uint16_t Length)
 {
     chariot.Referee.UART_RxCpltCallback(Buffer);
 }
-
+#endif
 /**
- * @brief UART7云台AHRS回调函数
+ * @brief UART1超电回调函数
  *
- * @param Buffer UART7收到的消息
+ * @param Buffer UART1收到的消息
  * @param Length 长度
  */
-void AHRS_UART7_Callback(uint8_t *Buffer, uint16_t Length)
+#if defined CHASSIS && defined POWER_LIMIT
+void SuperCAP_UART1_Callback(uint8_t *Buffer, uint16_t Length)
 {
-    
+    chariot.Supercap.UART_RxCpltCallback(Buffer);
 }
-
+#endif
 /**
  * @brief USB MiniPC回调函数
  *
@@ -298,11 +305,12 @@ void AHRS_UART7_Callback(uint8_t *Buffer, uint16_t Length)
  *
  * @param Length 长度
  */
+#ifdef GIMBAL
 void MiniPC_USB_Callback(uint8_t *Buffer, uint32_t Length)
 {
     chariot.MiniPC.USB_RxCpltCallback(Buffer);
 }
-
+#endif
 /**
  * @brief TIM4任务回调函数
  *
@@ -326,6 +334,8 @@ void Task100us_TIM4_Callback()
  * @brief TIM5任务回调函数
  *
  */
+
+uint16_t pwmVal = 300;
 void Task1ms_TIM5_Callback()
 {
     init_finished++;
@@ -348,6 +358,9 @@ void Task1ms_TIM5_Callback()
 
         TIM_UART_PeriodElapsedCallback();
         
+        #ifdef GIMBAL
+//        __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_3, pwmVal);
+        #endif
         
         static int mod5 = 0;
         mod5++;
@@ -380,7 +393,10 @@ void Task_Init()
         //裁判系统
         UART_Init(&huart6, Referee_UART6_Callback, 128);
 
-        
+        #ifdef POWER_LIMIT
+        //旧版超电
+        UART_Init(&huart1, SuperCAP_UART1_Callback, 128);
+        #endif
 
     #endif
 
@@ -401,6 +417,8 @@ void Task_Init()
 				
         //上位机USB
         USB_Init(&MiniPC_USB_Manage_Object,MiniPC_USB_Callback);
+
+        HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_3);
 
     #endif
 

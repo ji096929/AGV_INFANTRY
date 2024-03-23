@@ -34,6 +34,7 @@ class Class_Power_Limit
     float Get_Torque_Current(uint8_t num);
 
     void Set_Motor(Class_DJI_Motor_C620 (&Motor)[4]);
+    void Set_Chassis_Buffer(float __buffer);
     void Output(Class_DJI_Motor_C620 (&Motor)[4]);
 
     void TIM_Adjust_PeriodElapsedCallback();
@@ -41,7 +42,7 @@ class Class_Power_Limit
     protected:
 
     //转矩系数 rad转rpm系数
-	float Toque_Coefficient = 1.99688994e-6f;  // (20/16384)*(0.3)*(187/3591)/9.55
+	float Toque_Coefficient = 1.99688994e-6f * (3591/187) / 13.93f;  // (20/16384)*(0.3)*(187/3591)/9.55
 
     //电机模型参数
 	float k1 = 1.23e-07;		// k1
@@ -67,6 +68,10 @@ class Class_Power_Limit
     //伸缩之后的功率限制
 	float Scaled_Give_Power[4];  
 
+
+    float Limit_K = 1.0f;
+    float Chassis_Buffer;
+    const float Min_Buffer = 10.0f; 
     //输出功率限制之后的电流到电机缓冲区
     void Output();
 

@@ -54,12 +54,12 @@ void Class_Tricycle_Chassis::Init(float __Velocity_X_Max, float __Velocity_Y_Max
     Power_Limit.Parameter_Init();
 
     //底盘随动PID环初始化
-    PID_Chassis_Fllow.Init(10.0f, 0.0f, 0.0f, 0.0f, 20.0f, 20.0f);
+    PID_Chassis_Fllow.Init(20.0f, 0.0f, 0.0f, 0.0f, 20.0f, 20.0f,0.0f,0.0f,0.0f,0.001f,0.05f);
 
     //电机PID批量初始化
     for (int i = 0; i < 4; i++)
     {
-        Motor_Wheel[i].PID_Omega.Init(1000.0f, 5000.0f, 0.01f, 0.0f, Motor_Wheel[i].Get_Output_Max(), Motor_Wheel[i].Get_Output_Max());
+        Motor_Wheel[i].PID_Omega.Init(1500.0f, 5000.0f, 0.0f, 0.0f, Motor_Wheel[i].Get_Output_Max(), Motor_Wheel[i].Get_Output_Max());
     }
 
     //轮向电机ID初始化
@@ -168,10 +168,12 @@ void Class_Tricycle_Chassis::TIM_Calculate_PeriodElapsedCallback()
     }
 
    //功率限制
-   Power_Limit.Set_Power_Limit(45.0f);   //功率限制45w
-   Power_Limit.Set_Motor(Motor_Wheel);   //添加四个电机的控制电流和当前转速
-   Power_Limit.TIM_Adjust_PeriodElapsedCallback();  //功率限制算法
-   Power_Limit.Output(Motor_Wheel);    //修改缓冲区
+        // Power_Limit.Set_Power_Limit(Referee->Get_Chassis_Power_Max());   //功率限制45w
+//        Power_Limit.Set_Power_Limit(25.0f);
+        Power_Limit.Set_Motor(Motor_Wheel);   //添加四个电机的控制电流和当前转速
+        Power_Limit.Set_Chassis_Buffer(Referee->Get_Chassis_Energy_Buffer());
+        Power_Limit.TIM_Adjust_PeriodElapsedCallback();  //功率限制算法
+        Power_Limit.Output(Motor_Wheel);    //修改缓冲区
 
 }
 

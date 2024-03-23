@@ -151,7 +151,7 @@ protected:
     //一圈编码器刻度
     uint16_t Encoder_Num_Per_Round = 8192;
     //最大输出电压
-    uint16_t Output_Max = 30000;
+    uint16_t Output_Max = 25000;
 
     //内部变量
 
@@ -295,7 +295,7 @@ public:
     //功率限制友元函数
     friend class Class_Power_Limit;
 
-    void Init(CAN_HandleTypeDef *__hcan, Enum_DJI_Motor_ID __CAN_ID, Enum_DJI_Motor_Control_Method __Control_Method = DJI_Motor_Control_Method_OMEGA, float __Gearbox_Rate = 3591.0f / 187.0f, float __Torque_Max = 16384.0f);
+    void Init(CAN_HandleTypeDef *__hcan, Enum_DJI_Motor_ID __CAN_ID, Enum_DJI_Motor_Control_Method __Control_Method = DJI_Motor_Control_Method_OMEGA, float __Gearbox_Rate = 13.933f, float __Torque_Max = 16384.0f);
 
     inline uint16_t Get_Output_Max();
     inline Enum_DJI_Motor_Status Get_DJI_Motor_Status();

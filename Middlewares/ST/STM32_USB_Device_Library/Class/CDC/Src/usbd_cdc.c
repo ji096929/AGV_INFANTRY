@@ -690,7 +690,7 @@ static uint8_t USBD_CDC_Setup(USBD_HandleTypeDef *pdev,
 static uint8_t USBD_CDC_DataIn(USBD_HandleTypeDef *pdev, uint8_t epnum)
 {
   USBD_CDC_HandleTypeDef *hcdc;
-  PCD_HandleTypeDef *hpcd = (PCD_HandleTypeDef*)pdev->pData;
+  PCD_HandleTypeDef *hpcd = pdev->pData;
 
   if (pdev->pClassData == NULL)
   {

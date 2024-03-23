@@ -49,64 +49,83 @@ float Class_Power_Limit::Get_Torque_Current(uint8_t num)
 }
 
 /**
+ * @brief 设置底盘buffer
+ *
+ * @return float 电机扭矩电流
+ */
+void Class_Power_Limit::Set_Chassis_Buffer(float __buffer)
+{
+    Chassis_Buffer = __buffer;
+}
+
+/**
  * @brief 定时器周期到达回调函数
  *
  */
 void Class_Power_Limit::TIM_Adjust_PeriodElapsedCallback()
 {
-	//每个周期的总功率预测先清零
-	Total_Predict_Power = 0;
-	//根据总功率来计算比例系数K
-	for (uint8_t i = 0; i < 4; i++) // first get all the initial motor power and total motor power
+	// //每个周期的总功率预测先清零
+	// Total_Predict_Power = 0;
+	// //根据总功率来计算比例系数K
+	// for (uint8_t i = 0; i < 4; i++) // first get all the initial motor power and total motor power
+	// {
+	// 	Predict_Power[i] =  Toque_Coefficient * Torque_Current[i] * Omega[i] * RAD_TO_RPM+
+	// 						k2 * (Omega[i] * RAD_TO_RPM)* (Omega[i] * RAD_TO_RPM) +
+	// 						k1 * Torque_Current[i] * Torque_Current[i] + 
+    //                         Alpha;
+
+	// 	if (Predict_Power[i] < 0) // negative power not included (transitory)
+	// 		continue;
+	// 	Total_Predict_Power += Predict_Power[i];
+	// }
+
+    // //开启功率限制
+	// if (Total_Predict_Power > Total_Power_Limit) // determine if larger than max power
+	// {
+	// 	//计算伸缩系数k
+	// 	Power_Scale = Total_Power_Limit / Total_Predict_Power;
+	// 	for (uint8_t i = 0; i < 4; i++)
+	// 	{
+	// 		Scaled_Give_Power[i] = Predict_Power[i] * Power_Scale; // 获得各个电机伸缩后的功率限制
+	// 		if (Scaled_Give_Power[i] < 0)
+	// 		{
+	// 			continue;
+	// 		}
+
+    //         //过程变量 equation_b equation_c
+	// 		equation_b = Toque_Coefficient * Omega[i] * RAD_TO_RPM;
+	// 		equation_c = k2 * (Omega[i] * RAD_TO_RPM ) * (Omega[i] * RAD_TO_RPM ) - Scaled_Give_Power[i] + Alpha;
+
+	// 		if (Torque_Current[i] > 0) // Selection of the calculation formula according to the direction of the original moment
+	// 		{
+	// 			float temp = (-equation_b + sqrt(equation_b * equation_b - 4.0f * k1 * equation_c)) / (2.0f * k1);
+	// 			if (temp > 16000)
+	// 			{
+	// 				Torque_Current[i] = 16000;
+	// 			}
+	// 			else
+	// 				Torque_Current[i] = temp;
+	// 				// Test_Current[i] = temp;
+	// 		}
+	// 		else
+	// 		{
+	// 			float temp = (-equation_b - sqrt(equation_b * equation_b - 4.0f * k1 * equation_c)) / (2.0f * k1);
+	// 			if (temp < -16000)
+	// 			{
+	// 				Torque_Current[i] = -16000;
+	// 			}
+	// 			else
+	// 				Torque_Current[i] = temp;
+	// 				// Test_Current[i] = temp;
+	// 		}
+	// 	}
+	// }
+	
+	Limit_K = (Chassis_Buffer-Min_Buffer)/60.0f;
+	if(Limit_K<0) Limit_K = 0;
+	for(int i=0;i<4;i++)
 	{
-		Predict_Power[i] =  Toque_Coefficient * Torque_Current[i] * Omega[i] * RAD_TO_RPM+
-							k2 * (Omega[i] * RAD_TO_RPM)* (Omega[i] * RAD_TO_RPM) +
-							k1 * Torque_Current[i] * Torque_Current[i] + 
-                            Alpha;
-
-		if (Predict_Power[i] < 0) // negative power not included (transitory)
-			continue;
-		Total_Predict_Power += Predict_Power[i];
-	}
-
-    //开启功率限制
-	if (Total_Predict_Power > Total_Power_Limit) // determine if larger than max power
-	{
-		//计算伸缩系数k
-		Power_Scale = Total_Power_Limit / Total_Predict_Power;
-		for (uint8_t i = 0; i < 4; i++)
-		{
-			Scaled_Give_Power[i] = Predict_Power[i] * Power_Scale; // 获得各个电机伸缩后的功率限制
-			if (Scaled_Give_Power[i] < 0)
-			{
-				continue;
-			}
-
-            //过程变量 equation_b equation_c
-			equation_b = Toque_Coefficient * Omega[i] * RAD_TO_RPM;
-			equation_c = k2 * Omega[i] * Omega[i] - Scaled_Give_Power[i] + Alpha;
-
-			if (Torque_Current[i] > 0) // Selection of the calculation formula according to the direction of the original moment
-			{
-				float temp = (-equation_b + sqrt(equation_b * equation_b - 4 * k1 * equation_c)) / (2 * k1);
-				if (temp > 16000)
-				{
-					Torque_Current[i] = 16000;
-				}
-				else
-					Torque_Current[i] = temp;
-			}
-			else
-			{
-				float temp = (-equation_b - sqrt(equation_b * equation_b - 4 * k1 * equation_c)) / (2 * k1);
-				if (temp < -16000)
-				{
-					Torque_Current[i] = -16000;
-				}
-				else
-					Torque_Current[i] = temp;
-			}
-		}
+		Torque_Current[i]*=Limit_K; 
 	}
 }
 

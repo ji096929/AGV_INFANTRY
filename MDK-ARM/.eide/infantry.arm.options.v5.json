@@ -3,11 +3,11 @@
     "beforeBuildTasks": [],
     "afterBuildTasks": [],
     "global": {
-        "use-microLIB": true,
-        "output-debug-info": "enable"
+        "output-debug-info": "enable",
+        "use-microLIB": true
     },
     "c/cpp-compiler": {
-        "optimization": "level-0",
+        "optimization": "level-speed",
         "one-elf-section-per-function": true,
         "c99-mode": true,
         "C_FLAGS": "--cpp11",
@@ -16,9 +16,6 @@
     },
     "asm-compiler": {},
     "linker": {
-        "output-format": "elf",
-        "xo-base": "",
-        "ro-base": "",
-        "rw-base": ""
+        "output-format": "elf"
     }
 }
