@@ -310,10 +310,7 @@ STEERING_WHEEL_RETURN_T Steering_Wheel_MotorCommandUpdate(steering_wheel_t *stee
 		// 动力电机速度环PID
 		temp_err = steering_wheel->motion_part.command.protocol_speed*steering_wheel->parameter.invert_flag - steering_wheel->motion_part.status.protocol_speed;
 		steering_wheel->motion_part.motor.command.torque = PID_Controller(&steering_wheel->motion_part.motor.PID_Handles.velocity_loop_handle, temp_err);
-		#if defined(MOTION_MOTOR_M3508)
-		calculate_torque_current_according_to_scaled_power(chassis_power_control.scaled_power_32);
-		steering_wheel->motion_part.motor.M3508_kit.command.torque = steering_wheel->motion_part.motor.command.torque;
-#endif
+		
 		// 转向电机角度环PID
 		
 		
@@ -326,9 +323,9 @@ STEERING_WHEEL_RETURN_T Steering_Wheel_MotorCommandUpdate(steering_wheel_t *stee
 			temp_min = abs(temp_err);
 			else
 			temp_min = PROTOCOL_POSITION_LSBS-abs(temp_err);
-			if (temp_min > HALF_PROTOCOL_POSITION_LSBS*0.3f)
+			if (temp_min > HALF_PROTOCOL_POSITION_LSBS*0.5f)
 			steering_wheel->parameter.invert_flag=-steering_wheel->parameter.invert_flag;
-			temp_err = steering_wheel->directive_part.command.protocol_position - steering_wheel->directive_part.status.protocol_position + ((steering_wheel->parameter.invert_flag-1)/2.0f)*HALF_PROTOCOL_POSITION_LSBS;
+			temp_err = steering_wheel->directive_part.command.protocol_position - steering_wheel->directive_part.status.protocol_position - ((steering_wheel->parameter.invert_flag-1)/2.0f)*HALF_PROTOCOL_POSITION_LSBS;
 		}
 		//关闭角度优化模式
 		else
@@ -359,6 +356,11 @@ STEERING_WHEEL_RETURN_T Steering_Wheel_MotorCommandUpdate(steering_wheel_t *stee
 		// 由于齿轮传动使得编码器转动方向为CW时，舵转动方向为CCW，反之亦然。所以要对称处理
 		if (steering_wheel->directive_part.encoder.parameter.encoder_directive_part_direction == DIRECTION_INVERSE)
 			steering_wheel->directive_part.motor.command.torque = steering_wheel->directive_part.motor.command.torque;
+		expert_power_calculate();
+		scaled_power_calculate();
+		#if defined(MOTION_MOTOR_M3508)
+		steering_wheel->motion_part.motor.M3508_kit.command.torque = steering_wheel->motion_part.motor.command.torque;
+#endif
 		#if defined(DIRECTIVE_MOTOR_M3508)
 			steering_wheel->directive_part.motor.M3508_kit.command.torque = steering_wheel->directive_part.motor.command.torque;
 		#endif
@@ -393,10 +395,9 @@ STEERING_WHEEL_RETURN_T Steering_Wheel_CommandTransmit(steering_wheel_t *steerin
 			M3508_gear_set_torque_current_lsb(&steering_wheel->directive_part.motor.M3508_kit, steering_wheel->directive_part.motor.M3508_kit.command.torque, SEND_COMMAND_NOW);
 		#endif
 		#if defined(MOTION_MOTOR_M3508)
-		if(chassis_power_control.motor_control_flag)
-			{
+		
 				M3508_gear_set_torque_current_lsb(&steering_wheel->motion_part.motor.M3508_kit, steering_wheel->motion_part.motor.M3508_kit.command.torque, SEND_COMMAND_NOW);
-			}
+			
 		#endif
 		return STEERING_WHEEL_OK;
 	}

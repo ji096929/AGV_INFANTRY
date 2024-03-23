@@ -73,7 +73,9 @@ void calculate_true_power(void)
 {
     
 	float sum = 0;
-    chassis_power_control.power_limit_max   =   JudgeReceive.MaxPower;
+//    chassis_power_control.power_limit_max   =   JudgeReceive.MaxPower;
+	    chassis_power_control.power_limit_max   =   100;
+
 	if(chassis_power_control.all_mscb_ready_flag&0xf)
 	{
     for (uint8_t i = 0; i < 4; i++)

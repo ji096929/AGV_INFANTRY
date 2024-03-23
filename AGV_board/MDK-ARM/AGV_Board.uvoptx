@@ -118,7 +118,6 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name></Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -172,6 +171,16 @@
           <count>1</count>
           <WinNumber>1</WinNumber>
           <ItemText>CAN_RxHeaderStruct</ItemText>
+        </Ww>
+        <Ww>
+          <count>2</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>chassis_power_control</ItemText>
+        </Ww>
+        <Ww>
+          <count>3</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>m_c</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>

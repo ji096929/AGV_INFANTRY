@@ -50,15 +50,15 @@ void CAN2_Call_Back(struct Struct_CAN_Rx_Buffer *rx)
                     chassis_power_control.all_mscb_ready_flag   = chassis_power_control.all_mscb_ready_flag | 0x1;
         break;
         case 0x1b:
-					memcpy(&chassis_power_control.expect_power_32[0],rx->Data,4);
+					memcpy(&chassis_power_control.expect_power_32[1],rx->Data,4);
                      chassis_power_control.all_mscb_ready_flag   = chassis_power_control.all_mscb_ready_flag | 0x2;
         break;
         case 0x1c:
-					memcpy(&chassis_power_control.expect_power_32[0],rx->Data,4);
+					memcpy(&chassis_power_control.expect_power_32[2],rx->Data,4);
                      chassis_power_control.all_mscb_ready_flag   = chassis_power_control.all_mscb_ready_flag | 0x4;
         break;
         case 0x1d:
-					memcpy(&chassis_power_control.expect_power_32[0],rx->Data,4);
+					memcpy(&chassis_power_control.expect_power_32[3],rx->Data,4);
                      chassis_power_control.all_mscb_ready_flag   = chassis_power_control.all_mscb_ready_flag | 0x8;
         break;
     }

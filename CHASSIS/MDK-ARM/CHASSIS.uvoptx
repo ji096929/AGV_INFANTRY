@@ -118,7 +118,6 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name></Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -176,7 +175,7 @@
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>chassis_power_control</ItemText>
+          <ItemText>chassis_power_control,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
@@ -187,6 +186,11 @@
           <count>6</count>
           <WinNumber>1</WinNumber>
           <ItemText>yaw_pid</ItemText>
+        </Ww>
+        <Ww>
+          <count>7</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>connection</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>
