@@ -19,7 +19,9 @@
 #include "alg_power_limit.h"
 
 /* Exported macros -----------------------------------------------------------*/
-
+//弧度转化
+#define RADPS_TO_RPM(x) ((x) * (60.0f / (2.0f * PI)))
+#define RAD_TO_ANGEL(x) ((x) * (180.0f / PI))
 /* Exported types ------------------------------------------------------------*/
 
 /**
@@ -151,7 +153,7 @@ protected:
     //一圈编码器刻度
     uint16_t Encoder_Num_Per_Round = 8192;
     //最大输出电压
-    uint16_t Output_Max = 25000;
+    uint16_t Output_Max = 30000;
 
     //内部变量
 
@@ -173,9 +175,9 @@ protected:
 
     //电机控制方式
     Enum_DJI_Motor_Control_Method DJI_Motor_Control_Method = DJI_Motor_Control_Method_IMU_ANGLE;
-    //目标的角度, rad
+    //目标的角度, 度数
     float Target_Angle = 0.0f;
-    //目标的速度, rad/s
+    //目标的速度, rpm
     float Target_Omega = 0.0f;
     //目标的扭矩, 直接采用反馈值
     float Target_Torque = 0.0f;

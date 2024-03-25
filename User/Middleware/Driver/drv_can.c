@@ -225,28 +225,17 @@ void TIM_CAN_PeriodElapsedCallback()
 	
     #elif defined (GIMBAL)
 
-    // CAN1 摩擦轮*2 pitch
-    CAN_Send_Data(&hcan1, 0x1ff, CAN1_0x1ff_Tx_Data, 8); //pitch-GM6020  按照0x1ff ID 发送 可控制多个电机
-    CAN_Send_Data(&hcan1, 0x200, CAN1_0x200_Tx_Data, 8); //摩擦轮+拨弹轮 按照0x200 ID 发送 可控制多个电机
+    // CAN2 摩擦轮*2 pitch
+    CAN_Send_Data(&hcan2, 0x1ff, CAN2_0x1ff_Tx_Data, 8); //pitch-GM6020  按照0x1ff ID 发送 可控制多个电机
+    CAN_Send_Data(&hcan2, 0x200, CAN2_0x200_Tx_Data, 8); //摩擦轮+拨弹轮 按照0x200 ID 发送 可控制多个电机
 
-    CAN_Send_Data(&hcan1, 0x141, CAN1_0x141_Tx_Data, 8); //pitch-LK6010  按照0x141 ID 发送 一次只能控制一个电机
-    
-    // CAN2 yaw 下板
+//    CAN_Send_Data(&hcan1, 0x141, CAN1_0x141_Tx_Data, 8); //pitch-LK6010  按照0x141 ID 发送 一次只能控制一个电机
+//    
+//    // CAN2 yaw 下板
     CAN_Send_Data(&hcan2, 0x1ff, CAN2_0x1ff_Tx_Data, 8); //yaw-GM6020  按照0x1ff ID 发送 可控制多个电机
-    CAN_Send_Data(&hcan2, 0x77, CAN2_Chassis_Tx_Data, 8); //给底盘发送控制命令 按照0x77 ID 发送
+//    CAN_Send_Data(&hcan2, 0x77, CAN2_Chassis_Tx_Data, 8); //给底盘发送控制命令 按照0x77 ID 发送
     #endif
-	//测试拓展帧
-	// CAN_TxHeaderTypeDef tx_header;
-    // uint32_t used_mailbox;
 
-    // tx_header.StdId = 0;
-    // tx_header.ExtId = 0x300001B;
-    // tx_header.IDE = CAN_ID_EXT;
-    // tx_header.RTR = 0;
-    // tx_header.DLC = 8;
-
-    // uint8_t Data[8]={0};
-    // HAL_CAN_AddTxMessage(&hcan2, &tx_header, Data, &used_mailbox);
 }
 
 /**

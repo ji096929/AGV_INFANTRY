@@ -1,2 +1,0 @@
-This is a simple example which shows how to setup emWin Graphic Library
-for the Keil MCBSTM32F400 Evaluation Board.

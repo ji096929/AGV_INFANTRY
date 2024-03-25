@@ -113,8 +113,8 @@ protected:
 float Gravity_Compensate = 0.0f;
 
     //内部变量
-    float True_Rad_Pitch = 0.0f;
-    float True_Gyro_Pitch = 0.0f;
+    float True_Rad_Pitch = 0.0f;//角度（弧度制）
+    float True_Gyro_Pitch = 0.0f;//角速度
     //读变量
 
     //写变量
@@ -160,8 +160,8 @@ protected:
 float Gravity_Compensate = 0.0f;
 
     //内部变量 
-   float True_Rad_Pitch = 0.0f;
-   float True_Gyro_Pitch = 0.0f;
+   float True_Rad_Pitch = 0.0f;//rad
+   float True_Gyro_Pitch = 0.0f;//rad/s
     //读变量
 
     //写变量
@@ -231,9 +231,9 @@ protected:
     float Yaw_Half_Turns;
 
     // pitch轴最小值
-    float Min_Pitch_Angle = -PI/12.0f;
+    float Min_Pitch_Angle = -30;
     // pitch轴最大值
-    float Max_Pitch_Angle = PI/12.0f ; //多10°
+    float Max_Pitch_Angle = 30 ; //多10°
 
     //内部变量 
 

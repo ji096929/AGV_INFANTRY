@@ -1,16 +1,24 @@
 {
-    "version": "0.2.0",
-    "configurations": [
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": true,
+      "cwd": "e:/files/pure_english_name_files/Standard_4_Cpp_Structure_ByRoboWalker/User/Chariot",
+      "program": "e:/files/pure_english_name_files/Standard_4_Cpp_Structure_ByRoboWalker/User/Chariot/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
         {
-            "cwd": "${workspaceRoot}",
-            "type": "cortex-debug",
-            "request": "launch",
-            "name": "jlink",
-            "servertype": "jlink",
-            "interface": "swd",
-            "executable": "build\\infantry\\infantry.elf",
-            "runToEntryPoint": "main",
-            "device": "STM32F407IG"
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
         }
-    ]
+      ]
+    }
+  ]
 }

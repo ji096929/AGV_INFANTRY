@@ -311,7 +311,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>4</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -776,14 +776,14 @@
               <FilePath>..\User\Device\dvc_dmmotor.cpp</FilePath>
             </File>
             <File>
-              <FileName>dvc_lkmotor.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\User\Device\dvc_lkmotor.cpp</FilePath>
-            </File>
-            <File>
               <FileName>dvc_dr16.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\User\Device\dvc_dr16.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>dvc_lkmotor.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\Device\dvc_lkmotor.cpp</FilePath>
             </File>
             <File>
               <FileName>dvc_supercap.cpp</FileName>

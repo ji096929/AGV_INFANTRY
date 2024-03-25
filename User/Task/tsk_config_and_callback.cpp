@@ -115,7 +115,7 @@ void Chassis_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 {
     switch (CAN_RxMessage->Header.StdId)
     {
-    case (0x208):  //留给yaw电机编码器回传 用于底盘随动
+    case (0x206):  //留给yaw电机编码器回传 用于底盘随动
     {
         chariot.Chassis.Motor_Yaw.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
@@ -132,7 +132,7 @@ void Chassis_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
     break;
     case (0x205):
     {
-        
+        chariot.Chassis.Motor_Pitch.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
     case (0x206):
@@ -153,11 +153,7 @@ void Gimbal_Device_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 {
     switch (CAN_RxMessage->Header.StdId)
     {
-    case (0x203):
-    {
-        chariot.Booster.Motor_Driver.CAN_RxCpltCallback(CAN_RxMessage->Data);
-    }
-    break;
+
     case (0x201):
     {
         chariot.Booster.Motor_Friction_Left.CAN_RxCpltCallback(CAN_RxMessage->Data);
@@ -168,10 +164,7 @@ void Gimbal_Device_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
         chariot.Booster.Motor_Friction_Right.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
-    case (0x205):
-    {
-        chariot.Gimbal.Motor_Pitch.CAN_RxCpltCallback(CAN_RxMessage->Data);
-    }
+
     break;
     case (0x141):
     {
@@ -197,11 +190,12 @@ void Gimbal_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
         
     }
     break;
-    case (0x208):   //保留can2对6020编码器的接口
+    case (0x203):
     {
-        chariot.Gimbal.Motor_Yaw.CAN_RxCpltCallback(CAN_RxMessage->Data);
+        chariot.Booster.Motor_Driver.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
+
     case (0x204):
     {
         
@@ -209,12 +203,11 @@ void Gimbal_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
     break;
     case (0x205):
     {
-       
+        chariot.Gimbal.Motor_Pitch.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
-    break;
     case (0x206):
     {
-        
+        chariot.Gimbal.Motor_Yaw.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
 	}

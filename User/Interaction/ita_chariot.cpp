@@ -257,6 +257,8 @@ void Class_Chariot::Control_Gimbal()
         //键盘遥控器操作逻辑
         tmp_gimbal_yaw += DR16.Get_Mouse_X() * DR16_Mouse_Yaw_Angle_Resolution;
         tmp_gimbal_pitch -= DR16.Get_Mouse_Y() * DR16_Mouse_Pitch_Angle_Resolution;
+	    
+	    
     }
     else if (DR16.Get_Left_Switch() == DR16_Switch_Status_TRIG_MIDDLE_UP)  //中-上的突变
     {
@@ -267,6 +269,9 @@ void Class_Chariot::Control_Gimbal()
         __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_3, 400);  //开启
     }
     // 设定角度
+    
+    
+    
     Gimbal.Set_Target_Yaw_Angle(tmp_gimbal_yaw);
     Gimbal.Set_Target_Pitch_Angle(tmp_gimbal_pitch);
 }
@@ -352,7 +357,9 @@ void Class_Chariot::TIM_Calculate_PeriodElapsedCallback()
     #elif defined(GIMBAL)
 
         //各个模块的分别解算
-        Gimbal.TIM_Calculate_PeriodElapsedCallback();
+
+             Gimbal.TIM_Calculate_PeriodElapsedCallback();
+
         Booster.TIM_Calculate_PeriodElapsedCallback();
         //传输数据给上位机
         MiniPC.TIM_Write_PeriodElapsedCallback();
