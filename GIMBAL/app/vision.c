@@ -6,8 +6,8 @@ VISION_T vision_control;
 void Vision_Angle_Task(float target_yaw_angle,float target_pitch_angle)
 {
 
-	vision_control.command.yaw_angle	=	target_yaw_angle;
-	vision_control.command.pitch_angle	=	target_pitch_angle;
+	vision_control.command.yaw_angle	=	-target_yaw_angle;
+	vision_control.command.pitch_angle	=	-target_pitch_angle;
 
 };
 

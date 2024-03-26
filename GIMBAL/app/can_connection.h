@@ -16,7 +16,7 @@
 
 
 
-typedef __packed enum
+typedef  enum
 {
     CHASSIS_MODE_NOFORCE    =   0x00u,
     CHASSIS_MODE_TOPANGLE    =   0x02u,
@@ -24,7 +24,7 @@ typedef __packed enum
     CHASSIS_MODE_PRECISE    = 0x03u,
 }CHASSIS_MODE_E;
 
-typedef __packed struct
+typedef  struct
 {
     float vx;
     float vy;
@@ -32,16 +32,22 @@ typedef __packed struct
 }CHASSIS_VELOCITY_T;
 
 
-typedef __packed struct 
+typedef  struct 
 {
     CHASSIS_MODE_E mode;
     CHASSIS_VELOCITY_T velocity;
     bool follow_flag;
     bool invert_flag;
+		bool fric_state;
+		bool vision_flag;
+		bool ui_init_flag;
+		int16_t fric_speed;
+		float pitch_angle;
+		
 
 }CHASSIS_SEND_T;
 
-typedef  __packed struct 
+typedef   struct 
 {
     CHASSIS_MODE_E mode;
     CHASSIS_VELOCITY_T velocity;
@@ -49,7 +55,7 @@ typedef  __packed struct
 
 }CHASSIS_RECEIVE_T;
 
-typedef __packed struct
+typedef  struct
 {
     CHASSIS_SEND_T send;
     CHASSIS_RECEIVE_T receive;

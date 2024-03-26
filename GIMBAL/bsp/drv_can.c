@@ -50,7 +50,7 @@ uint8_t CAN2_0xxf8_Tx_Data[8];
 
 uint8_t CAN2_0x150_Tx_Data[8];
 uint8_t CAN2_0x152_Tx_Data[8];
-
+uint8_t CAN2_0x154_Tx_Data[8];
 /* Private function declarations ---------------------------------------------*/
 
 /* function prototypes -------------------------------------------------------*/

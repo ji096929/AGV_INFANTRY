@@ -104,7 +104,7 @@ typedef __packed struct
 
 
 
-
+void UI_Send_Graphic_Task(void);
 
 void UI_Send_Char_Task(void);
 #endif

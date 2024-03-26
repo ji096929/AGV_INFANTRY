@@ -408,8 +408,8 @@ void DMA_Send(void)
 	pack.detect_color =1;
 	pack.target_id    =0x01;
 	pack.roll         =0.0f;
-	pack.pitch        =gimbal.pitch.imu.status.actual_angle;
-	pack.yaw          =gimbal.yaw.imu.status.actual_angle;
+	pack.pitch        =-gimbal.pitch.imu.status.actual_angle;
+	pack.yaw          =-gimbal.yaw.imu.status.actual_angle;
 	pack.crc16        =0xffff;
 	memcpy(Buffer,&pack,sizeof(pack));
 	Append_CRC16_Check_Sum(Buffer,sizeof(pack));

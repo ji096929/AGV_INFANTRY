@@ -62,7 +62,7 @@ void Chassis_Inveter_Judge(void)
 {
 		chassis.parameter.invert_flag	=	connection.connection_rx.invert.flag;
 		chassis.parameter.follow_switch	=	connection.connection_rx.follow.flag;
-    if(chassis.parameter.invert_flag)
+    if(chassis.parameter.invert_flag==INVERT_ON)
     {
         chassis.command.set_vx = -connection.connection_rx.vx;
         chassis.command.set_vy = -connection.connection_rx.vy;
@@ -89,11 +89,21 @@ void Yaw_Angle_Process(YAW_T  *yaw)
 void Gimbal_To_Chassis_Relative_Angle_Update(void)
 {
     float gimbal_angle,chassis_angle;
-    chassis_angle   =   yaw.status.actual_angle;
-    gimbal_angle    =   GIMBAL_HEAD_ANGLE+180.0f*chassis.parameter.invert_flag;
-    chassis.parameter.relative_angle =   chassis_angle-gimbal_angle;
-    if(chassis.parameter.relative_angle>180.0f) chassis.parameter.relative_angle-=360.0f;
-    if(chassis.parameter.relative_angle<-180.0f) chassis.parameter.relative_angle+=360.0f;
+    
+		if(chassis.parameter.follow_switch	==	FOLLOW_ON)
+				{
+				chassis_angle   =   yaw.status.actual_angle;
+				gimbal_angle    =   GIMBAL_HEAD_ANGLE+180.0f*chassis.parameter.invert_flag;
+				chassis.parameter.relative_angle =   chassis_angle-gimbal_angle;
+				if(chassis.parameter.relative_angle>180.0f) chassis.parameter.relative_angle-=360.0f;
+				if(chassis.parameter.relative_angle<-180.0f) chassis.parameter.relative_angle+=360.0f;
+				}
+				else
+				{
+				chassis.parameter.relative_angle =  0;
+				}
+	
+		
 }
 
 static float chassis_fllow(void)
@@ -118,7 +128,7 @@ void Chassis_Mode_Command_Update(void)
         chassis.command.vw =  0;
         break;
         case    CHASSIS_NORMAL:
-        if(chassis.parameter.follow_switch	==	1)
+        if(chassis.parameter.follow_switch	==	FOLLOW_ON)
 				{
 				chassis.command.vw =  chassis.command.vw-1.0f*chassis_fllow();
 				}
@@ -140,7 +150,7 @@ void Chassis_Mode_Command_Update(void)
 void Chassis_Init(void)
 {
     chassis.parameter.mode =   CHASSIS_NORMAL;
-    chassis.parameter.invert_flag =  1;//1:正转，0：反转
+    chassis.parameter.invert_flag =  1;//1:正向，0：反向
     chassis.parameter.break_mode    =   1;
 		chassis.parameter.speed_slow	=	1;
     chassis.parameter.relative_angle    =   0.f;

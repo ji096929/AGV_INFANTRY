@@ -19,7 +19,7 @@
 //ist83100原始数据在缓冲区buf的位置
 #define IST8310_RX_BUF_DATA_OFFSET 16
 
-#define TARGET_IMU_TEMP	55.0f						//比工作环境高15~20
+#define TARGET_IMU_TEMP	54.0f						//比工作环境高15~20
 
 #define MPU6500_TEMP_PWM_MAX 5000 //mpu6500控制温度的设置TIM的重载值，即给PWM最大为 MPU6500_TEMP_PWM_MAX - 1
 

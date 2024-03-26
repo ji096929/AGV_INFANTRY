@@ -36,14 +36,11 @@ void Chassis_Task()
 {
     if(htim->Instance==TIM3)
     {
-        
-        if(time.ms_count%5==0)
-        {
-            Chassis_Move();
-						
-        }
-				
-        AGV_connoection(time.ms_count);
+    AGV_connoection(time.ms_count);    
+    if(time.ms_count%5==0)
+     {
+       Chassis_Move();			
+     }		 
 		if(time.ms_count%20==17)
 		{
 		calculate_true_power();
@@ -51,12 +48,21 @@ void Chassis_Task()
 		if(time.ms_count%5==1)
 		{
 			GM6020_Status_Update(&yaw.motor);
-            Yaw_Angle_Process(&yaw);
+      Yaw_Angle_Process(&yaw);
 		}     
-        if(time.ms_count%10==4)
-        {
-            Judge_Buffer_Receive_Task(JudgeReceiveBuffer,0);
-        }
+    if(time.ms_count%10==4)
+    {
+     Judge_Buffer_Receive_Task(JudgeReceiveBuffer,0);
+    }
+		if(time.ms_count%10==6)
+    {
+//    UI_Send_Char_Task();
+    }
+		if(time.ms_count%10==8)
+    {
+//     UI_Send_Graphic_Task();
+			Chassis_Flag_Update(&connection);
+    }
         Time_Count_Task(&time);
     }
 }

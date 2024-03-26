@@ -53,6 +53,7 @@ typedef  struct
 	float target_angle;
 	float target_speed;
 	float add_angle;
+
 	
 }YAW_COMMAND_T,PITCH_COMMAND_T;
 

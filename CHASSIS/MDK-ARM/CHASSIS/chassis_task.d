@@ -48,3 +48,4 @@ chassis\chassis_task.o: ../app/gimbal_connoection/gimbal_connection.h
 chassis\chassis_task.o: ../app/chassis_move/agv_control.h
 chassis\chassis_task.o: ../app/referee/referee.h
 chassis\chassis_task.o: ../app/referee/algorithmOfCRC.h
+chassis\chassis_task.o: ../app/referee/ui.h

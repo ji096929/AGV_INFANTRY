@@ -7,7 +7,7 @@
 #include "can_connection.h"
 #include "agv_control.h"
 #include "referee.h"
-
+#include "ui.h"
 typedef struct 
 {
     uint16_t ms_count;

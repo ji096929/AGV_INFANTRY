@@ -32,7 +32,7 @@ GIMBAL_T gimbal;
 float gimbal_pitch_encoder_speed_data[PID_DATA_LEN]
 	={700.0f,0.1f,0.0f,20000.0f,15000.0f,0.0f,50.0f,10.0f,0.7f,0.0f};
 float gimbal_pitch_encoder_position_data[PID_DATA_LEN]
-	={7.0f,0.0f,0.0f,150.0f,0.0f,0.00f,0.5f,0.1f,0.5f,0.0f};
+	={9.5f,0.0f,0.2f,150.0f,0.0f,0.00f,0.5f,0.1f,0.5f,0.0f};
 float gimbal_pitch_imu_speed_data[PID_DATA_LEN]
 	={7000.0f,28.0f,0.0f,25000.0f,10000.0f,0.0f,1000.0f,100.0f,0.7f,0.0f};
 float gimbal_pitch_imu_position_data[PID_DATA_LEN]
@@ -43,7 +43,7 @@ float gimbal_pitch_imu_position_data[PID_DATA_LEN]
 float gimbal_yaw_encoder_speed_data[PID_DATA_LEN]
 	={430.0f,0.3f,0.0f,25000.0f,7500.0f,0.0f,50.0f,10.0f,0.5f,0.0f};
 float gimbal_yaw_encoder_position_data[PID_DATA_LEN]
-	={6.0f,0.2f,0.0f,150.0f,20.0f,0.00f,10.0f,2.0f,0.5f,0.0f};
+	={10.0f,0.2f,1.0f,150.0f,20.0f,0.00f,10.0f,2.0f,0.5f,0.0f};
 float gimbal_yaw_imu_speed_data[PID_DATA_LEN]
 	={18000.0f,20.0f,0.0f,25000.0f,1000.0f,0.01f,0.5f,0.1f,0.5f,0.0f};
 float gimbal_yaw_imu_position_data[PID_DATA_LEN]
@@ -51,11 +51,11 @@ float gimbal_yaw_imu_position_data[PID_DATA_LEN]
 
 
 /*******************************质心补偿参数******************************************/
-#define L_gravity 	0.05528	//m
+#define L_gravity 	0.03791	//m
 #define PI_DIV_180 (0.017453292519943296)//π/180
 #define DegToRad(x)	((x)*PI_DIV_180)//角度转换为弧度
 #define gravity	9.8f
-#define M_gravity 1.662f
+#define M_gravity 2.831f
 #define KT_GM	0.00019836
 #define KB_GM	0.10979
 
@@ -67,7 +67,7 @@ int16_t Pitch_Gravity_Compensation(void)
 	//计算俯仰角变化量
 	Theate_change	=	DegToRad(gimbal.pitch.imu.status.actual_angle);
 	//计算重力角度
-	Theate_gravity	=	DegToRad(40.25);
+	Theate_gravity	=	DegToRad(61.23);
 	//计算实际重力角度
 	L_actual_gravity	=	L_gravity*cos(Theate_gravity-Theate_change);
 	//计算重力校正所需力矩
@@ -104,6 +104,7 @@ void Gimbal_Statue_Update(void)
 
         break;
     }
+		chassis.send.pitch_angle=gimbal.pitch.status.actual_angle;
     //yaw轴数据多圈处理
 			GM6020_Status_Update(&gimbal.yaw.motor);
 			gimbal.yaw.imu.status.last_actual_angle = gimbal.yaw.imu.status.actual_angle;
@@ -155,8 +156,8 @@ void Gimbal_Command_Update(void)
                 break;
             case GIMBAL_MODE_TOPANGLE :
                 case GIMBAL_MODE_ABSOLUTE :
-                gimbal.yaw.command.add_angle=RC.rc_sent.yaw.target_angle/3.0f;
-                gimbal.pitch.command.add_angle=RC.rc_sent.pitch.target_angle/2.0f;
+                gimbal.yaw.command.add_angle=RC.rc_sent.yaw.target_angle/9.0f;
+                gimbal.pitch.command.add_angle=RC.rc_sent.pitch.target_angle/6.0f;
                 break;
             default:
                 gimbal.yaw.command.add_angle=0.0f;
@@ -164,7 +165,7 @@ void Gimbal_Command_Update(void)
                 break;
             }
 						gimbal.yaw.command.target_angle+=gimbal.yaw.command.add_angle;
-    
+			
 						gimbal.pitch.command.target_angle+=gimbal.pitch.command.add_angle;
         break;
         case VISION_ON  :
@@ -194,8 +195,11 @@ void Gimbal_Motor_Command_Update(void)
     //根据参数模式，计算出目标角度和速度
     switch(gimbal.pitch.parameter.mode)
     {
-    case IMU_MODE :
-		gimbal.pitch.motor.command.grivity_voltage_lsb=Pitch_Gravity_Compensation();		
+				if(gimbal.pitch.command.target_angle<-39.5f) gimbal.pitch.command.target_angle=-39.5f;
+				if(gimbal.pitch.command.target_angle>18.5f)	gimbal.pitch.command.target_angle=18.5f;
+			case IMU_MODE :
+				
+				gimbal.pitch.motor.command.grivity_voltage_lsb=Pitch_Gravity_Compensation();		
         PID_Calculate(&gimbal.pitch.pid.imu_angle_loop,gimbal.pitch.status.actual_angle,gimbal.pitch.command.target_angle);
         //设置目标速度
         gimbal.pitch.command.target_speed = -gimbal.pitch.pid.imu_angle_loop.Output;
@@ -204,13 +208,13 @@ void Gimbal_Motor_Command_Update(void)
         //设置输出力矩
         GM6020_Command_Update(&gimbal.pitch.motor,gimbal.pitch.pid.imu_speed_loop.Output);
 				gimbal.pitch.motor.command.give_voltage_lsb	+=gimbal.pitch.motor.command.grivity_voltage_lsb;
-						if(gimbal.pitch.motor.command.give_voltage_lsb>25000)	gimbal.pitch.motor.command.give_voltage_lsb=25000;
-				if(gimbal.pitch.motor.command.give_voltage_lsb<-25000)	gimbal.pitch.motor.command.give_voltage_lsb=-25000;
+				
 								
 
         break;
     case ENCODER_MODE  :
-		gimbal.pitch.motor.command.grivity_voltage_lsb=Pitch_Gravity_Compensation();
+			
+				gimbal.pitch.motor.command.grivity_voltage_lsb=Pitch_Gravity_Compensation();
        PID_Calculate(&gimbal.pitch.pid.encoder_angle_loop,gimbal.pitch.status.actual_angle,gimbal.pitch.command.target_angle);
         //设置目标速度
         gimbal.pitch.command.target_speed = gimbal.pitch.pid.encoder_angle_loop.Output;
@@ -219,18 +223,20 @@ void Gimbal_Motor_Command_Update(void)
         //设置输出力矩
         GM6020_Command_Update(&gimbal.pitch.motor,-gimbal.pitch.pid.encoder_speed_loop.Output);
 				gimbal.pitch.motor.command.give_voltage_lsb	+=gimbal.pitch.motor.command.grivity_voltage_lsb;
-				if(gimbal.pitch.motor.command.give_voltage_lsb>25000)	gimbal.pitch.motor.command.give_voltage_lsb=25000;
-				if(gimbal.pitch.motor.command.give_voltage_lsb<-25000)	gimbal.pitch.motor.command.give_voltage_lsb=-25000;
+				
 				
         break;
+				if(gimbal.pitch.motor.command.give_voltage_lsb>25000)	gimbal.pitch.motor.command.give_voltage_lsb=25000;
+				if(gimbal.pitch.motor.command.give_voltage_lsb<-25000)	gimbal.pitch.motor.command.give_voltage_lsb=-25000;
     }
 
     //根据参数模式，计算出目标角度和速度
     switch(gimbal.yaw.parameter.mode)
     {
-      case IMU_MODE :
-       while(gimbal.yaw.command.target_angle-gimbal.yaw.status.total_angle>360.0f)	gimbal.yaw.command.target_angle-=360.0f;
-			while(gimbal.yaw.command.target_angle-gimbal.yaw.status.total_angle<-360.0f)	gimbal.yaw.command.target_angle+=360.0f;
+				while(gimbal.yaw.command.target_angle-gimbal.yaw.status.total_angle>360.0f)	gimbal.yaw.command.target_angle-=360.0f;
+				while(gimbal.yaw.command.target_angle-gimbal.yaw.status.total_angle<-360.0f)	gimbal.yaw.command.target_angle+=360.0f;
+			case IMU_MODE :
+       
         PID_Calculate(&gimbal.yaw.pid.imu_angle_loop,gimbal.yaw.status.total_angle,gimbal.yaw.command.target_angle);
         //设置目标速度
         gimbal.yaw.command.target_speed = gimbal.yaw.pid.imu_angle_loop.Output;
@@ -359,14 +365,15 @@ void Gimbal_Task(void)
     case CALIBRATING :
         delay_time.gimbal_cali_cnt--;
         Gimbal_Cali_Task();
-        
+				if(delay_time.gimbal_cali_cnt==100)
+        chassis.send.mode	=	CHASSIS_MODE_ABSOLUTE;
         break;
     case CALIBRATED :
         
         gimbal.parameter.calibration_state =    NORMAL;
-		delay_time.gimbal_cali_cnt=0;
-		gimbal.parameter.mode = GIMBAL_MODE_ABSOLUTE;
-		chassis.send.mode	=	CHASSIS_MODE_ABSOLUTE;
+				delay_time.gimbal_cali_cnt=0;
+				gimbal.parameter.mode = GIMBAL_MODE_ABSOLUTE;
+				
         gimbal.pitch.motor.parameter.calibrate_state    =   MOTOR_CALIBRATED;
         gimbal.yaw.motor.parameter.calibrate_state    =   MOTOR_CALIBRATED;
         break;
@@ -378,12 +385,12 @@ void Gimbal_Task(void)
 				Gimbal_Motor_Mode_Update();
 				Gimbal_Command_Update();
 			}
-            Gimbal_Motor_Command_Update();
+        Gimbal_Motor_Command_Update();
 			}
         
         break;
     }
-	Gimbal_Send_command_Update();
+		Gimbal_Send_command_Update();
     Gimbal_Statue_Update();
 
 }; 

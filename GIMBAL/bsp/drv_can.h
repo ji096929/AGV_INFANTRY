@@ -109,7 +109,7 @@ extern uint8_t CAN2_0xxf6_Tx_Data[];
 extern uint8_t CAN2_0xxf7_Tx_Data[];
 extern uint8_t CAN2_0xxf8_Tx_Data[];
 
-
+extern uint8_t CAN2_0x154_Tx_Data[8];
 extern uint8_t CAN2_0x150_Tx_Data[8];
 extern uint8_t CAN2_0x152_Tx_Data[8];
 

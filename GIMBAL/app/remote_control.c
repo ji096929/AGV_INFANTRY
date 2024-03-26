@@ -345,13 +345,13 @@ void Remote_Command_Update(void)
 		{
 			//高速运动
 			if(RC.rc_receive.key_board.button.W)
-				RC.rc_sent.x_speed	=	CHASSIS_LOW_SPEED;
+				RC.rc_sent.x_speed	=	CHASSIS_HIGH_SPEED;
 			if(RC.rc_receive.key_board.button.S)
-				RC.rc_sent.x_speed	=	-CHASSIS_LOW_SPEED;
+				RC.rc_sent.x_speed	=	-CHASSIS_HIGH_SPEED;
 			if(RC.rc_receive.key_board.button.D)
-				RC.rc_sent.x_speed	=	CHASSIS_LOW_SPEED;		
+				RC.rc_sent.y_speed	=	CHASSIS_HIGH_SPEED;		
 			if(RC.rc_receive.key_board.button.A)
-				RC.rc_sent.x_speed	=	-CHASSIS_LOW_SPEED;
+				RC.rc_sent.y_speed	=	-CHASSIS_HIGH_SPEED;
 				switch(gimbal.parameter.mode)
 				{
 				case	GIMBAL_MODE_PRECISION:
@@ -370,13 +370,13 @@ void Remote_Command_Update(void)
 		{
 			//低速运动
 			if(RC.rc_receive.key_board.button.W)
-				RC.rc_sent.x_speed	=	CHASSIS_HIGH_SPEED;
+				RC.rc_sent.x_speed	=	CHASSIS_LOW_SPEED;
 			if(RC.rc_receive.key_board.button.S)
-				RC.rc_sent.x_speed	=	-CHASSIS_HIGH_SPEED;
+				RC.rc_sent.x_speed	=	-CHASSIS_LOW_SPEED;
 			if(RC.rc_receive.key_board.button.D)
-				RC.rc_sent.x_speed	=	CHASSIS_HIGH_SPEED;		
+				RC.rc_sent.y_speed	=	CHASSIS_LOW_SPEED;		
 			if(RC.rc_receive.key_board.button.A)
-				RC.rc_sent.x_speed	=	-CHASSIS_HIGH_SPEED;
+				RC.rc_sent.y_speed	=	-CHASSIS_LOW_SPEED;
 			switch(gimbal.parameter.mode)
 			{
 				case	GIMBAL_MODE_PRECISION:
@@ -408,11 +408,13 @@ void Vision_Control_Mode_Update(void)
 				if(delay_time.vision_mode_cnt==0&&vision_control.mode==VISION_OFF)
 				{
 					vision_control.mode=VISION_ON;
+					chassis.send.vision_flag	=	VISION_ON;
 					delay_time.vision_mode_cnt=400;
 				}
 				if(delay_time.vision_mode_cnt==0&&vision_control.mode==VISION_ON)
 				{
 					vision_control.mode=VISION_OFF;
+					chassis.send.vision_flag	=	VISION_OFF;
 					delay_time.vision_mode_cnt=400;
 				}
 			}
@@ -450,11 +452,13 @@ void Fric_Wheel_Mode_Update(void)
 					if(delay_time.fric_mode_cnt==0&&fric.parameter.mode!=FRIC_STOP)
 					{
 						fric.parameter.mode=FRIC_STOP;
+						chassis.send.fric_state	=	FRIC_STOP;
 						delay_time.fric_mode_cnt=400;
 					}
 					if(delay_time.fric_mode_cnt==0&&fric.parameter.mode!=FRIC_RUNNING)
 					{
 						fric.parameter.mode=FRIC_RUNNING;
+						chassis.send.fric_state	=	FRIC_RUNNING;
 						delay_time.fric_mode_cnt=400;
 					}
 				}
@@ -507,7 +511,7 @@ void Precision_Mode_Update(void)
 		
 			break;
 		case KEYBOARD_CONTROL :
-			if(RC.rc_receive.key_board.button.R)
+			if((!RC.rc_receive.key_board.button.CTRL)&&RC.rc_receive.key_board.button.R)
 			{
 				if(delay_time.precision_mode_cnt==0&&gimbal.parameter.mode!=GIMBAL_MODE_PRECISION)
 				{
@@ -644,7 +648,8 @@ void Delay_Cnt_Task(void)
 	//invert_cnt--;
 	if(delay_time.invert_cnt)	delay_time.invert_cnt--;
 	//follow_switch_cnt--;
-	if(delay_time.follow_switch_cnt)	delay_time.invert_cnt--;
+	if(delay_time.follow_switch_cnt)	delay_time.follow_switch_cnt--;
+	if(delay_time.invert_cnt)	delay_time.invert_cnt--;
 };
 
 void Remote_Init(void)

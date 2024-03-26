@@ -9,6 +9,7 @@
  * Copyright (c) 2024 by ${git_name_email}, All Rights Reserved. 
  */
 #include "fric.h"
+#include "can_connection.h"
 
 FRIC_T  fric;
 
@@ -51,10 +52,12 @@ void Fric_Command_Update(void)
         case FRIC_RUNNING  :
             fric.left_motor.command.target_speed =   FRIC_HIGH_SPEED;
             fric.right_motor.command.target_speed =  - FRIC_HIGH_SPEED;
+						chassis.send.fric_speed=fric.left_motor.command.target_speed;
         break;
         case FRIC_STOP  :
             fric.left_motor.command.target_speed =    FRIC_NONE_SPEED;
             fric.right_motor.command.target_speed =   FRIC_NONE_SPEED;
+						chassis.send.fric_speed=fric.left_motor.command.target_speed;
         break;
     }
 }

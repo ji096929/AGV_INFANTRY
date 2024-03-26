@@ -24,6 +24,10 @@ void CAN1_Call_Back(struct Struct_CAN_Rx_Buffer *rx)
         case 0x152:
         Chassis_Control_Mode_Update(&connection,rx->Data);
         break;
+				
+				case 0x154:
+        Fric_Speed_And_Pitch_Angle_Update(&connection,rx->Data);
+        break;
 
         case 0x206:
         GM6020_Feedback_Update(&yaw.motor,rx->Data);

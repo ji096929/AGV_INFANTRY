@@ -53,3 +53,4 @@ chassis\main.o: ../app/gimbal_connoection/gimbal_connection.h
 chassis\main.o: ../app/chassis_move/agv_control.h
 chassis\main.o: ../app/referee/referee.h
 chassis\main.o: ../app/referee/algorithmOfCRC.h
+chassis\main.o: ../app/referee/ui.h

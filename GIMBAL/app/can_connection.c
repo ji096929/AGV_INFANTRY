@@ -59,8 +59,13 @@ void Chassis_Send_data_Update( void)
 //		CAN2_0x152_Tx_Data[0] =0	;
     CAN2_0x152_Tx_Data[1] = chassis.send.invert_flag;
     CAN2_0x152_Tx_Data[2] = chassis.send.follow_flag;
-		CAN2_0x152_Tx_Data[3]	=	gimbal.yaw.motor.parameter.calibrate_state;
+		CAN2_0x152_Tx_Data[3]	=	chassis.send.fric_state;
+		CAN2_0x152_Tx_Data[4]	=	chassis.send.vision_flag;
+		CAN2_0x152_Tx_Data[5]	=	chassis.send.ui_init_flag;
     
+		memcpy(&CAN2_0x154_Tx_Data[0],&chassis.send.fric_speed,2);
+		memcpy(&CAN2_0x154_Tx_Data[2],&chassis.send.pitch_angle,4);
+		
 
 }
 //can发送任务
@@ -77,8 +82,14 @@ void Can_Send_Task(int8_t ms_count)
 		
     if(ms_count	%5	==1)
 		{
-	CAN_Send_Data(&hcan2,0x150,CAN2_0x150_Tx_Data,8);
+		CAN_Send_Data(&hcan2,0x150,CAN2_0x150_Tx_Data,8);
     CAN_Send_Data(&hcan2,0x152,CAN2_0x152_Tx_Data,8);
+	
+		}
+		if(ms_count	%5	==2)
+		{
+		
+		CAN_Send_Data(&hcan2,0x154,CAN2_0x154_Tx_Data,8);
 		}
 		
     CAN_Send_Data(&hcan2,0x200,CAN2_0x200_Tx_Data,8);

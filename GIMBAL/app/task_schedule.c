@@ -27,7 +27,7 @@ void Error_State_Judge(void)
 	//判断是否是错误状态
 	
 	//如果20ms一次，则计数器加1
-	if(gimbal_time.ms_count%20==0)
+	if(gimbal_time.ms_count%16==0)
 	{
 		RC.rc_receive.last_receive_time++;
 		//如果上一次接收时间小于当前接收时间，则清空键盘，鼠标和rc接收数据
@@ -57,6 +57,8 @@ void Time_Count_Task(void)
 		gimbal_time.state=RUNNING_STATE;
 	// 如果延迟计数等于1，改变标定状态为已标定
 	if(delay_time.gimbal_cali_cnt== 1)	gimbal.parameter.calibration_state=CALIBRATED ;
+	if(gimbal_time.s_count<5)	chassis.send.ui_init_flag=0;
+	if(gimbal_time.s_count>=5)	chassis.send.ui_init_flag=1;
 };
 	
 
