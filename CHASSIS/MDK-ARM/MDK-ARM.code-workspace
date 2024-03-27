@@ -1,0 +1,14 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "files.associations": {
+            "referee.h": "c",
+            "chassis_task.h": "c"
+        }
+    },
+    "extensions": {}
+}
