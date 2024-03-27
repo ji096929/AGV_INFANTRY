@@ -1,6 +1,6 @@
 agv_board\chassis_power_control.o: ..\APP\chassis_power_control.c
 agv_board\chassis_power_control.o: ..\APP\chassis_power_control.h
-agv_board\chassis_power_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+agv_board\chassis_power_control.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stdint.h
 agv_board\chassis_power_control.o: ../task/SW_control_task.h
 agv_board\chassis_power_control.o: ../APP/steering_wheel.h
 agv_board\chassis_power_control.o: ../APP/pid_regulator.h

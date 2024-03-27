@@ -1,6 +1,6 @@
 agv_board\steering_wheel.o: ..\APP\steering_wheel.c
 agv_board\steering_wheel.o: ..\APP\steering_wheel.h
-agv_board\steering_wheel.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+agv_board\steering_wheel.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stdint.h
 agv_board\steering_wheel.o: ..\APP\pid_regulator.h
 agv_board\steering_wheel.o: ../BSP/steering_wheel_bsp.h
 agv_board\steering_wheel.o: ..\APP\M3508_gear.h
@@ -12,8 +12,8 @@ agv_board\steering_wheel.o: ../BSP/briter_encoder_bsp.h
 agv_board\steering_wheel.o: ..\APP\steering_communication.h
 agv_board\steering_wheel.o: ../BSP/steering_communication_bsp.h
 agv_board\steering_wheel.o: ..\APP\chassis_power_control.h
-agv_board\steering_wheel.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\cmath
-agv_board\steering_wheel.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+agv_board\steering_wheel.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\cmath
+agv_board\steering_wheel.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\math.h
 agv_board\steering_wheel.o: ../Core/Inc/can.h
 agv_board\steering_wheel.o: ../Core/Inc/main.h
 agv_board\steering_wheel.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
@@ -29,7 +29,7 @@ agv_board\steering_wheel.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
 agv_board\steering_wheel.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h
 agv_board\steering_wheel.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 agv_board\steering_wheel.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-agv_board\steering_wheel.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+agv_board\steering_wheel.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stddef.h
 agv_board\steering_wheel.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h
 agv_board\steering_wheel.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h
 agv_board\steering_wheel.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h

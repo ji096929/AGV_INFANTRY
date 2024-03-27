@@ -15,35 +15,9 @@ M3508_T trigger;
 
 void CAN1_Call_Back(struct Struct_CAN_Rx_Buffer *rx)
 {
-    switch(rx->Header.StdId)
-    {
-        case 0x150:
-				Chassis_Speed_Command_Update(&connection,rx->Data);
-        break;
 
-        case 0x152:
-        Chassis_Control_Mode_Update(&connection,rx->Data);
-        break;
-				
-				case 0x154:
-        Fric_Speed_And_Pitch_Angle_Update(&connection,rx->Data);
-        break;
-
-        case 0x206:
-        GM6020_Feedback_Update(&yaw.motor,rx->Data);
-        break;
-				
-				
-    }
-     switch(rx->Header.ExtId)
-    {
-        
-    }
-}
-
-void CAN2_Call_Back(struct Struct_CAN_Rx_Buffer *rx)
-{
-    switch(rx->Header.StdId)
+    
+        switch(rx->Header.StdId)
     {
 
     }
@@ -65,6 +39,32 @@ void CAN2_Call_Back(struct Struct_CAN_Rx_Buffer *rx)
 					memcpy(&chassis_power_control.expect_power_32[3],rx->Data,4);
                      chassis_power_control.all_mscb_ready_flag   = chassis_power_control.all_mscb_ready_flag | 0x8;
         break;
+    }
+}
+
+void CAN2_Call_Back(struct Struct_CAN_Rx_Buffer *rx)
+{
+    switch(rx->Header.StdId)
+    {
+        case 0x150:
+	  Chassis_Speed_Command_Update(&connection,rx->Data);
+        break;
+
+        case 0x152:
+        Chassis_Control_Mode_Update(&connection,rx->Data);
+        break;
+				
+
+
+        case 0x206:
+        GM6020_Feedback_Update(&yaw.motor,rx->Data);
+        break;
+				
+				
+    }
+     switch(rx->Header.ExtId)
+    {
+        
     }
 }
 

@@ -1,6 +1,6 @@
 chassis\chassis_task.o: ..\app\chassis_task.c
 chassis\chassis_task.o: ..\app\chassis_task.h
-chassis\chassis_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+chassis\chassis_task.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stdint.h
 chassis\chassis_task.o: ../Core/Inc/tim.h
 chassis\chassis_task.o: ../Core/Inc/main.h
 chassis\chassis_task.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
@@ -17,7 +17,7 @@ chassis\chassis_task.o: ../Drivers/CMSIS/Include/mpu_armv7.h
 chassis\chassis_task.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h
 chassis\chassis_task.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 chassis\chassis_task.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-chassis\chassis_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+chassis\chassis_task.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stddef.h
 chassis\chassis_task.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h
 chassis\chassis_task.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h
 chassis\chassis_task.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h
@@ -37,13 +37,13 @@ chassis\chassis_task.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 chassis\chassis_task.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 chassis\chassis_task.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 chassis\chassis_task.o: ../app/chassis_move/chassis.h
-chassis\chassis_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+chassis\chassis_task.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
 chassis\chassis_task.o: ../app/motor/motor.h
 chassis\chassis_task.o: ../bsp/PID/PID.h
 chassis\chassis_task.o: ../app/gimbal_connoection/can_connection.h
 chassis\chassis_task.o: ../bsp/can/drv_can.h
-chassis\chassis_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-chassis\chassis_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+chassis\chassis_task.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+chassis\chassis_task.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\string.h
 chassis\chassis_task.o: ../app/gimbal_connoection/gimbal_connection.h
 chassis\chassis_task.o: ../app/chassis_move/agv_control.h
 chassis\chassis_task.o: ../app/referee/referee.h

@@ -18,19 +18,19 @@ extern "C" {
 //#define AGV_BOARD_C
 #define AGV_BOARD_D
 //兵种选择
-#define AGV_HERO
-//#define AGV_STANDARD	
+//#define AGV_HERO
+#define AGV_STANDARD	
 /*************************************烧录必选项****************************************************/		
 #define A_ENCODER_ID 0x0AU
 #define B_ENCODER_ID 0x0BU
 #define C_ENCODER_ID 0x0CU
 #define D_ENCODER_ID 0x0DU
-	
-#define A_ENCODER_ZERO_POSION 0x1202U
-#define B_ENCODER_ZERO_POSION 0x174CU
-#define C_ENCODER_ZERO_POSION 0x0ACEU
-#define D_ENCODER_ZERO_POSION 0x19CBU	
-	
+
+#define A_ENCODER_ZERO_POSION 7635
+#define B_ENCODER_ZERO_POSION 2573
+#define C_ENCODER_ZERO_POSION 1967
+#define D_ENCODER_ZERO_POSION 5591
+
 #define A_STEERING_CAN_ID 0x1AU
 #define B_STEERING_CAN_ID 0x1BU
 #define C_STEERING_CAN_ID 0x1CU

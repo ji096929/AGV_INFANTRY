@@ -43,6 +43,6 @@
 "agv_board\algorithmofcrc.o"
 "agv_board\refree.o"
 --strict --scatter "AGV_Board\AGV_Board.sct"
---summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "AGV_Board.map" -o AGV_Board\AGV_Board.axf

@@ -2,7 +2,7 @@ agv_board\can_bsp.o: ..\BSP\can_bsp.c
 agv_board\can_bsp.o: ..\BSP\can_bsp.h
 agv_board\can_bsp.o: ../APP/briter_encoder.h
 agv_board\can_bsp.o: ../BSP/briter_encoder_bsp.h
-agv_board\can_bsp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+agv_board\can_bsp.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stdint.h
 agv_board\can_bsp.o: ../APP/M3508_gear.h
 agv_board\can_bsp.o: ../BSP/M3508_gear_bsp.h
 agv_board\can_bsp.o: ../APP/M3508.h
@@ -28,7 +28,7 @@ agv_board\can_bsp.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
 agv_board\can_bsp.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h
 agv_board\can_bsp.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 agv_board\can_bsp.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-agv_board\can_bsp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+agv_board\can_bsp.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stddef.h
 agv_board\can_bsp.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h
 agv_board\can_bsp.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h
 agv_board\can_bsp.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h

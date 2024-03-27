@@ -1,10 +1,10 @@
 chassis\agv_control.o: ..\app\chassis_move\agv_control.c
 chassis\agv_control.o: ..\app\chassis_move\agv_control.h
-chassis\agv_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+chassis\agv_control.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stdint.h
 chassis\agv_control.o: ../bsp/can/drv_can.h
-chassis\agv_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-chassis\agv_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-chassis\agv_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+chassis\agv_control.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+chassis\agv_control.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\string.h
+chassis\agv_control.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
 chassis\agv_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 chassis\agv_control.o: ../Core/Inc/stm32f4xx_hal_conf.h
 chassis\agv_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h
@@ -19,7 +19,7 @@ chassis\agv_control.o: ../Drivers/CMSIS/Include/mpu_armv7.h
 chassis\agv_control.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h
 chassis\agv_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 chassis\agv_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-chassis\agv_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+chassis\agv_control.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stddef.h
 chassis\agv_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h
 chassis\agv_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h
 chassis\agv_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h

@@ -154,10 +154,10 @@ void Chassis_Init(void)
     chassis.parameter.break_mode    =   1;
 		chassis.parameter.speed_slow	=	1;
     chassis.parameter.relative_angle    =   0.f;
-		chassis.A_motor.zero_position = 0x1202;
-		chassis.B_motor.zero_position = 0x174c;
-		chassis.C_motor.zero_position = 0x0ACE;
-		chassis.D_motor.zero_position = 0x19CB;
+		chassis.A_motor.zero_position = 7635;
+		chassis.B_motor.zero_position = 2573;
+		chassis.C_motor.zero_position = 1967;
+		chassis.D_motor.zero_position = 5563;
 		chassis.A_motor.ID	=	0x1a;
 		chassis.B_motor.ID	=	0x1b;
 		chassis.C_motor.ID	=	0x1c;

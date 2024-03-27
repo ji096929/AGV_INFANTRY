@@ -1,8 +1,8 @@
 chassis\referee.o: ..\app\referee\referee.c
 chassis\referee.o: ..\app\referee\referee.h
 chassis\referee.o: ..\app\referee\algorithmOfCRC.h
-chassis\referee.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-chassis\referee.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+chassis\referee.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+chassis\referee.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
 chassis\referee.o: ../Core/Inc/usart.h
 chassis\referee.o: ../Core/Inc/main.h
 chassis\referee.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
@@ -19,7 +19,7 @@ chassis\referee.o: ../Drivers/CMSIS/Include/mpu_armv7.h
 chassis\referee.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h
 chassis\referee.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 chassis\referee.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-chassis\referee.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+chassis\referee.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stddef.h
 chassis\referee.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h
 chassis\referee.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h
 chassis\referee.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h
@@ -45,8 +45,8 @@ chassis\referee.o: ../app/motor/motor.h
 chassis\referee.o: ../bsp/PID/PID.h
 chassis\referee.o: ../app/gimbal_connoection/can_connection.h
 chassis\referee.o: ../bsp/can/drv_can.h
-chassis\referee.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-chassis\referee.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+chassis\referee.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+chassis\referee.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\string.h
 chassis\referee.o: ../app/gimbal_connoection/gimbal_connection.h
 chassis\referee.o: ../app/chassis_move/agv_control.h
 chassis\referee.o: ../app/referee/ui.h

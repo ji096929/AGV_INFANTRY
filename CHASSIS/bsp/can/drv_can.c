@@ -139,22 +139,26 @@ void CAN_Init(CAN_HandleTypeDef *hcan, CAN_Call_Back Callback_Function)
     {
         CAN1_Manage_Object.CAN_Handler = hcan;
         CAN1_Manage_Object.Callback_Function = Callback_Function;
-        canFilter.SlaveStartFilterBank=14;						//can2筛选组起始编号					
-        can_filter_mask_config(hcan, CAN_FILTER(0) | CAN_FIFO_0 | CAN_STDID | CAN_DATA_TYPE, 0x206, 0x7ff);
-        can_filter_mask_config(hcan, CAN_FILTER(1) | CAN_FIFO_1 | CAN_STDID | CAN_DATA_TYPE, 0x150, 0x7ff);
-        can_filter_mask_config(hcan, CAN_FILTER(2) | CAN_FIFO_1 | CAN_STDID | CAN_DATA_TYPE, 0x152, 0x7ff);
-			  can_filter_mask_config(hcan, CAN_FILTER(3) | CAN_FIFO_0 | CAN_STDID | CAN_DATA_TYPE, 0x154, 0x7ff);
-				
+        canFilter.SlaveStartFilterBank=14;	
+
+        can_filter_mask_config(hcan, CAN_FILTER(0) | CAN_FIFO_0 | CAN_EXTID | CAN_DATA_TYPE, 0x0000001a, 0xff);
+        can_filter_mask_config(hcan, CAN_FILTER(1) | CAN_FIFO_0 | CAN_EXTID | CAN_DATA_TYPE, 0x0000001b, 0xff);
+        can_filter_mask_config(hcan, CAN_FILTER(2) | CAN_FIFO_1 | CAN_EXTID | CAN_DATA_TYPE, 0x0000001c, 0xff);
+        can_filter_mask_config(hcan, CAN_FILTER(3) | CAN_FIFO_1 | CAN_EXTID | CAN_DATA_TYPE, 0x0000001d, 0xff);
+
+
+
+
     }
     else if (hcan->Instance == CAN2)
     {
         CAN2_Manage_Object.CAN_Handler = hcan;
         CAN2_Manage_Object.Callback_Function = Callback_Function;
 		canFilter.SlaveStartFilterBank=15;						//can2筛选组起始编号
-        can_filter_mask_config(hcan, CAN_FILTER(15) | CAN_FIFO_0 | CAN_EXTID | CAN_DATA_TYPE, 0x0000001a, 0xff);
-        can_filter_mask_config(hcan, CAN_FILTER(16) | CAN_FIFO_0 | CAN_EXTID | CAN_DATA_TYPE, 0x0000001b, 0xff);
-        can_filter_mask_config(hcan, CAN_FILTER(17) | CAN_FIFO_1 | CAN_EXTID | CAN_DATA_TYPE, 0x0000001c, 0xff);
-        can_filter_mask_config(hcan, CAN_FILTER(18) | CAN_FIFO_1 | CAN_EXTID | CAN_DATA_TYPE, 0x0000001d, 0xff);
+	    //can2筛选组起始编号					
+        can_filter_mask_config(hcan, CAN_FILTER(15) | CAN_FIFO_0 | CAN_STDID | CAN_DATA_TYPE, 0x206, 0x7ff);
+        can_filter_mask_config(hcan, CAN_FILTER(16) | CAN_FIFO_1 | CAN_STDID | CAN_DATA_TYPE, 0x150, 0x7ff);
+        can_filter_mask_config(hcan, CAN_FILTER(17) | CAN_FIFO_1 | CAN_STDID | CAN_DATA_TYPE, 0x152, 0x7ff);
     }   
 		
 	/*配置过滤器*/
@@ -251,13 +255,13 @@ void TIM_CAN_PeriodElapsedCallback()
     }
 
     // CAN1电机
-    CAN_Send_Data(&hcan1, 0x1ff, CAN1_0x1ff_Tx_Data, 8);
-    CAN_Send_Data(&hcan1, 0x200, CAN1_0x200_Tx_Data, 8);
-    // CAN_Send_Data(&hcan1, 0x2ff, CAN1_0x2ff_Tx_Data, 8);
+//    CAN_Send_Data(&hcan1, 0x1ff, CAN1_0x1ff_Tx_Data, 8);
+//    CAN_Send_Data(&hcan1, 0x200, CAN1_0x200_Tx_Data, 8);
+//    // CAN_Send_Data(&hcan1, 0x2ff, CAN1_0x2ff_Tx_Data, 8);
 
-    // CAN2电机
-    CAN_Send_Data(&hcan2, 0x1ff, CAN2_0x1ff_Tx_Data, 8);
-    CAN_Send_Data(&hcan2, 0x200, CAN2_0x200_Tx_Data, 8);
+//    // CAN2电机
+//    CAN_Send_Data(&hcan2, 0x1ff, CAN2_0x1ff_Tx_Data, 8);
+//    CAN_Send_Data(&hcan2, 0x200, CAN2_0x200_Tx_Data, 8);
     // CAN_Send_Data(&hcan2, 0x2ff, CAN2_0x2ff_Tx_Data, 8);
 }
 

@@ -49,9 +49,9 @@ typedef struct
 	 CHASSIS_MODE_STATE_T vision;
 	 float pitch_angle;
 	 int16_t fric_speed;
-   float  vx;
-   float vy;
-   float vw;
+   int16_t  vx;
+   int16_t vy;
+   int16_t vw;
 
 }GIMBAL_RX_T;
 
