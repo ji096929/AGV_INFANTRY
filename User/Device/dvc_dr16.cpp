@@ -273,15 +273,22 @@ void Class_DR16::UART_RxCpltCallback(uint8_t *Rx_Data)
  */
 void Class_DR16::TIM1msMod50_Alive_PeriodElapsedCallback()
 {
-    //判断该时间段内是否接收过遥控器数据
+    // 判断该时间段内是否接收过遥控器数据
     if (Flag == Pre_Flag)
     {
-        //遥控器断开连接
+        // 遥控器断开连接
         DR16_Status = DR16_Status_DISABLE;
+        // 遥控器中途断联导致错误，重启 DMA
+        if (huart3.ErrorCode)
+        {
+            HAL_UART_DMAStop(&huart3); // 停止以重启
+            // HAL_Delay(10); // 等待错误结束
+            HAL_UARTEx_ReceiveToIdle_DMA(&huart3, UART3_Manage_Object.Rx_Buffer, UART3_Manage_Object.Rx_Buffer_Length);
+        }
     }
     else
     {
-        //遥控器保持连接
+        // 遥控器保持连接
         DR16_Status = DR16_Status_ENABLE;
     }
     Pre_Flag = Flag;

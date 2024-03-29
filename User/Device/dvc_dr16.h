@@ -48,6 +48,15 @@
 #define KEY_B 15
 
 /* Exported types ------------------------------------------------------------*/
+/**
+ * @brief 遥控器模式
+ *
+ */
+//enum Enum_DR16_Status
+//{
+//    DR16_HANDLE_CONTROL = 0,
+//    DR16_KEYBOARD_CONTROL,
+//};
 
 /**
  * @brief 遥控器状态

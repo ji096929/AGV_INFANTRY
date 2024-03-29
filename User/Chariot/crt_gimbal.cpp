@@ -445,8 +445,8 @@ void Class_Gimbal::Init()
     // Motor_Pitch.PID_Angle.Init(7.0f, 2.0f, 0.0f, 0.0f, 100, 100);
     // Motor_Pitch.PID_Omega.Init(2200.0f, 15000.0f, 0.0f, 0.0f, Motor_Pitch.Get_Output_Max(), Motor_Pitch.Get_Output_Max());
 
-    // Motor_Pitch.PID_Angle.Init(5.0f, 0.0f, 0.0f, 0.0f, 100, 100);
-    // Motor_Pitch.PID_Omega.Init(700.0f, 1500.0f, 0.0f, 0.0f, Motor_Pitch.Get_Output_Max(), Motor_Pitch.Get_Output_Max());
+    Motor_Pitch.PID_Angle.Init(5.0f, 0.0f, 0.0f, 0.0f, 100, 100);
+    Motor_Pitch.PID_Omega.Init(700.0f, 1500.0f, 0.0f, 0.0f, Motor_Pitch.Get_Output_Max(), Motor_Pitch.Get_Output_Max());
 
     Motor_Pitch.PID_Torque.Init(0.8f, 100.0f, 0.0f, 0.0f, Motor_Pitch.Get_Output_Max(), Motor_Pitch.Get_Output_Max());
     Motor_Pitch.IMU = &Boardc_BMI;
@@ -553,6 +553,7 @@ void Class_Gimbal::TIM_Calculate_PeriodElapsedCallback()
     Motor_Pitch.TIM_PID_PeriodElapsedCallback();
 
     Motor_Pitch_LK6010.TIM_PID_PeriodElapsedCallback();
+    
 }
 
 /************************ COPYRIGHT(C) USTC-ROBOWALKER **************************/

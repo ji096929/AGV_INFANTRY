@@ -26,7 +26,7 @@
 
 //#define CHASSIS
 #define GIMBAL
-
+#define AGV
 //#define POWER_LIMIT
 
 /* Exported types ------------------------------------------------------------*/
@@ -68,8 +68,9 @@ public:
 
     #elif defined(GIMBAL)
     void CAN_Gimbal_RxCpltCallback();
+    void CAN_Gimbal_TxCpltCallback();
     void TIM_Control_Callback();
-    #endif
+#endif
 
     void TIM_Calculate_PeriodElapsedCallback();
     void TIM1msMod50_Alive_PeriodElapsedCallback();
@@ -97,9 +98,9 @@ protected:
     float DR16_Keyboard_Chassis_Speed_Resolution_Big = 0.01f;
 
     //DR16云台yaw灵敏度系数(0.001PI表示yaw速度最大时为1rad/s)
-    float DR16_Yaw_Angle_Resolution = 0.0025f * PI * 57.29577951308232;
+    float DR16_Yaw_Angle_Resolution = 0.005f * PI * 57.29577951308232;
     //DR16云台pitch灵敏度系数(0.001PI表示pitch速度最大时为1rad/s)
-    float DR16_Pitch_Angle_Resolution = 0.003f * PI * 57.29577951308232;
+    float DR16_Pitch_Angle_Resolution = 0.0035f * PI * 57.29577951308232;
 
     //DR16云台yaw灵敏度系数(0.001PI表示yaw速度最大时为1rad/s)
     float DR16_Yaw_Resolution = 0.003f * PI;
@@ -131,6 +132,50 @@ protected:
     void Control_Booster();
 
 };
+
+#ifdef AGV
+typedef __packed enum {
+    CHASSIS_MODE_NOFORCE = 0x00u,
+    CHASSIS_MODE_TOPANGLE = 0x02u,
+    CHASSIS_MODE_ABSOLUTE = 0x01u,
+    CHASSIS_MODE_PRECISE = 0x03u,
+} CHASSIS_MODE_E;
+
+typedef __packed struct
+{
+    float vx;
+    float vy;
+    float vw;
+} CHASSIS_VELOCITY_T;
+
+typedef __packed struct
+{
+    CHASSIS_MODE_E mode;
+    CHASSIS_VELOCITY_T velocity;
+    bool follow_flag;
+    bool invert_flag;
+
+} CHASSIS_SEND_T;
+
+typedef __packed struct
+{
+    CHASSIS_MODE_E mode;
+    CHASSIS_VELOCITY_T velocity;
+
+} CHASSIS_RECEIVE_T;
+
+typedef __packed struct
+{
+    CHASSIS_SEND_T send;
+    CHASSIS_RECEIVE_T receive;
+
+} CHASSIS_T;
+void Chassis_Connection_Init(void);
+extern CHASSIS_T chassis;
+void Chassis_Connection_Task(void);
+void Can_Send_Task(int8_t ms_count);
+void Can_Connection_Init(void);
+#endif
 
 /* Exported variables --------------------------------------------------------*/
 

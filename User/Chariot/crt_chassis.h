@@ -29,6 +29,11 @@
 /* Exported macros -----------------------------------------------------------*/
 
 /* Exported types ------------------------------------------------------------*/
+typedef enum
+{
+    FOLLOW_ON = 0x01,
+    FOLLOW_OFF = 0x00,
+} Enum_FOLLOW_FLAG_E;
 
 /**
  * @brief 底盘控制类型
@@ -144,7 +149,8 @@ protected:
 
     //底盘控制方法
     Enum_Chassis_Control_Type Chassis_Control_Type = Chassis_Control_Type_DISABLE;
-    //目标速度X
+    Enum_FOLLOW_FLAG_E FOLLOW_FLAG = FOLLOW_ON;
+    // 目标速度X
     float Target_Velocity_X = 0.0f;
     //目标速度Y
     float Target_Velocity_Y = 0.0f;

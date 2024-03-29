@@ -117,18 +117,18 @@ protected:
     uint16_t Friction_Omega_Threshold = 695;
 
     //内部变量
-
+	float Now_Angle=0;
     //读变量
 
     //拨弹盘默认速度, 一圈八发子弹, 此速度下与冷却均衡
-    float Default_Driver_Omega = -2.0f * PI;
+    float Default_Driver_Omega = -15.0f * PI;
 
     //写变量
 
     //发射机构状态
     Enum_Booster_Control_Type Booster_Control_Type = Booster_Control_Type_CEASEFIRE;
     //摩擦轮角速度
-    float Friction_Omega = 500.0f;
+    float Friction_Omega = 700.0f;
     //拨弹盘实际的目标速度, 一圈八发子弹
     float Driver_Omega = -2.0f * PI;
     //拨弹轮目标绝对角度 加圈数

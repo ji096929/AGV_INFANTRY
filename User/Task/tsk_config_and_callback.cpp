@@ -47,15 +47,15 @@
 
 /* Private variables ---------------------------------------------------------*/
 
-uint32_t init_finished =0 ;
-bool start_flag=0;
-//机器人控制对象
+uint32_t init_finished = 0;
+bool start_flag = 0;
+// 机器人控制对象
 Class_Chariot chariot;
 
-//串口裁判系统对象
+// 串口裁判系统对象
 Class_Serialplot serialplot;
 
-//上位机USB通讯对象
+// 上位机USB通讯对象
 Struct_USB_Manage_Object MiniPC_USB_Manage_Object = {0};
 
 /* Private function declarations ---------------------------------------------*/
@@ -72,36 +72,34 @@ void Chassis_Device_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 {
     switch (CAN_RxMessage->Header.StdId)
     {
-        case (0x201):
-        {
-            chariot.Chassis.Motor_Wheel[0].CAN_RxCpltCallback(CAN_RxMessage->Data);
-        }
-        break;
-        case (0x202):
-        {
-            chariot.Chassis.Motor_Wheel[1].CAN_RxCpltCallback(CAN_RxMessage->Data);
-        }
-        break;
-        case (0x203):
-        {
-            chariot.Chassis.Motor_Wheel[2].CAN_RxCpltCallback(CAN_RxMessage->Data);
-        }
-        break;
-        case (0x204):
-        {
-            chariot.Chassis.Motor_Wheel[3].CAN_RxCpltCallback(CAN_RxMessage->Data);
-        }
-        break;
-        case (0x206):  
-        {
-            
-        }
-        break;
-        case (0x207):
-        {
-            
-        }
-        break;
+    case (0x201):
+    {
+        chariot.Chassis.Motor_Wheel[0].CAN_RxCpltCallback(CAN_RxMessage->Data);
+    }
+    break;
+    case (0x202):
+    {
+        chariot.Chassis.Motor_Wheel[1].CAN_RxCpltCallback(CAN_RxMessage->Data);
+    }
+    break;
+    case (0x203):
+    {
+        chariot.Chassis.Motor_Wheel[2].CAN_RxCpltCallback(CAN_RxMessage->Data);
+    }
+    break;
+    case (0x204):
+    {
+        chariot.Chassis.Motor_Wheel[3].CAN_RxCpltCallback(CAN_RxMessage->Data);
+    }
+    break;
+    case (0x206):
+    {
+    }
+    break;
+    case (0x207):
+    {
+    }
+    break;
     }
 }
 #endif
@@ -115,19 +113,18 @@ void Chassis_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 {
     switch (CAN_RxMessage->Header.StdId)
     {
-    case (0x206):  //留给yaw电机编码器回传 用于底盘随动
+    case (0x206): // 留给yaw电机编码器回传 用于底盘随动
     {
         chariot.Chassis.Motor_Yaw.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
-    case (0x77):  //留给上板通讯
+    case (0x77): // 留给上板通讯
     {
         chariot.CAN_Chassis_Control_RxCpltCallback();
     }
     break;
-    case (0x204):  //留给超级电容
+    case (0x204): // 留给超级电容
     {
-        
     }
     break;
     case (0x205):
@@ -137,10 +134,9 @@ void Chassis_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
     break;
     case (0x206):
     {
-        
     }
     break;
-	}
+    }
 }
 #endif
 /**
@@ -165,14 +161,13 @@ void Gimbal_Device_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
     }
     break;
 
-    break;
+        break;
     case (0x141):
     {
         chariot.Gimbal.Motor_Pitch_LK6010.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
-	}
-		
+    }
 }
 #endif
 /**
@@ -185,9 +180,8 @@ void Gimbal_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 {
     switch (CAN_RxMessage->Header.StdId)
     {
-    case (0x200):   //留给下板通讯
+    case (0x200): // 留给下板通讯
     {
-        
     }
     break;
     case (0x203):
@@ -210,7 +204,7 @@ void Gimbal_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
         chariot.Gimbal.Motor_Yaw.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
-	}
+    }
 }
 #endif
 /**
@@ -220,13 +214,13 @@ void Gimbal_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
  * @param Rx_Buffer SPI5接收的消息
  * @param Length 长度
  */
-//void Device_SPI5_Callback(uint8_t *Tx_Buffer, uint8_t *Rx_Buffer, uint16_t Length)
+// void Device_SPI5_Callback(uint8_t *Tx_Buffer, uint8_t *Rx_Buffer, uint16_t Length)
 //{
-//    if (SPI5_Manage_Object.Now_GPIOx == BoardA_MPU6500_CS_GPIO_Port && SPI5_Manage_Object.Now_GPIO_Pin == BoardA_MPU6500_CS_Pin)
-//    {
-//        boarda_mpu.SPI_TxRxCpltCallback(Tx_Buffer, Rx_Buffer);
-//    }
-//}
+//     if (SPI5_Manage_Object.Now_GPIOx == BoardA_MPU6500_CS_GPIO_Port && SPI5_Manage_Object.Now_GPIO_Pin == BoardA_MPU6500_CS_Pin)
+//     {
+//         boarda_mpu.SPI_TxRxCpltCallback(Tx_Buffer, Rx_Buffer);
+//     }
+// }
 
 /**
  * @brief SPI1回调函数
@@ -237,7 +231,6 @@ void Gimbal_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
  */
 void Device_SPI1_Callback(uint8_t *Tx_Buffer, uint8_t *Rx_Buffer, uint16_t Length)
 {
-
 }
 
 /**
@@ -251,7 +244,7 @@ void DR16_UART3_Callback(uint8_t *Buffer, uint16_t Length)
 {
     chariot.DR16.UART_RxCpltCallback(Buffer);
 
-    //底盘 云台 发射机构 的控制策略
+    // 底盘 云台 发射机构 的控制策略
     chariot.TIM_Control_Callback();
 }
 #endif
@@ -262,9 +255,8 @@ void DR16_UART3_Callback(uint8_t *Buffer, uint16_t Length)
  * @param Buffer IIC收到的消息
  * @param Length 长度
  */
-void Ist8310_IIC3_Callback(uint8_t* Tx_Buffer, uint8_t* Rx_Buffer, uint16_t Tx_Length, uint16_t Rx_Length)
+void Ist8310_IIC3_Callback(uint8_t *Tx_Buffer, uint8_t *Rx_Buffer, uint16_t Tx_Length, uint16_t Rx_Length)
 {
-    
 }
 
 /**
@@ -310,18 +302,16 @@ void MiniPC_USB_Callback(uint8_t *Buffer, uint32_t Length)
  */
 void Task100us_TIM4_Callback()
 {
-    #ifdef CHASSIS
-        
-        //暂无云台tim4任务
+#ifdef CHASSIS
 
-    #elif defined(GIMBAL)
-			// 单给IMU消息开的定时器 ims
-			chariot.Gimbal.Boardc_BMI.TIM_Calculate_PeriodElapsedCallback();     
+    // 暂无云台tim4任务
 
-    #endif
+#elif defined(GIMBAL)
+    // 单给IMU消息开的定时器 ims
+    chariot.Gimbal.Boardc_BMI.TIM_Calculate_PeriodElapsedCallback();
+
+#endif
 }
-
-
 
 /**
  * @brief TIM5任务回调函数
@@ -332,39 +322,37 @@ uint16_t pwmVal = 300;
 void Task1ms_TIM5_Callback()
 {
     init_finished++;
-    if(init_finished>5000)
-    start_flag=1;
+    if (init_finished > 10000)//等待IMU稳定后开始控制
+        start_flag = 1;
 
     /************ 判断设备在线状态判断 50ms (所有device:电机，遥控器，裁判系统等) ***************/
-    
+
     chariot.TIM1msMod50_Alive_PeriodElapsedCallback();
 
     /****************************** 交互层回调函数 1ms *****************************************/
-    if(start_flag==1)
+    if (start_flag == 1)
     {
         chariot.TIM_Calculate_PeriodElapsedCallback();
 
-    /****************************** 驱动层回调函数 1ms *****************************************/ 
-        
-        //统一打包发送
+        /****************************** 驱动层回调函数 1ms *****************************************/
+
+        // 统一打包发送
         TIM_CAN_PeriodElapsedCallback();
 
         TIM_UART_PeriodElapsedCallback();
-        
-        #ifdef GIMBAL
-//        __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_3, pwmVal);
-        #endif
-        
+
+#ifdef GIMBAL
+        //        __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_3, pwmVal);
+#endif
+
         static int mod5 = 0;
         mod5++;
         if (mod5 == 5)
         {
             TIM_USB_PeriodElapsedCallback(&MiniPC_USB_Manage_Object);
-        mod5 = 0;
-        }	        
+            mod5 = 0;
+        }
     }
-
-    
 }
 
 /**
@@ -372,56 +360,56 @@ void Task1ms_TIM5_Callback()
  *
  */
 void Task_Init()
-{  
+{
 
     DWT_Init(168);
 
-    /********************************** 驱动层初始化 **********************************/
-	#ifdef CHASSIS
+/********************************** 驱动层初始化 **********************************/
+#ifdef CHASSIS
 
-        //集中总线can1/can2
-        CAN_Init(&hcan1, Chassis_Device_CAN1_Callback);
-        CAN_Init(&hcan2, Chassis_Device_CAN2_Callback);
+    // 集中总线can1/can2
+    CAN_Init(&hcan1, Chassis_Device_CAN1_Callback);
+    CAN_Init(&hcan2, Chassis_Device_CAN2_Callback);
 
-        //裁判系统
-        UART_Init(&huart6, Referee_UART6_Callback, 128);
+    // 裁判系统
+    UART_Init(&huart6, Referee_UART6_Callback, 128);
 
-        #ifdef POWER_LIMIT
-        //旧版超电
-        UART_Init(&huart1, SuperCAP_UART1_Callback, 128);
-        #endif
+#ifdef POWER_LIMIT
+    // 旧版超电
+    UART_Init(&huart1, SuperCAP_UART1_Callback, 128);
+#endif
 
-    #endif
+#endif
 
-    #ifdef GIMBAL
+#ifdef GIMBAL
 
-        //集中总线can1/can2
-        CAN_Init(&hcan1, Gimbal_Device_CAN1_Callback);
-        CAN_Init(&hcan2, Gimbal_Device_CAN2_Callback);
+    // 集中总线can1/can2
+    CAN_Init(&hcan1, Gimbal_Device_CAN1_Callback);
+    CAN_Init(&hcan2, Gimbal_Device_CAN2_Callback);
 
-        //c板陀螺仪spi外设
-        SPI_Init(&hspi1,Device_SPI1_Callback);
+    // c板陀螺仪spi外设
+    SPI_Init(&hspi1, Device_SPI1_Callback);
 
-        //磁力计iic外设
-        IIC_Init(&hi2c3, Ist8310_IIC3_Callback);    
-        
-        //遥控器接收
-        UART_Init(&huart3, DR16_UART3_Callback, 18);
-				
-        //上位机USB
-        USB_Init(&MiniPC_USB_Manage_Object,MiniPC_USB_Callback);
+    // 磁力计iic外设
+    IIC_Init(&hi2c3, Ist8310_IIC3_Callback);
 
-        HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_3);
+    // 遥控器接收
+    UART_Init(&huart3, DR16_UART3_Callback, 18);
 
-    #endif
+    // 上位机USB
+    USB_Init(&MiniPC_USB_Manage_Object, MiniPC_USB_Callback);
 
-    //定时器循环任务
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+
+#endif
+
+    // 定时器循环任务
     TIM_Init(&htim4, Task100us_TIM4_Callback);
     TIM_Init(&htim5, Task1ms_TIM5_Callback);
 
     /********************************* 设备层初始化 *********************************/
 
-     //设备层集成在交互层初始化中，没有显视地初始化
+    // 设备层集成在交互层初始化中，没有显视地初始化
 
     /********************************* 交互层初始化 *********************************/
 

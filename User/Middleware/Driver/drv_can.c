@@ -71,9 +71,30 @@ uint8_t CAN2_0x146_Tx_Data[8];
 uint8_t CAN2_0x147_Tx_Data[8];
 uint8_t CAN2_0x148_Tx_Data[8];
 
+uint8_t CAN2_0x150_Tx_Data[8];
+uint8_t CAN2_0x152_Tx_Data[8];
+
 /* Private function declarations ---------------------------------------------*/
 
 /* function prototypes -------------------------------------------------------*/
+void Chassis_Send_data_Update(void)
+{
+    memset(CAN2_0x150_Tx_Data, 0, 8);
+    memset(CAN2_0x152_Tx_Data, 0, 8);
+
+//    CAN2_0x150_Tx_Data[0] = (int16_t)chassis.send.velocity.vx >> 8;
+//    CAN2_0x150_Tx_Data[1] = (int16_t)chassis.send.velocity.vx;
+//    CAN2_0x150_Tx_Data[2] = (int16_t)chassis.send.velocity.vy >> 8;
+//    CAN2_0x150_Tx_Data[3] = (int16_t)chassis.send.velocity.vy;
+//    CAN2_0x150_Tx_Data[4] = (int16_t)chassis.send.velocity.vw >> 8;
+//    CAN2_0x150_Tx_Data[5] = (int16_t)chassis.send.velocity.vw;
+
+//    CAN2_0x152_Tx_Data[0] = chassis.send.mode;
+//    //		CAN2_0x152_Tx_Data[0] =0	;
+//    CAN2_0x152_Tx_Data[1] = chassis.send.invert_flag;
+//    CAN2_0x152_Tx_Data[2] = chassis.send.follow_flag;
+    //CAN2_0x152_Tx_Data[3] = gimbal.yaw.motor.parameter.calibrate_state;
+}
 
 /**
  * @brief 配置CAN的过滤器
@@ -225,16 +246,25 @@ void TIM_CAN_PeriodElapsedCallback()
 	
     #elif defined (GIMBAL)
 
-    // CAN2 摩擦轮*2 pitch
-    CAN_Send_Data(&hcan2, 0x1ff, CAN2_0x1ff_Tx_Data, 8); //pitch-GM6020  按照0x1ff ID 发送 可控制多个电机
-    CAN_Send_Data(&hcan2, 0x200, CAN2_0x200_Tx_Data, 8); //摩擦轮+拨弹轮 按照0x200 ID 发送 可控制多个电机
+    static int mod5 = 0;
+    mod5++;
+    if (mod5 == 5)
+    {
+        mod5 = 0;
+	  CAN_Send_Data(&hcan2, 0x200, CAN2_0x200_Tx_Data, 8); // 拨弹轮
+    }
+    
+    CAN_Send_Data(&hcan2, 0x150, CAN2_0x150_Tx_Data, 8);
+    CAN_Send_Data(&hcan2, 0x152, CAN2_0x152_Tx_Data, 8);
+    //CAN1 摩擦轮
+    CAN_Send_Data(&hcan1, 0x200, CAN1_0x200_Tx_Data, 8); //摩擦轮 按照0x200 ID 发送 可控制多个电机
+    //CAN2  pitch yaw trigger
+    CAN_Send_Data(&hcan2, 0x1ff, CAN2_0x1ff_Tx_Data, 8); //pitch-yaw-GM6020  按照0x1ff ID 发送 可控制多个电机
+	
+   
+    // CAN2  下板
 
-//    CAN_Send_Data(&hcan1, 0x141, CAN1_0x141_Tx_Data, 8); //pitch-LK6010  按照0x141 ID 发送 一次只能控制一个电机
-//    
-//    // CAN2 yaw 下板
-    CAN_Send_Data(&hcan2, 0x1ff, CAN2_0x1ff_Tx_Data, 8); //yaw-GM6020  按照0x1ff ID 发送 可控制多个电机
-//    CAN_Send_Data(&hcan2, 0x77, CAN2_Chassis_Tx_Data, 8); //给底盘发送控制命令 按照0x77 ID 发送
-    #endif
+#endif
 
 }
 
