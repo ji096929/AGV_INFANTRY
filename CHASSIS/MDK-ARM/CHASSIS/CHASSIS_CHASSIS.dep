@@ -42,7 +42,7 @@ I (../Core/Inc/tim.h)(0x65FFC9F5)
 I (../Core/Inc/usart.h)(0x65FFC9F5)
 I (../Core/Inc/gpio.h)(0x65FFC9F5)
 I (../app/chassis_task.h)(0x6602C81E)
-I (../app/chassis_move/chassis.h)(0x6602C81E)
+I (../app/chassis_move/chassis.h)(0x6606E8D6)
 I (D:\software\keil5\ARM\ARMCC\include\stdbool.h)(0x588B8344)
 I (../app/motor/motor.h)(0x65FFC9F6)
 I (../bsp/PID/PID.h)(0x65FFC9F6)
@@ -1098,7 +1098,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x65FFC9F6)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x65FFC9F6)
 I (../app/chassis_task.h)(0x6602C81E)
 I (../Core/Inc/tim.h)(0x65FFC9F5)
-I (../app/chassis_move/chassis.h)(0x6602C81E)
+I (../app/chassis_move/chassis.h)(0x6606E8D6)
 I (../app/motor/motor.h)(0x65FFC9F6)
 I (../bsp/PID/PID.h)(0x65FFC9F6)
 I (../app/gimbal_connoection/can_connection.h)(0x65FFC9F6)
@@ -1108,50 +1108,7 @@ I (D:\software\keil5\ARM\ARMCC\include\string.h)(0x588B8344)
 I (../app/gimbal_connoection/gimbal_connection.h)(0x6602CA10)
 I (../app/chassis_move/agv_control.h)(0x65FFC9F6)
 I (../app/referee/ui.h)(0x6602C81E)
-F (..\app\chassis_move\chassis.c)(0x6603D512)(--c99 -c --cpu Cortex-M4.fp -g -W -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../app/referee -I ../bsp/can -I ../app/chassis_move -I ../app/gimbal_connoection -I ../app/motor -I ../bsp/PID -I ../app-I.\RTE\_CHASSIS-ID:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\software\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o chassis\chassis.o --omf_browse chassis\chassis.crf --depend chassis\chassis.d)
-I (..\app\chassis_move\chassis.h)(0x6602C81E)
-I (D:\software\keil5\ARM\ARMCC\include\stdbool.h)(0x588B8344)
-I (../app/motor/motor.h)(0x65FFC9F6)
-I (D:\software\keil5\ARM\ARMCC\include\stdint.h)(0x588B8344)
-I (../bsp/PID/PID.h)(0x65FFC9F6)
-I (../app/gimbal_connoection/gimbal_connection.h)(0x6602CA10)
-I (../bsp/can/drv_can.h)(0x65FFC9F6)
-I (D:\software\keil5\ARM\ARMCC\include\stdlib.h)(0x588B8344)
-I (D:\software\keil5\ARM\ARMCC\include\string.h)(0x588B8344)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x65FFC9F6)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x65FFC9F5)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x65FFC9F6)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x65FFC9F6)
-I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x65FFC9F6)
-I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h)(0x65FFC9F6)
-I (../Drivers/CMSIS/Include/core_cm4.h)(0x65FFC9F6)
-I (../Drivers/CMSIS/Include/cmsis_version.h)(0x65FFC9F6)
-I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x65FFC9F6)
-I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x65FFC9F6)
-I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x65FFC9F6)
-I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h)(0x65FFC9F6)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x65FFC9F6)
-I (D:\software\keil5\ARM\ARMCC\include\stddef.h)(0x588B8344)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h)(0x65FFC9F6)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h)(0x65FFC9F6)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h)(0x65FFC9F6)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h)(0x65FFC9F6)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h)(0x65FFC9F6)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h)(0x65FFC9F6)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h)(0x65FFC9F6)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h)(0x65FFC9F6)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h)(0x65FFC9F6)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x65FFC9F6)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x65FFC9F6)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x65FFC9F6)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x65FFC9F6)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rtc.h)(0x65FFC9F6)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rtc_ex.h)(0x65FFC9F6)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x65FFC9F6)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x65FFC9F6)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x65FFC9F6)
-I (..\app\chassis_move\kinematic.h)(0x65FFC9F6)
-F (..\app\chassis_move\agv_control.c)(0x6603D68A)(--c99 -c --cpu Cortex-M4.fp -g -W -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../app/referee -I ../bsp/can -I ../app/chassis_move -I ../app/gimbal_connoection -I ../app/motor -I ../bsp/PID -I ../app-I.\RTE\_CHASSIS-ID:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\software\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o chassis\agv_control.o --omf_browse chassis\agv_control.crf --depend chassis\agv_control.d)
+F (..\app\chassis_move\agv_control.c)(0x6606EC9D)(--c99 -c --cpu Cortex-M4.fp -g -W -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../app/referee -I ../bsp/can -I ../app/chassis_move -I ../app/gimbal_connoection -I ../app/motor -I ../bsp/PID -I ../app-I.\RTE\_CHASSIS-ID:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\software\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o chassis\agv_control.o --omf_browse chassis\agv_control.crf --depend chassis\agv_control.d)
 I (..\app\chassis_move\agv_control.h)(0x65FFC9F6)
 I (D:\software\keil5\ARM\ARMCC\include\stdint.h)(0x588B8344)
 I (../bsp/can/drv_can.h)(0x65FFC9F6)
@@ -1190,12 +1147,55 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rtc_ex.h)(0x65FFC9F6)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x65FFC9F6)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x65FFC9F6)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x65FFC9F6)
-I (..\app\chassis_move\chassis.h)(0x6602C81E)
+I (..\app\chassis_move\chassis.h)(0x6606E8D6)
 I (../app/motor/motor.h)(0x65FFC9F6)
 I (../bsp/PID/PID.h)(0x65FFC9F6)
 I (../app/referee/referee.h)(0x65FFC9F6)
 I (../app/referee/algorithmOfCRC.h)(0x65FFC9F6)
-F (..\app\gimbal_connoection\gimbal_connection.c)(0x6603CDD1)(--c99 -c --cpu Cortex-M4.fp -g -W -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../app/referee -I ../bsp/can -I ../app/chassis_move -I ../app/gimbal_connoection -I ../app/motor -I ../bsp/PID -I ../app-I.\RTE\_CHASSIS-ID:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\software\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o chassis\gimbal_connection.o --omf_browse chassis\gimbal_connection.crf --depend chassis\gimbal_connection.d)
+F (..\app\chassis_move\chassis.c)(0x6606BAAB)(--c99 -c --cpu Cortex-M4.fp -g -W -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../app/referee -I ../bsp/can -I ../app/chassis_move -I ../app/gimbal_connoection -I ../app/motor -I ../bsp/PID -I ../app-I.\RTE\_CHASSIS-ID:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\software\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o chassis\chassis.o --omf_browse chassis\chassis.crf --depend chassis\chassis.d)
+I (..\app\chassis_move\chassis.h)(0x6606E8D6)
+I (D:\software\keil5\ARM\ARMCC\include\stdbool.h)(0x588B8344)
+I (../app/motor/motor.h)(0x65FFC9F6)
+I (D:\software\keil5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (../bsp/PID/PID.h)(0x65FFC9F6)
+I (../app/gimbal_connoection/gimbal_connection.h)(0x6602CA10)
+I (../bsp/can/drv_can.h)(0x65FFC9F6)
+I (D:\software\keil5\ARM\ARMCC\include\stdlib.h)(0x588B8344)
+I (D:\software\keil5\ARM\ARMCC\include\string.h)(0x588B8344)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x65FFC9F6)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x65FFC9F5)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x65FFC9F6)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x65FFC9F6)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x65FFC9F6)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h)(0x65FFC9F6)
+I (../Drivers/CMSIS/Include/core_cm4.h)(0x65FFC9F6)
+I (../Drivers/CMSIS/Include/cmsis_version.h)(0x65FFC9F6)
+I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x65FFC9F6)
+I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x65FFC9F6)
+I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x65FFC9F6)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h)(0x65FFC9F6)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x65FFC9F6)
+I (D:\software\keil5\ARM\ARMCC\include\stddef.h)(0x588B8344)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h)(0x65FFC9F6)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h)(0x65FFC9F6)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h)(0x65FFC9F6)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h)(0x65FFC9F6)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h)(0x65FFC9F6)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h)(0x65FFC9F6)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h)(0x65FFC9F6)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h)(0x65FFC9F6)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h)(0x65FFC9F6)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x65FFC9F6)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x65FFC9F6)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x65FFC9F6)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x65FFC9F6)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rtc.h)(0x65FFC9F6)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rtc_ex.h)(0x65FFC9F6)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x65FFC9F6)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x65FFC9F6)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x65FFC9F6)
+I (..\app\chassis_move\kinematic.h)(0x6605177D)
+F (..\app\gimbal_connoection\gimbal_connection.c)(0x6606AE36)(--c99 -c --cpu Cortex-M4.fp -g -W -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../app/referee -I ../bsp/can -I ../app/chassis_move -I ../app/gimbal_connoection -I ../app/motor -I ../bsp/PID -I ../app-I.\RTE\_CHASSIS-ID:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\software\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o chassis\gimbal_connection.o --omf_browse chassis\gimbal_connection.crf --depend chassis\gimbal_connection.d)
 I (..\app\gimbal_connoection\gimbal_connection.h)(0x6602CA10)
 I (../bsp/can/drv_can.h)(0x65FFC9F6)
 I (D:\software\keil5\ARM\ARMCC\include\stdlib.h)(0x588B8344)
@@ -1234,16 +1234,16 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rtc_ex.h)(0x65FFC9F6)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x65FFC9F6)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x65FFC9F6)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x65FFC9F6)
-I (../app/chassis_move/chassis.h)(0x6602C81E)
+I (../app/chassis_move/chassis.h)(0x6606E8D6)
 I (../app/motor/motor.h)(0x65FFC9F6)
 I (../bsp/PID/PID.h)(0x65FFC9F6)
 F (..\app\motor\motor.c)(0x65FFC9F6)(--c99 -c --cpu Cortex-M4.fp -g -W -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../app/referee -I ../bsp/can -I ../app/chassis_move -I ../app/gimbal_connoection -I ../app/motor -I ../bsp/PID -I ../app-I.\RTE\_CHASSIS-ID:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\software\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o chassis\motor.o --omf_browse chassis\motor.crf --depend chassis\motor.d)
 I (..\app\motor\motor.h)(0x65FFC9F6)
 I (D:\software\keil5\ARM\ARMCC\include\stdint.h)(0x588B8344)
 I (D:\software\keil5\ARM\ARMCC\include\stdbool.h)(0x588B8344)
-F (..\app\chassis_move\kinematic.c)(0x65FFC9F6)(--c99 -c --cpu Cortex-M4.fp -g -W -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../app/referee -I ../bsp/can -I ../app/chassis_move -I ../app/gimbal_connoection -I ../app/motor -I ../bsp/PID -I ../app-I.\RTE\_CHASSIS-ID:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\software\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o chassis\kinematic.o --omf_browse chassis\kinematic.crf --depend chassis\kinematic.d)
-I (..\app\chassis_move\kinematic.h)(0x65FFC9F6)
-I (..\app\chassis_move\chassis.h)(0x6602C81E)
+F (..\app\chassis_move\kinematic.c)(0x6606D808)(--c99 -c --cpu Cortex-M4.fp -g -W -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../app/referee -I ../bsp/can -I ../app/chassis_move -I ../app/gimbal_connoection -I ../app/motor -I ../bsp/PID -I ../app-I.\RTE\_CHASSIS-ID:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\software\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o chassis\kinematic.o --omf_browse chassis\kinematic.crf --depend chassis\kinematic.d)
+I (..\app\chassis_move\kinematic.h)(0x6605177D)
+I (..\app\chassis_move\chassis.h)(0x6606E8D6)
 I (D:\software\keil5\ARM\ARMCC\include\stdbool.h)(0x588B8344)
 I (../app/motor/motor.h)(0x65FFC9F6)
 I (D:\software\keil5\ARM\ARMCC\include\stdint.h)(0x588B8344)
@@ -1289,7 +1289,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rtc_ex.h)(0x65FFC9F6)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x65FFC9F6)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x65FFC9F6)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x65FFC9F6)
-I (../app/chassis_move/chassis.h)(0x6602C81E)
+I (../app/chassis_move/chassis.h)(0x6606E8D6)
 I (../app/motor/motor.h)(0x65FFC9F6)
 I (../bsp/PID/PID.h)(0x65FFC9F6)
 I (..\app\gimbal_connoection\gimbal_connection.h)(0x6602CA10)
@@ -1338,7 +1338,7 @@ I (../app/gimbal_connoection/gimbal_connection.h)(0x6602CA10)
 I (../bsp/can/drv_can.h)(0x65FFC9F6)
 I (D:\software\keil5\ARM\ARMCC\include\stdlib.h)(0x588B8344)
 I (D:\software\keil5\ARM\ARMCC\include\string.h)(0x588B8344)
-I (../app/chassis_move/chassis.h)(0x6602C81E)
+I (../app/chassis_move/chassis.h)(0x6606E8D6)
 I (../app/motor/motor.h)(0x65FFC9F6)
 I (../bsp/PID/PID.h)(0x65FFC9F6)
 F (..\bsp\can\drv_can.c)(0x6603CCD5)(--c99 -c --cpu Cortex-M4.fp -g -W -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../app/referee -I ../bsp/can -I ../app/chassis_move -I ../app/gimbal_connoection -I ../app/motor -I ../bsp/PID -I ../app-I.\RTE\_CHASSIS-ID:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\software\keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F407xx -DUSE_HAL_DRIVER -DSTM32F407xx-o chassis\drv_can.o --omf_browse chassis\drv_can.crf --depend chassis\drv_can.d)
@@ -1419,7 +1419,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rtc_ex.h)(0x65FFC9F6)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x65FFC9F6)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x65FFC9F6)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x65FFC9F6)
-I (../app/chassis_move/chassis.h)(0x6602C81E)
+I (../app/chassis_move/chassis.h)(0x6606E8D6)
 I (D:\software\keil5\ARM\ARMCC\include\stdbool.h)(0x588B8344)
 I (../app/motor/motor.h)(0x65FFC9F6)
 I (../bsp/PID/PID.h)(0x65FFC9F6)

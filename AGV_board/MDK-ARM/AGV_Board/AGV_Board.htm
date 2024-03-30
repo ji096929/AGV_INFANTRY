@@ -3,7 +3,7 @@
 <title>Static Call Graph - [AGV_Board\AGV_Board.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image AGV_Board\AGV_Board.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Wed Mar 27 16:04:09 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sat Mar 30 00:40:37 2024
 <BR><P>
 <H3>Maximum Stack Usage =        256 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1160,8 +1160,8 @@ Global Symbols
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M3508_gear_set_torque_current_lsb
-<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M3508_feedback_process
+<BR>[Called By]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M3508_feedback_process
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M3508_gear_set_torque_current_lsb
 </UL>
 
 <P><STRONG><a name="[cd]"></a>M3508_from_torque_current_to_torque</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, m3508_bsp.o(i.M3508_from_torque_current_to_torque))
@@ -1223,6 +1223,7 @@ Global Symbols
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Steering_Wheel_CommandTransmit
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SW_control_task
 </UL>
 
 <P><STRONG><a name="[cf]"></a>M3508_set_single_motor_current</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, m3508.o(i.M3508_set_single_motor_current))
@@ -1344,12 +1345,13 @@ Global Symbols
 <P><STRONG><a name="[a]"></a>SVC_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f1xx_it.o(i.SVC_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f105xc.o(RESET)
 </UL>
-<P><STRONG><a name="[af]"></a>SW_control_task</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, sw_control_task.o(i.SW_control_task))
+<P><STRONG><a name="[af]"></a>SW_control_task</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, sw_control_task.o(i.SW_control_task))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = SW_control_task &rArr; Steering_Wheel_CommandUpdate &rArr; Steering_Wheel_MotorCommandUpdate &rArr; PID_Controller &rArr; PI_Controller
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Steering_Wheel_StatusUpdate
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Steering_Wheel_CommandUpdate
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Steering_Wheel_CommandTransmit
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M3508_gear_set_torque_current_lsb
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PeriodElapsedCallback
 </UL>
@@ -1452,7 +1454,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Steering_Wheel_CommandUpdate
 </UL>
 
-<P><STRONG><a name="[f0]"></a>Steering_Wheel_PID_HandleInit</STRONG> (Thumb, 182 bytes, Stack size 16 bytes, steering_wheel.o(i.Steering_Wheel_PID_HandleInit))
+<P><STRONG><a name="[f0]"></a>Steering_Wheel_PID_HandleInit</STRONG> (Thumb, 184 bytes, Stack size 16 bytes, steering_wheel.o(i.Steering_Wheel_PID_HandleInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = Steering_Wheel_PID_HandleInit &rArr; __aeabi_memclr4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PID_HandleInit
@@ -1972,10 +1974,10 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_fmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Steering_Wheel_MotorCommandUpdate
-<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M3508_gear_set_torque_current_lsb
 <LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M3508_gear_feedback_process
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M3508_from_lsb_to_torque_current
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M3508_from_lsb_to_position_deg
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M3508_gear_set_torque_current_lsb
 </UL>
 
 <P><STRONG><a name="[130]"></a>_fmul</STRONG> (Thumb, 258 bytes, Stack size 16 bytes, fmul.o(x$fpl$fmul), UNUSED)

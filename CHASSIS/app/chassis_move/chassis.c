@@ -18,7 +18,7 @@
 CHASSIS_T chassis;
 YAW_T   yaw;
 PID_T   yaw_pid;
-float yaw_position_loop_data[10]= {0.07f,0.0f,0.f,2.5f,0.0f,1.0f,0.f,0.f,0.f,0.f};
+float yaw_position_loop_data[10]= {0.12f,0.0f,0.f,2.5f,0.0f,1.0f,0.f,0.f,0.f,0.f};
 
 void Chassis_Speed_Slow_Motion(CHASSIS_T *chassis)
 {
@@ -94,7 +94,8 @@ void Gimbal_To_Chassis_Relative_Angle_Update(void)
 				{
 				chassis_angle   =   yaw.status.actual_angle;
 				gimbal_angle    =   GIMBAL_HEAD_ANGLE+180.0f*chassis.parameter.invert_flag;
-				chassis.parameter.relative_angle =   chassis_angle-gimbal_angle;
+				chassis.parameter.relative_angle =   gimbal_angle-chassis_angle;
+					
 				if(chassis.parameter.relative_angle>180.0f) chassis.parameter.relative_angle-=360.0f;
 				if(chassis.parameter.relative_angle<-180.0f) chassis.parameter.relative_angle+=360.0f;
 				}
@@ -130,7 +131,8 @@ void Chassis_Mode_Command_Update(void)
         case    CHASSIS_NORMAL:
         if(chassis.parameter.follow_switch	==	FOLLOW_ON)
 				{
-				chassis.command.vw =  chassis.command.vw-1.0f*chassis_fllow();
+				chassis.command.vw =  chassis.command.vw+1.0f*chassis_fllow();
+					//chassis.command.vw =  0;
 				}
 				else
 				{
@@ -157,7 +159,7 @@ void Chassis_Init(void)
 		chassis.A_motor.zero_position = 7635;
 		chassis.B_motor.zero_position = 2573;
 		chassis.C_motor.zero_position = 1967;
-		chassis.D_motor.zero_position = 5563;
+		chassis.D_motor.zero_position = 5603;
 		chassis.A_motor.ID	=	0x1a;
 		chassis.B_motor.ID	=	0x1b;
 		chassis.C_motor.ID	=	0x1c;
@@ -168,7 +170,7 @@ void Chassis_Init(void)
 void Yaw_Init(void)
 {
     yaw.motor.parameter.calibrate_state	=	1;
-		yaw.parameter.number_ratio = 2.0f;
+		yaw.parameter.number_ratio = 1.0f;
     PID_Init(&yaw_pid.angle_loop,yaw_position_loop_data,NONE);
 }
 

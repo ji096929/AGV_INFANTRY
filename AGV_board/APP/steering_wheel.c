@@ -17,9 +17,9 @@ void Steering_Wheel_PID_HandleInit(steering_wheel_t *steering_wheel)
 	// 先把PID结构体置零
 	memset(&steering_wheel->directive_part.motor.PID_Handles	, 0, sizeof(steering_wheel->directive_part.motor.PID_Handles));
 	memset(&steering_wheel->motion_part.motor.PID_Handles		, 0, sizeof(steering_wheel->motion_part.motor.PID_Handles));
-	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hDefKpGain = 7;
+	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hDefKpGain = 18;
 	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hKpDivisorPOW2 = 6;
-	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hDefKdGain = 1;
+	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hDefKdGain = 3;
 	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hKdDivisorPOW2 = 0;
 	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hUpperOutputLimit = 2000;
 	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hLowerOutputLimit = -2000;

@@ -711,14 +711,14 @@
               <FilePath>..\app\referee\referee.c</FilePath>
             </File>
             <File>
-              <FileName>chassis.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\app\chassis_move\chassis.c</FilePath>
-            </File>
-            <File>
               <FileName>agv_control.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\app\chassis_move\agv_control.c</FilePath>
+            </File>
+            <File>
+              <FileName>chassis.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\chassis_move\chassis.c</FilePath>
             </File>
             <File>
               <FileName>gimbal_connection.c</FileName>

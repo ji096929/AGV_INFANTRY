@@ -118,6 +118,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
+          <Name></Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -156,7 +157,7 @@
           <Type>0</Type>
           <LineNumber>58</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134222110</Address>
+          <Address>134222046</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -171,8 +172,8 @@
           <Number>1</Number>
           <Type>2</Type>
           <LineNumber>0</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>536872992</Address>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>536873040</Address>
           <ByteObject>1</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>1</ManyObjects>
@@ -185,9 +186,41 @@
         </Bp>
         <Bp>
           <Number>2</Number>
+          <Type>2</Type>
+          <LineNumber>0</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>536873024</Address>
+          <ByteObject>1</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>1</ManyObjects>
+          <SizeOfObject>4</SizeOfObject>
+          <BreakByAccess>2</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename></Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\CHASSIS\../app/chassis_move/chassis.c\chassis.command.vw</Expression>
+        </Bp>
+        <Bp>
+          <Number>3</Number>
+          <Type>2</Type>
+          <LineNumber>0</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>536873000</Address>
+          <ByteObject>1</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>1</ManyObjects>
+          <SizeOfObject>4</SizeOfObject>
+          <BreakByAccess>2</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename></Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\CHASSIS\../app/chassis_move/chassis.c\chassis.parameter.relative_angle</Expression>
+        </Bp>
+        <Bp>
+          <Number>4</Number>
           <Type>0</Type>
           <LineNumber>59</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
+          <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
@@ -245,6 +278,16 @@
           <count>8</count>
           <WinNumber>1</WinNumber>
           <ItemText>time,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>9</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>yaw_pid</ItemText>
+        </Ww>
+        <Ww>
+          <count>10</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>chassis_angle</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>
@@ -727,8 +770,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\app\chassis_move\chassis.c</PathWithFileName>
-      <FilenameWithoutPath>chassis.c</FilenameWithoutPath>
+      <PathWithFileName>..\app\chassis_move\agv_control.c</PathWithFileName>
+      <FilenameWithoutPath>agv_control.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -739,8 +782,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\app\chassis_move\agv_control.c</PathWithFileName>
-      <FilenameWithoutPath>agv_control.c</FilenameWithoutPath>
+      <PathWithFileName>..\app\chassis_move\chassis.c</PathWithFileName>
+      <FilenameWithoutPath>chassis.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
