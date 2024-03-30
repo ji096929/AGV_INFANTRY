@@ -115,6 +115,11 @@ void Judge_Buffer_Receive_Task(uint8_t *frame)
 		memcpy(&JudgeReceive.realChassisOutV, frame + index, 16);
 
 		break;
+	case SHOOT_DATA_CMD_ID:
+		memcpy(&JudgeReceive.bullet_type, frame + index, 7);
+
+		break;
+
 	default:
 	{
 		break;

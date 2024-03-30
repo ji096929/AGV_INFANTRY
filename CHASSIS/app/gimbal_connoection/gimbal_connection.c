@@ -1,5 +1,5 @@
 #include "gimbal_connection.h"
-
+#include "referee.h"
 GIMBAL_CONNECTION_T connection;
 
 void Chassis_Flag_Update(GIMBAL_CONNECTION_T *connection)
@@ -40,3 +40,15 @@ void Fric_Speed_And_Pitch_Angle_Update(GIMBAL_CONNECTION_T *connection,uint8_t	d
 				memcpy(&connection->connection_rx.pitch_angle,&data[2],4);
 }
 
+/**
+ * @brief can底盘向云台发送数据
+ *
+ */
+void CAN_Chassis_TxCpltCallback()
+{
+	JudgeReceive.bulletSpeed = (int16_t)JudgeReceive.bulletSpeed;
+	memcpy(CAN2_0x200_Tx_Data, &JudgeReceive.HeatCool17, sizeof(int16_t));
+	memcpy(CAN2_0x200_Tx_Data + 2, &JudgeReceive.HeatMax17, sizeof(int16_t));
+	memcpy(CAN2_0x200_Tx_Data + 4, &JudgeReceive.launching_frequency, sizeof(int16_t));
+	memcpy(CAN2_0x200_Tx_Data + 6, &JudgeReceive.initial_speed, sizeof(int16_t));
+}

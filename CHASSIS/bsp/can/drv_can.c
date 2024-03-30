@@ -261,7 +261,8 @@ void TIM_CAN_PeriodElapsedCallback()
 
 //    // CAN2电机
 //    CAN_Send_Data(&hcan2, 0x1ff, CAN2_0x1ff_Tx_Data, 8);
-//    CAN_Send_Data(&hcan2, 0x200, CAN2_0x200_Tx_Data, 8);
+//向云台发送裁判系统数据
+    CAN_Send_Data(&hcan2, 0x200, CAN2_0x200_Tx_Data, 8);
     // CAN_Send_Data(&hcan2, 0x2ff, CAN2_0x2ff_Tx_Data, 8);
 }
 

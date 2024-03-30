@@ -41,3 +41,5 @@ chassis\gimbal_connection.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_u
 chassis\gimbal_connection.o: ../app/chassis_move/chassis.h
 chassis\gimbal_connection.o: ../app/motor/motor.h
 chassis\gimbal_connection.o: ../bsp/PID/PID.h
+chassis\gimbal_connection.o: ../app/referee/referee.h
+chassis\gimbal_connection.o: ../app/referee/algorithmOfCRC.h

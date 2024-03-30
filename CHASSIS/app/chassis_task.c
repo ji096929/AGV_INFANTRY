@@ -54,7 +54,11 @@ void Chassis_Task()
     {
       referee_unpack_fifo_data();
     }
-		if(time.ms_count%10==6)
+    if (time.ms_count % 10 == 5)
+    {
+      CAN_Chassis_TxCpltCallback();
+    }
+    if(time.ms_count%10==6)
     {
 //    UI_Send_Char_Task();
     }
@@ -63,6 +67,7 @@ void Chassis_Task()
 //     UI_Send_Graphic_Task();
 			Chassis_Flag_Update(&connection);
     }
+
         Time_Count_Task(&time);
     }
 }

@@ -36,8 +36,8 @@ typedef struct
 	uint8_t RobotLevel;
 	uint16_t remainHP;
 	uint16_t maxHP;
-	uint16_t HeatCool42;
-	uint16_t HeatMax42;
+	uint16_t HeatCool17;
+	uint16_t HeatMax17;
 	uint16_t MaxPower;
 	uint8_t PowerOutPut;
 
@@ -49,9 +49,10 @@ typedef struct
 	short shooterHeat42;
 
 	// 0x0207
-	uint8_t bulletFreq;
-	uint8_t ShootCpltFlag;
-
+	uint8_t bullet_type;
+	uint8_t shooter_number;
+	uint8_t launching_frequency;
+	float initial_speed;
 	// flag
 	short HeatUpdateFlag;
 

@@ -77,6 +77,9 @@
   "files.associations": {
     "kinematic.h": "c",
     "referee.h": "c",
-    "usart.h": "c"
+    "usart.h": "c",
+    "gimbal_connection.h": "c",
+    "can_connection.h": "c",
+    "drv_can.h": "c"
   }
 }
