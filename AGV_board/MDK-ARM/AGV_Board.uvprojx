@@ -775,6 +775,11 @@
               <FileType>1</FileType>
               <FilePath>..\BSP\steering_communication_bsp.c</FilePath>
             </File>
+            <File>
+              <FileName>buzzer_bsp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\BSP\buzzer_bsp.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -814,6 +819,11 @@
               <FileName>chassis_power_control.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\APP\chassis_power_control.c</FilePath>
+            </File>
+            <File>
+              <FileName>buzzer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\buzzer.c</FilePath>
             </File>
           </Files>
         </Group>

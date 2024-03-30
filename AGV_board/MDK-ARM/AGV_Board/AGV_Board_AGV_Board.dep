@@ -861,6 +861,10 @@ F (..\BSP\pack_handler_bsp.c)(0x65FFC9F4)(--c99 -c --cpu Cortex-M3 -g -W -O1 --a
 F (..\BSP\steering_communication_bsp.c)(0x65FFC9F4)(--c99 -c --cpu Cortex-M3 -g -W -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../BSP -I ../APP -I ../task -I ../refree-I.\RTE\_AGV_Board-ID:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\software\keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_CL -DUSE_HAL_DRIVER -DSTM32F105xC-o agv_board\steering_communication_bsp.o --omf_browse agv_board\steering_communication_bsp.crf --depend agv_board\steering_communication_bsp.d)
 I (..\BSP\steering_communication_bsp.h)(0x65FFC9F4)
 I (D:\software\keil5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+F (..\BSP\buzzer_bsp.c)(0x66076331)(--c99 -c --cpu Cortex-M3 -g -W -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../BSP -I ../APP -I ../task -I ../refree-I.\RTE\_AGV_Board-ID:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\software\keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_CL -DUSE_HAL_DRIVER -DSTM32F105xC-o agv_board\buzzer_bsp.o --omf_browse agv_board\buzzer_bsp.crf --depend agv_board\buzzer_bsp.d)
+I (..\BSP\buzzer_bsp.h)(0x66076331)
+I (D:\software\keil5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (D:\software\keil5\ARM\ARMCC\include\math.h)(0x65A0174D)
 F (..\APP\M3508.c)(0x65FFC9F4)(--c99 -c --cpu Cortex-M3 -g -W -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../BSP -I ../APP -I ../task -I ../refree-I.\RTE\_AGV_Board-ID:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\software\keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_CL -DUSE_HAL_DRIVER -DSTM32F105xC-o agv_board\m3508.o --omf_browse agv_board\m3508.crf --depend agv_board\m3508.d)
 I (..\APP\M3508.h)(0x65FFC9F4)
 I (../BSP/M3508_bsp.h)(0x65FFC9F4)
@@ -1039,6 +1043,40 @@ I (../APP/briter_encoder.h)(0x65FFC9F4)
 I (../BSP/briter_encoder_bsp.h)(0x65FFC9F4)
 I (../APP/steering_communication.h)(0x65FFC9F4)
 I (../BSP/steering_communication_bsp.h)(0x65FFC9F4)
+F (..\APP\buzzer.c)(0x66076331)(--c99 -c --cpu Cortex-M3 -g -W -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../BSP -I ../APP -I ../task -I ../refree-I.\RTE\_AGV_Board-ID:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\software\keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_CL -DUSE_HAL_DRIVER -DSTM32F105xC-o agv_board\buzzer.o --omf_browse agv_board\buzzer.crf --depend agv_board\buzzer.d)
+I (..\APP\buzzer.h)(0x66076331)
+I (../BSP/buzzer_bsp.h)(0x66076331)
+I (D:\software\keil5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (D:\software\keil5\ARM\ARMCC\include\math.h)(0x65A0174D)
+I (../Core/Inc/tim.h)(0x65FFC9F4)
+I (../Core/Inc/main.h)(0x65FFC9F4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x65FFC9F5)
+I (../Core/Inc/stm32f1xx_hal_conf.h)(0x65FFC9F4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x65FFC9F5)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x65FFC9F5)
+I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x65FFC9F4)
+I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f105xc.h)(0x65FFC9F4)
+I (../Drivers/CMSIS/Include/core_cm3.h)(0x65FFC9F4)
+I (../Drivers/CMSIS/Include/cmsis_version.h)(0x65FFC9F4)
+I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x65FFC9F4)
+I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x65FFC9F4)
+I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h)(0x65FFC9F4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x65FFC9F5)
+I (D:\software\keil5\ARM\ARMCC\include\stddef.h)(0x588B8344)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h)(0x65FFC9F5)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h)(0x65FFC9F5)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h)(0x65FFC9F5)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h)(0x65FFC9F5)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h)(0x65FFC9F5)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h)(0x65FFC9F5)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_can.h)(0x65FFC9F5)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h)(0x65FFC9F5)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h)(0x65FFC9F5)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x65FFC9F5)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x65FFC9F5)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x65FFC9F5)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x65FFC9F5)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x65FFC9F5)
 F (..\refree\algorithmOfCRC.c)(0x65FFC9F5)(--c99 -c --cpu Cortex-M3 -g -W -O1 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../BSP -I ../APP -I ../task -I ../refree-I.\RTE\_AGV_Board-ID:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\software\keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_CL -DUSE_HAL_DRIVER -DSTM32F105xC-o agv_board\algorithmofcrc.o --omf_browse agv_board\algorithmofcrc.crf --depend agv_board\algorithmofcrc.d)
 I (../Core/Inc/main.h)(0x65FFC9F4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x65FFC9F5)
