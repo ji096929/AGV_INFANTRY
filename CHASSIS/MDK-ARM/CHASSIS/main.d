@@ -54,3 +54,6 @@ chassis\main.o: ../app/chassis_move/agv_control.h
 chassis\main.o: ../app/referee/referee.h
 chassis\main.o: ../app/referee/algorithmOfCRC.h
 chassis\main.o: ../app/referee/ui.h
+chassis\main.o: ../app/referee/ui_interface.h
+chassis\main.o: ../app/referee/ui_types.h
+chassis\main.o: ../app/referee/ui_default_Ungroup_0.h

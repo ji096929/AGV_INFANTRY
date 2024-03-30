@@ -19,7 +19,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	{
 		#ifndef motor_power_test
 		SW_control_task();
-		SW_subscribe_task();
+		//SW_subscribe_task();
 		#endif
 		#ifdef motor_power_test
 		if(test_power.test_mode==1)

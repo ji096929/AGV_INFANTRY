@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include "drv_can.h"
+#include "pid.h"
 #define  DEFAULT_SET_VECTOR_SPEED_ONLY_CNT 1 /* ?????????? */
 #define VALUE_OF_SCALED_POWER_COEFFICIENT_WHEN_SET_VECTOR_SPEED_ONLY -114514
 typedef struct
@@ -25,5 +26,7 @@ typedef struct
 void calculate_true_power(void);
 		void AGV_connoection(int ms_cnt);
 		void Chassis_Power_Control_Init(void);
+
+ extern PID_TypeDef buffer_pid;
 
 #endif

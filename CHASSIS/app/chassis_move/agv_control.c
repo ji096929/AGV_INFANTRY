@@ -2,6 +2,7 @@
 #include "chassis.h"
 #include "referee.h"
 chassis_power_control_t chassis_power_control;
+PID_TypeDef buffer_pid;
 
 void Set_AGV_Velocity_Vector_Data_Update(uint8_t tx_data[], int16_t angle, int16_t speed, float power_limition)
 {
@@ -90,7 +91,7 @@ void AGV_connoection(int ms_cnt)
                 chassis.D_motor.status = Status_On;
                 CAN_Send_EXT_Data(&hcan1, EXT_ID_Set(chassis.D_motor.ID, 0, 0x01), AGV_B_Tx_Data, 8);
             }
-            Set_AGV_Velocity_Vector_Data_Update(AGV_D_Tx_Data, chassis.D_motor.target_angle, chassis.D_motor.target_speed.output, chassis_power_control.scaled_power_32[0]);
+            Set_AGV_Velocity_Vector_Data_Update(AGV_D_Tx_Data, chassis.D_motor.target_angle, chassis.D_motor.target_speed.output, chassis_power_control.scaled_power_32[3]);
         }
         else
         {
@@ -99,20 +100,21 @@ void AGV_connoection(int ms_cnt)
                 chassis.D_motor.status = Status_Off;
                 CAN_Send_EXT_Data(&hcan1, EXT_ID_Set(chassis.D_motor.ID, 0, 0x00), AGV_A_Tx_Data, 8);
             }
-             Set_AGV_Velocity_Vector_Data_Update(AGV_D_Tx_Data, chassis.D_motor.target_angle, 0, chassis_power_control.scaled_power_32[0]);
+             Set_AGV_Velocity_Vector_Data_Update(AGV_D_Tx_Data, chassis.D_motor.target_angle, 0, chassis_power_control.scaled_power_32[3]);
         }
         CAN_Send_EXT_Data(&hcan1, EXT_ID_Set(chassis.D_motor.ID, 0, 0x03), AGV_D_Tx_Data, 8);
     }
 }
-
+float test_sum;
 void calculate_true_power(void)
 {
-
+    PID_Calculate(&buffer_pid, JudgeReceive.remainEnergy,30);
     float sum = 0;
     if (JudgeReceive.MaxPower == 0)
         chassis_power_control.power_limit_max = 80;
     else
-        chassis_power_control.power_limit_max = JudgeReceive.MaxPower;
+    
+        chassis_power_control.power_limit_max = JudgeReceive.MaxPower - buffer_pid.Output;
 
     if (chassis_power_control.all_mscb_ready_flag & 0xf)
     {
@@ -120,6 +122,8 @@ void calculate_true_power(void)
         {
             sum += chassis_power_control.expect_power_32[i];
         }
+	  test_sum=sum;
+	  
         chassis_power_control.scaled_power_coefficient_32 = (chassis_power_control.power_limit_max) / sum;
         if (chassis_power_control.scaled_power_coefficient_32 <= 1)
         {
@@ -143,6 +147,6 @@ void Chassis_Power_Control_Init(void)
 {
     for (int i = 0; i < 4; i++)
     {
-        chassis_power_control.scaled_power_32[i] = 20.0f;
+        chassis_power_control.scaled_power_32[i] = 60.0f;
     }
 }

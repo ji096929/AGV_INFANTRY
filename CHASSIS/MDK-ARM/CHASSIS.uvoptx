@@ -154,26 +154,10 @@
       <Breakpoint>
         <Bp>
           <Number>0</Number>
-          <Type>0</Type>
-          <LineNumber>58</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>134222046</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\app\chassis_move\agv_control.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\CHASSIS\../app/chassis_move/agv_control.c\58</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
           <Type>2</Type>
           <LineNumber>0</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>536873040</Address>
+          <Address>536874276</Address>
           <ByteObject>1</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>1</ManyObjects>
@@ -185,11 +169,11 @@
           <Expression>\\CHASSIS\../app/chassis_move/chassis.c\chassis.A_motor.target_angle</Expression>
         </Bp>
         <Bp>
-          <Number>2</Number>
+          <Number>1</Number>
           <Type>2</Type>
           <LineNumber>0</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>536873024</Address>
+          <Address>536874260</Address>
           <ByteObject>1</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>1</ManyObjects>
@@ -201,11 +185,11 @@
           <Expression>\\CHASSIS\../app/chassis_move/chassis.c\chassis.command.vw</Expression>
         </Bp>
         <Bp>
-          <Number>3</Number>
+          <Number>2</Number>
           <Type>2</Type>
           <LineNumber>0</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>536873000</Address>
+          <Address>536874236</Address>
           <ByteObject>1</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>1</ManyObjects>
@@ -215,6 +199,22 @@
           <Filename></Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\CHASSIS\../app/chassis_move/chassis.c\chassis.parameter.relative_angle</Expression>
+        </Bp>
+        <Bp>
+          <Number>3</Number>
+          <Type>0</Type>
+          <LineNumber>58</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>..\app\chassis_move\agv_control.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -272,6 +272,16 @@
           <count>10</count>
           <WinNumber>1</WinNumber>
           <ItemText>chassis_angle</ItemText>
+        </Ww>
+        <Ww>
+          <count>11</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>test_sum</ItemText>
+        </Ww>
+        <Ww>
+          <count>12</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>buffer_pid</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>
@@ -831,6 +841,30 @@
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>40</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\app\referee\ui_default_Ungroup_0.c</PathWithFileName>
+      <FilenameWithoutPath>ui_default_Ungroup_0.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>41</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\app\referee\ui_interface.c</PathWithFileName>
+      <FilenameWithoutPath>ui_interface.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
   </Group>
 
   <Group>
@@ -841,7 +875,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>6</GroupNumber>
-      <FileNumber>40</FileNumber>
+      <FileNumber>42</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -853,7 +887,7 @@
     </File>
     <File>
       <GroupNumber>6</GroupNumber>
-      <FileNumber>41</FileNumber>
+      <FileNumber>43</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -865,7 +899,7 @@
     </File>
     <File>
       <GroupNumber>6</GroupNumber>
-      <FileNumber>42</FileNumber>
+      <FileNumber>44</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -885,7 +919,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>7</GroupNumber>
-      <FileNumber>43</FileNumber>
+      <FileNumber>45</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>

@@ -123,7 +123,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>JL2CM3</Key>
-          <Name>-U20090928 -O78 -S1 -ZTIFSpeedSel10000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(1BA01477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8001 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO15 -FD20000000 -FC800 -FN1 -FF0STM32F10x_CL.FLM -FS08000000 -FL080000 -FP0($$Device:STM32F105RC$Flash\STM32F10x_CL.FLM)</Name>
+          <Name>-U20090928 -O78 -S1 -ZTIFSpeedSel10000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(2BA01477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8001 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO15 -FD20000000 -FC800 -FN1 -FF0STM32F10x_CL.FLM -FS08000000 -FL080000 -FP0($$Device:STM32F105RC$Flash\STM32F10x_CL.FLM)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -162,7 +162,7 @@
           <Type>2</Type>
           <LineNumber>0</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>536871532</Address>
+          <Address>536871536</Address>
           <ByteObject>1</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>1</ManyObjects>
@@ -178,7 +178,7 @@
           <Type>2</Type>
           <LineNumber>0</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>536871520</Address>
+          <Address>536871524</Address>
           <ByteObject>1</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>1</ManyObjects>
@@ -210,6 +210,16 @@
           <count>3</count>
           <WinNumber>1</WinNumber>
           <ItemText>m_c</ItemText>
+        </Ww>
+        <Ww>
+          <count>4</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>test_c</ItemText>
+        </Ww>
+        <Ww>
+          <count>5</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>test_temp</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>

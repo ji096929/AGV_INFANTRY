@@ -10,6 +10,7 @@ typedef struct
 #define K1  1.23e-07//1为默认数值
 #define K2 1.453e-07 // 1为默认数值
 #define CONSTANT  4.081f//功率模型中的常数
+#define CONVERT_CONSTANT 9.55//转化系数
 {
 
     float  power_limit_max;     // 功率限制最大值

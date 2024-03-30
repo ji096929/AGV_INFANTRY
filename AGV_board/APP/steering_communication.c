@@ -344,7 +344,10 @@ steering_communication_pack_t steering_communication_SET_VELOCITY_VECTOR_handler
 	Steering_Wheel_SetProtocolPosition(steering, rx_data1_byte[0]);
 	Steering_Wheel_SetProtocolSpeed(steering,rx_data1_byte[1]);
 	memset(&rx_pack.data1,0,8);
+
 	memcpy(&rx_pack.data1,&chassis_power_control.expect_total_power_32,4);
+
+	
 		return rx_pack;
 }
 /*

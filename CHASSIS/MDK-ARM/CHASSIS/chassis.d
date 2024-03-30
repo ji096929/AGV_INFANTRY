@@ -4,7 +4,7 @@ chassis\chassis.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
 chassis\chassis.o: ../app/motor/motor.h
 chassis\chassis.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stdint.h
 chassis\chassis.o: ../bsp/PID/PID.h
-chassis\chassis.o: ../app/gimbal_connoection/gimbal_connection.h
+chassis\chassis.o: ..\app\chassis_move\agv_control.h
 chassis\chassis.o: ../bsp/can/drv_can.h
 chassis\chassis.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
 chassis\chassis.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\string.h
@@ -41,4 +41,5 @@ chassis\chassis.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rtc_ex.h
 chassis\chassis.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 chassis\chassis.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 chassis\chassis.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+chassis\chassis.o: ../app/gimbal_connoection/gimbal_connection.h
 chassis\chassis.o: ..\app\chassis_move\kinematic.h

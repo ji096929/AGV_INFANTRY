@@ -38,8 +38,8 @@ chassis\agv_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rtc_ex.
 chassis\agv_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 chassis\agv_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 chassis\agv_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+chassis\agv_control.o: ../bsp/PID/pid.h
 chassis\agv_control.o: ..\app\chassis_move\chassis.h
 chassis\agv_control.o: ../app/motor/motor.h
-chassis\agv_control.o: ../bsp/PID/PID.h
 chassis\agv_control.o: ../app/referee/referee.h
 chassis\agv_control.o: ../app/referee/algorithmOfCRC.h

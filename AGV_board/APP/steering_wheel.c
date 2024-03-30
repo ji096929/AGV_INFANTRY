@@ -34,7 +34,7 @@ void Steering_Wheel_PID_HandleInit(steering_wheel_t *steering_wheel)
 	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.wUpperIntegralLimit = 1600;
 	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.wLowerIntegralLimit = -1600;
 	// 动力电机速度环 默认Kp Ki Kd 写入
-	steering_wheel->motion_part.motor.PID_Handles.velocity_loop_handle.hDefKpGain = 72;
+	steering_wheel->motion_part.motor.PID_Handles.velocity_loop_handle.hDefKpGain = 320;
 	steering_wheel->motion_part.motor.PID_Handles.velocity_loop_handle.hKpDivisorPOW2 = 2;
 	steering_wheel->motion_part.motor.PID_Handles.velocity_loop_handle.hDefKiGain = 20;
 	steering_wheel->motion_part.motor.PID_Handles.velocity_loop_handle.hKiDivisorPOW2 = 2;
@@ -356,10 +356,12 @@ STEERING_WHEEL_RETURN_T Steering_Wheel_MotorCommandUpdate(steering_wheel_t *stee
 		// 由于齿轮传动使得编码器转动方向为CW时，舵转动方向为CCW，反之亦然。所以要对称处理
 		if (steering_wheel->directive_part.encoder.parameter.encoder_directive_part_direction == DIRECTION_INVERSE)
 			steering_wheel->directive_part.motor.command.torque = steering_wheel->directive_part.motor.command.torque;
-//		expert_power_calculate();
-//		scaled_power_calculate();
-		#if defined(MOTION_MOTOR_M3508)
-		steering_wheel->motion_part.motor.M3508_kit.command.torque = steering_wheel->motion_part.motor.command.torque;
+			expert_power_calculate();
+			// scaled_power_calculate();
+			// motor.command.torque是PID计算所用的数值，motor.M3508_kit.command.torque是实际使用
+#if defined(MOTION_MOTOR_M3508)
+		// steering_wheel->motion_part.motor.M3508_kit.command.torque = steering_wheel->motion_part.motor.command.torque;
+		calculate_torque_current_according_to_scaled_power(chassis_power_control.power_limit_max);
 #endif
 		#if defined(DIRECTIVE_MOTOR_M3508)
 			steering_wheel->directive_part.motor.M3508_kit.command.torque = steering_wheel->directive_part.motor.command.torque;
@@ -397,7 +399,7 @@ STEERING_WHEEL_RETURN_T Steering_Wheel_CommandTransmit(steering_wheel_t *steerin
 		#if defined(MOTION_MOTOR_M3508)
 		
 				M3508_gear_set_torque_current_lsb(&steering_wheel->motion_part.motor.M3508_kit, steering_wheel->motion_part.motor.M3508_kit.command.torque, SEND_COMMAND_NOW);
-			
+																	  
 		#endif
 		return STEERING_WHEEL_OK;
 	}

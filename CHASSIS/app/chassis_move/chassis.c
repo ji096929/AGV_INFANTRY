@@ -9,7 +9,7 @@
  * Copyright (c) 2024 by ${git_name_email}, All Rights Reserved. 
  */
 #include "chassis.h"
-
+#include "agv_control.h"
 #include "gimbal_connection.h"
 #include "kinematic.h"
 
@@ -19,7 +19,7 @@ CHASSIS_T chassis;
 YAW_T   yaw;
 PID_T   yaw_pid;
 float yaw_position_loop_data[10]= {0.12f,0.0f,0.f,2.5f,0.0f,1.0f,0.f,0.f,0.f,0.f};
-
+float buffer_loop_data[10]= {5.0f,0.0f,0.f,50.0f,0.0f,1.0f,0.f,0.f,0.f,0.f};
 void Chassis_Speed_Slow_Motion(CHASSIS_T *chassis)
 {
 		if(chassis->parameter.speed_slow)
@@ -142,8 +142,8 @@ void Chassis_Mode_Command_Update(void)
         break;
         case    CHASSIS_SPIN:
         if(chassis.command.vx==0&&chassis.command.vy==0)
-        chassis.command.vw =  3.0f;
-        else chassis.command.vw =  2.0f;
+        chassis.command.vw =  6.0f;
+        else chassis.command.vw =  3.0f;
         break;
 
     }
@@ -164,7 +164,8 @@ void Chassis_Init(void)
 		chassis.B_motor.ID	=	0x1b;
 		chassis.C_motor.ID	=	0x1c;
 		chassis.D_motor.ID	=	0x1d;
-	
+
+		PID_Init(&buffer_pid,buffer_loop_data, NONE);
 }
 
 void Yaw_Init(void)

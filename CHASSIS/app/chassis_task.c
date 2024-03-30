@@ -19,6 +19,8 @@ void Task_Init(void)
     Can_Connection_Init();
 		Chassis_Power_Control_Init();
 		Referee_Init();
+
+   // _ui_init_default_Ungroup_0();
 }
 
 void Time_Count_Task(TIME_T *time)
@@ -60,7 +62,8 @@ void Chassis_Task()
     }
     if(time.ms_count%10==6)
     {
-//    UI_Send_Char_Task();
+    //UI_Send_Char_Task();
+    //ui_update_default_Ungroup_0();
     }
 		if(time.ms_count%10==8)
     {
