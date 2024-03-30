@@ -304,6 +304,16 @@ protected:
 
 /* Exported function declarations --------------------------------------------*/
 
+float Class_MiniPC::Get_Rx_Pitch_Angle()
+{
+    return (Rx_Angle_Pitch);
+}
+
+float Class_MiniPC::Get_Rx_Yaw_Angle()
+{
+    return (Rx_Angle_Yaw);
+}
+
 /**
  * @brief 获取迷你主机状态
  *

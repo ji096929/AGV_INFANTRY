@@ -487,7 +487,7 @@ void Class_Gimbal::Output()
         Motor_Pitch.Set_Target_Omega(0.0f);
         Motor_Pitch_LK6010.Set_Target_Omega(0.0f);
     }
-    else if (Gimbal_Control_Type == Gimbal_Control_Type_NORMAL)
+    else
     {
         // 云台工作
         Motor_Yaw.Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_IMU_ANGLE);
@@ -511,10 +511,20 @@ void Class_Gimbal::Output()
         // pitch限位
         Math_Constrain(&Target_Pitch_Angle, Min_Pitch_Angle, Max_Pitch_Angle);
 
-        // 设置目标角度
-        Motor_Yaw.Set_Target_Angle(Target_Yaw_Angle);
-        Motor_Pitch.Set_Target_Angle(Target_Pitch_Angle);
-        Motor_Pitch_LK6010.Set_Target_Angle(Target_Pitch_Angle);
+        if (Gimbal_Control_Type == Gimbal_Control_Type_NORMAL)
+        {
+            // 设置目标角度
+            Motor_Yaw.Set_Target_Angle(Target_Yaw_Angle);
+            Motor_Pitch.Set_Target_Angle(Target_Pitch_Angle);
+            Motor_Pitch_LK6010.Set_Target_Angle(Target_Pitch_Angle);
+        }
+        else if ((Gimbal_Control_Type == Gimbal_Control_Type_MINIPC) && (MiniPC->Get_MiniPC_Status() != MiniPC_Status_DISABLE))
+        {
+            // 设置目标角度
+            Motor_Yaw.Set_Target_Angle(Target_Yaw_Angle);
+            Motor_Pitch.Set_Target_Angle(Target_Pitch_Angle);
+            Motor_Pitch_LK6010.Set_Target_Angle(Target_Pitch_Angle);
+        }
     }
 }
 
