@@ -747,7 +747,7 @@ struct Struct_Referee_Rx_Data_Robot_Booster
     Enum_Referee_Data_Robot_Ammo_Type Ammo_Type;
     Enum_Referee_Data_Robot_Booster_Type Booster_Type;
     uint8_t Frequency;
-    float Speed;
+    uint16_t Speed;
     uint16_t CRC_16;
 } __attribute__((packed));
 
@@ -1051,6 +1051,7 @@ public:
 
     void UART_RxCpltCallback(uint8_t *Rx_Data);
     void TIM1msMod50_Alive_PeriodElapsedCallback();
+    void CAN_RxCpltCallback(uint8_t *Rx_Data);
 
 protected:
     //初始化相关常量

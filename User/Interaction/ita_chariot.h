@@ -40,7 +40,7 @@ class Class_Chariot
 public:
     #ifdef CHASSIS
     //裁判系统
-    Class_Referee Referee;
+    
 
         #ifdef POWER_LIMIT
         //超级电容
@@ -59,7 +59,9 @@ public:
     Class_Gimbal Gimbal;
     //发射机构
     Class_Booster Booster;
-    #endif
+
+    Class_Referee Referee;
+#endif
 
     void Init(float __DR16_Dead_Zone = 0);
     

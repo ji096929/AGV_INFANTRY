@@ -133,17 +133,17 @@ void Class_IMU::TIM_Set_PWM(TIM_HandleTypeDef *tim_pwmHandle, uint8_t Channel, u
 
 float Class_IMU::Get_Angle_Roll(void)
 {
-    return INS_Angle[1];
+    return INS_Angle[0];
 }
 
 float Class_IMU::Get_Angle_Pitch(void)
 {
-    return INS_Angle[2];
+    return INS_Angle[1];
 }
 
 float Class_IMU::Get_Angle_Yaw(void)
 {
-    return INS_Angle[0];
+    return INS_Angle[2];
 }
 
 float Class_IMU::Get_Accel_X(void)

@@ -182,6 +182,7 @@ void Gimbal_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
     {
     case (0x200): // 留给下板通讯
     {
+        chariot.Referee.CAN_RxCpltCallback(CAN_RxMessage->Data);
     }
     break;
     case (0x203):

@@ -75,7 +75,7 @@ void Class_Chariot::Init(float __DR16_Dead_Zone)
     Gimbal.Init();
 
     // 发射机构
-    //  Booster.Referee = &Referee;
+    Booster.Referee = &Referee;
     Booster.Init();
 
     // 上位机

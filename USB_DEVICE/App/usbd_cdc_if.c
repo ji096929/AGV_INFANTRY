@@ -263,11 +263,11 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
   /* USER CODE BEGIN 6 */
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
   USBD_CDC_ReceivePacket(&hUsbDeviceFS);
-	
 
-	memcpy(MiniPC_USB_Manage_Object.Rx_Buffer,Buf,*Len);
-	MiniPC_USB_Manage_Object.Rx_Buffer_Length = *Len;
-	
+  memcpy(MiniPC_USB_Manage_Object.Rx_Buffer, Buf, *Len);
+  MiniPC_USB_Manage_Object.Rx_Buffer_Length = *Len;
+  MiniPC_USB_Manage_Object.Callback_Function(Buf, *Len);
+
   return (USBD_OK);
   /* USER CODE END 6 */
 }

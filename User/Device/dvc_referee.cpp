@@ -577,14 +577,14 @@ void Class_Referee::Init(UART_HandleTypeDef *huart, uint8_t __Frame_Header)
     {
         UART_Manage_Object = &UART6_Manage_Object;
     }
-//    else if (huart->Instance == UART7)
-//    {
-//        UART_Manage_Object = &UART7_Manage_Object;
-//    }
-//    else if (huart->Instance == UART8)
-//    {
-//        UART_Manage_Object = &UART8_Manage_Object;
-//    }
+    //    else if (huart->Instance == UART7)
+    //    {
+    //        UART_Manage_Object = &UART7_Manage_Object;
+    //    }
+    //    else if (huart->Instance == UART8)
+    //    {
+    //        UART_Manage_Object = &UART8_Manage_Object;
+    //    }
     Frame_Header = __Frame_Header;
 }
 
@@ -646,10 +646,10 @@ uint16_t Class_Referee::CRC_16(uint8_t *Message, uint32_t Length)
  */
 void Class_Referee::Data_Process()
 {
-    //数据处理过程
+    // 数据处理过程
     Struct_Referee_UART_Data *tmp_buffer = (Struct_Referee_UART_Data *)UART_Manage_Object->Rx_Buffer;
 
-    //未通过校验
+    // 未通过校验
     if (tmp_buffer->Frame_Header != Frame_Header)
     {
         return;
@@ -762,9 +762,26 @@ void Class_Referee::Data_Process()
  */
 void Class_Referee::UART_RxCpltCallback(uint8_t *Rx_Data)
 {
-    //滑动窗口, 判断裁判系统是否在线
+    // 滑动窗口, 判断裁判系统是否在线
     Flag += 1;
     Data_Process();
+}
+
+/**
+ * @brief UART通信接收回调函数
+ *
+ * @param Rx_Data 接收的数据
+ */
+void Class_Referee::CAN_RxCpltCallback(uint8_t *Rx_Data)
+{
+    // 滑动窗口, 判断裁判系统是否在线
+    Flag += 1;
+
+    Robot_Status.Booster_17mm_1_Heat_CD = (uint16_t)(Rx_Data[1] << 8 | Rx_Data[0]);
+    Robot_Status.Booster_17mm_1_Heat_Max = (uint16_t)(Rx_Data[3] << 8 | Rx_Data[2]);
+    Robot_Booster.Frequency = (uint16_t)(Rx_Data[5] << 8 | Rx_Data[4]);
+    Robot_Booster.Speed = (uint16_t)(Rx_Data[7] << 8 | Rx_Data[6]);
+
 }
 
 /**
@@ -773,15 +790,15 @@ void Class_Referee::UART_RxCpltCallback(uint8_t *Rx_Data)
  */
 void Class_Referee::TIM1msMod50_Alive_PeriodElapsedCallback()
 {
-    //判断该时间段内是否接收过裁判系统数据
+    // 判断该时间段内是否接收过裁判系统数据
     if (Flag == Pre_Flag)
     {
-        //裁判系统断开连接
+        // 裁判系统断开连接
         Referee_Status = Referee_Status_DISABLE;
     }
     else
     {
-        //裁判系统保持连接
+        // 裁判系统保持连接
         Referee_Status = Referee_Status_ENABLE;
     }
     Pre_Flag = Flag;

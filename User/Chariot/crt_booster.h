@@ -83,8 +83,8 @@ public:
     Class_FSM_Antijamming FSM_Antijamming;
     friend class Class_FSM_Antijamming;
 
-    // //裁判系统
-    // Class_Referee *Referee;
+    //裁判系统
+    Class_Referee *Referee;
 
     //拨弹盘电机
     Class_DJI_Motor_C610 Motor_Driver;

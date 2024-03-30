@@ -163,6 +163,8 @@ void Class_FSM_Antijamming::Reload_TIM_Status_PeriodElapsedCallback()
  */
 void Class_Booster::Init()
 {
+
+    
     // 正常状态, 发射嫌疑状态, 发射完成状态, 停机状态
     FSM_Heat_Detect.Booster = this;
     FSM_Heat_Detect.Init(3, 3);
@@ -172,7 +174,7 @@ void Class_Booster::Init()
     FSM_Antijamming.Init(4, 0);
 
     // 拨弹盘电机
-Motor_Driver.PID_Angle.Init(75.0f, 0.0f, 1.0f, 0.0f, 20.0f * PI, 20.0f * PI);
+    Motor_Driver.PID_Angle.Init(75.0f, 0.0f, 1.0f, 0.0f, 20.0f * PI, 20.0f * PI);
     Motor_Driver.PID_Omega.Init(2500.0f, 500.0f, 0.0f, 0.0f, Motor_Driver.Get_Output_Max(), Motor_Driver.Get_Output_Max());
     Motor_Driver.Init(&hcan2, DJI_Motor_ID_0x203, DJI_Motor_Control_Method_OMEGA);
 
