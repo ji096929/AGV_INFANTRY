@@ -109,8 +109,10 @@ void calculate_true_power(void)
 {
 
     float sum = 0;
-    //    chassis_power_control.power_limit_max   =   JudgeReceive.MaxPower;
-    chassis_power_control.power_limit_max = 150;
+    if (JudgeReceive.MaxPower == 0)
+        chassis_power_control.power_limit_max = 80;
+    else
+        chassis_power_control.power_limit_max = JudgeReceive.MaxPower;
 
     if (chassis_power_control.all_mscb_ready_flag & 0xf)
     {

@@ -118,6 +118,8 @@
                 "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\app\\motor",
                 "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\bsp\\PID",
                 "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\app",
+                "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\bsp",
+                "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\bsp\\fifo",
                 "D:\\software\\keil5\\ARM\\ARMCC\\include",
                 "D:\\software\\keil5\\ARM\\ARMCC\\include\\rw",
                 "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\MDK-ARM",

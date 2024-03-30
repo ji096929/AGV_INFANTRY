@@ -155,8 +155,13 @@ void Speed_Limitation(CHASSIS_T *chassis)
         chassis->C_motor.target_speed.output=(int)(chassis->C_motor.target_speed.output*MAX_MOTOR_SPEED*1.0/temp);
         chassis->D_motor.target_speed.output=(int)(chassis->D_motor.target_speed.output*MAX_MOTOR_SPEED*1.0/temp);
     }
-    
-    
+	else
+	{
+		chassis->A_motor.target_speed.output = (int)(chassis->A_motor.target_speed.output);
+		chassis->B_motor.target_speed.output = (int)(chassis->B_motor.target_speed.output);
+		chassis->C_motor.target_speed.output = (int)(chassis->C_motor.target_speed.output);
+		chassis->D_motor.target_speed.output = (int)(chassis->D_motor.target_speed.output);
+	}
 }
 
 float AGV_tan, AGV_ang;

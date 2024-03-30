@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../app/referee;../bsp/can;../app/chassis_move;../app/gimbal_connoection;../app/motor;../bsp/PID;../app</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../app/referee;../bsp/can;../app/chassis_move;../app/gimbal_connoection;../app/motor;../bsp/PID;../app;..\bsp;..\bsp\fifo</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -759,6 +759,11 @@
               <FileName>PID.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\bsp\PID\PID.c</FilePath>
+            </File>
+            <File>
+              <FileName>fifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\bsp\fifo\fifo.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,4 +1,5 @@
 #include "main.h"
+#include "algorithmOfCRC.h"
 const unsigned char CRC8_INIT = 0xff;
 const unsigned char CRC8_TAB[256] =
 {

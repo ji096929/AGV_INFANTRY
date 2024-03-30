@@ -50,3 +50,5 @@ chassis\referee.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\string.h
 chassis\referee.o: ../app/gimbal_connoection/gimbal_connection.h
 chassis\referee.o: ../app/chassis_move/agv_control.h
 chassis\referee.o: ../app/referee/ui.h
+chassis\referee.o: ..\bsp\fifo\fifo.h
+chassis\referee.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stdio.h

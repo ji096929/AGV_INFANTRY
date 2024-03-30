@@ -52,7 +52,7 @@ void Chassis_Task()
 		}     
     if(time.ms_count%10==4)
     {
-     Judge_Buffer_Receive_Task(JudgeReceiveBuffer,0);
+      referee_unpack_fifo_data();
     }
 		if(time.ms_count%10==6)
     {
