@@ -428,8 +428,8 @@ void Class_Gimbal::Init()
     // Motor_Yaw.PID_Angle.Init(0.0f, 0.0f, 0.0f, 0.0f, 100, 100);
     // Motor_Yaw.PID_Omega.Init(0.0f, 0.0f, 0.0f, 0.0f, Motor_Yaw.Get_Output_Max(), Motor_Yaw.Get_Output_Max());
 
-    Motor_Yaw.PID_Angle.Init(7.0f, 2.0f, 0.0f, 0.0f, 100, 100);
-    Motor_Yaw.PID_Omega.Init(2200.0f, 15000.0f, 0.0f, 0.0f, Motor_Yaw.Get_Output_Max(), Motor_Yaw.Get_Output_Max());
+    Motor_Yaw.PID_Angle.Init(7.0f, 0.0f, 0.0f, 0.0f, 100, 100,0,0,0,0.001,0.05);
+    Motor_Yaw.PID_Omega.Init(2200.0f, 10000.0f, 0.0f, 0.0f, Motor_Yaw.Get_Output_Max(), Motor_Yaw.Get_Output_Max());
 
     // Motor_Yaw.PID_Angle.Init(9.35f, 0.0f, 0.071f, 0.0f, 100, 100);
     // Motor_Yaw.PID_Omega.Init(150.0f, 15000.0f, 0.0f, 0.0f, Motor_Yaw.Get_Output_Max(), Motor_Yaw.Get_Output_Max());
@@ -445,7 +445,7 @@ void Class_Gimbal::Init()
     // Motor_Pitch.PID_Angle.Init(7.0f, 2.0f, 0.0f, 0.0f, 100, 100);
     // Motor_Pitch.PID_Omega.Init(2200.0f, 15000.0f, 0.0f, 0.0f, Motor_Pitch.Get_Output_Max(), Motor_Pitch.Get_Output_Max());
 
-    Motor_Pitch.PID_Angle.Init(5.0f, 0.0f, 0.0f, 0.0f, 100, 100);
+    Motor_Pitch.PID_Angle.Init(5.0f, 0.0f, 0.0f, 0.0f, 100, 100, 0, 0, 0, 0.001, 0.05);
     Motor_Pitch.PID_Omega.Init(700.0f, 1500.0f, 0.0f, 0.0f, Motor_Pitch.Get_Output_Max(), Motor_Pitch.Get_Output_Max());
 
     Motor_Pitch.PID_Torque.Init(0.8f, 100.0f, 0.0f, 0.0f, Motor_Pitch.Get_Output_Max(), Motor_Pitch.Get_Output_Max());

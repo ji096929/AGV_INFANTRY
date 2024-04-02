@@ -54,8 +54,7 @@ enum Enum_Chassis_Control_Type :uint8_t
 class Class_Tricycle_Chassis
 {
 public:
-    //底盘随动PID环
-    Class_PID PID_Chassis_Fllow;
+
     //斜坡函数加减速速度X
     Class_Slope Slope_Velocity_X;
     //斜坡函数加减速速度Y
@@ -72,8 +71,6 @@ public:
     //下方转动电机
     Class_DJI_Motor_C620 Motor_Wheel[4];
 
-    //获取yaw电机编码器值 用于底盘和云台坐标系的转换
-    Class_DJI_Motor_GM6020 Motor_Yaw;
 
     void Init(float __Velocity_X_Max = 4.0f, float __Velocity_Y_Max = 4.0f, float __Omega_Max = 4.0f, float __Steer_Power_Ratio = 0.5);
 

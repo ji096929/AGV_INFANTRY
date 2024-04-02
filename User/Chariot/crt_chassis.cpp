@@ -53,8 +53,6 @@ void Class_Tricycle_Chassis::Init(float __Velocity_X_Max, float __Velocity_Y_Max
     //功率限制参数初始化
     Power_Limit.Parameter_Init();
 
-    //底盘随动PID环初始化
-    PID_Chassis_Fllow.Init(20.0f, 0.0f, 0.0f, 0.0f, 20.0f, 20.0f,0.0f,0.0f,0.0f,0.001f,0.05f);
 
     //电机PID批量初始化
     for (int i = 0; i < 4; i++)
@@ -67,9 +65,6 @@ void Class_Tricycle_Chassis::Init(float __Velocity_X_Max, float __Velocity_Y_Max
     Motor_Wheel[1].Init(&hcan1, DJI_Motor_ID_0x202);
     Motor_Wheel[2].Init(&hcan1, DJI_Motor_ID_0x203);
     Motor_Wheel[3].Init(&hcan1, DJI_Motor_ID_0x204);
-
-    //yaw电机初始化  只获取其编码器值，并不参与控制
-    Motor_Yaw.Init(&hcan2, DJI_Motor_ID_0x205);
 
 }
 

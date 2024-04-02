@@ -40,17 +40,24 @@ class Class_Chariot
 public:
     #ifdef CHASSIS
     //裁判系统
-    
 
         #ifdef POWER_LIMIT
         //超级电容
         Class_Supercap Supercap;
+
+        // 底盘随动PID环
+        Class_PID PID_Chassis_Fllow;
+
+        // 获取yaw电机编码器值 用于底盘和云台坐标系的转换
+        Class_DJI_Motor_GM6020 Motor_Yaw;
         #endif
 
     #endif
     //底盘
     Class_Tricycle_Chassis Chassis;
-    #ifdef GIMBAL
+
+    Class_Referee Referee;
+#ifdef GIMBAL
     //遥控器
     Class_DR16 DR16;
     //上位机
@@ -59,8 +66,6 @@ public:
     Class_Gimbal Gimbal;
     //发射机构
     Class_Booster Booster;
-
-    Class_Referee Referee;
 #endif
 
     void Init(float __DR16_Dead_Zone = 0);
@@ -90,7 +95,7 @@ protected:
 
     //常量
     //底盘标定参考正方向角度(数据来源yaw电机)
-    float Reference_Angle = 0.520019531f;
+    float Reference_Angle = 2.23402;
     //底盘转换后的角度（数据来源yaw电机）
     float Chassis_Angle;
 

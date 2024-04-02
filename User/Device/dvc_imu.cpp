@@ -74,7 +74,7 @@ void Class_IMU::TIM_Calculate_PeriodElapsedCallback(void)
     if(Tempture_Cnt_mod50 % 50 == 0)
     {
         PID_IMU_Tempture.Set_Now(BMI088_Raw_Data.Temperature);
-        PID_IMU_Tempture.Set_Target(45.0f);
+        PID_IMU_Tempture.Set_Target(40.0f);
         PID_IMU_Tempture.TIM_Adjust_PeriodElapsedCallback();
         TIM_Set_PWM(&htim10, TIM_CHANNEL_1, (uint16_t)PID_IMU_Tempture.Get_Out());
     }
@@ -133,17 +133,17 @@ void Class_IMU::TIM_Set_PWM(TIM_HandleTypeDef *tim_pwmHandle, uint8_t Channel, u
 
 float Class_IMU::Get_Angle_Roll(void)
 {
-    return INS_Angle[0];
+    return INS_Angle[1];
 }
 
 float Class_IMU::Get_Angle_Pitch(void)
 {
-    return INS_Angle[1];
+    return INS_Angle[2];
 }
 
 float Class_IMU::Get_Angle_Yaw(void)
 {
-    return INS_Angle[2];
+    return INS_Angle[0];
 }
 
 float Class_IMU::Get_Accel_X(void)

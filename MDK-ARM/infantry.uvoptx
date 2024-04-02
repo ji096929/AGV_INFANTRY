@@ -118,6 +118,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
+          <Name>帮S</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -161,7 +162,7 @@
           <Type>2</Type>
           <LineNumber>0</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>536881472</Address>
+          <Address>536881748</Address>
           <ByteObject>1</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>1</ManyObjects>
@@ -177,7 +178,7 @@
           <Type>2</Type>
           <LineNumber>0</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>536880780</Address>
+          <Address>536881056</Address>
           <ByteObject>1</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>1</ManyObjects>
@@ -192,8 +193,8 @@
           <Number>2</Number>
           <Type>0</Type>
           <LineNumber>487</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134263878</Address>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134265458</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -203,6 +204,38 @@
           <Filename>..\User\Device\dvc_djimotor.cpp</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\infantry\../User/Device/dvc_djimotor.cpp\487</Expression>
+        </Bp>
+        <Bp>
+          <Number>3</Number>
+          <Type>2</Type>
+          <LineNumber>0</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>536879788</Address>
+          <ByteObject>1</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>1</ManyObjects>
+          <SizeOfObject>4</SizeOfObject>
+          <BreakByAccess>2</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename></Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\infantry\../User/Task/tsk_config_and_callback.cpp\chariot.Gimbal.Motor_Yaw.Class_DJI_Motor_GM6020.PID_Angle.Target</Expression>
+        </Bp>
+        <Bp>
+          <Number>4</Number>
+          <Type>0</Type>
+          <LineNumber>411</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134256896</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\User\Interaction\ita_chariot.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\infantry\../User/Interaction/ita_chariot.cpp\411</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -1274,7 +1307,7 @@
 
   <Group>
     <GroupName>Application/User/USB_DEVICE/App</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

@@ -29,6 +29,12 @@
 
 class Class_Booster;
 
+enum Enum_Booster_User_Control_Type
+{
+    Booster_User_Control_Type_SINGLE = 0,
+    Booster_User_Control_Type_MULTI,
+};
+
 /**
  * @brief 发射机构控制类型
  *
@@ -98,7 +104,11 @@ public:
 
     inline float Get_Default_Driver_Omega();
 
+    inline Enum_Booster_Control_Type Get_Booster_Control_Type();
+    inline Enum_Booster_User_Control_Type Get_Booster_User_Control_Type();
+
     inline void Set_Booster_Control_Type(Enum_Booster_Control_Type __Booster_Control_Type);
+    inline void Set_Booster_User_Control_Type(Enum_Booster_User_Control_Type __Booster_User_Control_Type);
     inline void Set_Friction_Omega(float __Friction_Omega);
     inline void Set_Driver_Omega(float __Driver_Omega);
 
@@ -121,14 +131,15 @@ protected:
     //读变量
 
     //拨弹盘默认速度, 一圈八发子弹, 此速度下与冷却均衡
-    float Default_Driver_Omega = -15.0f * PI;
+    float Default_Driver_Omega = -3.0f * PI*2;
 
     //写变量
 
     //发射机构状态
     Enum_Booster_Control_Type Booster_Control_Type = Booster_Control_Type_CEASEFIRE;
-    //摩擦轮角速度
-    float Friction_Omega = 700.0f;
+    Enum_Booster_User_Control_Type  Booster_User_Control_Type = Booster_User_Control_Type_SINGLE;
+        // 摩擦轮角速度
+        float Friction_Omega = 750.0f;
     //拨弹盘实际的目标速度, 一圈八发子弹
     float Driver_Omega = -2.0f * PI;
     //拨弹轮目标绝对角度 加圈数
@@ -154,6 +165,16 @@ float Class_Booster::Get_Default_Driver_Omega()
     return (Default_Driver_Omega);
 }
 
+Enum_Booster_Control_Type Class_Booster::Get_Booster_Control_Type()
+{
+    return (Booster_Control_Type);
+}
+
+Enum_Booster_User_Control_Type Class_Booster::Get_Booster_User_Control_Type()
+{
+    return (Booster_User_Control_Type);
+}
+
 /**
  * @brief 设定发射机构状态
  *
@@ -162,6 +183,11 @@ float Class_Booster::Get_Default_Driver_Omega()
 void Class_Booster::Set_Booster_Control_Type(Enum_Booster_Control_Type __Booster_Control_Type)
 {
     Booster_Control_Type = __Booster_Control_Type;
+}
+
+void Class_Booster::Set_Booster_User_Control_Type(Enum_Booster_User_Control_Type __Booster_User_Control_Type)
+{
+    Booster_User_Control_Type = __Booster_User_Control_Type;
 }
 
 /**

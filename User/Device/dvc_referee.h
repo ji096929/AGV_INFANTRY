@@ -23,11 +23,11 @@
 //设定当前车车
 // #define Robot_HERO_1
 // #define Robot_ENGINEER_2
-// #define Robot_INFANTRY_3
+ #define Robot_INFANTRY_3
 // #define Robot_INFANTRY_4
 // #define Robot_INFANTRY_5
 // #define Robot_AERIAL_6
-#define Robot_SENTRY_7
+//#define Robot_SENTRY_7
 // #define Robot_DART_8
 // #define Robot_RADAR_9
 // #define Robot_BASE_10

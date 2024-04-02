@@ -174,7 +174,7 @@ void Class_Booster::Init()
     FSM_Antijamming.Init(4, 0);
 
     // 拨弹盘电机
-    Motor_Driver.PID_Angle.Init(75.0f, 0.0f, 1.0f, 0.0f, 20.0f * PI, 20.0f * PI);
+    Motor_Driver.PID_Angle.Init(75.0f, 0.0f, 1.0f, 0.0f, 4.0f * 2.0 * PI, 4.0f * 2.0 * PI);
     Motor_Driver.PID_Omega.Init(2500.0f, 500.0f, 0.0f, 0.0f, Motor_Driver.Get_Output_Max(), Motor_Driver.Get_Output_Max());
     Motor_Driver.Init(&hcan2, DJI_Motor_ID_0x203, DJI_Motor_Control_Method_OMEGA);
 
@@ -241,12 +241,12 @@ void Class_Booster::Output()
         Motor_Friction_Right.Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_OMEGA);
 
         // 热量控制
-        //  if (FSM_Heat_Detect.Heat + 30 < Referee->Get_Booster_17mm_1_Heat_Max())
-        //  {
+        if (Referee->Get_Booster_17mm_1_Heat() + 30 < Referee->Get_Booster_17mm_1_Heat_Max())
+        {
 
-        Drvier_Angle = Now_Angle - 2.0f * PI / 8.0f;
-        Motor_Driver.Set_Target_Angle(Drvier_Angle);
-        // }
+            Drvier_Angle = Now_Angle - 2.0f * PI / 8.0f;
+            Motor_Driver.Set_Target_Angle(Drvier_Angle);
+ }
 
         Motor_Friction_Left.Set_Target_Omega(Friction_Omega);
         Motor_Friction_Right.Set_Target_Omega(-Friction_Omega);
@@ -263,13 +263,12 @@ void Class_Booster::Output()
         Motor_Friction_Right.Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_OMEGA);
 
         // 热量控制
-        //  if (FSM_Heat_Detect.Heat + 30 < Referee->Get_Booster_17mm_1_Heat_Max())
-        //  {
+        if (Referee->Get_Booster_17mm_1_Heat() +30< Referee->Get_Booster_17mm_1_Heat_Max())
+        {
 
-        Drvier_Angle = Now_Angle - 2.0f * PI / 8.0f * 5.0f; // 五连发
-        Motor_Driver.Set_Target_Angle(Drvier_Angle);
-        // }
-
+            Drvier_Angle = Now_Angle - 2.0f * PI / 8.0f * 5.0f; // 五连发
+            Motor_Driver.Set_Target_Angle(Drvier_Angle);
+         }
         Motor_Friction_Left.Set_Target_Omega(Friction_Omega);
         Motor_Friction_Right.Set_Target_Omega(-Friction_Omega);
 
@@ -323,7 +322,7 @@ void Class_Booster::TIM_Calculate_PeriodElapsedCallback()
 {
 
     // 无需裁判系统的热量控制计算
-    //  FSM_Heat_Detect.Reload_TIM_Status_PeriodElapsedCallback();
+    FSM_Heat_Detect.Reload_TIM_Status_PeriodElapsedCallback();
     //  //卡弹处理
     FSM_Antijamming.Reload_TIM_Status_PeriodElapsedCallback();
     // Output();

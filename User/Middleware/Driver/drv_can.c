@@ -73,6 +73,7 @@ uint8_t CAN2_0x148_Tx_Data[8];
 
 uint8_t CAN2_0x150_Tx_Data[8];
 uint8_t CAN2_0x152_Tx_Data[8];
+uint8_t CAN2_0x153_Tx_Data[8];
 
 /* Private function declarations ---------------------------------------------*/
 
@@ -251,9 +252,17 @@ void TIM_CAN_PeriodElapsedCallback()
     if (mod5 == 5)
     {
         mod5 = 0;
-	  CAN_Send_Data(&hcan2, 0x200, CAN2_0x200_Tx_Data, 8); // 拨弹轮
+        CAN_Send_Data(&hcan2, 0x200, CAN2_0x200_Tx_Data, 8); // 拨弹轮
     }
-    
+
+    static int mod10 = 0;
+    mod10++;
+    if (mod10 == 10)
+    {
+        mod10 = 0;
+        CAN_Send_Data(&hcan2, 0x153, CAN2_0x153_Tx_Data, 8); // 向下板发送云台状态
+    }
+
     CAN_Send_Data(&hcan2, 0x150, CAN2_0x150_Tx_Data, 8);
     CAN_Send_Data(&hcan2, 0x152, CAN2_0x152_Tx_Data, 8);
     //CAN1 摩擦轮
