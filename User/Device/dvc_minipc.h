@@ -282,8 +282,8 @@ protected:
     float Rx_Angle_Pitch;
     float Rx_Angle_Yaw;
 
-    const float g = 12;          // 重力加速度
-    const float bullet_v = 40.0; // 子弹速度
+    const float g = 9.6;          // 重力加速度
+    const float bullet_v = 22.0; // 子弹速度
 
     // 距离
     float Distance;
@@ -577,8 +577,16 @@ void Class_MiniPC::Set_Outpost_Protect_Status(Enum_MiniPC_Data_Status __Outpost_
 void Class_MiniPC::Transform_Angle_Tx()
 {
     Tx_Angle_Pitch = IMU->Get_Angle_Pitch();
-    Tx_Angle_Roll = IMU->Get_Angle_Roll();
-    Tx_Angle_Yaw = -IMU->Get_Angle_Yaw();
+    if (IMU->Get_Angle_Roll() > 0)
+        Tx_Angle_Roll = IMU->Get_Angle_Roll() - 180;
+    if (IMU->Get_Angle_Roll() < 0)
+        Tx_Angle_Roll = IMU->Get_Angle_Roll() + 180;
+
+    if (IMU->Get_Angle_Yaw() > 0)
+        Tx_Angle_Yaw = IMU->Get_Angle_Yaw() - 180;
+    if (IMU->Get_Angle_Yaw() < 0)
+        Tx_Angle_Yaw = IMU->Get_Angle_Yaw() + 180;
+    //Tx_Angle_Yaw = 0;
 }
 
 void Class_MiniPC::Transform_Angle_Rx()

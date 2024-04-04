@@ -47,10 +47,10 @@ void Class_MiniPC::Data_Process()
 
     float tmp_yaw, tmp_pitch;
 
-    Self_aim(Pack_Rx.target_x, Pack_Rx.target_y, Pack_Rx.target_z, &tmp_yaw, &tmp_pitch, &Distance);
+    Self_aim(Pack_Rx.target_x, Pack_Rx.target_y, Pack_Rx.target_z-0.06, &Rx_Angle_Yaw, &Rx_Angle_Pitch, &Distance);
 
-    Rx_Angle_Yaw = meanFilter(tmp_yaw);
-    Rx_Angle_Pitch = meanFilter(tmp_pitch);
+//    Rx_Angle_Yaw = meanFilter(tmp_yaw);
+//    Rx_Angle_Pitch = meanFilter(tmp_pitch);
     // if(Pack_Rx.hander!=0xA5) memset(&Pack_Rx,0,USB_Manage_Object->Rx_Buffer_Length);
 
     memset(USB_Manage_Object->Rx_Buffer, 0, USB_Manage_Object->Rx_Buffer_Length);
@@ -199,7 +199,7 @@ float Class_MiniPC::calc_yaw(float x, float y, float z)
     float yaw = atan2f(y, x);
 
     // 将弧度制的偏航角转换为角度制
-    yaw = -(yaw * 180 / 3.1415926); // 向左为正，向右为负
+    yaw = (yaw * 180 / 3.1415926); // 向左为正，向右为负
 
     return yaw;
 }
@@ -231,7 +231,7 @@ float Class_MiniPC::calc_distance(float x, float y, float z)
 float Class_MiniPC::calc_pitch(float x, float y, float z)
 {
     // 根据 x、y 分量计算的平面投影的模长和 z 分量计算的反正切值，得到弧度制的俯仰角
-    float pitch = atan2f(z, sqrtf(x * x + y * y));
+    float pitch = atan2f(z, x);
 
     // 使用重力加速度模型迭代更新俯仰角
     for (size_t i = 0; i < 20; i++)
@@ -253,7 +253,7 @@ float Class_MiniPC::calc_pitch(float x, float y, float z)
     }
 
     // 将弧度制的俯仰角转换为角度制
-    pitch = -(pitch * 180 / 3.1415926); // 向上为负，向下为正
+    pitch = (pitch * 180 / 3.1415926); // 
 
     return pitch;
 }
@@ -267,7 +267,7 @@ float Class_MiniPC::calc_pitch(float x, float y, float z)
  */
 void Class_MiniPC::Self_aim(float x, float y, float z, float *yaw, float *pitch, float *distance)
 {
-    *yaw = -calc_yaw(x, y, z);
+    *yaw = calc_yaw(x, y, z);
     *pitch = calc_pitch(x, y, z);
     *distance = calc_distance(x, y, z);
 }

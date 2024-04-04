@@ -345,10 +345,14 @@ void Class_Chariot::Control_Gimbal()
                 tmp_gimbal_yaw -= dr16_y * DR16_Yaw_Angle_Resolution;
                 tmp_gimbal_pitch += dr16_r_y * DR16_Pitch_Resolution;
             }
-            else if (DR16.Get_Left_Switch() == DR16_Switch_Status_TRIG_MIDDLE_UP) // 中-上的突变
+            else if ((DR16.Get_Left_Switch() == DR16_Switch_Status_MIDDLE && DR16.Get_Right_Switch() == DR16_Switch_Status_UP))
             {
-                __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_3, 1700); // 开启
+                Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_MINIPC);
             }
+                else if (DR16.Get_Left_Switch() == DR16_Switch_Status_TRIG_MIDDLE_UP) // 中-上的突变
+                {
+                    __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_3, 1700); // 开启
+                }
             else if (DR16.Get_Left_Switch() == DR16_Switch_Status_TRIG_UP_MIDDLE) // 上-中的突变
             {
                 __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_3, 400); // 开启

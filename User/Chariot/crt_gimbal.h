@@ -14,12 +14,12 @@
 
 /* Includes ------------------------------------------------------------------*/
 
-#include "dvc_djimotor.h"
+
 #include "dvc_witahrs.h"
 #include "dvc_minipc.h"
 #include "dvc_imu.h"
 #include "dvc_lkmotor.h"
-
+#include "dvc_djimotor.h"
 /* Exported macros -----------------------------------------------------------*/
 
 /* Exported types ------------------------------------------------------------*/
