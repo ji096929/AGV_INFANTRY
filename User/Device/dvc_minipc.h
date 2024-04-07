@@ -22,6 +22,10 @@
 
 /* Exported macros -----------------------------------------------------------*/
 
+class Class_Gimbal_Pitch_Motor_GM6020;
+
+class Class_Gimbal_Yaw_Motor_GM6020;
+
 /* Exported types ------------------------------------------------------------*/
 static const uint16_t CRC16_INIT = 0xFFFF;
 
@@ -137,8 +141,6 @@ struct Struct_MiniPC_USB_Data
     uint8_t Data[50];
 } __attribute__((packed));
 
-
-
 /**
  * @brief 迷你主机接收的规划数据,
  *
@@ -244,6 +246,8 @@ public:
 
     Class_IMU *IMU;
     Class_Referee *Referee;
+    Class_Gimbal_Pitch_Motor_GM6020 *Gimbal_Pitch_Motor_GM6020;
+    Class_Gimbal_Yaw_Motor_GM6020 *Gimbal_Yaw_Motor_GM6020;
 
 protected:
     // 初始化相关常量
@@ -282,7 +286,7 @@ protected:
     float Rx_Angle_Pitch;
     float Rx_Angle_Yaw;
 
-    const float g = 9.6;          // 重力加速度
+    const float g = 9.6;         // 重力加速度
     const float bullet_v = 22.0; // 子弹速度
 
     // 距离
@@ -586,7 +590,7 @@ void Class_MiniPC::Transform_Angle_Tx()
         Tx_Angle_Yaw = IMU->Get_Angle_Yaw() - 180;
     if (IMU->Get_Angle_Yaw() < 0)
         Tx_Angle_Yaw = IMU->Get_Angle_Yaw() + 180;
-    //Tx_Angle_Yaw = 0;
+    // Tx_Angle_Yaw = 0;
 }
 
 void Class_MiniPC::Transform_Angle_Rx()

@@ -160,8 +160,8 @@ void Class_Gimbal_Yaw_Motor_GM6020::Transform_Angle()
 {
     True_Rad_Yaw = -IMU->Get_Rad_Yaw();
     True_Gyro_Yaw = -IMU->Get_Gyro_Yaw();
-    if (IMU->Get_Angle_Yaw()>0)
-        True_Angle_Yaw = IMU->Get_Angle_Yaw()-180;
+    if (IMU->Get_Angle_Yaw() > 0)
+        True_Angle_Yaw = IMU->Get_Angle_Yaw() - 180;
     if (IMU->Get_Angle_Yaw() < 0)
         True_Angle_Yaw = IMU->Get_Angle_Yaw() + 180;
 }
@@ -303,6 +303,7 @@ void Class_Gimbal_Pitch_Motor_GM6020::Transform_Angle()
 {
     True_Rad_Pitch = 1 * IMU->Get_Rad_Pitch();
     True_Gyro_Pitch = -1 * IMU->Get_Gyro_Pitch();
+    True_Angle_Pitch = RADPS_TO_RPM(True_Rad_Pitch);
 }
 
 /**
@@ -413,6 +414,7 @@ void Class_Gimbal_Pitch_Motor_LK6010::Transform_Angle()
 {
     True_Rad_Pitch = -1 * IMU->Get_Rad_Pitch();
     True_Gyro_Pitch = -1 * IMU->Get_Gyro_Pitch();
+    True_Angle_Pitch = -1 * IMU->Get_Angle_Pitch();
 }
 
 /**
@@ -428,7 +430,7 @@ void Class_Gimbal::Init()
     // Motor_Yaw.PID_Angle.Init(0.0f, 0.0f, 0.0f, 0.0f, 100, 100);
     // Motor_Yaw.PID_Omega.Init(0.0f, 0.0f, 0.0f, 0.0f, Motor_Yaw.Get_Output_Max(), Motor_Yaw.Get_Output_Max());
 
-    Motor_Yaw.PID_Angle.Init(7.0f, 0.0f, 0.0f, 0.0f, 100, 100,0,0,0,0.001,0.05);
+    Motor_Yaw.PID_Angle.Init(7.0f, 0.0f, 0.0f, 0.0f, 100, 100, 0, 0, 0, 0.001, 0.05);
     Motor_Yaw.PID_Omega.Init(2200.0f, 10000.0f, 0.0f, 0.0f, Motor_Yaw.Get_Output_Max(), Motor_Yaw.Get_Output_Max());
 
     // Motor_Yaw.PID_Angle.Init(9.35f, 0.0f, 0.071f, 0.0f, 100, 100);
@@ -494,25 +496,27 @@ void Class_Gimbal::Output()
         Motor_Pitch.Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_IMU_ANGLE);
         Motor_Pitch_LK6010.Set_LK_Motor_Control_Method(LK_Motor_Control_Method_IMU_ANGLE);
 
-        // 限制角度范围 处理yaw轴180度问题
-        if ((Target_Yaw_Angle - Motor_Yaw.Get_True_Angle_Yaw()) > Max_Yaw_Angle)
-        {
-            Target_Yaw_Angle -= (2 * Max_Yaw_Angle);
-        }
-        else if ((Target_Yaw_Angle - Motor_Yaw.Get_True_Angle_Yaw()) < -Max_Yaw_Angle)
-        {
-            Target_Yaw_Angle += (2 * Max_Yaw_Angle);
-        }
+
+
         // if (Target_Yaw_Angle>180)
         //     Target_Yaw_Angle = -180;
         // if (Target_Yaw_Angle < -180)
         //     Target_Yaw_Angle = 180;
-        //Math_Constrain(&Target_Yaw_Angle, -Max_Yaw_Angle, Max_Yaw_Angle);
+        // Math_Constrain(&Target_Yaw_Angle, -Max_Yaw_Angle, Max_Yaw_Angle);
         // pitch限位
         Math_Constrain(&Target_Pitch_Angle, Min_Pitch_Angle, Max_Pitch_Angle);
 
         if (Gimbal_Control_Type == Gimbal_Control_Type_NORMAL)
         {
+		            // 限制角度范围 处理yaw轴180度问题
+            if ((Target_Yaw_Angle - Motor_Yaw.Get_True_Angle_Yaw()) > Max_Yaw_Angle)
+            {
+                Target_Yaw_Angle -= (2 * Max_Yaw_Angle);
+            }
+            else if ((Target_Yaw_Angle - Motor_Yaw.Get_True_Angle_Yaw()) < -Max_Yaw_Angle)
+            {
+                Target_Yaw_Angle += (2 * Max_Yaw_Angle);
+            }
             // 设置目标角度
             Motor_Yaw.Set_Target_Angle(Target_Yaw_Angle);
             Motor_Pitch.Set_Target_Angle(Target_Pitch_Angle);
@@ -521,9 +525,18 @@ void Class_Gimbal::Output()
         else if ((Gimbal_Control_Type == Gimbal_Control_Type_MINIPC) && (MiniPC->Get_MiniPC_Status() != MiniPC_Status_DISABLE))
         {
             // 设置目标角度
-            //Motor_Yaw.Set_Target_Angle(MiniPC->Get_Rx_Yaw_Angle() +Motor_Yaw.Get_True_Angle_Yaw());
             Motor_Yaw.Set_Target_Angle(MiniPC->Get_Rx_Yaw_Angle());
-            Motor_Pitch.Set_Target_Angle(MiniPC->Get_Rx_Pitch_Angle() );
+		    // Motor_Yaw.Set_Target_Angle(MiniPC->Get_Rx_Yaw_Angle() +Motor_Yaw.Get_True_Angle_Yaw());
+	       if ((Motor_Yaw.Get_Target_Angle() - Motor_Yaw.Get_True_Angle_Yaw()) > 180)
+            {
+                Motor_Yaw.Set_Target_Angle(Motor_Yaw.Get_Target_Angle() - 360);
+            }
+            if ((Motor_Yaw.Get_Target_Angle() - Motor_Yaw.Get_True_Angle_Yaw()) < -180)
+            {
+                Motor_Yaw.Set_Target_Angle(Motor_Yaw.Get_Target_Angle() + 360);
+            }
+            
+            Motor_Pitch.Set_Target_Angle(MiniPC->Get_Rx_Pitch_Angle());
             Motor_Pitch_LK6010.Set_Target_Angle(Target_Pitch_Angle);
         }
     }
@@ -564,7 +577,6 @@ void Class_Gimbal::TIM_Calculate_PeriodElapsedCallback()
     Motor_Pitch.TIM_PID_PeriodElapsedCallback();
 
     Motor_Pitch_LK6010.TIM_PID_PeriodElapsedCallback();
-    
 }
 
 /************************ COPYRIGHT(C) USTC-ROBOWALKER **************************/

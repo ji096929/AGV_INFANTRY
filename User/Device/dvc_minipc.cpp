@@ -12,6 +12,8 @@
 /* includes ------------------------------------------------------------------*/
 
 #include "dvc_minipc.h"
+#include "crt_gimbal.h"
+#include "drv_math.h"
 
 /* private macros ------------------------------------------------------------*/
 
@@ -29,9 +31,9 @@
  * @param __frame_header 数据包头标
  * @param __frame_rear 数据包尾标
  */
-void Class_MiniPC::Init(Struct_USB_Manage_Object* __USB_Manage_Object, uint8_t __frame_header, uint8_t __frame_rear)
+void Class_MiniPC::Init(Struct_USB_Manage_Object *__USB_Manage_Object, uint8_t __frame_header, uint8_t __frame_rear)
 {
-	  USB_Manage_Object = __USB_Manage_Object;
+    USB_Manage_Object = __USB_Manage_Object;
     Frame_Header = __frame_header;
     Frame_Rear = __frame_rear;
 }
@@ -47,10 +49,10 @@ void Class_MiniPC::Data_Process()
 
     float tmp_yaw, tmp_pitch;
 
-    Self_aim(Pack_Rx.target_x, Pack_Rx.target_y, Pack_Rx.target_z-0.06, &Rx_Angle_Yaw, &Rx_Angle_Pitch, &Distance);
+    Self_aim(Pack_Rx.target_x, Pack_Rx.target_y, Pack_Rx.target_z+0.06, &Rx_Angle_Yaw, &Rx_Angle_Pitch, &Distance);
 
-//    Rx_Angle_Yaw = meanFilter(tmp_yaw);
-//    Rx_Angle_Pitch = meanFilter(tmp_pitch);
+    //    Rx_Angle_Yaw = meanFilter(tmp_yaw);
+    //    Rx_Angle_Pitch = meanFilter(tmp_pitch);
     // if(Pack_Rx.hander!=0xA5) memset(&Pack_Rx,0,USB_Manage_Object->Rx_Buffer_Length);
 
     memset(USB_Manage_Object->Rx_Buffer, 0, USB_Manage_Object->Rx_Buffer_Length);
@@ -66,9 +68,9 @@ void Class_MiniPC::Output()
 
     // 根据referee判断红蓝方
     if (Referee->Get_ID() >= 101)
-        Pack_Tx.detect_color = 101;
+        Pack_Tx.detect_color = 101; // 蓝方
     else
-        Pack_Tx.detect_color = 0;
+        Pack_Tx.detect_color = 0; // 红方
 
     Pack_Tx.target_id = 0x01;
     Pack_Tx.roll = Tx_Angle_Roll;
@@ -97,7 +99,7 @@ void Class_MiniPC::TIM_Write_PeriodElapsedCallback()
  */
 void Class_MiniPC::USB_RxCpltCallback(uint8_t *rx_data)
 {
-    //滑动窗口, 判断迷你主机是否在线
+    // 滑动窗口, 判断迷你主机是否在线
     Flag += 1;
     Data_Process();
 }
@@ -108,16 +110,16 @@ void Class_MiniPC::USB_RxCpltCallback(uint8_t *rx_data)
  */
 void Class_MiniPC::TIM1msMod50_Alive_PeriodElapsedCallback()
 {
-    //判断该时间段内是否接收过迷你主机数据
+    // 判断该时间段内是否接收过迷你主机数据
     if (Flag == Pre_Flag)
     {
-        //迷你主机断开连接
-        MiniPC_Status =  MiniPC_Status_DISABLE;
+        // 迷你主机断开连接
+        MiniPC_Status = MiniPC_Status_DISABLE;
     }
     else
     {
-        //迷你主机保持连接
-        MiniPC_Status =  MiniPC_Status_ENABLE ;
+        // 迷你主机保持连接
+        MiniPC_Status = MiniPC_Status_ENABLE;
     }
 
     Pre_Flag = Flag;
@@ -196,6 +198,11 @@ void Class_MiniPC::Append_CRC16_Check_Sum(uint8_t *pchMessage, uint32_t dwLength
 float Class_MiniPC::calc_yaw(float x, float y, float z)
 {
     // 使用 atan2f 函数计算反正切值，得到弧度制的偏航角
+    if (x == 0)
+    {
+        return Gimbal_Yaw_Motor_GM6020->Get_True_Angle_Yaw();
+    }
+
     float yaw = atan2f(y, x);
 
     // 将弧度制的偏航角转换为角度制
@@ -228,32 +235,66 @@ float Class_MiniPC::calc_distance(float x, float y, float z)
  * @param z 向量的z分量
  * @return 计算得到的俯仰角（以角度制表示）
  */
+
+uint8_t temp = 0;
+float dz;
 float Class_MiniPC::calc_pitch(float x, float y, float z)
 {
     // 根据 x、y 分量计算的平面投影的模长和 z 分量计算的反正切值，得到弧度制的俯仰角
-    float pitch = atan2f(z, x);
-
-    // 使用重力加速度模型迭代更新俯仰角
-    for (size_t i = 0; i < 20; i++)
+    if (x == 0 || z == 0)
     {
-        float v_x = bullet_v * cosf(pitch);
-        float v_y = bullet_v * sinf(pitch);
-
-        float t = sqrtf(x * x + y * y) / v_x;
-        float h = v_y * t - 0.5 * g * t * t;
-        float dz = z - h;
-
-        if (fabsf(dz) < 0.01)
-        {
-            break;
-        }
-
-        // 根据 dz 和向量的欧几里德距离计算新的俯仰角的变化量，进行迭代更新
-        pitch += asinf(dz / calc_distance(x, y, z));
+        return IMU->Get_Angle_Pitch();
     }
 
+    if (isnan(x) || isnan(y))
+    {
+        temp++;
+    }
+
+    //    float pitch = atan2f(z, x);
+    // float pitch = atan2f(z, Math_Abs(x));
+    // if(isnan(pitch))
+    // {
+    //     temp++;
+    // }
+    
+    float temp_hight;
+    temp_hight = z;
+    float pitch;
+	pitch = atan2f(z, sqrtf(x*x+y*y));
+//    // 使用重力加速度模型迭代更新俯仰角
+//    for (size_t i = 0; i < 20; i++)
+//    {
+//        pitch = atan2f(temp_hight, Math_Abs(x));
+//        float v_x = bullet_v * cosf(pitch);
+//        if (v_x == 0)
+//        {
+//            temp++;
+//        }
+//        float v_y = bullet_v * sinf(pitch);
+
+//        float t = sqrtf(x * x) / v_x;
+//        float h = v_y * t - 0.5 * g * t * t;
+//        dz = z - h;
+//        
+//        temp_hight += 0.5 * dz;
+
+//        if (fabsf(dz) < 0.01)
+//        {
+//            break;
+//        }
+
+//        // 根据 dz 和向量的欧几里德距离计算新的俯仰角的变化量，进行迭代更新
+//        //   pitch += asinf(dz / calc_distance(x, y, z));
+//    }
+
     // 将弧度制的俯仰角转换为角度制
-    pitch = (pitch * 180 / 3.1415926); // 
+    pitch = (pitch * 180 / 3.1415926); //
+    
+    if(pitch<-40)
+    {
+	    temp++;
+    }
 
     return pitch;
 }

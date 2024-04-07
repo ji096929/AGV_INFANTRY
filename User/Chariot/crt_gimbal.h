@@ -20,6 +20,7 @@
 #include "dvc_imu.h"
 #include "dvc_lkmotor.h"
 #include "dvc_djimotor.h"
+
 /* Exported macros -----------------------------------------------------------*/
 
 /* Exported types ------------------------------------------------------------*/
@@ -98,6 +99,7 @@ public:
 
     inline float Get_True_Rad_Pitch();
     inline float Get_True_Gyro_Pitch();
+    inline float Get_True_Angle_Pitch();
 
     void Transform_Angle();
 
@@ -114,6 +116,7 @@ protected:
     // 内部变量
     float True_Rad_Pitch = 0.0f;  // 角度（弧度制）
     float True_Gyro_Pitch = 0.0f; // 角速度
+    float True_Angle_Pitch = 0.0f;
     // 读变量
 
     // 写变量
@@ -132,6 +135,10 @@ float Class_Gimbal_Pitch_Motor_GM6020::Get_True_Gyro_Pitch()
     return (True_Gyro_Pitch);
 }
 
+float Class_Gimbal_Pitch_Motor_GM6020::Get_True_Angle_Pitch()
+{
+    return (True_Angle_Pitch);
+}
 /**
  * @brief Specialized, pitch轴电机类
  *
@@ -160,7 +167,8 @@ protected:
     // 内部变量
     float True_Rad_Pitch = 0.0f;  // rad
     float True_Gyro_Pitch = 0.0f; // rad/s
-                                  // 读变量
+    float True_Angle_Pitch = 0.0f;
+    // 读变量
 
     // 写变量
 

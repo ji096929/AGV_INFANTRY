@@ -85,6 +85,8 @@ void Class_Chariot::Init(float __DR16_Dead_Zone)
     MiniPC.Init(&MiniPC_USB_Manage_Object);
     MiniPC.IMU = &Gimbal.Boardc_BMI;
     MiniPC.Referee = &Referee;
+    MiniPC.Gimbal_Pitch_Motor_GM6020 = &Gimbal.Motor_Pitch;
+    MiniPC.Gimbal_Yaw_Motor_GM6020 = &Gimbal.Motor_Yaw;
 
     // select the MiniPC object
     Gimbal.MiniPC = &MiniPC;
@@ -301,7 +303,6 @@ void Class_Chariot::Control_Gimbal()
     // 获取当前角度值
 
     tmp_gimbal_yaw = Gimbal.Get_Target_Yaw_Angle();
-    // tmp_gimbal_yaw = Gimbal.Boardc_BMI.Get_Angle_Yaw();
     tmp_gimbal_pitch = Gimbal.Get_Target_Pitch_Angle();
 
     // 排除遥控器死区
@@ -327,7 +328,11 @@ void Class_Chariot::Control_Gimbal()
                 if (Gimbal.Get_Gimbal_Control_Type() == Gimbal_Control_Type_NORMAL)
                     Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_MINIPC);
                 else
+                {
                     Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_NORMAL);
+                    Gimbal.Set_Target_Pitch_Angle(Gimbal.Motor_Pitch.Get_True_Angle_Pitch());
+                    Gimbal.Set_Target_Yaw_Angle(Gimbal.Motor_Yaw.Get_True_Angle_Yaw());
+                }
             }
             // 键盘遥控器操作逻辑
             tmp_gimbal_yaw -= DR16.Get_Mouse_X() * DR16_Mouse_Yaw_Angle_Resolution;
@@ -339,7 +344,15 @@ void Class_Chariot::Control_Gimbal()
             if ((DR16.Get_Left_Switch() == DR16_Switch_Status_MIDDLE && DR16.Get_Right_Switch() == DR16_Switch_Status_MIDDLE)) // 左中右中正常
             {
                 // 中间遥控模式
-                Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_NORMAL);
+
+                if (Gimbal.Get_Gimbal_Control_Type() == Gimbal_Control_Type_NORMAL)
+                    Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_NORMAL);
+                else
+                {
+                    Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_NORMAL);
+                    Gimbal.Set_Target_Pitch_Angle(Gimbal.Motor_Pitch.Get_True_Angle_Pitch());
+                    Gimbal.Set_Target_Yaw_Angle(Gimbal.Motor_Yaw.Get_True_Angle_Yaw());
+                }
 
                 // 遥控器操作逻辑
                 tmp_gimbal_yaw -= dr16_y * DR16_Yaw_Angle_Resolution;
@@ -348,11 +361,15 @@ void Class_Chariot::Control_Gimbal()
             else if ((DR16.Get_Left_Switch() == DR16_Switch_Status_MIDDLE && DR16.Get_Right_Switch() == DR16_Switch_Status_UP))
             {
                 Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_MINIPC);
+
+                // 遥控器操作逻辑
+                tmp_gimbal_yaw -= dr16_y * DR16_Yaw_Angle_Resolution;
+                tmp_gimbal_pitch += dr16_r_y * DR16_Pitch_Resolution;
             }
-                else if (DR16.Get_Left_Switch() == DR16_Switch_Status_TRIG_MIDDLE_UP) // 中-上的突变
-                {
-                    __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_3, 1700); // 开启
-                }
+            else if (DR16.Get_Left_Switch() == DR16_Switch_Status_TRIG_MIDDLE_UP) // 中-上的突变
+            {
+                __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_3, 1700); // 开启
+            }
             else if (DR16.Get_Left_Switch() == DR16_Switch_Status_TRIG_UP_MIDDLE) // 上-中的突变
             {
                 __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_3, 400); // 开启
@@ -418,7 +435,7 @@ void Class_Chariot::Control_Booster()
         }
         else
         {
-            if ((DR16.Get_Left_Switch() != DR16_Switch_Status_UP)) // 
+            if ((DR16.Get_Left_Switch() != DR16_Switch_Status_UP)) //
             {
                 // 遥控器离线或下方失能
                 Booster.Set_Booster_Control_Type(Booster_Control_Type_DISABLE);
@@ -439,7 +456,6 @@ void Class_Chariot::Control_Booster()
             }
         }
     }
-
 }
 
 #endif
