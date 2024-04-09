@@ -1,7 +1,7 @@
 //
 // Created by bismarckkk on 2024/2/17.
 //
-#include <stdint.h>
+
 #include "ui_interface.h"
 #include <string.h>
 
@@ -15,7 +15,7 @@ void print_message(const uint8_t *message, const int length) {
     printf("\n\n");
 }
 
-const unsigned char CRC8_TAB_ui[256] = {
+const unsigned char _CRC8_TAB[256] = {
     0x00, 0x5e, 0xbc, 0xe2, 0x61, 0x3f, 0xdd, 0x83, 0xc2, 0x9c, 0x7e, 0x20, 0xa3, 0xfd, 0x1f, 0x41,
     0x9d, 0xc3, 0x21, 0x7f, 0xfc, 0xa2, 0x40, 0x1e, 0x5f, 0x01, 0xe3, 0xbd, 0x3e, 0x60, 0x82, 0xdc, 0x23,
     0x7d, 0x9f, 0xc1, 0x42, 0x1c, 0xfe, 0xa0, 0xe1, 0xbf, 0x5d, 0x03, 0x80, 0xde, 0x3c, 0x62, 0xbe, 0xe0,
@@ -39,12 +39,12 @@ unsigned char calc_crc8(unsigned char *pchMessage, unsigned int dwLength) {
     unsigned char ucIndex;
     while (dwLength--) {
         ucIndex = ucCRC8 ^ (*pchMessage++);
-        ucCRC8 = CRC8_TAB_ui[ucIndex];
+        ucCRC8 = _CRC8_TAB[ucIndex];
     }
     return (ucCRC8);
 }
 
-const uint16_t wCRC_Table_ui[256] = {
+const uint16_t _wCRC_Table[256] = {
     0x0000, 0x1189, 0x2312, 0x329b, 0x4624, 0x57ad, 0x6536, 0x74bf,
     0x8c48, 0x9dc1, 0xaf5a, 0xbed3, 0xca6c, 0xdbe5, 0xe97e, 0xf8f7,
     0x1081, 0x0108, 0x3393, 0x221a, 0x56a5, 0x472c, 0x75b7, 0x643e,
@@ -90,7 +90,7 @@ uint16_t calc_crc16(uint8_t *pchMessage, uint32_t dwLength)
     while(dwLength--)
     {
         chData = *pchMessage++;
-        (wCRC) = ((uint16_t)(wCRC) >> 8) ^ wCRC_Table_ui[((uint16_t)(wCRC) ^ (uint16_t)(chData)) & 0x00ff];
+        (wCRC) = ((uint16_t)(wCRC) >> 8) ^ _wCRC_Table[((uint16_t)(wCRC) ^ (uint16_t)(chData)) & 0x00ff];
     }
     return wCRC;
 }

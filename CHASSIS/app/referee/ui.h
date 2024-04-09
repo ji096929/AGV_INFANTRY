@@ -7,8 +7,20 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include <stdint.h>
+
 #include "ui_interface.h"
+
+#include "ui_1_Ungroup_0.h"
+
+#define ui_init_1_Ungroup() \
+_ui_init_1_Ungroup_0()
+
+#define ui_update_1_Ungroup() \
+_ui_update_1_Ungroup_0()
+
+#define ui_remove_1_Ungroup() \
+_ui_remove_1_Ungroup_0()
+    
 
 #include "ui_default_Ungroup_0.h"
 

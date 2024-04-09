@@ -112,7 +112,7 @@ void Judge_Buffer_Receive_Task(uint8_t *frame)
 
 		break;
 	case POWER_HEAT_DATA_CMD_ID:
-		memcpy(&JudgeReceive.realChassisOutV, frame + index, 16);
+		memcpy(&JudgeReceive.realChassisOutV, frame + index, 12);
 
 		break;
 	case SHOOT_DATA_CMD_ID:

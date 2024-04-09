@@ -46,7 +46,7 @@ typedef struct
 	uint16_t realChassisOutA;
 	float realChassispower;
 	uint16_t remainEnergy;
-	short shooterHeat42;
+	short shooterHeat17;
 
 	// 0x0207
 	uint8_t bullet_type;

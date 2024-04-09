@@ -18,7 +18,7 @@
 CHASSIS_T chassis;
 YAW_T   yaw;
 PID_T   yaw_pid;
-float yaw_position_loop_data[10]= {0.12f,0.0f,0.f,2.5f,0.0f,1.0f,0.f,0.f,0.f,0.f};
+float yaw_position_loop_data[10]= {0.07f,0.0f,0.f,2.5f,0.0f,0.6f,0.f,0.f,0.f,0.f};
 float buffer_loop_data[10]= {5.0f,0.0f,0.f,50.0f,0.0f,1.0f,0.f,0.f,0.f,0.f};
 void Chassis_Speed_Slow_Motion(CHASSIS_T *chassis)
 {

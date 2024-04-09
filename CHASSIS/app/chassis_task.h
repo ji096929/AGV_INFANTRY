@@ -8,6 +8,7 @@
 #include "agv_control.h"
 #include "referee.h"
 #include "ui.h"
+#include "buzzer.h"
 typedef struct 
 {
     uint16_t ms_count;

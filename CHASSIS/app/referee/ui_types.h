@@ -1,10 +1,10 @@
 //
 // Created by bismarckkk on 2024/2/17.
 //
-
+#include <stdint.h>
 #ifndef SERIAL_TEST_UI_TYPES_H
 #define SERIAL_TEST_UI_TYPES_H
-#include <stdint.h>
+
 #ifdef __GNUC__
 #define MESSAGE_PACKED __attribute__((packed))
 

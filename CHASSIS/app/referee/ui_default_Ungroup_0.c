@@ -4,7 +4,7 @@
 
 #include "ui_default_Ungroup_0.h"
 
-#define FRAME_ID 0
+#define FRAME_ID 1
 #define GROUP_ID 0
 #define START_ID 0
 #define OBJ_NUM 1
@@ -26,11 +26,11 @@ void _ui_init_default_Ungroup_0() {
 
     ui_default_Ungroup_NewLine->figure_tpye = 0;
     ui_default_Ungroup_NewLine->layer = 0;
-    ui_default_Ungroup_NewLine->start_x = 500;
-    ui_default_Ungroup_NewLine->start_y = 50;
-    ui_default_Ungroup_NewLine->end_x = 99;
-    ui_default_Ungroup_NewLine->end_y = 99;
-    ui_default_Ungroup_NewLine->color = 0;
+    ui_default_Ungroup_NewLine->start_x = 210;
+    ui_default_Ungroup_NewLine->start_y = 327;
+    ui_default_Ungroup_NewLine->end_x = 1390;
+    ui_default_Ungroup_NewLine->end_y = 903;
+    ui_default_Ungroup_NewLine->color = 1;
     ui_default_Ungroup_NewLine->width = 1;
 
 

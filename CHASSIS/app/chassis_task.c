@@ -9,7 +9,7 @@
  * Copyright (c) 2024 by ${git_name_email}, All Rights Reserved. 
  */
 #include "chassis_task.h"
-
+#include "GraphicsSendTask.h"
 TIME_T time;
 
 void Task_Init(void)
@@ -19,9 +19,9 @@ void Task_Init(void)
     Can_Connection_Init();
 		Chassis_Power_Control_Init();
 		Referee_Init();
-
-   // _ui_init_default_Ungroup_0();
+	//buzzer_init_example();
 }
+   
 
 void Time_Count_Task(TIME_T *time)
 {
@@ -38,7 +38,8 @@ void Chassis_Task()
 {
     if(htim->Instance==TIM3)
     {
-    AGV_connoection(time.ms_count);    
+    AGV_connoection(time.ms_count);   
+ GraphicSendtask();	    
     if(time.ms_count%5==0)
      {
        Chassis_Move();			
@@ -62,12 +63,11 @@ void Chassis_Task()
     }
     if(time.ms_count%10==6)
     {
-    //UI_Send_Char_Task();
-    //ui_update_default_Ungroup_0();
+    TIM_CAN_PeriodElapsedCallback();
     }
 		if(time.ms_count%10==8)
     {
-//     UI_Send_Graphic_Task();
+
 			Chassis_Flag_Update(&connection);
     }
 

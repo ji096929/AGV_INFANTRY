@@ -15,7 +15,7 @@
 #include "motor.h"
 #include "PID.h"
 
-#define GIMBAL_HEAD_ANGLE 138.0f
+#define GIMBAL_HEAD_ANGLE 140.86f
 
 #define CHASSIS_SPEED_X_CHANGE_MAX 20.f
 #define CHASSIS_SPEED_Y_CHANGE_MAX 20.f

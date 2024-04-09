@@ -741,9 +741,9 @@
               <FilePath>..\app\gimbal_connoection\can_connection.c</FilePath>
             </File>
             <File>
-              <FileName>ui.c</FileName>
+              <FileName>ui_1_Ungroup_0.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\app\referee\ui.c</FilePath>
+              <FilePath>..\app\referee\ui_1_Ungroup_0.c</FilePath>
             </File>
             <File>
               <FileName>ui_default_Ungroup_0.c</FileName>
@@ -754,6 +754,16 @@
               <FileName>ui_interface.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\app\referee\ui_interface.c</FilePath>
+            </File>
+            <File>
+              <FileName>GraphicsSendTask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\referee\GraphicsSendTask.c</FilePath>
+            </File>
+            <File>
+              <FileName>buzzer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\buzzer.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -774,6 +784,11 @@
               <FileName>fifo.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\bsp\fifo\fifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>buzzer_bsp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\bsp\buzzer_bsp.c</FilePath>
             </File>
           </Files>
         </Group>

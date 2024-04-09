@@ -50,5 +50,11 @@ chassis\chassis_task.o: ../app/referee/referee.h
 chassis\chassis_task.o: ../app/referee/algorithmOfCRC.h
 chassis\chassis_task.o: ../app/referee/ui.h
 chassis\chassis_task.o: ../app/referee/ui_interface.h
+chassis\chassis_task.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stdio.h
 chassis\chassis_task.o: ../app/referee/ui_types.h
+chassis\chassis_task.o: ../app/referee/ui_1_Ungroup_0.h
 chassis\chassis_task.o: ../app/referee/ui_default_Ungroup_0.h
+chassis\chassis_task.o: ..\app\buzzer.h
+chassis\chassis_task.o: ..\bsp\buzzer_bsp.h
+chassis\chassis_task.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\math.h
+chassis\chassis_task.o: ../app/referee/GraphicsSendTask.h

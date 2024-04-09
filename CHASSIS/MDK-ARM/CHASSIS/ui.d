@@ -1,1 +1,1 @@
-chassis\ui.o: ..\app\referee\ui.c
+chassis\ui.o: ..\app\referee\UI.c

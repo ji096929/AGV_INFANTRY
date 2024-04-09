@@ -9,7 +9,7 @@ typedef struct
 #define TOQUE_COEFFICIENT 1.99688994e-6 // (20/16384)*(0.3)*(1/14)/9.55
 #define K1  1.23e-07//1为默认数值
 #define K2 1.453e-07 // 1为默认数值
-#define CONSTANT  4.081f//功率模型中的常数
+#define CONSTANT  1.0f//功率模型中的常数
 #define CONVERT_CONSTANT 9.55//转化系数
 {
 

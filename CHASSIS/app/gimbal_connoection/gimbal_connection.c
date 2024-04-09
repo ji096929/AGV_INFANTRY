@@ -2,6 +2,8 @@
 #include "referee.h"
 GIMBAL_CONNECTION_T connection;
 
+
+
 void Chassis_Flag_Update(GIMBAL_CONNECTION_T *connection)
 {
 	connection->connection_rx.invert.last_flag=connection->connection_rx.invert.flag;
@@ -46,9 +48,10 @@ void Fric_Speed_And_Pitch_Angle_Update(GIMBAL_CONNECTION_T *connection,uint8_t	d
  */
 void CAN_Chassis_TxCpltCallback()
 {
-	JudgeReceive.bulletSpeed = (int16_t)JudgeReceive.bulletSpeed;
-	memcpy(CAN2_0x200_Tx_Data, &JudgeReceive.HeatCool17, sizeof(int16_t));
+	uint16_t temp_speed=0;
+	temp_speed = (uint16_t)JudgeReceive.initial_speed;
+	memcpy(CAN2_0x200_Tx_Data, &JudgeReceive.shooterHeat17, sizeof(int16_t));
 	memcpy(CAN2_0x200_Tx_Data + 2, &JudgeReceive.HeatMax17, sizeof(int16_t));
 	memcpy(CAN2_0x200_Tx_Data + 4, &JudgeReceive.launching_frequency, sizeof(int16_t));
-	memcpy(CAN2_0x200_Tx_Data + 6, &JudgeReceive.initial_speed, sizeof(int16_t));
+	memcpy(CAN2_0x200_Tx_Data + 6, &temp_speed, sizeof(int16_t));
 }

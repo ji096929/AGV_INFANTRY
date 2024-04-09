@@ -18,15 +18,19 @@ typedef enum
 
 typedef enum
 {
-	FRIC_ON	=	0x01,
-	FRIC_OFF=	0x00,
-}FRIC_FLAG_E;
+	Booster_Control_Type_DISABLE = 0,
+	Booster_Control_Type_CEASEFIRE,
+	Booster_Control_Type_SINGLE,
+	Booster_Control_Type_REPEATED,
+	Booster_Control_Type_MULTI, // Á¬·¢
+} FRIC_FLAG_E;
 
 typedef enum
 {
-	VISION_ON	=	0x01,
-	VISION_OFF=	0x00,
-}VISION_FLAG_E;
+	Gimbal_Control_Type_DISABLE = 0,
+	Gimbal_Control_Type_NORMAL,
+	Gimbal_Control_Type_MINIPC,
+} VISION_FLAG_E;
 
 typedef struct 
 {
@@ -65,5 +69,6 @@ void Chassis_Flag_Update(GIMBAL_CONNECTION_T *connection);
 void Fric_Speed_And_Pitch_Angle_Update(GIMBAL_CONNECTION_T *connection,uint8_t	data[]);
 void Chassis_Speed_Command_Update(GIMBAL_CONNECTION_T *connection,uint8_t	data[]);
 void Chassis_Control_Mode_Update(GIMBAL_CONNECTION_T *connection,uint8_t	data[]);
+void CAN_Chassis_TxCpltCallback();
 extern GIMBAL_CONNECTION_T connection;
 #endif

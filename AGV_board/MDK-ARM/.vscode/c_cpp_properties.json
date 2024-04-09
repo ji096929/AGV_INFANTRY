@@ -3,22 +3,7 @@
     {
       "name": "windows-gcc-x64",
       "includePath": [
-        "${workspaceFolder}/**",
-        "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\AGV_board\\Core\\Inc",
-        "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\AGV_board\\Drivers\\STM32F1xx_HAL_Driver\\Inc",
-        "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\AGV_board\\Drivers\\STM32F1xx_HAL_Driver\\Inc\\Legacy",
-        "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\AGV_board\\Drivers\\CMSIS\\Device\\ST\\STM32F1xx\\Include",
-        "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\AGV_board\\Drivers\\CMSIS\\Include",
-        "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\AGV_board\\BSP",
-        "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\AGV_board\\APP",
-        "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\AGV_board\\task",
-        "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\AGV_board\\refree",
-        "D:\\software\\keil5\\ARM\\ARMCC\\include",
-        "D:\\software\\keil5\\ARM\\ARMCC\\include\\rw",
-        "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\AGV_board\\MDK-ARM",
-        "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\AGV_board\\Core\\Src",
-        "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\AGV_board\\Drivers\\STM32F1xx_HAL_Driver\\Src",
-        "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\AGV_board\\User"
+        "${workspaceFolder}/**"
       ],
       "defines": [
         "USE_HAL_DRIVER",
