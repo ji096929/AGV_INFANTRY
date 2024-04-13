@@ -246,7 +246,7 @@ void Class_DR16::Data_Process()
     }
 
     //左前轮信息
-    Data.Yaw = (tmp_buffer->Channel_Yaw - Rocker_Offset) / Rocker_Num;
+    Data.Wheel = (tmp_buffer->Channel_Wheel - Rocker_Offset) / Rocker_Num;
 
     Judge_Updata(Pre_UART_Rx_Data,Now_UART_Rx_Data);
 }

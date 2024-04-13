@@ -57,6 +57,7 @@ static const uint16_t W_CRC_TABLE[256] =
 struct Pack_tx_t
 {
     uint8_t hander;
+    uint8_t Game_Status_Stage;
     uint8_t detect_color;
     uint8_t target_id;
     float roll;

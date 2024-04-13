@@ -772,15 +772,35 @@ void Class_Referee::UART_RxCpltCallback(uint8_t *Rx_Data)
  *
  * @param Rx_Data 接收的数据
  */
-void Class_Referee::CAN_RxCpltCallback(uint8_t *Rx_Data)
+void Class_Referee::CAN_RxCpltCallback(uint8_t *Rx_Data, uint32_t id)
 {
     // 滑动窗口, 判断裁判系统是否在线
     Flag += 1;
 
-    Robot_Power_Heat.Booster_17mm_1_Heat = (uint16_t)(Rx_Data[1] << 8 | Rx_Data[0]);
-    Robot_Status.Booster_17mm_1_Heat_Max = (uint16_t)(Rx_Data[3] << 8 | Rx_Data[2]);
-    Robot_Booster.Frequency = (uint16_t)(Rx_Data[5] << 8 | Rx_Data[4]);
-    Robot_Booster.Speed = (uint16_t)(Rx_Data[7] << 8 | Rx_Data[6]);
+    switch (id)
+    {
+    case 0x1fe:
+    {
+        Game_Status.Type_Enum = Rx_Data[0];
+        Game_Status.Stage_Enum = Rx_Data[0]>>4;
+    }
+    break;
+
+    case 0x200:
+    {
+        Robot_Power_Heat.Booster_17mm_1_Heat = (uint16_t)(Rx_Data[1] << 8 | Rx_Data[0]);
+        Robot_Status.Booster_17mm_1_Heat_Max = (uint16_t)(Rx_Data[3] << 8 | Rx_Data[2]);
+        Robot_Booster.Frequency = (uint16_t)(Rx_Data[5] << 8 | Rx_Data[4]);
+        Robot_Booster.Speed = (uint16_t)(Rx_Data[7] << 8 | Rx_Data[6]);
+    }
+        break;
+    
+    default:
+        break;
+    }
+ 
+   
+   
 
 
 }

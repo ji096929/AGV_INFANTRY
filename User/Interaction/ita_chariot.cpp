@@ -225,15 +225,15 @@ void Class_Chariot::Control_Chassis()
     // 底盘控制类型
     Enum_Chassis_Control_Type chassis_control_type;
 
-    if (DR16.Get_DR16_Status() == DR16_Status_DISABLE || (DR16.Get_Left_Switch() == DR16_Switch_Status_DOWN && DR16.Get_Right_Switch() == DR16_Switch_Status_DOWN)) // 左下右下失能
+    if (DR16.Get_DR16_Status() == DR16_Status_DISABLE) // 失能
     {
         // 遥控器离线或左下方失能
         Chassis.Set_Chassis_Control_Type(Chassis_Control_Type_DISABLE);
     }
     else
     {
-        // 遥控器键盘鼠标操作逻辑,左中右下键鼠操作
-        if ((DR16.Get_Left_Switch() == DR16_Switch_Status_MIDDLE && DR16.Get_Right_Switch() == DR16_Switch_Status_DOWN))
+        // 遥控器键盘鼠标操作逻辑,右下键鼠操作
+        if ((DR16.Get_Right_Switch() == DR16_Switch_Status_DOWN))
         {
 
             if (DR16.Get_Keyboard_Key_Q() == DR16_Key_Status_TRIG_FREE_PRESSED) // Q键切换小陀螺与随动
@@ -274,12 +274,12 @@ void Class_Chariot::Control_Chassis()
             gimbal_velocity_y = dr16_l_y * sqrt(1.0f - dr16_l_x * dr16_l_x / 2.0f) * Chassis.Get_Velocity_Y_Max();
 
             // 键盘遥控器操作逻辑
-            if ((DR16.Get_Left_Switch() == DR16_Switch_Status_DOWN && DR16.Get_Right_Switch() == DR16_Switch_Status_MIDDLE)) // 左下右中 随动模式
+            if ((DR16.Get_Left_Switch() == DR16_Switch_Status_MIDDLE )) // 左中随动
             {
                 // 底盘随动
                 Chassis.Set_Chassis_Control_Type(Chassis_Control_Type_FLLOW);
             }
-            if (DR16.Get_Left_Switch() == DR16_Switch_Status_DOWN && DR16.Get_Right_Switch() == DR16_Switch_Status_UP) // 左下右上 小陀螺模式
+            if (DR16.Get_Left_Switch() == DR16_Switch_Status_UP) // 左上小陀螺模式
             {
                 Chassis.Set_Chassis_Control_Type(Chassis_Control_Type_SPIN);
             }
@@ -311,69 +311,87 @@ void Class_Chariot::Control_Gimbal()
 
     // 按F切换期望来源
 
-    if (DR16.Get_DR16_Status() == DR16_Status_DISABLE || (DR16.Get_Left_Switch() == DR16_Switch_Status_DOWN && DR16.Get_Right_Switch() == DR16_Switch_Status_DOWN)) // 左下右下失能
+    if (DR16.Get_DR16_Status() == DR16_Status_DISABLE) //失能
     {
         // 遥控器离线或下方失能
         Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_DISABLE);
     }
     else
     {
-        if ((DR16.Get_Left_Switch() == DR16_Switch_Status_MIDDLE && DR16.Get_Right_Switch() == DR16_Switch_Status_DOWN))
+        if ((DR16.Get_Right_Switch() == DR16_Switch_Status_DOWN))
         {
             // 键盘遥控器操作逻辑
             // 切换瞄准模式
-
             if (DR16.Get_Keyboard_Key_F() == DR16_Key_Status_TRIG_FREE_PRESSED)
             {
                 if (Gimbal.Get_Gimbal_Control_Type() == Gimbal_Control_Type_NORMAL)
+                {
                     Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_MINIPC);
+
+                    // 防止切换状态时云台角度突变
+
+                    tmp_gimbal_yaw = Gimbal.Motor_Yaw.Get_True_Angle_Yaw();
+                    tmp_gimbal_pitch = Gimbal.Motor_Pitch.Get_True_Angle_Pitch();
+                }
                 else
                 {
                     Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_NORMAL);
-                    Gimbal.Set_Target_Pitch_Angle(Gimbal.Motor_Pitch.Get_True_Angle_Pitch());
-                    Gimbal.Set_Target_Yaw_Angle(Gimbal.Motor_Yaw.Get_True_Angle_Yaw());
+
+                    // 防止切换状态时云台角度突变
+                    tmp_gimbal_yaw = Gimbal.Motor_Yaw.Get_True_Angle_Yaw();
+                    tmp_gimbal_pitch = Gimbal.Motor_Pitch.Get_True_Angle_Pitch();
                 }
             }
-            // 键盘遥控器操作逻辑
+
+            if (Gimbal.Get_Gimbal_Control_Type() == Gimbal_Control_Type_MINIPC)
+            {
+                tmp_gimbal_yaw = MiniPC.Get_Rx_Yaw_Angle();
+                tmp_gimbal_pitch = MiniPC.Get_Rx_Pitch_Angle();
+            }
+                // 键盘遥控器操作逻辑
             tmp_gimbal_yaw -= DR16.Get_Mouse_X() * DR16_Mouse_Yaw_Angle_Resolution;
             tmp_gimbal_pitch -= DR16.Get_Mouse_Y() * DR16_Mouse_Pitch_Angle_Resolution;
         }
         else
         {
-
-            if ((DR16.Get_Left_Switch() == DR16_Switch_Status_MIDDLE && DR16.Get_Right_Switch() == DR16_Switch_Status_MIDDLE)) // 左中右中正常
+            //左下上位机
+            if (DR16.Get_Left_Switch() == DR16_Switch_Status_DOWN)
             {
-                // 中间遥控模式
-
                 if (Gimbal.Get_Gimbal_Control_Type() == Gimbal_Control_Type_NORMAL)
-                    Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_NORMAL);
+                {
+                    
+                    // 防止切换状态时云台角度突变
+                    tmp_gimbal_yaw = Gimbal.Motor_Yaw.Get_True_Angle_Yaw();
+                    tmp_gimbal_pitch = Gimbal.Motor_Pitch.Get_True_Angle_Pitch();
+                }
                 else
                 {
-                    Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_NORMAL);
-                    Gimbal.Set_Target_Pitch_Angle(Gimbal.Motor_Pitch.Get_True_Angle_Pitch());
-                    Gimbal.Set_Target_Yaw_Angle(Gimbal.Motor_Yaw.Get_True_Angle_Yaw());
+                    tmp_gimbal_yaw = MiniPC.Get_Rx_Yaw_Angle();
+                    tmp_gimbal_pitch = MiniPC.Get_Rx_Pitch_Angle();
                 }
-
-                // 遥控器操作逻辑
-                tmp_gimbal_yaw -= dr16_y * DR16_Yaw_Angle_Resolution;
-                tmp_gimbal_pitch += dr16_r_y * DR16_Pitch_Resolution;
-            }
-            else if ((DR16.Get_Left_Switch() == DR16_Switch_Status_MIDDLE && DR16.Get_Right_Switch() == DR16_Switch_Status_UP))
-            {
                 Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_MINIPC);
 
                 // 遥控器操作逻辑
+                tmp_gimbal_yaw -= dr16_y * DR16_Yaw_Angle_Resolution*50;
+                tmp_gimbal_pitch += dr16_r_y * DR16_Pitch_Resolution*50;
+            }
+            else
+            {
+                if (Gimbal.Get_Gimbal_Control_Type() == Gimbal_Control_Type_MINIPC)
+                {
+                  
+                    // 防止切换状态时云台角度突变
+                    tmp_gimbal_yaw = Gimbal.Motor_Yaw.Get_True_Angle_Yaw();
+                    tmp_gimbal_pitch = Gimbal.Motor_Pitch.Get_True_Angle_Pitch();
+                }
+                Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_NORMAL);
+
+                // 遥控器操作逻辑
                 tmp_gimbal_yaw -= dr16_y * DR16_Yaw_Angle_Resolution;
                 tmp_gimbal_pitch += dr16_r_y * DR16_Pitch_Resolution;
             }
-            else if (DR16.Get_Left_Switch() == DR16_Switch_Status_TRIG_MIDDLE_UP) // 中-上的突变
-            {
-                __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_3, 1700); // 开启
-            }
-            else if (DR16.Get_Left_Switch() == DR16_Switch_Status_TRIG_UP_MIDDLE) // 上-中的突变
-            {
-                __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_3, 400); // 开启
-            }
+
+       
         }
     }
 
@@ -382,6 +400,8 @@ void Class_Chariot::Control_Gimbal()
     Gimbal.Set_Target_Yaw_Angle(tmp_gimbal_yaw);
     Gimbal.Set_Target_Pitch_Angle(tmp_gimbal_pitch);
 }
+
+/*上位机和正常公用云台的tmp，*/
 #endif
 /**
  * @brief 发射机构控制逻辑
@@ -403,7 +423,7 @@ void Class_Chariot::Control_Booster()
     }
     else
     {
-        if ((DR16.Get_Left_Switch() == DR16_Switch_Status_MIDDLE && DR16.Get_Right_Switch() == DR16_Switch_Status_DOWN))
+        if ((DR16.Get_Right_Switch() == DR16_Switch_Status_DOWN))
         {
             if (DR16.Get_Keyboard_Key_Ctrl() == DR16_Key_Status_TRIG_FREE_PRESSED)
             {
@@ -435,25 +455,15 @@ void Class_Chariot::Control_Booster()
         }
         else
         {
-            if ((DR16.Get_Left_Switch() != DR16_Switch_Status_UP)) //
-            {
-                // 遥控器离线或下方失能
-                Booster.Set_Booster_Control_Type(Booster_Control_Type_DISABLE);
-
-                return;
-            }
-            if ((DR16.Get_Right_Switch() == DR16_Switch_Status_TRIG_MIDDLE_UP && DR16.Get_Left_Switch() == DR16_Switch_Status_UP))
-            {
-                Booster.Set_Booster_Control_Type(Booster_Control_Type_SINGLE);
-            }
-            else if ((DR16.Get_Right_Switch() == DR16_Switch_Status_TRIG_MIDDLE_DOWN && DR16.Get_Left_Switch() == DR16_Switch_Status_UP))
-            {
+            if (DR16.Get_Wheel() > 0.9)
                 Booster.Set_Booster_Control_Type(Booster_Control_Type_MULTI);
-            }
-            else if (DR16.Get_Right_Switch() == DR16_Switch_Status_TRIG_DOWN_MIDDLE)
-            {
+            if (DR16.Get_Wheel() < -0.9)
+                Booster.Set_Booster_Control_Type(Booster_Control_Type_SINGLE);
+
+            if (DR16.Get_Right_Switch() == DR16_Switch_Status_UP)
                 Booster.Set_Booster_Control_Type(Booster_Control_Type_CEASEFIRE);
-            }
+            if (DR16.Get_Right_Switch() == DR16_Switch_Status_MIDDLE)
+                Booster.Set_Booster_Control_Type(Booster_Control_Type_DISABLE);
         }
     }
 }

@@ -123,7 +123,7 @@ struct Struct_DR16_UART_Data
     uint64_t Mouse_Left_Key : 8;
     uint64_t Mouse_Right_Key : 8;
     uint64_t Keyboard_Key : 16;
-    uint64_t Channel_Yaw : 11;
+    uint64_t Channel_Wheel : 11;
 } __attribute__((packed));
 
 /**
@@ -144,7 +144,7 @@ struct Struct_DR16_Data
     Enum_DR16_Key_Status Mouse_Left_Key;
     Enum_DR16_Key_Status Mouse_Right_Key;
     Enum_DR16_Key_Status Keyboard_Key[16];
-    float Yaw;
+    float Wheel;
 };
 
 /**
@@ -186,7 +186,7 @@ public:
     inline Enum_DR16_Key_Status Get_Keyboard_Key_V();
     inline Enum_DR16_Key_Status Get_Keyboard_Key_B();
     
-    inline float Get_Yaw();
+    inline float Get_Wheel();
 
     void UART_RxCpltCallback(uint8_t *Rx_Data);
     void TIM1msMod50_Alive_PeriodElapsedCallback();
@@ -530,13 +530,13 @@ Enum_DR16_Key_Status Class_DR16::Get_Keyboard_Key_B()
 }
 
 /**
- * @brief 获取遥控器yaw轴状态
+ * @brief 获取遥控器拨轮状态
  *
- * @return float 遥控器yaw轴状态
+ * @return float 遥控器拨轮状态
  */
-float Class_DR16::Get_Yaw()
+float Class_DR16::Get_Wheel()
 {
-    return (Data.Yaw);
+    return (Data.Wheel);
 }
 
 #endif

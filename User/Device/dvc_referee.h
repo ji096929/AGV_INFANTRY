@@ -1051,12 +1051,12 @@ public:
 
     void UART_RxCpltCallback(uint8_t *Rx_Data);
     void TIM1msMod50_Alive_PeriodElapsedCallback();
-    void CAN_RxCpltCallback(uint8_t *Rx_Data);
+    void CAN_RxCpltCallback(uint8_t *Rx_Data, uint32_t id);
 
 protected:
-    //初始化相关常量
+    // 初始化相关常量
 
-    //绑定的UART
+    // 绑定的UART
     Struct_UART_Manage_Object *UART_Manage_Object;
     //数据包头标
     uint8_t Frame_Header;
