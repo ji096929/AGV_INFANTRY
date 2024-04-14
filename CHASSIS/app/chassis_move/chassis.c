@@ -131,7 +131,7 @@ void Chassis_Mode_Command_Update(void)
         case    CHASSIS_NORMAL:
         if(chassis.parameter.follow_switch	==	FOLLOW_ON)
 				{
-				chassis.command.vw =  chassis.command.vw+1.0f*chassis_fllow();
+				chassis.command.vw =  chassis.command.vw-1.0f*chassis_fllow();
 					//chassis.command.vw =  0;
 				}
 				else
@@ -142,8 +142,8 @@ void Chassis_Mode_Command_Update(void)
         break;
         case    CHASSIS_SPIN:
         if(chassis.command.vx==0&&chassis.command.vy==0)
-        chassis.command.vw =  6.0f;
-        else chassis.command.vw =  3.0f;
+        chassis.command.vw =  12.0f;
+        else chassis.command.vw =  6.0f;
         break;
 
     }

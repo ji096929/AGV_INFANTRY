@@ -154,6 +154,8 @@ int main(void)
 		//HAL_Delay(4);
 	  
 	   //briter_encoder_set_CAN_ID(&steering_wheel.directive_part.encoder.briter_encoder,0x10);
+	  //briter_encoder_set_current_pos_zero_pos(&steering_wheel.directive_part.encoder.briter_encoder);
+	  
   }
   /* USER CODE END 3 */
 }

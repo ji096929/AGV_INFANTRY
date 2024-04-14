@@ -54,4 +54,7 @@ void CAN_Chassis_TxCpltCallback()
 	memcpy(CAN2_0x200_Tx_Data + 2, &JudgeReceive.HeatMax17, sizeof(int16_t));
 	memcpy(CAN2_0x200_Tx_Data + 4, &JudgeReceive.launching_frequency, sizeof(int16_t));
 	memcpy(CAN2_0x200_Tx_Data + 6, &temp_speed, sizeof(int16_t));
+
+	memcpy(CAN2_0x1fe_Tx_Data, &JudgeReceive.game_type, sizeof(int8_t));
+
 }

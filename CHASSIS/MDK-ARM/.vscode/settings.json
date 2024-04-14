@@ -75,19 +75,6 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
-    "kinematic.h": "c",
-    "referee.h": "c",
-    "usart.h": "c",
-    "gimbal_connection.h": "c",
-    "can_connection.h": "c",
-    "drv_can.h": "c",
-    "chassis_task.h": "c",
-    "ui.h": "c",
-    "ui_interface.h": "c",
-    "ui_default_ungroup_0.h": "c",
-    "agv_control.h": "c",
-    "chassis.h": "c",
-    "graphicssendtask.h": "c",
-    "stm32f4xx.h": "c"
+    "kinematic.h": "c"
   }
 }

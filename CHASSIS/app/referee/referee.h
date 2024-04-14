@@ -26,10 +26,12 @@
 #define JudgeBufBiggestSize 45
 #define USART_RX_BUF_LENGHT 512
 #define REFEREE_FIFO_BUF_LENGTH 1024
+//新加的数据都放在最后
 typedef struct
 {
 	char HeatUpdate_NoUpdate;
 	char SpeedUpdate_NoUpdate;
+
 
 	// 0x0201
 	uint8_t robot_id;
@@ -53,6 +55,11 @@ typedef struct
 	uint8_t shooter_number;
 	uint8_t launching_frequency;
 	float initial_speed;
+	
+		//0x0001
+	uint8_t game_type;
+	uint8_t game_progress;
+
 	// flag
 	short HeatUpdateFlag;
 

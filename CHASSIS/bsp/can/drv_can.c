@@ -35,6 +35,8 @@ uint8_t CAN1_0xxf6_Tx_Data[8];
 uint8_t CAN1_0xxf7_Tx_Data[8];
 uint8_t CAN1_0xxf8_Tx_Data[8];
 
+
+uint8_t CAN2_0x1fe_Tx_Data[8];
 uint8_t CAN2_0x1ff_Tx_Data[8];
 uint8_t CAN2_0x200_Tx_Data[8];
 uint8_t CAN2_0x2ff_Tx_Data[8];
@@ -53,6 +55,9 @@ uint8_t AGV_C_Tx_Data[8];
 uint8_t AGV_D_Tx_Data[8];
 
 uint8_t CAN_Supercap_Tx_Data[8];
+
+
+
 
 /* Private function declarations ---------------------------------------------*/
 
@@ -263,6 +268,7 @@ void TIM_CAN_PeriodElapsedCallback()
 //    CAN_Send_Data(&hcan2, 0x1ff, CAN2_0x1ff_Tx_Data, 8);
 //向云台发送裁判系统数据
     CAN_Send_Data(&hcan2, 0x200, CAN2_0x200_Tx_Data, 8);
+    CAN_Send_Data(&hcan2, 0x1fe, CAN2_0x1fe_Tx_Data, 8);
     // CAN_Send_Data(&hcan2, 0x2ff, CAN2_0x2ff_Tx_Data, 8);
 }
 

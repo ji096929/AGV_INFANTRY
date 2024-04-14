@@ -107,6 +107,11 @@ void Judge_Buffer_Receive_Task(uint8_t *frame)
 
 	switch (cmd_id)
 	{
+
+	case GAME_STATE_CMD_ID:
+		memcpy(&JudgeReceive.game_type, frame + index, 1);
+
+		break;
 	case ROBOT_STATE_CMD_ID:
 		memcpy(&JudgeReceive.robot_id, frame + index, 13);
 
@@ -120,6 +125,8 @@ void Judge_Buffer_Receive_Task(uint8_t *frame)
 
 		break;
 
+
+		
 	default:
 	{
 		break;

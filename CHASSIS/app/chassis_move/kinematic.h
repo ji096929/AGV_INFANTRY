@@ -24,6 +24,7 @@
 #define NORMAL_LINEAR_SPEED          70.0f
 #define NORMAL_ROTATIONAL_SPEED      0.5f
 
+#define RAD_TO_8191 8191.0f/PI/2
 void Chassis_Speed_Control(CHASSIS_T *chassis);
 
 #endif

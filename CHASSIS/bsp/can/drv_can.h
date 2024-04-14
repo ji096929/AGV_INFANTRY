@@ -105,7 +105,7 @@ extern uint8_t AGV_C_Tx_Data[8];
 extern uint8_t AGV_D_Tx_Data[8];
 
 extern uint8_t CAN_Supercap_Tx_Data[];
-
+extern uint8_t CAN2_0x1fe_Tx_Data[8];
 /* Exported function declarations ---------------------------------------------*/
 uint32_t EXT_ID_Set(uint8_t equipment_id,uint16_t data2,uint8_t cmd_id);
 void CAN_Init(CAN_HandleTypeDef *hcan, CAN_Call_Back Callback_Function);

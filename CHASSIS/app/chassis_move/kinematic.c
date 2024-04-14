@@ -32,32 +32,124 @@ void AGV_Calculate_SPeed(CHASSIS_T *chassis)
 
 	chassis->A_motor.target_speed.linear_vel = sqrt(Square(chassis->command.vy - Chassis_Vr * cos(PI / 4) + Square(chassis->command.vx - Chassis_Vr * sin(PI / 4))));
 
-	chassis->B_motor.target_speed.linear_vel = sqrt(Square(chassis->command.vy - Chassis_Vr * cos(PI / 4) + Square(chassis->command.vx + Chassis_Vr * sin(PI / 4))));
+	chassis->B_motor.target_speed.linear_vel = sqrt(Square(chassis->command.vy + Chassis_Vr * cos(PI / 4) + Square(chassis->command.vx - Chassis_Vr * sin(PI / 4))));
 
 	chassis->C_motor.target_speed.linear_vel = sqrt(Square(chassis->command.vy + Chassis_Vr * cos(PI / 4) + Square(chassis->command.vx + Chassis_Vr * sin(PI / 4))));
 
 	chassis->D_motor.target_speed.linear_vel = sqrt(Square(chassis->command.vy + Chassis_Vr * cos(PI / 4) + Square(chassis->command.vx - Chassis_Vr * sin(PI / 4))));
 
+	// BD电机安装方向不同
 	chassis->A_motor.target_speed.rpm = chassis->A_motor.target_speed.linear_vel * VEL2RPM;
-	chassis->B_motor.target_speed.rpm = chassis->B_motor.target_speed.linear_vel * VEL2RPM;
-	chassis->C_motor.target_speed.rpm = chassis->C_motor.target_speed.linear_vel * VEL2RPM;
+	chassis->B_motor.target_speed.rpm = -chassis->B_motor.target_speed.linear_vel * VEL2RPM;
+	chassis->C_motor.target_speed.rpm = -chassis->C_motor.target_speed.linear_vel * VEL2RPM;
 	chassis->D_motor.target_speed.rpm = chassis->D_motor.target_speed.linear_vel * VEL2RPM;
 }
 
-void AGV_Angle_Calc(CHASSIS_T *chassis)
+void AGV_Calc_Angle_Speed(CHASSIS_T *chassis)
 {
 	float Chassis_Vr;
 	Chassis_Vr = chassis->command.vw * (half_width + half_length);
 
-	chassis->A_motor.ChassisCoordinate_Angle = atan((chassis->command.vy - Chassis_Vr * cos(PI / 4)) / (chassis->command.vx - Chassis_Vr * sin(PI / 4))) * (-PI) / 2 * 8191;
+	float Vy_P = chassis->command.vy + Chassis_Vr * cos(PI / 4);
+	float Vy_N = chassis->command.vy - Chassis_Vr * cos(PI / 4);
+	float Vx_P = chassis->command.vx + Chassis_Vr * sin(PI / 4);
+	float Vx_N = chassis->command.vx - Chassis_Vr * sin(PI / 4);
 
-	chassis->B_motor.ChassisCoordinate_Angle = atan((chassis->command.vy - Chassis_Vr * cos(PI / 4)) / (chassis->command.vx + Chassis_Vr * sin(PI / 4))) * (-PI) / 2 * 8191;
+	chassis->A_motor.ChassisCoordinate_Angle = atan2(Vy_N, Vx_N) * RAD_TO_8191;
+	chassis->B_motor.ChassisCoordinate_Angle = atan2(Vy_P, Vx_N) * RAD_TO_8191;
+	chassis->C_motor.ChassisCoordinate_Angle = atan2(Vy_P, Vx_P) * RAD_TO_8191;
+	chassis->D_motor.ChassisCoordinate_Angle = atan2(Vy_N, Vx_P) * RAD_TO_8191;
 
-	chassis->C_motor.ChassisCoordinate_Angle = atan((chassis->command.vy + Chassis_Vr * cos(PI / 4)) / (chassis->command.vx + Chassis_Vr * sin(PI / 4))) * (-PI) / 2 * 8191;
+	if (Vx_N == 0)
+	{
+		if (Vy_N > 0)
+		{
+			chassis->A_motor.ChassisCoordinate_Angle = PI / 2 * RAD_TO_8191;
+		}
+		if (Vy_N < 0)
+		{
+			chassis->A_motor.ChassisCoordinate_Angle = -PI / 2 * RAD_TO_8191;
+		}
+		if (Vy_P > 0)
+		{
+			chassis->B_motor.ChassisCoordinate_Angle = PI / 2 * RAD_TO_8191;
+		}
+		if (Vy_P < 0)
+		{
+			chassis->B_motor.ChassisCoordinate_Angle = -PI / 2 * RAD_TO_8191;
+		}
+	}
 
-	chassis->D_motor.ChassisCoordinate_Angle = atan((chassis->command.vy + Chassis_Vr * cos(PI / 4)) / (chassis->command.vx - Chassis_Vr * sin(PI / 4))) * (-PI) / 2 * 8191;
+	if (Vx_P == 0)
+	{
+		if (Vy_P > 0)
+		{
+			chassis->C_motor.ChassisCoordinate_Angle = PI / 2 * RAD_TO_8191;
+		}
+		if (Vy_P < 0)
+		{
+			chassis->C_motor.ChassisCoordinate_Angle = -PI / 2 * RAD_TO_8191;
+		}
+		if (Vy_N > 0)
+		{
+			chassis->D_motor.ChassisCoordinate_Angle = PI / 2 * RAD_TO_8191;
+		}
+		if (Vy_N < 0)
+		{
+			chassis->D_motor.ChassisCoordinate_Angle = -PI / 2 * RAD_TO_8191;
+		}
+	}
 
+	if (Vy_N == 0)
+	{
+		if (Vx_N > 0)
+		{
+			chassis->A_motor.ChassisCoordinate_Angle = 0;
+		}
+		if (Vx_N < 0)
+		{
+			chassis->A_motor.ChassisCoordinate_Angle = PI * RAD_TO_8191;
+		}
+		if (Vx_P > 0)
+		{
+			chassis->D_motor.ChassisCoordinate_Angle = 0;
+		}
+		if (Vx_P < 0)
+		{
+			chassis->D_motor.ChassisCoordinate_Angle = PI * RAD_TO_8191;
+		}
+	}
 
+	if (Vy_P == 0)
+	{
+		if (Vx_N > 0)
+		{
+			chassis->B_motor.ChassisCoordinate_Angle = 0;
+		}
+		if (Vx_N < 0)
+		{
+			chassis->B_motor.ChassisCoordinate_Angle = PI * RAD_TO_8191;
+		}
+		if (Vx_P > 0)
+		{
+			chassis->C_motor.ChassisCoordinate_Angle = 0;
+		}
+		if (Vx_P < 0)
+		{
+			chassis->C_motor.ChassisCoordinate_Angle = PI * RAD_TO_8191;
+		}
+	}
+
+	chassis->A_motor.target_speed.linear_vel = sqrt(Square(Vy_N)+Square(Vx_N));
+	chassis->B_motor.target_speed.linear_vel = sqrt(Square(Vy_P)+Square(Vx_N));
+	chassis->C_motor.target_speed.linear_vel = sqrt(Square(Vy_P)+Square(Vx_P));
+	chassis->D_motor.target_speed.linear_vel = sqrt(Square(Vy_N)+Square(Vx_P));
+
+	// BD电机安装方向不同
+	chassis->A_motor.target_speed.rpm = chassis->A_motor.target_speed.linear_vel * VEL2RPM;
+	chassis->B_motor.target_speed.rpm = -chassis->B_motor.target_speed.linear_vel * VEL2RPM;
+	chassis->C_motor.target_speed.rpm = -chassis->C_motor.target_speed.linear_vel * VEL2RPM;
+	chassis->D_motor.target_speed.rpm = chassis->D_motor.target_speed.linear_vel * VEL2RPM;
 }
 
 void AGV_Vector_Composition_In_ChassisCoordinate(CHASSIS_T *chassis)
@@ -155,17 +247,23 @@ void AGV_DirectiveMotor_TargetStatus_To_MotorAngle_In_ChassisCoordinate(CHASSIS_
 	chassis->C_motor.last_target_angle = chassis->C_motor.target_angle;
 	chassis->D_motor.last_target_angle = chassis->D_motor.target_angle;
 
-	chassis->A_motor.target_angle = chassis->A_motor.ChassisCoordinate_Angle + chassis->A_motor.zero_position;
-	chassis->B_motor.target_angle = chassis->B_motor.ChassisCoordinate_Angle + chassis->B_motor.zero_position;
-	chassis->C_motor.target_angle = chassis->C_motor.ChassisCoordinate_Angle + chassis->C_motor.zero_position;
-	chassis->D_motor.target_angle = chassis->D_motor.ChassisCoordinate_Angle + chassis->D_motor.zero_position;
-	if (chassis->parameter.break_mode)
-	{
-		chassis->A_motor.target_angle = 8191 * 315 / 360 + chassis->A_motor.zero_position;
-		chassis->B_motor.target_angle = 8191 * 225 / 360 + chassis->B_motor.zero_position;
-		chassis->C_motor.target_angle = 8191 * 135 / 360 + chassis->C_motor.zero_position;
-		chassis->D_motor.target_angle = 8191 * 45 / 360 + chassis->D_motor.zero_position;
-	}
+	//	chassis->A_motor.target_angle = chassis->A_motor.ChassisCoordinate_Angle + chassis->A_motor.zero_position;
+	//	chassis->B_motor.target_angle = chassis->B_motor.ChassisCoordinate_Angle + chassis->B_motor.zero_position;
+	//	chassis->C_motor.target_angle = chassis->C_motor.ChassisCoordinate_Angle + chassis->C_motor.zero_position;
+	//	chassis->D_motor.target_angle = chassis->D_motor.ChassisCoordinate_Angle + chassis->D_motor.zero_position;
+
+	// 轮子方向超前坐标方向90°
+	chassis->A_motor.target_angle = chassis->A_motor.ChassisCoordinate_Angle - PI / 2 / (2 * PI) * 8191;
+	chassis->B_motor.target_angle = chassis->B_motor.ChassisCoordinate_Angle - PI / 2 / (2 * PI) * 8191;
+	chassis->C_motor.target_angle = chassis->C_motor.ChassisCoordinate_Angle - PI / 2 / (2 * PI) * 8191;
+	chassis->D_motor.target_angle = chassis->D_motor.ChassisCoordinate_Angle - PI / 2 / (2 * PI) * 8191;
+		if (chassis->parameter.break_mode)
+		{
+			chassis->A_motor.target_angle = 8191 * (315-90) / 360;
+			chassis->B_motor.target_angle = 8191 * (225-90) / 360;
+			chassis->C_motor.target_angle = 8191 * (135-90) / 360;
+			chassis->D_motor.target_angle = 8191 * (45-90) / 360 ;
+		}
 	if (chassis->A_motor.target_angle > 8191)
 		chassis->A_motor.target_angle -= 8191;
 	if (chassis->A_motor.target_angle < 0)
@@ -233,12 +331,13 @@ void Chassis_Speed_Control(CHASSIS_T *chassis)
 	else
 		chassis->parameter.break_mode = 0;
 
-	//旧解算
-	AGV_Vector_Composition_In_ChassisCoordinate(chassis);
+	// 旧解算
+	// AGV_Vector_Composition_In_ChassisCoordinate(chassis);
 
-	//新解算
-//	AGV_Calculate_SPeed(chassis);
-//	AGV_Angle_Calc(chassis);
+	// 测试
+	// chassis->command.vw = 0;
+	// 新解算
+	AGV_Calc_Angle_Speed(chassis);
 
 	AGV_DirectiveMotor_TargetStatus_To_MotorAngle_In_ChassisCoordinate(chassis);
 	Speed_Limitation(chassis);
