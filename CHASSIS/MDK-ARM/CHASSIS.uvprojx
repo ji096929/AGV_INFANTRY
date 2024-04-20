@@ -761,6 +761,11 @@
               <FilePath>..\app\referee\GraphicsSendTask.c</FilePath>
             </File>
             <File>
+              <FileName>supercap.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\supercap.c</FilePath>
+            </File>
+            <File>
               <FileName>buzzer.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\app\buzzer.c</FilePath>

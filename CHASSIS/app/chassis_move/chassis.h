@@ -17,8 +17,8 @@
 
 #define GIMBAL_HEAD_ANGLE 140.86f
 
-#define CHASSIS_SPEED_X_CHANGE_MAX 50.f
-#define CHASSIS_SPEED_Y_CHANGE_MAX 50.f
+#define CHASSIS_SPEED_X_CHANGE_MAX 100.f
+#define CHASSIS_SPEED_Y_CHANGE_MAX 100.f
 
 typedef uint8_t (*TIM_Alive_PeriodElapsedCallback_ptr)(void *);
 typedef enum
@@ -79,6 +79,28 @@ typedef struct
 	TIM_Alive_PeriodElapsedCallback_ptr TIM_Alive_PeriodElapsedCallback;
 } CHASSIS_MOTOR_T;
 
+typedef enum
+{
+	SUPERCAP_OFF = 0x00u,
+	SUPERCAP_ON = 0x01u,
+} SUPERCAP_STATE_E;
+
+typedef enum
+{
+	SUPERCAP_OFFLINE = 0x00u,
+	SUPERCAP_ONLINE = 0x01u,
+} SUPERCAP_ONLINE_STATE_E;
+
+typedef struct
+{
+	SUPERCAP_STATE_E state;
+	SUPERCAP_ONLINE_STATE_E online_state;
+	float supercap_voltage;
+	float supercap_per;
+	int Keep_Alive_Time_Cnt;
+	uint8_t KeepAlive_SentData[4];
+} SUPERCAP_T;
+
 typedef struct
 {
 	CHASSIS_PARAMETER_T parameter;
@@ -87,6 +109,7 @@ typedef struct
 	CHASSIS_MOTOR_T B_motor;
 	CHASSIS_MOTOR_T C_motor;
 	CHASSIS_MOTOR_T D_motor;
+	SUPERCAP_T supercap;
 } CHASSIS_T;
 
 typedef struct
