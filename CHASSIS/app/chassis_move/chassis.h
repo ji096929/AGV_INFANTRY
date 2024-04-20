@@ -17,8 +17,8 @@
 
 #define GIMBAL_HEAD_ANGLE 140.86f
 
-#define CHASSIS_SPEED_X_CHANGE_MAX 20.f
-#define CHASSIS_SPEED_Y_CHANGE_MAX 20.f
+#define CHASSIS_SPEED_X_CHANGE_MAX 50.f
+#define CHASSIS_SPEED_Y_CHANGE_MAX 50.f
 
 typedef uint8_t (*TIM_Alive_PeriodElapsedCallback_ptr)(void *);
 typedef enum
