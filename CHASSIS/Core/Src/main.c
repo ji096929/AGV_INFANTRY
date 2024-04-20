@@ -60,7 +60,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+char test[5];
 /* USER CODE END 0 */
 
 /**
@@ -98,9 +98,14 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM9_Init();
   MX_USART6_UART_Init();
+  MX_TIM2_Init();
+  MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
   Task_Init();
+  buzzer_init_example();
+  HAL_TIM_Base_Start_IT(&htim2);
   HAL_TIM_Base_Start_IT(&htim3);
+   HAL_TIM_Base_Start_IT(&htim4);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -110,7 +115,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  
+	  //HAL_UART_Transmit_DMA(&huart6, (uint8_t *)test, 5);
+	   
   }
   /* USER CODE END 3 */
 }

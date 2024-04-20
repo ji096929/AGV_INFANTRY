@@ -12,10 +12,11 @@
 #include "agv_control.h"
 
 M3508_T trigger;
-
+uint32_t cnt=0;
+uint32_t pre_cnt = 0;
 void CAN1_Call_Back(struct Struct_CAN_Rx_Buffer *rx)
 {
-
+   chassis.A_motor.Flag++;
     switch (rx->Header.StdId)
     {
     }

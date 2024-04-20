@@ -19,6 +19,8 @@
 
 #define CHASSIS_SPEED_X_CHANGE_MAX 20.f
 #define CHASSIS_SPEED_Y_CHANGE_MAX 20.f
+
+typedef uint8_t (*TIM_Alive_PeriodElapsedCallback_ptr)(void *);
 typedef enum
 {
 	CHASSIS_REMOTE_CLOSE = 0x00u,
@@ -72,6 +74,9 @@ typedef struct
 	Speed_t target_speed;
 	uint8_t ID;
 	Status_e status;
+	uint32_t Flag;
+	uint32_t preFlag;
+	TIM_Alive_PeriodElapsedCallback_ptr TIM_Alive_PeriodElapsedCallback;
 } CHASSIS_MOTOR_T;
 
 typedef struct

@@ -59,6 +59,9 @@ uint8_t DMAsendflag;
  *形    参: 无
  *返 回 值: 无
  **********************************************************************************************************/
+
+
+
 void Send_UIPack(uint16_t data_cmd_id, uint16_t SendID, uint16_t receiverID, uint8_t *data, uint16_t pack_len)
 {
 	student_interactive_header_data_t custom_interactive_header;
@@ -100,12 +103,13 @@ void Send_toReferee(uint16_t cmd_id, uint16_t data_len)
 	// 尾部数据校验CRC16
 	Append_CRC16_Check_Sum(Transmit_Pack, Frame_Length);
 
-	uint8_t send_cnt = 1; // 发送次数连续发3次
+	uint8_t send_cnt = 3; // 发送次数连续发3次
 	while (send_cnt)
 	{
 		send_cnt--;
-		HAL_UART_Transmit_DMA(&huart6, (uint8_t *)Transmit_Pack, Frame_Length);
-		// HAL_UART_Transmit(&huart6, (uint8_t *)Transmit_Pack, Frame_Length,0xff);
+		//HAL_UART_Transmit_DMA(&huart6, (uint8_t *)Transmit_Pack, Frame_Length);
+		//HAL_UART_Transmit_IT(&huart6, (uint8_t *)Transmit_Pack, Frame_Length);
+		 HAL_UART_Transmit(&huart6, (uint8_t *)Transmit_Pack, Frame_Length,1);
 		DMAsendflag = 1; // DMA传输完成标志，在中断中置0
 
 		// vTaskDelay(1);
@@ -274,10 +278,10 @@ void Lanelines_Init(void)
 	static uint8_t LaneLineName2[] = "LL2";
 	graphic_data_struct_t *P_graphic_data;
 	// 第一条车道线
-	P_graphic_data = Line_Draw(1, Op_Add, SCREEN_LENGTH * 0.46, SCREEN_WIDTH * 0.45, SCREEN_LENGTH * 0.36, 0, 4, Orange, LaneLineName1);
+	P_graphic_data = Line_Draw(1, Op_Add, SCREEN_LENGTH * 0.41, SCREEN_WIDTH * 0.45, SCREEN_LENGTH * 0.31, 0, 4, Orange, LaneLineName1);
 	memcpy(data_pack, (uint8_t *)P_graphic_data, DRAWING_PACK);
 	// 第二条车道线
-	P_graphic_data = Line_Draw(1, Op_Add, SCREEN_LENGTH * 0.54, SCREEN_WIDTH * 0.45, SCREEN_LENGTH * 0.64, 0, 4, Orange, LaneLineName2);
+	P_graphic_data = Line_Draw(1, Op_Add, SCREEN_LENGTH * 0.59, SCREEN_WIDTH * 0.45, SCREEN_LENGTH * 0.69, 0, 4, Orange, LaneLineName2);
 	memcpy(&data_pack[DRAWING_PACK], (uint8_t *)P_graphic_data, DRAWING_PACK);
 	Send_UIPack(Drawing_Graphic2_ID, JudgeReceive.robot_id, JudgeReceive.robot_id + 0x100, data_pack, DRAWING_PACK * 2); // 画两个图形
 }
@@ -342,8 +346,8 @@ void ShootLines_Init(void)
 
 	Send_UIPack(Drawing_Graphic5_ID, JudgeReceive.robot_id, JudgeReceive.robot_id + 0x100, data_pack, DRAWING_PACK * 5); // 画两个图形
 #elif Robot_ID == 46
-	float x_bias = -7;
-	float y_bias = -2;
+	float x_bias = 0;
+	float y_bias = 0;
 	// 射击横线
 	P_graphic_data = Line_Draw(1, Op_Add, SCREEN_LENGTH * 0.5 - 40 + x_bias, SCREEN_WIDTH * 0.5 - 72 + y_bias, SCREEN_LENGTH * 0.5 + 40 + x_bias, SCREEN_WIDTH * 0.5 - 72 + y_bias, 1, Green, ShootLineName3);
 	memcpy(data_pack, (uint8_t *)P_graphic_data, DRAWING_PACK);
@@ -498,17 +502,23 @@ void CharChange(uint8_t Init_Flag)
 	uint8_t FireAuto[] = "AUTO";
 	uint8_t FireManual[] = "MANUAL";
 
+	uint8_t SPIN[] = "SPIN";
+	uint8_t FOLLOW[] = "FOLLOW";
+	uint8_t Chassis_Off[] = "OFF";
+
+	uint8_t INIT[] = "INIT";
+
 	/*云台状态改变*/
 	static uint8_t GimbalChangeName[] = "bal";
 	if (Init_Flag)
 	{
-		Char_Draw(0, Op_Add, 0.9 * SCREEN_LENGTH, 0.55 * SCREEN_WIDTH, 20, sizeof(GimbalNormal), 2, Green, GimbalChangeName, GimbalNormal);
+		Char_Draw(0, Op_Add, 0.9 * SCREEN_LENGTH, 0.55 * SCREEN_WIDTH, 20, sizeof(GimbalNormal), 2, Green, GimbalChangeName, INIT);
 	}
 	else
 	{
 		switch (connection.connection_rx.vision.flag)
 		{
-		case  Gimbal_Control_Type_NORMAL:
+		case Gimbal_Control_Type_NORMAL:
 			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.55 * SCREEN_WIDTH, 20, sizeof(GimbalNormal), 2, Green, GimbalChangeName, GimbalNormal);
 			break;
 
@@ -520,13 +530,13 @@ void CharChange(uint8_t Init_Flag)
 			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.55 * SCREEN_WIDTH, 20, sizeof(GimbalAuto), 2, Cyan, GimbalChangeName, GimbalAuto);
 			break;
 
-		// case Gimbal_BigBuf_Mode:
-		// 	Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.55 * SCREEN_WIDTH, 20, sizeof(GimbalBigBuf), 2, Orange, GimbalChangeName, GimbalBigBuf);
-		// 	break;
+			// case Gimbal_BigBuf_Mode:
+			// 	Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.55 * SCREEN_WIDTH, 20, sizeof(GimbalBigBuf), 2, Orange, GimbalChangeName, GimbalBigBuf);
+			// 	break;
 
-		// case Gimbal_SmlBuf_Mode:
-		// 	Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.55 * SCREEN_WIDTH, 20, sizeof(GimbalSmlBuf), 2, Orange, GimbalChangeName, GimbalSmlBuf);
-		// 	break;
+			// case Gimbal_SmlBuf_Mode:
+			// 	Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.55 * SCREEN_WIDTH, 20, sizeof(GimbalSmlBuf), 2, Orange, GimbalChangeName, GimbalSmlBuf);
+			// 	break;
 		}
 	}
 
@@ -534,7 +544,7 @@ void CharChange(uint8_t Init_Flag)
 	static uint8_t FrictionChangeName[] = "mcl";
 	if (Init_Flag)
 	{
-		Char_Draw(0, Op_Add, 0.9 * SCREEN_LENGTH, 0.50 * SCREEN_WIDTH, 20, sizeof(FrictionOff), 2, Pink, FrictionChangeName, FrictionOff);
+		Char_Draw(0, Op_Add, 0.9 * SCREEN_LENGTH, 0.50 * SCREEN_WIDTH, 20, sizeof(FrictionOff), 2, Pink, FrictionChangeName, INIT);
 	}
 	else
 	{
@@ -544,10 +554,8 @@ void CharChange(uint8_t Init_Flag)
 			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.50 * SCREEN_WIDTH, 20, sizeof(FrictionOff), 2, Green, FrictionChangeName, FrictionOff);
 			break;
 
-
-
 		default:
-			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.50 * SCREEN_WIDTH, 20, sizeof( FrictionOn), 2, Pink, FrictionChangeName, FrictionOn);
+			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.50 * SCREEN_WIDTH, 20, sizeof(FrictionOn), 2, Pink, FrictionChangeName, FrictionOn);
 			break;
 		}
 	}
@@ -556,7 +564,7 @@ void CharChange(uint8_t Init_Flag)
 	static uint8_t ArmorChangeName[] = "arm";
 	if (Init_Flag)
 	{
-		Char_Draw(0, Op_Add, 0.9 * SCREEN_LENGTH, 0.45 * SCREEN_WIDTH, 20, sizeof(ArmorLost), 2, Pink, ArmorChangeName, ArmorLost);
+		Char_Draw(0, Op_Add, 0.9 * SCREEN_LENGTH, 0.45 * SCREEN_WIDTH, 20, sizeof(ArmorLost), 2, Pink, ArmorChangeName, INIT);
 	}
 	else
 	{
@@ -592,26 +600,26 @@ void CharChange(uint8_t Init_Flag)
 		}
 	}
 
-	/*切换开火模式*/
-	static uint8_t FireChangeName[] = "fcn";
+	/*切换底盘运动模式*/
+	static uint8_t ChassisChangeName[] = "fcn";
 	if (Init_Flag)
 	{
-		Char_Draw(0, Op_Add, 0.9 * SCREEN_LENGTH, 0.40 * SCREEN_WIDTH, 20, sizeof(FireManual), 2, Green, FireChangeName, FireManual);
+		Char_Draw(0, Op_Add, 0.9 * SCREEN_LENGTH, 0.40 * SCREEN_WIDTH, 20, sizeof(FireManual), 2, Green, ChassisChangeName, INIT);
 	}
 	else
 	{
-		switch (F405.AutoFire_Flag)
+		switch (connection.connection_rx.mode)
 		{
-		case 1:
-			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.40 * SCREEN_WIDTH, 20, sizeof(FireAuto), 2, Cyan, FireChangeName, FireAuto);
-			break;
-
 		case 0:
-			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.40 * SCREEN_WIDTH, 20, sizeof(FireManual), 2, Green, FireChangeName, FireManual);
+			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.40 * SCREEN_WIDTH, 20, sizeof(FireAuto), 2, Cyan, ChassisChangeName, Chassis_Off);
 			break;
 
-		default:
-			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.40 * SCREEN_WIDTH, 20, sizeof(FireManual), 2, Green, FireChangeName, FireManual);
+		case 1:
+			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.40 * SCREEN_WIDTH, 20, sizeof(FireManual), 2, Green, ChassisChangeName, FOLLOW);
+			break;
+
+		case 2:
+			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.40 * SCREEN_WIDTH, 20, sizeof(FireManual), 2, Green, ChassisChangeName, SPIN);
 			break;
 		}
 	}
@@ -632,8 +640,8 @@ void Char_Init(void)
 	static uint8_t CapStaticName[] = "cpt";
 	static uint8_t FireName[] = "frm";
 	/*				PITCH字符			*/
-	uint8_t pitch_char[] = "PITCH :";
-	Char_Draw(0, Op_Add, 0.80 * SCREEN_LENGTH, 0.6 * SCREEN_WIDTH, 20, sizeof(pitch_char), 2, Yellow, PitchName, pitch_char);
+	// uint8_t pitch_char[] = "PITCH :";
+	// Char_Draw(0, Op_Add, 0.80 * SCREEN_LENGTH, 0.6 * SCREEN_WIDTH, 20, sizeof(pitch_char), 2, Yellow, PitchName, pitch_char);
 
 	/*              GIMBAL字符*/
 	uint8_t gimbal_char[] = "GIMBAL :";
@@ -648,12 +656,14 @@ void Char_Init(void)
 	Char_Draw(0, Op_Add, 0.80 * SCREEN_LENGTH, 0.45 * SCREEN_WIDTH, 20, sizeof(armor_char), 2, Yellow, ArmorName, armor_char);
 
 	/*              FIREMODE字符*/
-	uint8_t fire_char[] = "FIREMODE :";
+	uint8_t fire_char[] = "CHASSIS :";
 	Char_Draw(0, Op_Add, 0.80 * SCREEN_LENGTH, 0.40 * SCREEN_WIDTH, 20, sizeof(fire_char), 2, Yellow, FireName, fire_char);
 
 	/*              CAP字符*/
 	uint8_t cap_char[] = "CAP :       V";
 	Char_Draw(0, Op_Add, 0.40 * SCREEN_LENGTH, 0.1 * SCREEN_WIDTH, 30, sizeof(cap_char), 2, Yellow, CapStaticName, cap_char);
+	
+
 }
 
 /**********************************************************************************************************
@@ -704,50 +714,63 @@ void CapUI_Change(float CapVolt, uint8_t Init_Cnt)
 extern ext_student_interactive_char_header_data_t custom_char_draw; // 自定义字符绘制
 uint32_t UITask_RunTime = 0UL;
 uint32_t UISendTask_high_water;
-uint8_t InitFlag = 1; // F405.Graphic_Init_Flag
+uint16_t InitFlag = 1; // 
+
 float Pitch;
 void GraphicSendtask(void)
 {
-	static uint8_t Init_Cnt = 20; // 图形初始化次数，由于丢包可以多初始化几次
+	static uint8_t Init_Cnt = 50; // 图形初始化次数，由于丢包可以多初始化几次
 	static int Op_Type = Op_None;
 
 	UITask_RunTime++;
-	if (F405.Graphic_Init_Flag)
-	{
-		InitFlag = 10;
-	}
+
 
 	/*静止UI绘制*/
-	if (UITask_RunTime % 100 == 1)
-		Char_Init(); // 字符
-	if (UITask_RunTime % 50 == 1)
-		Lanelines_Init(); // 车道线
-	if (UITask_RunTime % 20 == 1)
-		ShootLines_Init(); // 枪口线
-	/*动态UI绘制*/
-	if (UITask_RunTime % 100 == 1)
-		CarPosture_Change(F405.Yaw_100, InitFlag); // 车辆姿态绘制
-
-	Pitch = (float)(F405.Pitch_100 / 100.0f); // pitch角度
-	if (UITask_RunTime % 30 == 1)
-		PitchUI_Change(Pitch, InitFlag);
-
-	//      CapDraw(AD_actual_value , InitFlag);       //超级电容电量
-	if (UITask_RunTime % 30 == 2)
-		// CapUI_Change(superpower.actual_vol, InitFlag); // 超级电容电压
-
-		if (UITask_RunTime % 50 == 1)
-			CharChange(InitFlag); // 字符UI变化
-
-	if (InitFlag > 0)
+	CharChange(Init_Cnt);
+	if (UITask_RunTime % 10 == 0)
 	{
-		InitFlag--;
-		//			Char_Init(); // 字符
-		//
-		//			Lanelines_Init();         //车道线
-		//
-		//			ShootLines_Init(); // 枪口线
+			//Char_Init(); // 字符
+			
 	}
+	if (UITask_RunTime % 50 == 1)
+	{
+		//Lanelines_Init(); // 车道线
+	}
+	if (UITask_RunTime % 20 == 1)
+	{
+		//ShootLines_Init(); // 枪口线
+	}
+	/*动态UI绘制*/
+//	if (UITask_RunTime % 200 == 1)
+//	{
+//			//Char_Init(); // 字符
+//			//CharChange(InitFlag);
+//		CharChange(Init_Cnt);
+//	}
+//	if (UITask_RunTime % 100 == 1)
+//		// CarPosture_Change(F405.Yaw_100, InitFlag); // 车辆姿态绘制
+
+//		Pitch = (float)(F405.Pitch_100 / 100.0f); // pitch角度
+//	if (UITask_RunTime % 30 == 1)
+//		// PitchUI_Change(Pitch, InitFlag);
+
+//		//      CapDraw(AD_actual_value , InitFlag);       //超级电容电量
+//		if (UITask_RunTime % 30 == 2)
+//			// CapUI_Change(superpower.actual_vol, InitFlag); // 超级电容电压
+
+
+				
+
+	if (Init_Cnt > 0)
+	{
+		Init_Cnt--;
+					Char_Init(); // 字符
+		//
+					Lanelines_Init();         //车道线
+		//
+					ShootLines_Init(); // 枪口线
+	}
+
 
 	//
 	// IWDG_Feed(); // 喂狗

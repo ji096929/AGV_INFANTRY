@@ -209,10 +209,10 @@ void AGV_DirectiveMotor_TargetStatus_To_MotorAngle_In_ChassisCoordinate(CHASSIS_
 	chassis->D_motor.target_angle = chassis->D_motor.ChassisCoordinate_Angle - PI / 2 / (2 * PI) * 8191;
 	if (chassis->parameter.break_mode)
 	{
-		chassis->A_motor.target_angle = 8191 * (315 - 90) / 360;
-		chassis->B_motor.target_angle = 8191 * (225 - 90) / 360;
-		chassis->C_motor.target_angle = 8191 * (135 - 90) / 360;
-		chassis->D_motor.target_angle = 8191 * (45 - 90) / 360;
+		chassis->A_motor.target_angle = 8191 * (315) / 360;
+		chassis->B_motor.target_angle = 8191 * (225) / 360;
+		chassis->C_motor.target_angle = 8191 * (135) / 360;
+		chassis->D_motor.target_angle = 8191 * (45) / 360;
 	}
 	if (chassis->A_motor.target_angle > 8191)
 		chassis->A_motor.target_angle -= 8191;

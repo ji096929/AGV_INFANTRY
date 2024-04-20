@@ -82,8 +82,10 @@ void USART6_IRQHandler(void)
 			fifo_s_puts(&referee_fifo, (char *)usart6_buf[1], this_time_rx_len);
 			JudgeReceive.receive_flag = 1;
 		}
-		//				Judge_Buffer_Receive_Task(JudgeReceiveBuffer,0);
+		
 	}
+
+HAL_UART_IRQHandler(&huart6);
 }
 
 void Referee_Init(void)

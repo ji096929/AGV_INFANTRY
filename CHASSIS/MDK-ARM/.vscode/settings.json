@@ -1,10 +1,10 @@
 {
+  "C_Cpp_Runner.msvcBatchPath": "",
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
   "C_Cpp_Runner.debuggerPath": "gdb",
   "C_Cpp_Runner.cStandard": "",
   "C_Cpp_Runner.cppStandard": "",
-  "C_Cpp_Runner.msvcBatchPath": "",
   "C_Cpp_Runner.useMsvc": false,
   "C_Cpp_Runner.warnings": [
     "-Wall",
@@ -37,25 +37,7 @@
   "C_Cpp_Runner.warningsAsError": false,
   "C_Cpp_Runner.compilerArgs": [],
   "C_Cpp_Runner.linkerArgs": [],
-  "C_Cpp_Runner.includePaths": [
-    "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\Core\\Inc",
-    "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\Drivers\\STM32F4xx_HAL_Driver\\Inc",
-    "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\Drivers\\STM32F4xx_HAL_Driver\\Inc\\Legacy",
-    "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\Drivers\\CMSIS\\Device\\ST\\STM32F4xx\\Include",
-    "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\Drivers\\CMSIS\\Include",
-    "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\app\\referee",
-    "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\bsp\\can",
-    "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\app\\chassis_move",
-    "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\app\\gimbal_connoection",
-    "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\app\\motor",
-    "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\bsp\\PID",
-    "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\app",
-    "D:\\software\\keil5\\ARM\\ARMCC\\include",
-    "D:\\software\\keil5\\ARM\\ARMCC\\include\\rw",
-    "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\MDK-ARM",
-    "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\Core\\Src",
-    "e:\\files\\AGV_CHASSIS\\AGV_CHASSIS\\CHASSIS\\Drivers\\STM32F4xx_HAL_Driver\\Src"
-  ],
+  "C_Cpp_Runner.includePaths": [],
   "C_Cpp_Runner.includeSearch": [
     "*",
     "**/*"
@@ -75,6 +57,10 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
-    "kinematic.h": "c"
+    "buzzer.h": "c",
+    "main.h": "c",
+    "buzzer_bsp.h": "c",
+    "chassis_task.h": "c",
+    "chassis.h": "c"
   }
 }

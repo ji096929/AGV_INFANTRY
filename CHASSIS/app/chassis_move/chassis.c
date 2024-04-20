@@ -18,8 +18,11 @@
 CHASSIS_T chassis;
 YAW_T   yaw;
 PID_T   yaw_pid;
-float yaw_position_loop_data[10]= {0.07f,0.0f,0.f,2.5f,0.0f,0.6f,0.f,0.f,0.f,0.f};
+float yaw_position_loop_data[10]= {0.5f,0.0f,5.f,2.5f,0.0f,0.6f,0.f,0.f,0.f,0.f};
 float buffer_loop_data[10]= {5.0f,0.0f,0.f,50.0f,0.0f,1.0f,0.f,0.f,0.f,0.f};
+
+
+
 void Chassis_Speed_Slow_Motion(CHASSIS_T *chassis)
 {
 		if(chassis->parameter.speed_slow)
@@ -142,8 +145,8 @@ void Chassis_Mode_Command_Update(void)
         break;
         case    CHASSIS_SPIN:
         if(chassis.command.vx==0&&chassis.command.vy==0)
-        chassis.command.vw =  12.0f;
-        else chassis.command.vw =  6.0f;
+        chassis.command.vw =  24.0f;
+        else chassis.command.vw =  24.0f;
         break;
 
     }

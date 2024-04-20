@@ -20,7 +20,7 @@ typedef enum
 	DATA2_IMPROVE					=	0x40U,
 	DATA2_NORMAL					=	0X80U,
 }CAN_FILTER_IMPROVE_E;
-
+void platform_filtter_config_setting(void);
 
 #ifdef __cplusplus
 }

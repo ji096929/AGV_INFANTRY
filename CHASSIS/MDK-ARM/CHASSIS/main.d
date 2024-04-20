@@ -60,5 +60,5 @@ chassis\main.o: ../app/referee/ui_types.h
 chassis\main.o: ../app/referee/ui_1_Ungroup_0.h
 chassis\main.o: ../app/referee/ui_default_Ungroup_0.h
 chassis\main.o: ../app/buzzer.h
-chassis\main.o: ..\bsp\buzzer_bsp.h
+chassis\main.o: ../bsp/buzzer_bsp.h
 chassis\main.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\math.h

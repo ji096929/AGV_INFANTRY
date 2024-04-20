@@ -12,6 +12,24 @@
 #include "GraphicsSendTask.h"
 TIME_T time;
 
+static uint8_t TIM_Alive_PeriodElapsedCallback_A(void);
+
+static uint8_t TIM_Alive_PeriodElapsedCallback_A(void)
+{
+
+  if (chassis.A_motor.preFlag == chassis.A_motor.Flag)
+  {
+    buzzer_setTask(&buzzer, BUZZER_DEVICE_OFFLINE_PRIORITY);
+  }
+
+  chassis.A_motor.preFlag = chassis.A_motor.Flag;
+}
+
+void TIM1msMod50_Alive_PeriodElapsedCallback(void)
+{
+  TIM_Alive_PeriodElapsedCallback_A();
+}
+
 void Task_Init(void)
 {
   Yaw_Init();
@@ -19,7 +37,9 @@ void Task_Init(void)
   Can_Connection_Init();
   Chassis_Power_Control_Init();
   Referee_Init();
-  // buzzer_init_example();
+
+  chassis.A_motor.TIM_Alive_PeriodElapsedCallback = TIM_Alive_PeriodElapsedCallback_A;
+  buzzer_init_example();
 }
 
 void Time_Count_Task(TIME_T *time)
@@ -37,8 +57,9 @@ void Chassis_Task()
 {
   if (htim->Instance == TIM3)
   {
+
     AGV_connoection(time.ms_count);
-    GraphicSendtask();
+
     if (time.ms_count % 5 == 0)
     {
       Chassis_Move();
@@ -63,13 +84,23 @@ void Chassis_Task()
     if (time.ms_count % 10 == 6)
     {
       TIM_CAN_PeriodElapsedCallback();
+      TIM1msMod50_Alive_PeriodElapsedCallback();
     }
-    if (time.ms_count % 10 == 8)
+    if (time.ms_count % 5 == 2)
     {
+      buzzer_taskScheduler(&buzzer);
 
       Chassis_Flag_Update(&connection);
     }
 
     Time_Count_Task(&time);
+  }
+
+  if (htim->Instance == TIM2)
+  {
+    if (time.ms_count % 100 == 8)
+    {
+      GraphicSendtask();
+    }
   }
 }

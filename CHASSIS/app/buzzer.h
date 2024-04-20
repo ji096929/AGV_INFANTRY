@@ -8,7 +8,7 @@ extern "C" {
 
 /* USER Settings -------------------------------------------------------------*/
 // Define board and chips
-//#define ROBOMASTER_DEVELOPMENT_BOARD_TYPE_C	// 配置适用于 C 板的蜂鸣器设置
+#define ROBOMASTER_DEVELOPMENT_BOARD_TYPE_C	// 配置适用于 C 板的蜂鸣器设置
 //#define MOSASAURUS_ELITE_BOARD					// 配置适用于菁英板的蜂鸣器设置
 //#define MOSASAURUS_STEERING_CONTROL_BOARD		// 配置适用于舵轮控制板的蜂鸣器设置
 

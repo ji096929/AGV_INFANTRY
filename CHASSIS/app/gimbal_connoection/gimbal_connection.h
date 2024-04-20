@@ -39,8 +39,8 @@ typedef struct
 
 typedef struct
 {
-	bool flag;
-	bool last_flag;
+	uint8_t flag;
+	uint8_t last_flag;
 }CHASSIS_MODE_STATE_T;//1为开启，0为关闭
 
 typedef struct 
