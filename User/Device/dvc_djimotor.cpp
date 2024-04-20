@@ -195,7 +195,7 @@ void Class_DJI_Motor_GM6020::Data_Process()
     uint16_t tmp_encoder;
     int16_t tmp_omega, tmp_torque, tmp_temperature;
     Struct_DJI_Motor_CAN_Data *tmp_buffer = (Struct_DJI_Motor_CAN_Data *)CAN_Manage_Object->Rx_Buffer.Data;
-
+	
     //处理大小端
     Math_Endian_Reverse_16((void *)&tmp_buffer->Encoder_Reverse, (void *)&tmp_encoder);
     Math_Endian_Reverse_16((void *)&tmp_buffer->Omega_Reverse, (void *)&tmp_omega);
@@ -216,8 +216,11 @@ void Class_DJI_Motor_GM6020::Data_Process()
     }
     Data.Total_Encoder = Data.Total_Round * Encoder_Num_Per_Round + tmp_encoder + Encoder_Offset;
 
+    
+    tmp_encoder=(CAN_Manage_Object->Rx_Buffer.Data[0]<<8)|CAN_Manage_Object->Rx_Buffer.Data[1];
     //计算电机本身信息
-    Data.Now_Angle = (float)Data.Total_Encoder / (float)Encoder_Num_Per_Round * 2.0f * PI;
+    //Data.Now_Angle = (float)Data.Total_Encoder / (float)Encoder_Num_Per_Round * 2.0f * PI;
+    Data.Now_Angle=tmp_encoder/8191.0*2*PI;
     Data.Now_Omega = (float)tmp_omega * RPM_TO_RADPS;
     Data.Now_Torque = tmp_torque;
     Data.Now_Temperature = tmp_temperature + CELSIUS_TO_KELVIN;
