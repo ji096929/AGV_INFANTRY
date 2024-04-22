@@ -81,6 +81,7 @@
     "main.h": "c",
     "chassis.h": "c",
     "chassis_task.h": "c",
-    "referee.h": "c"
+    "referee.h": "c",
+    "tim.h": "c"
   }
 }

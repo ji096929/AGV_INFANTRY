@@ -5,4 +5,7 @@
 #define SuperCap_KeepAlive_TX_Typecode 14
 #define SuperCap_Status_RX_Typecode 15
 
+void Supercap_Uart_Init(void);
+void Supercap_Task(void);
+
 uint8_t supercap_rx_buffer[11];

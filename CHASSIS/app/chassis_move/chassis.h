@@ -16,9 +16,9 @@
 #include "PID.h"
 
 #define GIMBAL_HEAD_ANGLE 140.86f
-
-#define CHASSIS_SPEED_X_CHANGE_MAX 100.f
-#define CHASSIS_SPEED_Y_CHANGE_MAX 100.f
+#define Acceleration 50 //
+#define CHASSIS_SPEED_X_CHANGE_MAX 40.f
+#define CHASSIS_SPEED_Y_CHANGE_MAX 40.f
 
 typedef uint8_t (*TIM_Alive_PeriodElapsedCallback_ptr)(void *);
 typedef enum

@@ -439,6 +439,7 @@ void CapDraw(float CapVolt, uint8_t Init_Flag)
 {
 	static uint8_t CapName1[] = "Out";
 	static uint8_t CapName2[] = "In";
+	
 	graphic_data_struct_t *P_graphic_data;
 	if (Init_Flag)
 	{
@@ -734,11 +735,13 @@ void GraphicSendtask(void)
 	}
 	if (UITask_RunTime % 50 == 1)
 	{
-		//Lanelines_Init(); // 车道线
+		CapDraw(chassis.supercap.supercap_per, InitFlag); // 超级电容电量
+		// Lanelines_Init(); // 车道线
 	}
 	if (UITask_RunTime % 20 == 1)
 	{
-		//ShootLines_Init(); // 枪口线
+		//CapUI_Change(superpower.actual_vol, InitFlag); // 超级电容电压
+													   // ShootLines_Init(); // 枪口线
 	}
 	/*动态UI绘制*/
 //	if (UITask_RunTime % 200 == 1)

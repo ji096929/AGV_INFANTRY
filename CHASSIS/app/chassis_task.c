@@ -86,6 +86,10 @@ void Chassis_Task()
       TIM_CAN_PeriodElapsedCallback();
       TIM1msMod50_Alive_PeriodElapsedCallback();
     }
+    if (time.ms_count % 10 == 7)
+    {
+      Supercap_Task();
+    }
     if (time.ms_count % 5 == 2)
     {
       buzzer_taskScheduler(&buzzer);
@@ -98,7 +102,7 @@ void Chassis_Task()
 
   if (htim->Instance == TIM2)
   {
-    if (time.ms_count % 100 == 8)
+    if (time.ms_count % 10 == 7)
     {
       GraphicSendtask();
     }

@@ -16,11 +16,49 @@
 CHASSIS_T chassis;
 YAW_T yaw;
 PID_T yaw_pid;
-float yaw_position_loop_data[10] = {0.5f, 0.0f, 5.f, 2.5f, 0.0f, 0.6f, 0.f, 0.f, 0.f, 0.f};
+float yaw_position_loop_data[10] = {0.3f, 0.0f, 5.f, 2.5f, 0.0f, 0.6f, 0.f, 0.f, 0.f, 0.f};
 float buffer_loop_data[10] = {5.0f, 0.0f, 0.f, 50.0f, 0.0f, 1.0f, 0.f, 0.f, 0.f, 0.f};
 
 void Chassis_Speed_Slow_Motion(CHASSIS_T *chassis)
 {
+	// int Delta;
+	// Delta = Acceleration;
+
+	// if (chassis->command.set_vx != 0 || chassis->command.vx != 0)
+	// {
+	// 	if (chassis->command.set_vx > chassis->command.vx)
+	// 	{
+	// 		if (chassis->command.set_vx - chassis->command.vx > Delta)
+	// 			chassis->command.vx += Delta;
+	// 		else
+	// 			chassis->command.vx = chassis->command.set_vx;
+	// 	}
+	// 	if (chassis->command.set_vx < chassis->command.vx)
+	// 	{
+	// 		if (chassis->command.vx - chassis->command.set_vx > Delta)
+	// 			chassis->command.vx -= Delta;
+	// 		else
+	// 			chassis->command.vx = chassis->command.set_vx;
+	// 	}
+	// }
+	// if (chassis->command.set_vy != 0 || chassis->command.vy != 0)
+	// {
+	// 	if (chassis->command.set_vy > chassis->command.vy)
+	// 	{
+	// 		if (chassis->command.set_vy - chassis->command.vy > Delta)
+	// 			chassis->command.vy += Delta;
+	// 		else
+	// 			chassis->command.vy = chassis->command.set_vy;
+	// 	}
+	// 	if (chassis->command.set_vy < chassis->command.vy)
+	// 	{
+	// 		if (chassis->command.vy - chassis->command.set_vy > Delta)
+	// 			chassis->command.vy -= Delta;
+	// 		else
+	// 			chassis->command.vy = chassis->command.set_vy;
+	// 	}
+	// }
+
 	if (chassis->parameter.speed_slow)
 	{
 		if (chassis->command.set_vx - chassis->command.vx > CHASSIS_SPEED_X_CHANGE_MAX)
@@ -112,7 +150,17 @@ static float chassis_fllow(void)
 {
 	float gimbal_angle, chassis_angle;
 	chassis_angle = yaw.status.actual_angle;
+	if (chassis_angle> 180.0f)
+		chassis_angle-= 360.0f;
+	if (chassis_angle< -180.0f)
+		chassis_angle+= 360.0f;
+
+
 	gimbal_angle = GIMBAL_HEAD_ANGLE + 180.0f * chassis.parameter.invert_flag;
+	if (gimbal_angle> 180.0f)
+		gimbal_angle-= 360.0f;
+	if (gimbal_angle< -180.0f)
+		gimbal_angle+= 360.0f;
 	PID_Calculate(&yaw_pid.angle_loop, chassis_angle, gimbal_angle);
 	return yaw_pid.angle_loop.Output;
 }

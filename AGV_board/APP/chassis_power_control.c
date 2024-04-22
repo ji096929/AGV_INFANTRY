@@ -1,6 +1,15 @@
 #include "chassis_power_control.h"
 #include "SW_control_task.h"
 chassis_power_control_t chassis_power_control;
+int sign( int x )
+{ 
+     if(x>0)
+     return 1;
+    else if(x==0)
+    return 0;
+    else
+    return -1; 
+}
 
 float Sqrt(float x)
 {
@@ -74,11 +83,17 @@ float calculate_torque_current_according_to_scaled_power(float scaled_power)
 
 float expert_power_calculate(void)
 {
-    chassis_power_control.expect_motion_part_power_32 =
-        steering_wheel.motion_part.motor.command.torque * TOQUE_COEFFICIENT * steering_wheel.motion_part.motor.M3508_kit.feedback.current_rotor_rpm +
-        K1 * steering_wheel.motion_part.motor.M3508_kit.feedback.current_rotor_rpm * steering_wheel.motion_part.motor.M3508_kit.feedback.current_rotor_rpm +
+//    chassis_power_control.expect_motion_part_power_32 =
+//        steering_wheel.motion_part.motor.command.torque * TOQUE_COEFFICIENT * steering_wheel.motion_part.motor.M3508_kit.feedback.current_rotor_rpm +
+//        K1 * steering_wheel.motion_part.motor.M3508_kit.feedback.current_rotor_rpm * steering_wheel.motion_part.motor.M3508_kit.feedback.current_rotor_rpm +
+//        K2 * steering_wheel.motion_part.motor.command.torque * steering_wheel.motion_part.motor.command.torque + CONSTANT;
+
+	    chassis_power_control.expect_motion_part_power_32 =
+        steering_wheel.motion_part.motor.command.torque * TOQUE_COEFFICIENT * __fabs(steering_wheel.motion_part.command.protocol_speed)*14*sign(steering_wheel.motion_part.motor.M3508_kit.feedback.current_rotor_rpm) +
+        K1 * steering_wheel.motion_part.command.protocol_speed*14 * steering_wheel.motion_part.command.protocol_speed *14+
         K2 * steering_wheel.motion_part.motor.command.torque * steering_wheel.motion_part.motor.command.torque + CONSTANT;
 
+	
     // chassis_power_control.expect_directive_part_power_32 =
     //     steering_wheel.directive_part.motor.command.torque * TOQUE_COEFFICIENT * steering_wheel.directive_part.motor.M3508_kit.feedback.current_rotor_rpm +
     //     K2 * steering_wheel.directive_part.motor.M3508_kit.feedback.current_rotor_rpm * steering_wheel.directive_part.motor.M3508_kit.feedback.current_rotor_rpm +
