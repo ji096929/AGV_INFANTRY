@@ -195,7 +195,9 @@ void Class_Chariot::CAN_Gimbal_TxCpltCallback()
     gimbal_angle = Gimbal.Get_Gimbal_Head_Angle();
     chassis_angle = Gimbal.Motor_Yaw.Get_Now_Angle();
     relative_angle = gimbal_angle - chassis_angle;
-    testtt = relative_angle / PI * 180;
+    if (Chassis.Get_Chassis_Control_Type() == Chassis_Control_Type_SPIN)
+        relative_angle += PI / 12;
+            testtt = relative_angle / PI * 180;
     // 测试，假设没有相对角度
     // relative_angle = 0;
 

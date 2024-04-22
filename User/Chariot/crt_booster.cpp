@@ -174,7 +174,7 @@ void Class_Booster::Init()
     FSM_Antijamming.Init(4, 0);
 
     // 拨弹盘电机
-    Motor_Driver.PID_Angle.Init(75.0f, 0.0f, 1.0f, 0.0f, 3.5f * 2.0 * PI, 4.0f * 2.0 * PI);
+    Motor_Driver.PID_Angle.Init(75.0f, 0.0f, 1.0f, 0.0f, Default_Driver_Omega, Default_Driver_Omega);
     Motor_Driver.PID_Omega.Init(2500.0f, 500.0f, 0.0f, 0.0f, Motor_Driver.Get_Output_Max(), Motor_Driver.Get_Output_Max());
     Motor_Driver.Init(&hcan2, DJI_Motor_ID_0x203, DJI_Motor_Control_Method_OMEGA);
 
