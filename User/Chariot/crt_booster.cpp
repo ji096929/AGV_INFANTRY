@@ -122,7 +122,7 @@ void Class_FSM_Antijamming::Reload_TIM_Status_PeriodElapsedCallback()
         // 卡弹嫌疑状态
         Booster->Output();
 
-        if (Status[Now_Status_Serial].Time >= 500)
+        if (Status[Now_Status_Serial].Time >= 100)
         {
             // 长时间大扭矩->卡弹反应状态
             Set_Status(2);
@@ -139,7 +139,7 @@ void Class_FSM_Antijamming::Reload_TIM_Status_PeriodElapsedCallback()
         // 卡弹反应状态->准备卡弹处理
 
         Booster->Motor_Driver.Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_ANGLE);
-        Booster->Motor_Driver.Set_Target_Angle(Booster->Motor_Driver.Get_Now_Angle() - PI / 12.0f);
+        Booster->Motor_Driver.Set_Target_Angle(Booster->Motor_Driver.Get_Target_Angle() + PI / 12.0f);
         Set_Status(3);
     }
     break;
@@ -164,7 +164,6 @@ void Class_FSM_Antijamming::Reload_TIM_Status_PeriodElapsedCallback()
 void Class_Booster::Init()
 {
 
-    
     // 正常状态, 发射嫌疑状态, 发射完成状态, 停机状态
     FSM_Heat_Detect.Booster = this;
     FSM_Heat_Detect.Init(3, 3);
@@ -198,7 +197,7 @@ void Class_Booster::Output()
 {
 
     Now_Angle = Motor_Driver.Get_Now_Angle();
-    Set_Driver_Omega(-PI * driver_test);
+
     switch (Booster_Control_Type)
     {
     case (Booster_Control_Type_DISABLE):
@@ -246,7 +245,7 @@ void Class_Booster::Output()
 
             Drvier_Angle = Now_Angle - 2.0f * PI / 8.0f;
             Motor_Driver.Set_Target_Angle(Drvier_Angle);
- }
+        }
 
         Motor_Friction_Left.Set_Target_Omega(Friction_Omega);
         Motor_Friction_Right.Set_Target_Omega(-Friction_Omega);
@@ -263,12 +262,12 @@ void Class_Booster::Output()
         Motor_Friction_Right.Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_OMEGA);
 
         // 热量控制
-        if (Referee->Get_Booster_17mm_1_Heat() +30< Referee->Get_Booster_17mm_1_Heat_Max())
+        if (Referee->Get_Booster_17mm_1_Heat() + 30 < Referee->Get_Booster_17mm_1_Heat_Max())
         {
 
             Drvier_Angle = Now_Angle - 2.0f * PI / 8.0f * 5.0f; // 五连发
             Motor_Driver.Set_Target_Angle(Drvier_Angle);
-         }
+        }
         Motor_Friction_Left.Set_Target_Omega(Friction_Omega);
         Motor_Friction_Right.Set_Target_Omega(-Friction_Omega);
 

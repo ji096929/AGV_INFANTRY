@@ -216,8 +216,8 @@ void Class_Chariot::CAN_Gimbal_TxCpltCallback()
     CAN2_0x152_Tx_Data[2] = FOLLOW_ON;
     CAN2_0x152_Tx_Data[3] = Booster.Get_Booster_Control_Type(); // 摩擦轮状态
     CAN2_0x152_Tx_Data[4] = Gimbal.Get_Gimbal_Control_Type();   // 云台状态
-    // CAN2_0x152_Tx_Data[5] =
-    //     CAN2_0x152_Tx_Data[6] =
+    CAN2_0x152_Tx_Data[5] = MiniPC.Get_MiniPC_Status();
+    //CAN2_0x152_Tx_Data[6] = Booster.
 
     // CAN2_0x153_Tx_Data[0] = Gimbal.Get_Gimbal_Control_Type();//云台状态
     // 		//CAN2_0x153_Tx_Data[0] =0	;
