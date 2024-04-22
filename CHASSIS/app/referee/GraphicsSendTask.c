@@ -517,7 +517,7 @@ void CharChange(uint8_t Init_Flag)
 	}
 	else
 	{
-		switch (connection.connection_rx.vision.flag)
+		switch (connection.connection_rx.gimbal.flag)
 		{
 		case Gimbal_Control_Type_NORMAL:
 			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.55 * SCREEN_WIDTH, 20, sizeof(GimbalNormal), 2, Green, GimbalChangeName, GimbalNormal);
@@ -569,7 +569,7 @@ void CharChange(uint8_t Init_Flag)
 	}
 	else
 	{
-		switch (F405.Enemy_ID)
+		switch (connection.connection_rx.vision.flag)
 		{
 		case ARMOR_ID_1:
 			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.45 * SCREEN_WIDTH, 20, sizeof(ArmorID_1), 2, Green, ArmorChangeName, ArmorID_1);
