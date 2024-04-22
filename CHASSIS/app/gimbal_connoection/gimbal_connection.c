@@ -32,6 +32,7 @@ void Chassis_Control_Mode_Update(GIMBAL_CONNECTION_T *connection, uint8_t data[]
 	connection->connection_rx.fric.flag = data[3];
 	connection->connection_rx.gimbal.flag = data[4];
 	connection->connection_rx.vision.flag = data[5];
+	connection->connection_rx.jamming.flag = data[6];
 }
 
 void Fric_Speed_And_Pitch_Angle_Update(GIMBAL_CONNECTION_T *connection, uint8_t data[])

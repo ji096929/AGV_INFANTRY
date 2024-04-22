@@ -509,6 +509,21 @@ void CharChange(uint8_t Init_Flag)
 
 	uint8_t INIT[] = "INIT";
 
+	uint8_t JAMM[] = "JAMMING!!!";
+
+	static uint8_t JammChangeName[] = "Jam";
+	if (Init_Flag)
+	{
+		Char_Draw(0, Op_Add, 0.9 * SCREEN_LENGTH, 0.35 * SCREEN_WIDTH, 20, sizeof(GimbalNormal), 2, Green, JammChangeName, INIT);
+	}
+	else
+	{
+		if (connection.connection_rx.jamming.flag)
+		{
+			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.35 * SCREEN_WIDTH, 20, sizeof(GimbalNormal), 2, Pink, JammChangeName, JAMM);
+		}
+	}
+
 	/*ÔÆÌ¨×´Ì¬¸Ä±ä*/
 	static uint8_t GimbalChangeName[] = "bal";
 	if (Init_Flag)
@@ -545,7 +560,7 @@ void CharChange(uint8_t Init_Flag)
 	static uint8_t FrictionChangeName[] = "mcl";
 	if (Init_Flag)
 	{
-		Char_Draw(0, Op_Add, 0.9 * SCREEN_LENGTH, 0.50 * SCREEN_WIDTH, 20, sizeof(FrictionOff), 2, Pink, FrictionChangeName, INIT);
+		Char_Draw(0, Op_Add, 0.9 * SCREEN_LENGTH, 0.35 * SCREEN_WIDTH, 20, sizeof(FrictionOff), 2, Pink, FrictionChangeName, INIT);
 	}
 	else
 	{

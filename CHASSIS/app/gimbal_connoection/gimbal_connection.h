@@ -10,6 +10,12 @@ typedef enum
 	INVERT_OFF = 0x00,
 } INVERT_FLAG_E;
 
+enum Enum_Booster_Jamming_Type
+{
+	Booster_Not_Jamming = 0,
+	Booster_Jamming,
+};
+
 typedef enum
 {
 	FOLLOW_ON = 0x01,
@@ -52,6 +58,7 @@ typedef struct
 	CHASSIS_MODE_STATE_T fric;
 	CHASSIS_MODE_STATE_T vision;
 	CHASSIS_MODE_STATE_T gimbal;
+	CHASSIS_MODE_STATE_T jamming;
 	float pitch_angle;
 	int16_t fric_speed;
 	int16_t vx;
