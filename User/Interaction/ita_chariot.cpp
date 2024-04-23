@@ -197,7 +197,7 @@ void Class_Chariot::CAN_Gimbal_TxCpltCallback()
     relative_angle = gimbal_angle - chassis_angle;
     if (Chassis.Get_Chassis_Control_Type() == Chassis_Control_Type_SPIN)
         relative_angle += PI / 12;
-            testtt = relative_angle / PI * 180;
+    testtt = relative_angle / PI * 180;
     // 测试，假设没有相对角度
     // relative_angle = 0;
 
@@ -217,7 +217,7 @@ void Class_Chariot::CAN_Gimbal_TxCpltCallback()
     CAN2_0x152_Tx_Data[3] = Booster.Get_Booster_Control_Type(); // 摩擦轮状态
     CAN2_0x152_Tx_Data[4] = Gimbal.Get_Gimbal_Control_Type();   // 云台状态
     CAN2_0x152_Tx_Data[5] = MiniPC.Get_MiniPC_Status();
-    //CAN2_0x152_Tx_Data[6] = Booster.
+    CAN2_0x152_Tx_Data[6] = Booster.Get_Booster_Jamming_Type();
 
     // CAN2_0x153_Tx_Data[0] = Gimbal.Get_Gimbal_Control_Type();//云台状态
     // 		//CAN2_0x153_Tx_Data[0] =0	;
@@ -336,17 +336,17 @@ void Class_Chariot::Control_Gimbal()
     }
     else
     {
-        if (DR16.Get_Mouse_Right_Key() == DR16_Key_Status_PRESSED)
-        {
-            Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_MINIPC);
-        }
-        else if (DR16.Get_Mouse_Right_Key() == DR16_Key_Status_FREE)
-        {
-            Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_NORMAL);
-        }
-        
+
         if ((DR16.Get_Right_Switch() == DR16_Switch_Status_DOWN))
         {
+            if (DR16.Get_Mouse_Right_Key() == DR16_Key_Status_PRESSED)
+            {
+                Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_MINIPC);
+            }
+            else if (DR16.Get_Mouse_Right_Key() == DR16_Key_Status_FREE)
+            {
+                Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_NORMAL);
+            }
             // 键盘遥控器操作逻辑
             // 切换瞄准模式
             if (DR16.Get_Keyboard_Key_F() == DR16_Key_Status_TRIG_FREE_PRESSED)
@@ -386,8 +386,8 @@ void Class_Chariot::Control_Gimbal()
                     }
 
                     // 键盘遥控器操作逻辑
-                    tmp_gimbal_yaw -= DR16.Get_Mouse_X() * DR16_Mouse_Yaw_Angle_Resolution * 30;
-                    tmp_gimbal_pitch -= DR16.Get_Mouse_Y() * DR16_Mouse_Pitch_Angle_Resolution * 30;
+                    tmp_gimbal_yaw -= DR16.Get_Mouse_X() * DR16_Mouse_Yaw_Angle_Resolution * 10;
+                    tmp_gimbal_pitch -= DR16.Get_Mouse_Y() * DR16_Mouse_Pitch_Angle_Resolution * 10;
                 }
                 if (Gimbal.Get_Gimbal_Control_Type() == Gimbal_Control_Type_NORMAL)
                 {
@@ -417,8 +417,8 @@ void Class_Chariot::Control_Gimbal()
                 Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_MINIPC);
 
                 // 遥控器操作逻辑
-                tmp_gimbal_yaw -= dr16_y * DR16_Yaw_Angle_Resolution * 50;
-                tmp_gimbal_pitch += dr16_r_y * DR16_Pitch_Resolution * 50;
+                tmp_gimbal_yaw -= dr16_y * DR16_Yaw_Angle_Resolution * 20;
+                tmp_gimbal_pitch += dr16_r_y * DR16_Pitch_Resolution * 20;
             }
             else
             {
@@ -482,6 +482,14 @@ void Class_Chariot::Control_Booster()
                     Booster.Set_Booster_User_Control_Type(Booster_User_Control_Type_MULTI);
                 else
                     Booster.Set_Booster_User_Control_Type(Booster_User_Control_Type_SINGLE);
+            }
+
+            if (DR16.Get_Mouse_Left_Key() == DR16_Key_Status_TRIG_FREE_PRESSED)
+            {
+                if (Booster.Get_Booster_User_Control_Type() == Booster_User_Control_Type_SINGLE)
+                    Booster.Set_Booster_Control_Type(Booster_Control_Type_SINGLE);
+                if (Booster.Get_Booster_User_Control_Type() == Booster_User_Control_Type_MULTI)
+                    Booster.Set_Booster_Control_Type(Booster_Control_Type_MULTI);
             }
 
             if (DR16.Get_Mouse_Left_Key() == DR16_Key_Status_PRESSED)

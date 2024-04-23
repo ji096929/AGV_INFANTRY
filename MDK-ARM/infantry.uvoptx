@@ -118,6 +118,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
+          <Name></Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -161,7 +162,7 @@
           <Type>2</Type>
           <LineNumber>0</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>536884264</Address>
+          <Address>536884248</Address>
           <ByteObject>1</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>1</ManyObjects>
@@ -176,8 +177,8 @@
           <Number>1</Number>
           <Type>0</Type>
           <LineNumber>247</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134257074</Address>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134257086</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -187,6 +188,22 @@
           <Filename>..\User\Chariot\crt_booster.cpp</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\infantry\../User/Chariot/crt_booster.cpp\247</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>2</Type>
+          <LineNumber>0</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>536881720</Address>
+          <ByteObject>1</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>1</ManyObjects>
+          <SizeOfObject>8</SizeOfObject>
+          <BreakByAccess>2</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename></Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\infantry\../User/Task/tsk_config_and_callback.cpp\chariot.Gimbal.Motor_Pitch.Class_DJI_Motor_GM6020.PID_Angle.Target</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

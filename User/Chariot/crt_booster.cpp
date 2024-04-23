@@ -109,7 +109,7 @@ void Class_FSM_Antijamming::Reload_TIM_Status_PeriodElapsedCallback()
     {
         // 正常状态
         Booster->Output();
-
+        Booster->Set_Booster_Jamming_Type(Booster_Not_Jamming);
         if (Booster->Motor_Driver.Get_Now_Torque() >= Booster->Driver_Torque_Threshold)
         {
             // 大扭矩->卡弹嫌疑状态
@@ -137,7 +137,7 @@ void Class_FSM_Antijamming::Reload_TIM_Status_PeriodElapsedCallback()
     case (2):
     {
         // 卡弹反应状态->准备卡弹处理
-
+        Booster->Set_Booster_Jamming_Type(Booster_Jamming);
         Booster->Motor_Driver.Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_ANGLE);
         Booster->Motor_Driver.Set_Target_Angle(Booster->Motor_Driver.Get_Target_Angle() + PI / 12.0f);
         Set_Status(3);

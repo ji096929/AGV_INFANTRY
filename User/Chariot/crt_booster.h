@@ -45,7 +45,17 @@ enum Enum_Booster_Control_Type
     Booster_Control_Type_CEASEFIRE,
     Booster_Control_Type_SINGLE,
     Booster_Control_Type_REPEATED,
-    Booster_Control_Type_MULTI,  //连发
+    Booster_Control_Type_MULTI, // 连发
+};
+
+/**
+ * @brief 发射机构卡弹状态
+ *
+ */
+enum Enum_Booster_Jamming_Type
+{
+    Booster_Not_Jamming = 0,
+    Booster_Jamming,
 };
 
 /**
@@ -81,23 +91,23 @@ public:
 class Class_Booster
 {
 public:
-    //热量检测有限自动机
+    // 热量检测有限自动机
     Class_FSM_Heat_Detect FSM_Heat_Detect;
     friend class Class_FSM_Heat_Detect;
 
-    //卡弹策略有限自动机
+    // 卡弹策略有限自动机
     Class_FSM_Antijamming FSM_Antijamming;
     friend class Class_FSM_Antijamming;
 
-    //裁判系统
+    // 裁判系统
     Class_Referee *Referee;
 
-    //拨弹盘电机
+    // 拨弹盘电机
     Class_DJI_Motor_C610 Motor_Driver;
 
-    //摩擦轮电机左
+    // 摩擦轮电机左
     Class_DJI_Motor_C620 Motor_Friction_Left;
-    //摩擦轮电机右
+    // 摩擦轮电机右
     Class_DJI_Motor_C620 Motor_Friction_Right;
 
     void Init();
@@ -106,47 +116,50 @@ public:
 
     inline Enum_Booster_Control_Type Get_Booster_Control_Type();
     inline Enum_Booster_User_Control_Type Get_Booster_User_Control_Type();
+    inline Enum_Booster_Jamming_Type Get_Booster_Jamming_Type();
 
     inline void Set_Booster_Control_Type(Enum_Booster_Control_Type __Booster_Control_Type);
     inline void Set_Booster_User_Control_Type(Enum_Booster_User_Control_Type __Booster_User_Control_Type);
+    inline void Set_Booster_Jamming_Type(Enum_Booster_Jamming_Type __Booster_Jamming_Type);
     inline void Set_Friction_Omega(float __Friction_Omega);
     inline void Set_Driver_Omega(float __Driver_Omega);
 
     void TIM_Calculate_PeriodElapsedCallback();
 
 protected:
-    //初始化相关常量
+    // 初始化相关常量
 
-    //常量
+    // 常量
 
-    //拨弹盘堵转扭矩阈值, 超出被认为卡弹
+    // 拨弹盘堵转扭矩阈值, 超出被认为卡弹
     uint16_t Driver_Torque_Threshold = 5500;
-    //摩擦轮单次判定发弹阈值, 超出被认为发射子弹
+    // 摩擦轮单次判定发弹阈值, 超出被认为发射子弹
     uint16_t Friction_Torque_Threshold = 2200;
-    //摩擦轮速度判定发弹阈值, 超出则说明已经开机
+    // 摩擦轮速度判定发弹阈值, 超出则说明已经开机
     uint16_t Friction_Omega_Threshold = 695;
 
-    //内部变量
-	float Now_Angle=0;
-    //读变量
+    // 内部变量
+    float Now_Angle = 0;
+    // 读变量
 
-    //拨弹盘默认速度, 一圈八发子弹, 此速度下与冷却均衡
+    // 拨弹盘默认速度, 一圈八发子弹, 此速度下与冷却均衡
     float Default_Driver_Omega = 12;
 
-    //写变量
+    // 写变量
 
-    //发射机构状态
+    // 发射机构状态
     Enum_Booster_Control_Type Booster_Control_Type = Booster_Control_Type_CEASEFIRE;
-    Enum_Booster_User_Control_Type  Booster_User_Control_Type = Booster_User_Control_Type_SINGLE;
-        // 摩擦轮角速度
-        float Friction_Omega = 750.0f;
-    //拨弹盘实际的目标速度, 一圈八发子弹
+    Enum_Booster_User_Control_Type Booster_User_Control_Type = Booster_User_Control_Type_SINGLE;
+    Enum_Booster_Jamming_Type Booster_Jamming_Type = Booster_Not_Jamming;
+    // 摩擦轮角速度
+    float Friction_Omega = 750.0f;
+    // 拨弹盘实际的目标速度, 一圈八发子弹
     float Driver_Omega = -1.0f * PI;
-    //拨弹轮目标绝对角度 加圈数
+    // 拨弹轮目标绝对角度 加圈数
     float Drvier_Angle = 0.0f;
-    //读写变量
+    // 读写变量
 
-    //内部函数
+    // 内部函数
 
     void Output();
 };
@@ -163,6 +176,11 @@ protected:
 float Class_Booster::Get_Default_Driver_Omega()
 {
     return (Default_Driver_Omega);
+}
+
+Enum_Booster_Jamming_Type Class_Booster::Get_Booster_Jamming_Type()
+{
+    return (Booster_Jamming_Type);
 }
 
 Enum_Booster_Control_Type Class_Booster::Get_Booster_Control_Type()
@@ -188,6 +206,11 @@ void Class_Booster::Set_Booster_Control_Type(Enum_Booster_Control_Type __Booster
 void Class_Booster::Set_Booster_User_Control_Type(Enum_Booster_User_Control_Type __Booster_User_Control_Type)
 {
     Booster_User_Control_Type = __Booster_User_Control_Type;
+}
+
+void Class_Booster::Set_Booster_Jamming_Type(Enum_Booster_Jamming_Type __Booster_Jamming_Type)
+{
+    Booster_Jamming_Type = __Booster_Jamming_Type;
 }
 
 /**

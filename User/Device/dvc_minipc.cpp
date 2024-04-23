@@ -49,7 +49,7 @@ void Class_MiniPC::Data_Process()
 
     float tmp_yaw, tmp_pitch;
 
-    Self_aim(Pack_Rx.target_x, Pack_Rx.target_y, Pack_Rx.target_z+0.06, &Rx_Angle_Yaw, &Rx_Angle_Pitch, &Distance);
+    Self_aim(Pack_Rx.target_x, Pack_Rx.target_y, Pack_Rx.target_z+0.20, &Rx_Angle_Yaw, &Rx_Angle_Pitch, &Distance);
 
     //    Rx_Angle_Yaw = meanFilter(tmp_yaw);
     //    Rx_Angle_Pitch = meanFilter(tmp_pitch);
