@@ -1110,10 +1110,12 @@ protected:
     Struct_Referee_Rx_Data_Robot_Dart_Command Robot_Dart_Command;
     //客户端接收小地图交互信息
     Struct_Referee_Tx_Data_Interaction_Client_Receive Interaction_Client_Receive;
+    //图传链路
+    Struct_Referee_Tx_Data_Interaction_Remote_Control Interaction_Remote_Control;
 
-    //写变量
+    // 写变量
 
-    //图形删除交互信息
+    // 图形删除交互信息
     Struct_Referee_Tx_Data_Interaction_Layer_Delete Interaction_Layer_Delete;
     //画一个图形交互信息
     Struct_Referee_Tx_Data_Interaction_Graphic_1 Interaction_Graphic_1;

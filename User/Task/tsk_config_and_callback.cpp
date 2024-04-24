@@ -239,6 +239,20 @@ void Device_SPI1_Callback(uint8_t *Tx_Buffer, uint8_t *Rx_Buffer, uint16_t Lengt
 }
 
 /**
+ * @brief UART1图传链路回调函数
+ *
+ * @param Buffer UART1收到的消息
+ * @param Length 长度
+ */
+#ifdef GIMBAL
+void Transmission_UART1_Callback(uint8_t *Buffer, uint16_t Length)
+{
+    chariot.Referee.UART_RxCpltCallback(Buffer);
+
+}
+#endif
+
+/**
  * @brief UART3遥控器回调函数
  *
  * @param Buffer UART1收到的消息
@@ -249,8 +263,6 @@ void DR16_UART3_Callback(uint8_t *Buffer, uint16_t Length)
 {
     chariot.DR16.UART_RxCpltCallback(Buffer);
 
-    // 底盘 云台 发射机构 的控制策略
-    chariot.TIM_Control_Callback();
 }
 #endif
 

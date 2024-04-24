@@ -550,6 +550,9 @@ void Class_Chariot::TIM_Calculate_PeriodElapsedCallback()
 
     this->CAN_Gimbal_TxCpltCallback();
 
+    // 底盘 云台 发射机构 的控制策略
+    this->TIM_Control_Callback();
+
 #endif
 }
 

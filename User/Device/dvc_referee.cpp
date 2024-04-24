@@ -752,6 +752,12 @@ void Class_Referee::Data_Process()
         memcpy(&Interaction_Client_Receive, tmp_buffer->Data, sizeof(Struct_Referee_Tx_Data_Interaction_Client_Receive));
     }
     break;
+    case (Referee_Command_ID_INTERACTION_REMOTE_CONTROL):
+    {
+        memcpy(&Interaction_Remote_Control, tmp_buffer->Data, sizeof(Struct_Referee_Tx_Data_Interaction_Remote_Control));
+    }
+    break;
+        
     }
 }
 
