@@ -109,7 +109,7 @@ void AGV_connoection(int ms_cnt)
 float test_sum;
 void calculate_true_power(void)
 {
-    PID_Calculate(&buffer_pid, JudgeReceive.remainEnergy, 10);
+    PID_Calculate(&buffer_pid, JudgeReceive.remainEnergy, 30);
     float sum = 0;
 		if(JudgeReceive.MaxPower==65535)
 			JudgeReceive.MaxPower=5000;

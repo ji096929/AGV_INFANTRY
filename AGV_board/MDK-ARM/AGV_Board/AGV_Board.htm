@@ -3,7 +3,7 @@
 <title>Static Call Graph - [AGV_Board\AGV_Board.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image AGV_Board\AGV_Board.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sun Apr 21 19:52:10 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Fri Apr 26 17:19:18 2024
 <BR><P>
 <H3>Maximum Stack Usage =        256 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -113,8 +113,8 @@ Function Pointers
 Global Symbols
 </H3>
 <P><STRONG><a name="[51]"></a>__main</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, __main.o(!!!main))
-<BR><BR>[Calls]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
-<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
+<BR><BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
 </UL>
 
 <P><STRONG><a name="[52]"></a>__scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter))
@@ -202,8 +202,8 @@ Global Symbols
 <P><STRONG><a name="[163]"></a>__rt_lib_shutdown_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C))
 
 <P><STRONG><a name="[53]"></a>__rt_entry</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry.o(.ARM.Collect$$rtentry$$00000000))
-<BR><BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
-<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_rt2
+<BR><BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_rt2
+<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 </UL>
 
 <P><STRONG><a name="[164]"></a>__rt_entry_presh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000002))
@@ -1443,7 +1443,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Steering_Wheel_StatusUpdate
 </UL>
 
-<P><STRONG><a name="[f0]"></a>Steering_Wheel_MotorCommandUpdate</STRONG> (Thumb, 306 bytes, Stack size 32 bytes, steering_wheel.o(i.Steering_Wheel_MotorCommandUpdate))
+<P><STRONG><a name="[f0]"></a>Steering_Wheel_MotorCommandUpdate</STRONG> (Thumb, 314 bytes, Stack size 32 bytes, steering_wheel.o(i.Steering_Wheel_MotorCommandUpdate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = Steering_Wheel_MotorCommandUpdate &rArr; calculate_torque_current_according_to_scaled_power &rArr; Sqrt &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;expert_power_calculate
@@ -1459,7 +1459,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Steering_Wheel_CommandUpdate
 </UL>
 
-<P><STRONG><a name="[f1]"></a>Steering_Wheel_PID_HandleInit</STRONG> (Thumb, 186 bytes, Stack size 16 bytes, steering_wheel.o(i.Steering_Wheel_PID_HandleInit))
+<P><STRONG><a name="[f1]"></a>Steering_Wheel_PID_HandleInit</STRONG> (Thumb, 184 bytes, Stack size 16 bytes, steering_wheel.o(i.Steering_Wheel_PID_HandleInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = Steering_Wheel_PID_HandleInit &rArr; __aeabi_memclr4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PID_HandleInit
