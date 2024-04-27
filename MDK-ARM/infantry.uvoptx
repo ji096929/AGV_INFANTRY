@@ -164,51 +164,19 @@
       <Breakpoint>
         <Bp>
           <Number>0</Number>
-          <Type>2</Type>
-          <LineNumber>0</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>536884248</Address>
-          <ByteObject>1</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>1</ManyObjects>
-          <SizeOfObject>1</SizeOfObject>
-          <BreakByAccess>2</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename></Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\infantry\../User/Task/tsk_config_and_callback.cpp\chariot.Booster.Booster_Control_Type</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>247</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>134256558</Address>
+          <LineNumber>259</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134258992</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\User\Chariot\crt_booster.cpp</Filename>
+          <Filename>..\User\Interaction\ita_chariot.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\infantry\../User/Chariot/crt_booster.cpp\247</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>2</Type>
-          <LineNumber>0</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>536881720</Address>
-          <ByteObject>1</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>1</ManyObjects>
-          <SizeOfObject>8</SizeOfObject>
-          <BreakByAccess>2</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename></Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\infantry\../User/Task/tsk_config_and_callback.cpp\chariot.Gimbal.Motor_Pitch.Class_DJI_Motor_GM6020.PID_Angle.Target</Expression>
+          <Expression>\\infantry\../User/Interaction/ita_chariot.cpp\259</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

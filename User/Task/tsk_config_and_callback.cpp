@@ -262,6 +262,9 @@ void Transmission_UART1_Callback(uint8_t *Buffer, uint16_t Length)
 void DR16_UART3_Callback(uint8_t *Buffer, uint16_t Length)
 {
     chariot.DR16.UART_RxCpltCallback(Buffer);
+	
+	    // 底盘 云台 发射机构 的控制策略
+    chariot.TIM_Control_Callback();
 
 }
 #endif
