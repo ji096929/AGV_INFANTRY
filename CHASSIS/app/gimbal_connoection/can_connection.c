@@ -19,6 +19,9 @@ void CAN1_Call_Back(struct Struct_CAN_Rx_Buffer *rx)
    chassis.A_motor.Flag++;
     switch (rx->Header.StdId)
     {
+	        case 0x67:
+        memcpy(&chassis.supercap.supercap_voltage, &rx->Data[0], 4);
+        memcpy(&chassis.supercap.supercap_per, &rx->Data[4], 4);
     }
     switch (rx->Header.ExtId & 0xff)
     {
@@ -38,6 +41,7 @@ void CAN1_Call_Back(struct Struct_CAN_Rx_Buffer *rx)
         memcpy(&chassis_power_control.expect_power_32[3], rx->Data, 4);
         chassis_power_control.all_mscb_ready_flag = chassis_power_control.all_mscb_ready_flag | 0x8;
         break;
+
     }
 }
 
@@ -56,6 +60,9 @@ void CAN2_Call_Back(struct Struct_CAN_Rx_Buffer *rx)
     case 0x206:
         GM6020_Feedback_Update(&yaw.motor, rx->Data);
         break;
+
+        // chassis.supercap.alive_ms = time.ms_count;
+        // chassis.supercap.alive_s = time.s_count;
     }
     switch (rx->Header.ExtId)
     {

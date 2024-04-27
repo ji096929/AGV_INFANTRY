@@ -150,7 +150,7 @@ void CAN_Init(CAN_HandleTypeDef *hcan, CAN_Call_Back Callback_Function)
         can_filter_mask_config(hcan, CAN_FILTER(1) | CAN_FIFO_0 | CAN_EXTID | CAN_DATA_TYPE, 0x0000001b, 0xff);
         can_filter_mask_config(hcan, CAN_FILTER(2) | CAN_FIFO_1 | CAN_EXTID | CAN_DATA_TYPE, 0x0000001c, 0xff);
         can_filter_mask_config(hcan, CAN_FILTER(3) | CAN_FIFO_1 | CAN_EXTID | CAN_DATA_TYPE, 0x0000001d, 0xff);
-
+can_filter_mask_config(hcan, CAN_FILTER(4) | CAN_FIFO_1 | CAN_STDID | CAN_DATA_TYPE, 0x67, 0xff);
 
 
 

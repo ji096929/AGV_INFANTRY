@@ -7,5 +7,5 @@
 
 void Supercap_Uart_Init(void);
 void Supercap_Task(void);
-
+void Tx_Super_Capacitor(void);
 uint8_t supercap_rx_buffer[11];

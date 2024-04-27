@@ -89,6 +89,7 @@ void Chassis_Task()
     if (time.ms_count % 10 == 7)
     {
       Supercap_Task();
+     Tx_Super_Capacitor();
     }
     if (time.ms_count % 5 == 2)
     {

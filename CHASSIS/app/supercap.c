@@ -1,6 +1,7 @@
 #include "supercap.h"
 #include "tim.h"
 #include "usart.h"
+uint8_t CAN1_0x66_Tx_Data[8];
 void Supercap_Uart_Init(void)
 {
     HAL_UART_Receive_IT(&huart1, supercap_rx_buffer, 11);
@@ -37,6 +38,23 @@ void Supercap_Keep_Alive(void)
         chassis.supercap.online_state = SUPERCAP_OFFLINE;
     else
         chassis.supercap.online_state = SUPERCAP_ONLINE;
+}
+
+float Max_Power;
+
+void Tx_Super_Capacitor(void)
+{
+    // if (JudgeReceive.power_state.remainEnergy > 10.f)
+    // {
+    //     Add_Power = (JudgeReceive.power_state.remainEnergy - 10.f) / 50.f * 20.f;
+    // }
+    // else
+    //     Add_Power = 0.f;
+	Max_Power=40;
+    //Max_Power = JudgeReceive.MaxPower;
+    memcpy(&CAN1_0x66_Tx_Data, &Max_Power, 4);
+    memcpy(&CAN1_0x66_Tx_Data[4], &JudgeReceive.realChassispower, 4);
+    CAN_Send_Data(&hcan1, 0x66, CAN1_0x66_Tx_Data, 8);
 }
 
 void UartTX_Super_Capacitor(int Power_Limitation, float Power)
