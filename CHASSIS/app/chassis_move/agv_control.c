@@ -119,21 +119,21 @@ void calculate_true_power(void)
     else
         chassis_power_control.power_limit_max = JudgeReceive.MaxPower - buffer_pid.Output;
 
-//    if (chassis.supercap.supercap_per > 5)
-//    {
-//        if (chassis.supercap.state == 0)
-//        {
-//            chassis_power_control.power_limit_max = chassis_power_control.power_limit_max + 5; // Slightly greater than the maximum power, avoiding the capacitor being full all the time and improving energy utilization
-//        }
-//        else
-//        {
-//            chassis_power_control.power_limit_max = chassis_power_control.power_limit_max + 200;
-//        }
-//    }
-//    else
-//    {
-//        chassis_power_control.power_limit_max = chassis_power_control.power_limit_max;
-//    }
+    if (chassis.supercap.supercap_per > 0.05)
+    {
+        if (chassis.supercap.state == 0)
+        {
+            chassis_power_control.power_limit_max = chassis_power_control.power_limit_max + 5; // Slightly greater than the maximum power, avoiding the capacitor being full all the time and improving energy utilization
+        }
+        else
+        {
+            chassis_power_control.power_limit_max = chassis_power_control.power_limit_max + 80;
+        }
+    }
+    else
+    {
+        chassis_power_control.power_limit_max = chassis_power_control.power_limit_max;
+    }
 
     if (chassis_power_control.all_mscb_ready_flag & 0xf)
     {

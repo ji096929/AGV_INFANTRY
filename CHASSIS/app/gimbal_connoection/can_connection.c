@@ -10,7 +10,7 @@
  */
 #include "can_connection.h"
 #include "agv_control.h"
-
+#include "chassis_task.h"
 M3508_T trigger;
 uint32_t cnt=0;
 uint32_t pre_cnt = 0;
@@ -19,9 +19,7 @@ void CAN1_Call_Back(struct Struct_CAN_Rx_Buffer *rx)
    chassis.A_motor.Flag++;
     switch (rx->Header.StdId)
     {
-	        case 0x67:
-        memcpy(&chassis.supercap.supercap_voltage, &rx->Data[0], 4);
-        memcpy(&chassis.supercap.supercap_per, &rx->Data[4], 4);
+
     }
     switch (rx->Header.ExtId & 0xff)
     {
@@ -60,9 +58,11 @@ void CAN2_Call_Back(struct Struct_CAN_Rx_Buffer *rx)
     case 0x206:
         GM6020_Feedback_Update(&yaw.motor, rx->Data);
         break;
-
-        // chassis.supercap.alive_ms = time.ms_count;
-        // chassis.supercap.alive_s = time.s_count;
+	 case 0x67:
+        memcpy(&chassis.supercap.supercap_voltage, &rx->Data[0], 4);
+        memcpy(&chassis.supercap.supercap_per, &rx->Data[4], 4);
+         chassis.supercap.alive_ms = time.ms_count;
+         chassis.supercap.alive_s = time.s_count;
     }
     switch (rx->Header.ExtId)
     {

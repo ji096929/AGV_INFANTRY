@@ -97,8 +97,8 @@ typedef struct
 	SUPERCAP_ONLINE_STATE_E online_state;
 	float supercap_voltage;
 	float supercap_per;
-	int Keep_Alive_Time_Cnt;
-	uint8_t KeepAlive_SentData[4];
+	float alive_s;
+	float alive_ms;
 } SUPERCAP_T;
 
 typedef struct
