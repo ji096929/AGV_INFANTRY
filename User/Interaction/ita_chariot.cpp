@@ -218,6 +218,7 @@ void Class_Chariot::CAN_Gimbal_TxCpltCallback()
     CAN2_0x152_Tx_Data[4] = Gimbal.Get_Gimbal_Control_Type();   // 云台状态
     CAN2_0x152_Tx_Data[5] = MiniPC.Get_MiniPC_Status();
     CAN2_0x152_Tx_Data[6] = Booster.Get_Booster_Jamming_Type();
+    CAN2_0x152_Tx_Data[7] = Chassis.Get_Chassis_UI_Init_flag();
 
     // CAN2_0x153_Tx_Data[0] = Gimbal.Get_Gimbal_Control_Type();//云台状态
     // 		//CAN2_0x153_Tx_Data[0] =0	;
@@ -278,6 +279,14 @@ void Class_Chariot::Control_Chassis()
             {
                 gimbal_velocity_y -= Chassis.Get_Velocity_Y_Max();
             }
+            if (DR16.Get_Keyboard_Key_E() == DR16_Key_Status_PRESSED)
+            {    
+                Chassis.Set_Chassis_UI_Init_flag(UI_INIT_ON);
+            }
+		else 
+		{
+			 Chassis.Set_Chassis_UI_Init_flag(UI_INIT_OFF);
+		}
         }
         else
         {
@@ -302,6 +311,7 @@ void Class_Chariot::Control_Chassis()
                 Chassis.Set_Chassis_Control_Type(Chassis_Control_Type_SPIN);
             }
         }
+        
     }
     Chassis.Set_Target_Velocity_Y(gimbal_velocity_y);
     Chassis.Set_Target_Velocity_X(gimbal_velocity_x);
@@ -436,6 +446,7 @@ void Class_Chariot::Control_Gimbal()
                 tmp_gimbal_pitch += dr16_r_y * DR16_Pitch_Resolution;
             }
         }
+
     }
 
     // 设定角度

@@ -46,6 +46,11 @@ enum Enum_Chassis_Control_Type :uint8_t
     Chassis_Control_Type_SPIN,
 };
 
+typedef enum
+{
+    UI_INIT_ON = 0x01,
+    UI_INIT_OFF = 0x00,
+} Enum_UI_INIT_FLAG_E;
 /**
  * @brief Specialized, 三轮舵轮底盘类
  *
@@ -87,6 +92,7 @@ public:
     inline float Get_Target_Velocity_Y();
     inline float Get_Target_Omega();
     inline float Get_Spin_Omega();
+    inline float Get_Chassis_UI_Init_flag();
 
     inline void Set_Chassis_Control_Type(Enum_Chassis_Control_Type __Chassis_Control_Type);
     inline void Set_Target_Velocity_X(float __Target_Velocity_X);
@@ -95,6 +101,7 @@ public:
     inline void Set_Now_Velocity_X(float __Now_Velocity_X);
     inline void Set_Now_Velocity_Y(float __Now_Velocity_Y);
     inline void Set_Now_Omega(float __Now_Omega);
+    inline void Set_Chassis_UI_Init_flag(Enum_UI_INIT_FLAG_E __UI_init_flag);
 
     inline void Set_Velocity_Y_Max(float __Velocity_Y_Max);
     inline void Set_Velocity_X_Max(float __Velocity_X_Max);
@@ -147,6 +154,8 @@ protected:
     //底盘控制方法
     Enum_Chassis_Control_Type Chassis_Control_Type = Chassis_Control_Type_DISABLE;
     Enum_FOLLOW_FLAG_E FOLLOW_FLAG = FOLLOW_ON;
+
+    Enum_UI_INIT_FLAG_E UI_INIT_FLAG = UI_INIT_OFF;
     // 目标速度X
     float Target_Velocity_X = 0.0f;
     //目标速度Y
@@ -293,6 +302,12 @@ float Class_Tricycle_Chassis::Get_Spin_Omega()
     return (Spin_Omega);
 }
 
+float Class_Tricycle_Chassis::Get_Chassis_UI_Init_flag()
+{
+
+    return (UI_INIT_FLAG);
+}
+
 /**
  * @brief 获取当前电机功率
  *
@@ -343,12 +358,14 @@ float Class_Tricycle_Chassis::Get_Target_Wheel_Power()
     return (Target_Wheel_Power);
 }
 
-/**
- * @brief 设定底盘控制方法
- *
- * @param __Chassis_Control_Type 底盘控制方法
- */
-void Class_Tricycle_Chassis::Set_Chassis_Control_Type(Enum_Chassis_Control_Type __Chassis_Control_Type)
+
+
+    /**
+     * @brief 设定底盘控制方法
+     *
+     * @param __Chassis_Control_Type 底盘控制方法
+     */
+    void Class_Tricycle_Chassis::Set_Chassis_Control_Type(Enum_Chassis_Control_Type __Chassis_Control_Type)
 {
     Chassis_Control_Type = __Chassis_Control_Type;
 }
@@ -413,6 +430,7 @@ void Class_Tricycle_Chassis::Set_Now_Omega(float __Velocity_Y_Max)
     Now_Omega = __Velocity_Y_Max;
 }
 
+
 /**
  * @brief 设定当前最大X速度
  *
@@ -432,8 +450,11 @@ void Class_Tricycle_Chassis::Set_Velocity_X_Max(float __Velocity_X_Max)
 {
     Velocity_X_Max = __Velocity_X_Max;
 }
-
+void Class_Tricycle_Chassis::Set_Chassis_UI_Init_flag(Enum_UI_INIT_FLAG_E __UI_init_flag)
+{
+     UI_INIT_FLAG = __UI_init_flag;
+}
 
 #endif
 
-/************************ COPYRIGHT(C) USTC-ROBOWALKER **************************/
+    /************************ COPYRIGHT(C) USTC-ROBOWALKER **************************/
