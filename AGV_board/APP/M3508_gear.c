@@ -7,7 +7,8 @@
 
 void M3508_gear_feedback_handler(M3508_gear_t *kit)
 {
-	M3508_gear_feedback_process(kit);	
+	M3508_gear_feedback_process(kit);
+	kit->flag++;
 	kit->status.output_speed_rpm = kit->feedback.current_rotor_rpm / kit->parameter.reduction_rate;
 }
 

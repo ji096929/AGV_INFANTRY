@@ -128,6 +128,7 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM1_Init();
   MX_USART2_UART_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   platform_filtter_config_setting();
   HAL_CAN_Start(&hcan1);
@@ -138,6 +139,8 @@ int main(void)
   HAL_CAN_ActivateNotification(&hcan2, CAN_IT_RX_FIFO1_MSG_PENDING);
 	SW_control_task_init();
 	HAL_TIM_Base_Start_IT(&htim1);
+	HAL_TIM_Base_Start_IT(&htim2);
+	HAL_TIM_Base_Start_IT(&htim3);
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
   
  //briter_encoder_set_current_pos_zero_pos(&steering_wheel.directive_part.encoder.briter_encoder);

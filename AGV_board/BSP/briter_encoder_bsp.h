@@ -116,6 +116,8 @@ typedef struct
 	briter_encoder_command_t	command;
 	briter_encoder_feedback_t	feedback;
 	briter_encoder_status_t		status;
+	uint32_t flag;
+	uint32_t preflag;
 }briter_encoder_t;
 
 typedef struct

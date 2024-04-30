@@ -62,7 +62,8 @@ typedef struct
 	M3508_gear_command_t	command;
 	M3508_gear_feedback_t	feedback;
 	M3508_gear_status_t		status;
-	
+	uint32_t flag;
+	uint32_t preflag;
 } M3508_gear_t;
 
 void M3508_gear_command_transmit(M3508_gear_t *kit, M3508_SINGLE_COMMAND_HOLD_t hold);

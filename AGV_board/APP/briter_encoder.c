@@ -233,6 +233,7 @@ BRITER_ENCODER_COMMAND_RETURN_t briter_encoder_set_current_pos_5round_value(brit
 
 void briter_encoder_feedback_handler(briter_encoder_t *encoder, uint8_t data[])
 {
+	encoder->flag++;
 	briter_encoder_feedback_process(encoder, data);
 }
 

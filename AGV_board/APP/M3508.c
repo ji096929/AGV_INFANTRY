@@ -2,23 +2,21 @@
 #include "M3508.h"
 
 #if defined(STM32F105) | (STM32F407)
-    #include "can.h"
+#include "can.h"
 #endif
-
 
 /* Motor Bus Settings --------------------------------------------------------*/
 #if defined(STM32F105) | (STM32F407)
-    // F105 and F407 support two CAN buses, so two structures are defined
-    M3508_motor_bus_t M3508_bus_1;
-    M3508_motor_bus_t M3508_bus_2;
+// F105 and F407 support two CAN buses, so two structures are defined
+M3508_motor_bus_t M3508_bus_1;
+M3508_motor_bus_t M3508_bus_2;
 #endif
 
 /* CAN Bus Settings ----------------------------------------------------------*/
 #if defined(STM32F105) | (STM32F407)
-    
-    
-    CAN_TxHeaderTypeDef M3508_CAN_TxHeaderStruct;
-    uint32_t  M3508_pTxMailbox;
+
+CAN_TxHeaderTypeDef M3508_CAN_TxHeaderStruct;
+uint32_t M3508_pTxMailbox;
 #endif
 
 // Function prototypes
@@ -37,15 +35,15 @@ void M3508_Init(M3508_motor_bus_t *M3508_bus, void *bus)
 {
     /* Initialize transmission functions */
     M3508_ctx.tx_cmd = platform_trans;
-    /* Initialize CAN driver interface */
-    #if defined(STM32F105) | (STM32F407)
-        M3508_bus->handle = bus;
-        M3508_CAN_TxHeaderStruct.ExtId = 0;
-        M3508_CAN_TxHeaderStruct.DLC = 8;
-        M3508_CAN_TxHeaderStruct.IDE = CAN_ID_STD;
-        M3508_CAN_TxHeaderStruct.RTR = CAN_RTR_DATA;
-        M3508_CAN_TxHeaderStruct.TransmitGlobalTime = DISABLE;
-    #endif
+/* Initialize CAN driver interface */
+#if defined(STM32F105) | (STM32F407)
+    M3508_bus->handle = bus;
+    M3508_CAN_TxHeaderStruct.ExtId = 0;
+    M3508_CAN_TxHeaderStruct.DLC = 8;
+    M3508_CAN_TxHeaderStruct.IDE = CAN_ID_STD;
+    M3508_CAN_TxHeaderStruct.RTR = CAN_RTR_DATA;
+    M3508_CAN_TxHeaderStruct.TransmitGlobalTime = DISABLE;
+#endif
 }
 
 /**
@@ -66,7 +64,7 @@ void M3508_set_single_motor_current(M3508_motor_bus_t *M3508_bus, uint8_t ESC_ID
     M3508_bus->motor[ESC_ID].command.torque_current_lsb = current;
     // Call the CAN transmission function to send the motor command
     if (hold == SEND_COMMAND_NOW)
-		M3508_command_transmit(&M3508_ctx, M3508_bus, (ESC_ID / 5 + 1));
+        M3508_command_transmit(&M3508_ctx, M3508_bus, (ESC_ID / 5 + 1));
 }
 
 /**
@@ -84,7 +82,8 @@ void M3508_set_four_motor_current(M3508_motor_bus_t *M3508_bus, uint8_t half, ui
     // Pass the bus where the motors are located
     M3508_ctx.handle = M3508_bus->handle;
     uint8_t offset = 0;
-    if (half) offset = 4;
+    if (half)
+        offset = 4;
     for (int i = 0; i < 4; i++)
         M3508_bus->motor[i + 1 + offset].command.torque_current_lsb = current[i];
     M3508_command_transmit(&M3508_ctx, M3508_bus, half + 1);
@@ -120,12 +119,10 @@ M3508_RETURN_T M3508_feedback_handler(M3508_motor_bus_t *M3508_bus, uint16_t CAN
 {
     M3508_ctx.handle = M3508_bus->handle;
     if (M3508_feedback_process(M3508_bus, CAN_ID, data)
-			
-		
-		
-		)
-		return M3508_ERROR;
-	return M3508_OK;
+
+    )
+        return M3508_ERROR;
+    return M3508_OK;
 }
 
 /**
@@ -141,11 +138,11 @@ M3508_RETURN_T M3508_feedback_handler(M3508_motor_bus_t *M3508_bus, uint16_t CAN
  */
 static uint8_t platform_trans(void *handle, uint16_t CAN_ID, uint8_t aData[])
 {
-    #if defined(STM32F105) | (STM32F407)
-        M3508_CAN_TxHeaderStruct.StdId = CAN_ID;
-	
-        return HAL_CAN_AddTxMessage(handle, &M3508_CAN_TxHeaderStruct, aData, &M3508_pTxMailbox);
-    #endif
+#if defined(STM32F105) | (STM32F407)
+    M3508_CAN_TxHeaderStruct.StdId = CAN_ID;
+
+    return HAL_CAN_AddTxMessage(handle, &M3508_CAN_TxHeaderStruct, aData, &M3508_pTxMailbox);
+#endif
 }
 
 /**
@@ -161,11 +158,11 @@ static uint8_t platform_trans(void *handle, uint16_t CAN_ID, uint8_t aData[])
  */
 static uint8_t platform_get_msg(void *handle, uint16_t *CAN_ID, uint8_t aData[])
 {
-    #if defined(STM32F105) | (STM32F407)
-        int status;
-        CAN_RxHeaderTypeDef CAN_RxHeaderStruct;
-        status = HAL_CAN_GetRxMessage(handle, CAN_RX_FIFO0, &CAN_RxHeaderStruct, aData);
-        *CAN_ID = (uint16_t)CAN_RxHeaderStruct.StdId;
-        return status;
-    #endif
+#if defined(STM32F105) | (STM32F407)
+    int status;
+    CAN_RxHeaderTypeDef CAN_RxHeaderStruct;
+    status = HAL_CAN_GetRxMessage(handle, CAN_RX_FIFO0, &CAN_RxHeaderStruct, aData);
+    *CAN_ID = (uint16_t)CAN_RxHeaderStruct.StdId;
+    return status;
+#endif
 }
