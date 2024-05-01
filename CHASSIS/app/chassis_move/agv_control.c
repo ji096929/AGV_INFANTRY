@@ -119,6 +119,8 @@ void calculate_true_power(void)
     else
         chassis_power_control.power_limit_max = JudgeReceive.MaxPower - buffer_pid.Output;
 
+chassis_power_control.power_limit_max=chassis_power_control.power_limit_max+(chassis.supercap.supercap_per*100-30)*2;
+        
 //    if (chassis.supercap.supercap_per > 5)
 //    {
 //        if (chassis.supercap.state == 0)
