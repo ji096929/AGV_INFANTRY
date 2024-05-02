@@ -8,6 +8,7 @@
 #include "math.h"
 #include "SW_control_task.h"
 #include "chassis_power_control.h"
+#include "buzzer.h"
 int32_t ms_count;
 int32_t s_count;
 uint32_t total_count;
@@ -15,10 +16,11 @@ TEST_POWER_T test_power;
 // Function Call
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	if(htim->Instance==TIM1)
+	if(htim->Instance==TIM3)
 	{
 		#ifndef motor_power_test
 		SW_control_task();
+		
 		//SW_subscribe_task();
 		#endif
 		#ifdef motor_power_test
@@ -40,6 +42,21 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 		ms_count=0;
 		s_count++;
 	}
+	
+	
+}
+static uint32_t cnt=0;	
+if(htim->Instance==TIM2)
+{
+	cnt++;
+		buzzer_taskScheduler(&buzzer);
+	        //buzzer_setTask(&buzzer, BUZZER_CALIBRATING_PRIORITY);
+        if(cnt>100)
+	  {
+		  Alive_Tect();
+		  cnt=0;
+	  }
+		  
 }
 }
 

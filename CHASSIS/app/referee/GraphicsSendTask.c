@@ -453,30 +453,34 @@ void CapDraw(float CapVolt, uint8_t Init_Flag)
 	}
 	else
 	{
-		if (CapVolt > 20.0f)
-		{
-			Length = 0.5 * SCREEN_LENGTH;
-			P_graphic_data = Line_Draw(0, Op_Change, 0.25 * SCREEN_LENGTH, 0.125 * SCREEN_WIDTH, 0.25 * SCREEN_LENGTH + Length, 0.125 * SCREEN_WIDTH, 27, Green, CapName2);
-			memcpy(data_pack, (uint8_t *)P_graphic_data, DRAWING_PACK);
-		}
-		else if (CapVolt <= 20.0f && CapVolt >= 15.0f)
-		{
-			Length = CapVolt / 20.0f * (0.5 * SCREEN_LENGTH);
-			P_graphic_data = Line_Draw(0, Op_Change, 0.25 * SCREEN_LENGTH, 0.125 * SCREEN_WIDTH, 0.25 * SCREEN_LENGTH + Length, 0.125 * SCREEN_WIDTH, 27, Green, CapName2);
-			memcpy(data_pack, (uint8_t *)P_graphic_data, DRAWING_PACK);
-		}
-		else if (CapVolt < 15.0f && CapVolt >= 9.0f)
-		{
-			Length = CapVolt / 20.0f * (0.5 * SCREEN_LENGTH);
-			P_graphic_data = Line_Draw(0, Op_Change, 0.25 * SCREEN_LENGTH, 0.125 * SCREEN_WIDTH, 0.25 * SCREEN_LENGTH + Length, 0.125 * SCREEN_WIDTH, 27, Yellow, CapName2);
-			memcpy(data_pack, (uint8_t *)P_graphic_data, DRAWING_PACK);
-		}
-		else if (CapVolt < 9.0f)
-		{
-			Length = CapVolt / 20.0f * (0.5 * SCREEN_LENGTH);
-			P_graphic_data = Line_Draw(0, Op_Change, 0.25 * SCREEN_LENGTH, 0.125 * SCREEN_WIDTH, 0.25 * SCREEN_LENGTH + Length, 0.125 * SCREEN_WIDTH, 27, Orange, CapName2);
-			memcpy(data_pack, (uint8_t *)P_graphic_data, DRAWING_PACK);
-		}
+		// if (CapVolt > 20.0f)
+		// {
+		//Length = 0;
+		 Length = 0.5 * SCREEN_LENGTH*chassis.supercap.supercap_per;
+		P_graphic_data = Line_Draw(0, Op_Change, 0.25 * SCREEN_LENGTH, 0.125 * SCREEN_WIDTH, 0.25 * SCREEN_LENGTH + Length, 0.125 * SCREEN_WIDTH, 27, Green, CapName2);
+		memcpy(data_pack, (uint8_t *)P_graphic_data, DRAWING_PACK);
+
+		Send_UIPack(Drawing_Graphic2_ID, JudgeReceive.robot_id, JudgeReceive.robot_id + 0x100, data_pack, DRAWING_PACK );
+
+		// }
+		// else if (CapVolt <= 20.0f && CapVolt >= 15.0f)
+		// {
+		// 	Length = CapVolt / 20.0f * (0.5 * SCREEN_LENGTH);
+		// 	P_graphic_data = Line_Draw(0, Op_Change, 0.25 * SCREEN_LENGTH, 0.125 * SCREEN_WIDTH, 0.25 * SCREEN_LENGTH + Length, 0.125 * SCREEN_WIDTH, 27, Green, CapName2);
+		// 	memcpy(data_pack, (uint8_t *)P_graphic_data, DRAWING_PACK);
+		// }
+		// else if (CapVolt < 15.0f && CapVolt >= 9.0f)
+		// {
+		// 	Length = CapVolt / 20.0f * (0.5 * SCREEN_LENGTH);
+		// 	P_graphic_data = Line_Draw(0, Op_Change, 0.25 * SCREEN_LENGTH, 0.125 * SCREEN_WIDTH, 0.25 * SCREEN_LENGTH + Length, 0.125 * SCREEN_WIDTH, 27, Yellow, CapName2);
+		// 	memcpy(data_pack, (uint8_t *)P_graphic_data, DRAWING_PACK);
+		// }
+		// else if (CapVolt < 9.0f)
+		// {
+		// 	Length = CapVolt / 20.0f * (0.5 * SCREEN_LENGTH);
+		// 	P_graphic_data = Line_Draw(0, Op_Change, 0.25 * SCREEN_LENGTH, 0.125 * SCREEN_WIDTH, 0.25 * SCREEN_LENGTH + Length, 0.125 * SCREEN_WIDTH, 27, Orange, CapName2);
+		// 	memcpy(data_pack, (uint8_t *)P_graphic_data, DRAWING_PACK);
+		// }
 	}
 }
 
@@ -491,6 +495,9 @@ void CharChange(uint8_t Init_Flag)
 
 	uint8_t FrictionOff[] = "OFF";
 	uint8_t FrictionOn[] = "ON";
+
+	uint8_t SupercapOff[] = "OFF";
+	uint8_t SupercapOn[] = "ON";
 
 	uint8_t ArmorLost[] = "LOST";
 	uint8_t ArmorID_1[] = "ID_1";
@@ -511,16 +518,36 @@ void CharChange(uint8_t Init_Flag)
 
 	uint8_t JAMM[] = "JAMMING!!!";
 
-	static uint8_t JammChangeName[] = "Jam";
+	// static uint8_t JammChangeName[] = "Jam";
+	// if (Init_Flag)
+	// {
+	// 	Char_Draw(0, Op_Add, 0.9 * SCREEN_LENGTH, 0.35 * SCREEN_WIDTH, 20, sizeof(GimbalNormal), 2, Green, JammChangeName, INIT);
+	// }
+	// else
+	// {
+	// 	if (connection.connection_rx.jamming.flag)
+	// 	{
+	// 		Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.35 * SCREEN_WIDTH, 20, sizeof(GimbalNormal), 2, Pink, JammChangeName, JAMM);
+	// 	}
+	// }
+
+		/*切换超电是否开启*/
+	static uint8_t SupercapChangeName[] = "scp";
 	if (Init_Flag)
 	{
-		Char_Draw(0, Op_Add, 0.9 * SCREEN_LENGTH, 0.35 * SCREEN_WIDTH, 20, sizeof(GimbalNormal), 2, Green, JammChangeName, INIT);
+		Char_Draw(0, Op_Add, 0.42 * SCREEN_LENGTH + 100, 0.07 * SCREEN_WIDTH, 30, sizeof(INIT), 2, Green, SupercapChangeName, INIT);
 	}
 	else
 	{
-		if (connection.connection_rx.jamming.flag)
+		switch (connection.connection_rx.supercap.flag)
 		{
-			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.35 * SCREEN_WIDTH, 20, sizeof(GimbalNormal), 2, Pink, JammChangeName, JAMM);
+		case 0:
+			Char_Draw(0, Op_Change, 0.42 * SCREEN_LENGTH + 100, 0.07 * SCREEN_WIDTH, 30, sizeof(SupercapOff), 2, Cyan, SupercapChangeName, SupercapOff);
+			break;
+
+		case 1:
+			Char_Draw(0, Op_Change, 0.42 * SCREEN_LENGTH + 100, 0.07 * SCREEN_WIDTH, 30, sizeof(SupercapOn), 2, Green, SupercapChangeName, SupercapOn);
+			break;
 		}
 	}
 
@@ -639,6 +666,9 @@ void CharChange(uint8_t Init_Flag)
 			break;
 		}
 	}
+
+
+	
 }
 
 /**********************************************************************************************************
@@ -676,10 +706,8 @@ void Char_Init(void)
 	Char_Draw(0, Op_Add, 0.80 * SCREEN_LENGTH, 0.40 * SCREEN_WIDTH, 20, sizeof(fire_char), 2, Yellow, FireName, fire_char);
 
 	/*              CAP字符*/
-	uint8_t cap_char[] = "CAP :       V";
-	Char_Draw(0, Op_Add, 0.40 * SCREEN_LENGTH, 0.1 * SCREEN_WIDTH, 30, sizeof(cap_char), 2, Yellow, CapStaticName, cap_char);
-	
-
+	uint8_t cap_char[] = "CAP :       ";
+	Char_Draw(0, Op_Add, 0.40 * SCREEN_LENGTH, 0.07 * SCREEN_WIDTH, 30, sizeof(cap_char), 2, Yellow, CapStaticName, cap_char);
 }
 
 /**********************************************************************************************************
@@ -741,8 +769,9 @@ void GraphicSendtask(void)
 	UITask_RunTime++;
 
 
-	/*静止UI绘制*/
+	
 	CharChange(Init_Cnt);
+	CapDraw(chassis.supercap.supercap_per, Init_Cnt); // 超级电容电量
 	if (UITask_RunTime % 10 == 0)
 	{
 			//Char_Init(); // 字符
@@ -750,8 +779,8 @@ void GraphicSendtask(void)
 	}
 	if (UITask_RunTime % 50 == 1)
 	{
-		CapDraw(chassis.supercap.supercap_per, InitFlag); // 超级电容电量
-		// Lanelines_Init(); // 车道线
+		
+														  // Lanelines_Init(); // 车道线
 	}
 	if (UITask_RunTime % 20 == 1)
 	{
@@ -777,7 +806,12 @@ void GraphicSendtask(void)
 //			// CapUI_Change(superpower.actual_vol, InitFlag); // 超级电容电压
 
 
-				
+	if(connection.connection_rx.Graphic_Init.flag==1)
+	{
+		Init_Cnt = 50;
+		connection.connection_rx.Graphic_Init.flag = 0;
+	}		
+
 
 	if (Init_Cnt > 0)
 	{

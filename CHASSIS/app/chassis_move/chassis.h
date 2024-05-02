@@ -26,7 +26,8 @@ typedef enum
 	CHASSIS_REMOTE_CLOSE = 0x00u,
 	CHASSIS_NORMAL = 0x01u,
 	CHASSIS_SPIN = 0x02u,
-	CHASSIS_PRECISIOUS = 0x03u,
+	CHASSIS_PRECISIOUS = 0x04u,
+	ANTI_SPIN = 0x03u,
 
 } CHASSIS_MODE_E;
 
@@ -97,8 +98,8 @@ typedef struct
 	SUPERCAP_ONLINE_STATE_E online_state;
 	float supercap_voltage;
 	float supercap_per;
-	int Keep_Alive_Time_Cnt;
-	uint8_t KeepAlive_SentData[4];
+	float alive_s;
+	float alive_ms;
 } SUPERCAP_T;
 
 typedef struct

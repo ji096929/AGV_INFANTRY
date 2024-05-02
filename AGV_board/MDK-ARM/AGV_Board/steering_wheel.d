@@ -12,8 +12,10 @@ agv_board\steering_wheel.o: ../BSP/briter_encoder_bsp.h
 agv_board\steering_wheel.o: ..\APP\steering_communication.h
 agv_board\steering_wheel.o: ../BSP/steering_communication_bsp.h
 agv_board\steering_wheel.o: ..\APP\chassis_power_control.h
-agv_board\steering_wheel.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\cmath
+agv_board\steering_wheel.o: ..\APP\buzzer.h
+agv_board\steering_wheel.o: ../BSP/buzzer_bsp.h
 agv_board\steering_wheel.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\math.h
+agv_board\steering_wheel.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\cmath
 agv_board\steering_wheel.o: ../Core/Inc/can.h
 agv_board\steering_wheel.o: ../Core/Inc/main.h
 agv_board\steering_wheel.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h

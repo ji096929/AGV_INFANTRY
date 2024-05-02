@@ -421,6 +421,7 @@ STEERING_COMMUNICATION_RETURN_T steering_communication_rx_handler(uint32_t extid
 {
 	steering_communication_pack_t pack;
 	steering_wheel_t *temp_handle;
+	steering_wheel.command.flag++;
 	pack = steering_communication_receive_unpack(extid, data1);
 	temp_handle=Steering_FindSteeringHandle_via_CANID(pack.steering_id);
 	if (temp_handle==NULL)

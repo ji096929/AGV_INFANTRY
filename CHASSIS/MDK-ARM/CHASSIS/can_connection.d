@@ -43,3 +43,17 @@ chassis\can_connection.o: ../app/motor/motor.h
 chassis\can_connection.o: ../bsp/PID/PID.h
 chassis\can_connection.o: ..\app\gimbal_connoection\gimbal_connection.h
 chassis\can_connection.o: ../app/chassis_move/agv_control.h
+chassis\can_connection.o: ../app/chassis_task.h
+chassis\can_connection.o: ../Core/Inc/tim.h
+chassis\can_connection.o: ../Core/Inc/main.h
+chassis\can_connection.o: ../app/referee/referee.h
+chassis\can_connection.o: ../app/referee/algorithmOfCRC.h
+chassis\can_connection.o: ../app/referee/ui.h
+chassis\can_connection.o: ../app/referee/ui_interface.h
+chassis\can_connection.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stdio.h
+chassis\can_connection.o: ../app/referee/ui_types.h
+chassis\can_connection.o: ../app/referee/ui_1_Ungroup_0.h
+chassis\can_connection.o: ../app/referee/ui_default_Ungroup_0.h
+chassis\can_connection.o: ../app/buzzer.h
+chassis\can_connection.o: ../bsp/buzzer_bsp.h
+chassis\can_connection.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\math.h

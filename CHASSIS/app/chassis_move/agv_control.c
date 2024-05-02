@@ -129,7 +129,7 @@ chassis_power_control.power_limit_max=chassis_power_control.power_limit_max+(cha
 //        }
 //        else
 //        {
-//            chassis_power_control.power_limit_max = chassis_power_control.power_limit_max + 200;
+//            chassis_power_control.power_limit_max = chassis_power_control.power_limit_max + 80;
 //        }
 //    }
 //    else

@@ -139,6 +139,8 @@ typedef struct
 {
 	int16_t protocol_position;
 	int16_t protocol_speed;
+	uint32_t flag;
+	uint32_t preflag;
 } steering_wheel_command_t;
 typedef struct
 {
@@ -215,7 +217,8 @@ STEERING_WHEEL_RETURN_T Steering_Wheel_HandleInit(steering_wheel_t *steering_whe
 STEERING_WHEEL_RETURN_T Steering_Wheel_CommandTransmit(steering_wheel_t *steering_wheel);
 
 steering_wheel_t *Steering_FindSteeringHandle_via_CANID(uint8_t CANID);
-
+void Alive_Tect(void);
+extern steering_wheel_t steering_wheel;
 extern uint32_t total_count;
 
 /* CRITICAL Settings, NEVER CHANGE! ------------------------------------------*/

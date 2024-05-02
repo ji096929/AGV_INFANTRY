@@ -54,6 +54,7 @@ typedef struct
 	CHASSIS_MODE_E mode;
 	CHASSIS_MODE_STATE_T invert;
 	CHASSIS_MODE_STATE_T follow;
+	CHASSIS_MODE_STATE_T supercap;
 	CHASSIS_MODE_STATE_T Graphic_Init;
 	CHASSIS_MODE_STATE_T fric;
 	CHASSIS_MODE_STATE_T vision;
