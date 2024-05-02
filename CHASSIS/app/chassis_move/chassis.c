@@ -151,18 +151,17 @@ static float chassis_fllow(void)
 	float gimbal_angle, chassis_angle;
 	chassis_angle = yaw.status.actual_angle;
 
-
 	gimbal_angle = GIMBAL_HEAD_ANGLE + 180.0f * chassis.parameter.invert_flag;
 
-	if(chassis_angle-gimbal_angle>180)
+	if (chassis_angle - gimbal_angle > 180)
 	{
-		chassis_angle-=360;
+		chassis_angle -= 360;
 	}
-		if(chassis_angle-gimbal_angle<-180)
+	if (chassis_angle - gimbal_angle < -180)
 	{
-		chassis_angle+=360;
+		chassis_angle += 360;
 	}
-	
+
 	PID_Calculate(&yaw_pid.angle_loop, chassis_angle, gimbal_angle);
 	return yaw_pid.angle_loop.Output;
 }
@@ -195,6 +194,13 @@ void Chassis_Mode_Command_Update(void)
 			chassis.command.vw = 24.0f;
 		else
 			chassis.command.vw = 12.0f;
+		break;
+
+	case ANTI_SPIN:
+		if (chassis.command.vx == 0 && chassis.command.vy == 0)
+			chassis.command.vw = -24.0f;
+		else
+			chassis.command.vw = -12.0f;
 		break;
 	}
 }

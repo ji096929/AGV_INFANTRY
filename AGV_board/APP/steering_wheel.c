@@ -128,22 +128,22 @@ void Steering_Wheel_PID_HandleInit(steering_wheel_t *steering_wheel)
 	// 先把PID结构体置零
 	memset(&steering_wheel->directive_part.motor.PID_Handles, 0, sizeof(steering_wheel->directive_part.motor.PID_Handles));
 	memset(&steering_wheel->motion_part.motor.PID_Handles, 0, sizeof(steering_wheel->motion_part.motor.PID_Handles));
-	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hDefKpGain = 5;
+	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hDefKpGain = 10;
 	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hKpDivisorPOW2 = 6;
-	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hDefKdGain = 0;
+	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hDefKdGain = 2;
 	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hKdDivisorPOW2 = 0;
 	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hUpperOutputLimit = 2000;
 	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hLowerOutputLimit = -2000;
 
 	// 转向电机速度环 默认Kp Ki Kd 写入
-	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.hDefKpGain = 300;
+	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.hDefKpGain = 400;
 	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.hKpDivisorPOW2 = 1;
 	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.hDefKiGain = 50;
 	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.hKiDivisorPOW2 = 2;
-	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.hUpperOutputLimit = 9000;
-	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.hLowerOutputLimit = -9000;
-	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.wUpperIntegralLimit = 10000;
-	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.wLowerIntegralLimit = -10000;
+	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.hUpperOutputLimit = 7000;
+	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.hLowerOutputLimit = -7000;
+	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.wUpperIntegralLimit = 5000;
+	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.wLowerIntegralLimit = -5000;
 	// 动力电机速度环 默认Kp Ki Kd 写入
 	steering_wheel->motion_part.motor.PID_Handles.velocity_loop_handle.hDefKpGain = 350;
 	steering_wheel->motion_part.motor.PID_Handles.velocity_loop_handle.hKpDivisorPOW2 = 2;

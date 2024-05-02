@@ -108,7 +108,7 @@ void Supercap_Task(void)
     
     chassis.supercap.online_state = SUPERCAP_ONLINE;
     Set_Super_Capacitor_State(chassis.supercap.state);
-    HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_RESET);
+    //HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_RESET);
     Tx_Super_Capacitor();
 }
 

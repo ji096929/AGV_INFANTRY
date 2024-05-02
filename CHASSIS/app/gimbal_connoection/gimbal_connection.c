@@ -17,6 +17,8 @@ void Chassis_Speed_Command_Update(GIMBAL_CONNECTION_T *connection, uint8_t data[
 	memcpy(&connection->connection_rx.vy, data + 2, sizeof(int16_t));
 	memcpy(&connection->connection_rx.vw, data + 4, sizeof(int16_t));
 
+//	if(chassis.parameter.mode==CHASSIS_NORMAL)
+//		connection->connection_rx.vw=0;
 	//	connection->connection_rx.vx = (int16_t)(data[0]<<8|data[1]);
 	//        connection->connection_rx.vy = (int16_t)(data[2]<<8|data[3]);
 	//        connection->connection_rx.vw = (int16_t)(data[4]<<8|data[5]);

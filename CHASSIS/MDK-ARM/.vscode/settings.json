@@ -82,6 +82,8 @@
     "chassis.h": "c",
     "chassis_task.h": "c",
     "referee.h": "c",
-    "tim.h": "c"
+    "tim.h": "c",
+    "kinematic.h": "c",
+    "gimbal_connection.h": "c"
   }
 }
