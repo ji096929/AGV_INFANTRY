@@ -49,7 +49,7 @@ extern uint16_t pwmVal;
 
 void Task_Init();
 void Task_Loop();
-
+static void Offline_Judge(void);
 #endif
 
 /************************ COPYRIGHT(C) USTC-ROBOWALKER **************************/

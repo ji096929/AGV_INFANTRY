@@ -70,6 +70,7 @@ void SystemClock_Config(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -106,6 +107,8 @@ int main(void)
   MX_USB_DEVICE_Init();
   MX_USART1_UART_Init();
   MX_TIM1_Init();
+  MX_TIM6_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   Task_Init();
   /* USER CODE END 2 */

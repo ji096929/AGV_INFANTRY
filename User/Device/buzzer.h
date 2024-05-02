@@ -8,8 +8,8 @@ extern "C" {
 
 /* USER Settings -------------------------------------------------------------*/
 // Define board and chips
-//#define ROBOMASTER_DEVELOPMENT_BOARD_TYPE_C	// 配置适用于 C 板的蜂鸣器设置
-#define MOSASAURUS_ELITE_BOARD					// 配置适用于菁英板的蜂鸣器设置
+#define ROBOMASTER_DEVELOPMENT_BOARD_TYPE_C	// 配置适用于 C 板的蜂鸣器设置
+//#define MOSASAURUS_ELITE_BOARD					// 配置适用于菁英板的蜂鸣器设置
 //#define MOSASAURUS_STEERING_CONTROL_BOARD		// 配置适用于舵轮控制板的蜂鸣器设置
 
 #define BUZZER_MAX_PRIORITY_NUM 64
@@ -32,7 +32,7 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "buzzer_bsp.h"
 #include <stdint.h>
-
+#include <stdio.h>
 // 用于规定各种蜂鸣器发声任务优先级，优先进行高优先级的发声任务
 // （数字越小优先级越高）
 typedef uint8_t BUZZER_BEEP_TASK_TO_PRIORITY_LUT_T; enum 

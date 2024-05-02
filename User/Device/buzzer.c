@@ -1,6 +1,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "buzzer.h"
-
+#include <string.h>
 #if defined(ROBOMASTER_DEVELOPMENT_BOARD_TYPE_C) | defined(MOSASAURUS_ELITE_BOARD) | defined(MOSASAURUS_STEERING_CONTROL_BOARD)
 	#include "tim.h"
 #elif blablabla
@@ -88,7 +88,7 @@ BUZZER_RETURN_T buzzer_taskScheduler(buzzer_t *buzzer)
 			break;
 	}
 	buzzer->status.lastTask = buzzer->status.currentTask;
-	return ret;
+	return (BUZZER_RETURN_T)ret;
 }
 
 /**
@@ -213,27 +213,27 @@ BUZZER_RETURN_T buzzer_playTone(buzzer_t *buzzer, BUZZER_BSP_TONE_TO_POW_LUT_H t
 	// 判断音调是否有效
 	if (tone<LOWEST_TONE_POW || tone>HIGHEST_TONE_POW)
 		return BUZZER_WRONG_PARAM;
-	uint32_t ret;
+	BUZZER_RETURN_T ret;
 	float freq;
 	// 计算频率
 	freq = TONE_A4_FREQUENCY*pow(SEMITONE_COEFFICIENT, tone);
 	// 设置arr
 	buzzer->parameter.arr = buzzer->parameter.clkFreq / buzzer->parameter.psc / freq;
-	return ret = buzzerBsp_setTimer(&buzzer->parameter.ctx, buzzer->parameter.arr);
+	return ret = (BUZZER_RETURN_T)buzzerBsp_setTimer(&buzzer->parameter.ctx, buzzer->parameter.arr);
 }
 
 BUZZER_RETURN_T buzzer_setState(buzzer_t *buzzer, BUZZER_BSP_SWITCH_T state)
 {
 	if (state != BUZZER_SWITCH_ON && state != BUZZER_SWITCH_OFF)
 		return BUZZER_WRONG_PARAM;
-	uint32_t ret = buzzerBsp_setSwitch(&buzzer->parameter.ctx, state);
+	BUZZER_RETURN_T ret = (BUZZER_RETURN_T)buzzerBsp_setSwitch(&buzzer->parameter.ctx, state);
 	return ret;
 }
 
 BUZZER_RETURN_T buzzer_getTick(buzzer_t *buzzer, uint32_t* tick)
 {
-	uint32_t ret;
-	return ret = buzzzerBsp_getTick(&buzzer->parameter.ctx, tick);
+	BUZZER_RETURN_T ret;
+	return ret = (BUZZER_RETURN_T)buzzzerBsp_getTick(&buzzer->parameter.ctx, tick);
 }
 
 /* Platform functions -------------------------------------------------------*/
@@ -243,7 +243,7 @@ static uint8_t platform_setFreq(void* peripheral_handle,uint32_t channel, uint16
 	uint32_t ret;
 	#if defined(MOSASAURUS_ELITE_BOARD) | defined(ROBOMASTER_DEVELOPMENT_BOARD_TYPE_C) | defined(MOSASAURUS_STEERING_CONTROL_BOARD)
 		// 为了符合 HAL 库的函数，要给外设句柄和 Channel 号套一层壳再赋值
-		TIM_HandleTypeDef* peripheral_handleShell = peripheral_handle;
+		TIM_HandleTypeDef* peripheral_handleShell = (TIM_HandleTypeDef*)peripheral_handle;
 		if (value<0 || value>65535) return BUZZER_WRONG_PARAM; // 适用于 16 bit ARR 寄存器的保护机制
 		peripheral_handleShell->Instance->ARR = value;
 		ret = __HAL_TIM_SetCompare(peripheral_handleShell, channel, value/3*2);
@@ -256,7 +256,7 @@ static uint8_t platform_setSwitch(void* peripheral_handle, uint32_t channel, BUZ
 	uint32_t ret;
 	#if defined(MOSASAURUS_ELITE_BOARD) | defined(ROBOMASTER_DEVELOPMENT_BOARD_TYPE_C) | defined (MOSASAURUS_STEERING_CONTROL_BOARD)
 		// 为了符合 HAL 库的函数，要给外设句柄和 Channel 号套一层壳再赋值
-		TIM_HandleTypeDef* peripheral_handleShell = peripheral_handle;
+		TIM_HandleTypeDef* peripheral_handleShell = (TIM_HandleTypeDef*)peripheral_handle;
 		switch(state)
 		{
 			case BUZZER_SWITCH_ON:
