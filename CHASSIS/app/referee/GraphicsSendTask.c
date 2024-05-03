@@ -772,6 +772,7 @@ void GraphicSendtask(void)
 	
 	CharChange(Init_Cnt);
 	CapDraw(chassis.supercap.supercap_per, Init_Cnt); // 超级电容电量
+	CapUI_Change(chassis.supercap.supercap_voltage, Init_Cnt); // 超级电容电压
 	if (UITask_RunTime % 10 == 0)
 	{
 			//Char_Init(); // 字符
