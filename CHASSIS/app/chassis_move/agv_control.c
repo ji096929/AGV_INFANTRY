@@ -4,7 +4,7 @@
 
 chassis_power_control_t chassis_power_control;
 PID_TypeDef buffer_pid;
-
+PID_TypeDef supercap_pid;
 void Set_AGV_Velocity_Vector_Data_Update(uint8_t tx_data[], int16_t angle, int16_t speed, float power_limition)
 {
 
@@ -109,6 +109,7 @@ void AGV_connoection(int ms_cnt)
 float test_sum;
 void calculate_true_power(void)
 {
+	float expect_supercap_per;
     PID_Calculate(&buffer_pid, JudgeReceive.remainEnergy, 30);
     float sum = 0;
 		if(JudgeReceive.MaxPower==65535)
@@ -119,48 +120,54 @@ void calculate_true_power(void)
     else
         chassis_power_control.power_limit_max = JudgeReceive.MaxPower - buffer_pid.Output;
 
-chassis_power_control.power_limit_max=chassis_power_control.power_limit_max+(chassis.supercap.supercap_per*100-30)*2;
+    
+//chassis_power_control.power_limit_max=chassis_power_control.power_limit_max+(chassis.supercap.supercap_per*100-30)*2;
         
 //    if (chassis.supercap.supercap_per > 5)
 //    {
-//        if (chassis.supercap.state == 0)
-//        {
-//            chassis_power_control.power_limit_max = chassis_power_control.power_limit_max + 5; // Slightly greater than the maximum power, avoiding the capacitor being full all the time and improving energy utilization
-//        }
-//        else
-//        {
-//            chassis_power_control.power_limit_max = chassis_power_control.power_limit_max + 80;
-//        }
-//    }
-//    else
-//    {
-//        chassis_power_control.power_limit_max = chassis_power_control.power_limit_max;
-//    }
-
-    if (chassis_power_control.all_mscb_ready_flag & 0xf)
-    {
-        for (uint8_t i = 0; i < 4; i++)
+        if (chassis.supercap.state == 0)
         {
-            sum += chassis_power_control.expect_power_32[i];
-        }
-        test_sum = sum;
-
-        chassis_power_control.scaled_power_coefficient_32 = (chassis_power_control.power_limit_max) / sum;
-        if (chassis_power_control.scaled_power_coefficient_32 <= 1)
-        {
-            for (uint8_t i = 0; i < 4; i++)
-            {
-                chassis_power_control.scaled_power_32[i] = chassis_power_control.scaled_power_coefficient_32 * chassis_power_control.expect_power_32[i];
-            }
+            expect_supercap_per = 0.8;
+            // chassis_power_control.power_limit_max = chassis_power_control.power_limit_max + 5; // slightly greater than the maximum power, avoiding the capacitor being full all the time and improving energy utilization
         }
         else
         {
+            expect_supercap_per = 0.2;
+            // chassis_power_control.power_limit_max = chassis_power_control.power_limit_max + 80;
+        }
+        PID_Calculate(&supercap_pid, chassis.supercap.supercap_per, expect_supercap_per);
+        chassis_power_control.power_limit_max -= supercap_pid.Output;
+
+        //    }
+        //    else
+        //    {
+        //        chassis_power_control.power_limit_max = chassis_power_control.power_limit_max;
+        //    }
+
+        if (chassis_power_control.all_mscb_ready_flag & 0xf)
+        {
             for (uint8_t i = 0; i < 4; i++)
             {
-                chassis_power_control.scaled_power_32[i] = chassis_power_control.expect_power_32[i];
+                sum += chassis_power_control.expect_power_32[i];
             }
-        }
-        chassis_power_control.all_mscb_ready_flag = 0;
+            test_sum = sum;
+
+            chassis_power_control.scaled_power_coefficient_32 = (chassis_power_control.power_limit_max) / sum;
+            if (chassis_power_control.scaled_power_coefficient_32 <= 1)
+            {
+                for (uint8_t i = 0; i < 4; i++)
+                {
+                    chassis_power_control.scaled_power_32[i] = chassis_power_control.scaled_power_coefficient_32 * chassis_power_control.expect_power_32[i];
+                }
+            }
+            else
+            {
+                for (uint8_t i = 0; i < 4; i++)
+                {
+                    chassis_power_control.scaled_power_32[i] = chassis_power_control.expect_power_32[i];
+                }
+            }
+            chassis_power_control.all_mscb_ready_flag = 0;
     }
 }
 

@@ -28,5 +28,6 @@ void calculate_true_power(void);
 		void Chassis_Power_Control_Init(void);
 
  extern PID_TypeDef buffer_pid;
+   extern  PID_TypeDef supercap_pid;
 
 #endif
