@@ -44,6 +44,7 @@ enum Enum_Chassis_Control_Type : uint8_t
     Chassis_Control_Type_DISABLE = 0,
     Chassis_Control_Type_FLLOW,
     Chassis_Control_Type_SPIN,
+    Chassis_Control_Type_ANTI_SPIN,
 };
 
 typedef enum

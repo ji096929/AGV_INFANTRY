@@ -184,7 +184,7 @@ void Class_Chariot::CAN_Gimbal_TxCpltCallback()
 
     float relative_angle = 0;
 
-    int chassis_velocity_x = 0, chassis_velocity_y = 0;
+    int chassis_velocity_x = 0, chassis_velocity_y = 0, chassis_velocity_w = 0;
 
     float gimbal_angle = 0, chassis_angle = 0;
     // 设定速度
@@ -203,6 +203,16 @@ void Class_Chariot::CAN_Gimbal_TxCpltCallback()
 
     tmp_chassis_velocity_x = gimbal_velocity_x * cos(relative_angle) + gimbal_velocity_y * sin(relative_angle);
     tmp_chassis_velocity_y = -gimbal_velocity_x * sin(relative_angle) + gimbal_velocity_y * cos(relative_angle);
+
+    if (DR16.Get_DR16_Status() != DR16_Status_DISABLE && DR16.Get_Left_Switch() == DR16_Switch_Status_UP)
+    {
+        if (DR16.Get_Right_Switch() == DR16_Switch_Status_UP)
+            Chassis.Set_Chassis_Control_Type(Chassis_Control_Type_ANTI_SPIN);
+        else if (DR16.Get_Right_Switch() == DR16_Switch_Status_MIDDLE)
+            Chassis.Set_Chassis_Control_Type(Chassis_Control_Type_SPIN);
+    }
+
+    //    memcpy(CAN2_0x150_Tx_Data + 4, &chassis_velocity_w, sizeof(int16_t));
 
     chassis_velocity_x = Math_Float_To_Int(tmp_chassis_velocity_x, -1 * Chassis.Get_Velocity_X_Max(), Chassis.Get_Velocity_X_Max(), -450, 450);
     memcpy(CAN2_0x150_Tx_Data, &chassis_velocity_x, sizeof(int16_t));
@@ -391,17 +401,17 @@ void Class_Chariot::Control_Gimbal()
             {
                 if (Gimbal.Get_Gimbal_Control_Type() == Gimbal_Control_Type_MINIPC)
                 {
-                    if (MiniPC.Get_MiniPC_Status() == MiniPC_Data_Status_DISABLE)
-                    {
+                    // if (MiniPC.Get_MiniPC_Status() == MiniPC_Data_Status_DISABLE)
+                    // {
 
-                        tmp_gimbal_yaw = Gimbal.Motor_Yaw.Get_True_Angle_Yaw();
-                        tmp_gimbal_pitch = Gimbal.Motor_Pitch.Get_True_Angle_Pitch();
-                    }
-                    else
-                    {
-                        tmp_gimbal_yaw = MiniPC.Get_Rx_Yaw_Angle();
-                        tmp_gimbal_pitch = MiniPC.Get_Rx_Pitch_Angle();
-                    }
+                    //     tmp_gimbal_yaw = Gimbal.Motor_Yaw.Get_True_Angle_Yaw();
+                    //     tmp_gimbal_pitch = Gimbal.Motor_Pitch.Get_True_Angle_Pitch();
+                    // }
+                    // else
+                    // {
+                    tmp_gimbal_yaw = MiniPC.Get_Rx_Yaw_Angle();
+                    tmp_gimbal_pitch = MiniPC.Get_Rx_Pitch_Angle();
+                    // }
 
                     // 键盘遥控器操作逻辑
                     tmp_gimbal_yaw -= DR16.Get_Mouse_X() * DR16_Mouse_Yaw_Angle_Resolution * 10;
