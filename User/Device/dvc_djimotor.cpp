@@ -12,7 +12,7 @@
 /* Includes ------------------------------------------------------------------*/
 
 #include "dvc_djimotor.h"
-
+#include "buzzer.h"
 /* Private macros ------------------------------------------------------------*/
 
 /* Private types -------------------------------------------------------------*/
@@ -266,6 +266,8 @@ void Class_DJI_Motor_GM6020::TIM_Alive_PeriodElapsedCallback()
         PID_Angle.Set_Integral_Error(0.0f);
         PID_Omega.Set_Integral_Error(0.0f);
         PID_Torque.Set_Integral_Error(0.0f);
+
+        buzzer_setTask(&buzzer,BUZZER_DEVICE_OFFLINE_PRIORITY);
     }
     else
     {

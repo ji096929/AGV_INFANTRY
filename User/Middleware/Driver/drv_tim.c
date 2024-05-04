@@ -146,7 +146,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     }
     else if (htim->Instance == TIM4)
     {
-        TIM4_Manage_Object.Callback_Function();
+        //TIM4_Manage_Object.Callback_Function();
     }
     else if (htim->Instance == TIM5)
     {

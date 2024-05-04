@@ -322,7 +322,7 @@ void MiniPC_USB_Callback(uint8_t *Buffer, uint32_t Length)
  * @brief TIM4任务回调函数
  *
  */
-void Task100us_TIM4_Callback()
+void Task100us_TIM3_Callback()
 {
 #ifdef CHASSIS
 
@@ -346,17 +346,23 @@ uint16_t pwmVal = 300;
 void Task1ms_TIM5_Callback()
 {
     init_finished++;
+    if(init_finished <10000)
+		{
+			buzzer_setTask(&buzzer,BUZZER_CALIBRATING_PRIORITY);
+		}
     if (init_finished > 10000)//等待IMU稳定后开始控制
         start_flag = 1;
+		
 
     /************ 判断设备在线状态判断 50ms (所有device:电机，遥控器，裁判系统等) ***************/
 
     chariot.TIM1msMod50_Alive_PeriodElapsedCallback();
-
+  
     /****************************** 交互层回调函数 1ms *****************************************/
     if (start_flag == 1)
     {
         chariot.TIM_Calculate_PeriodElapsedCallback();
+			  //buzzer_setTask(&buzzer,BUZZER_CALIBRATED_PRIORITY);
 
         /****************************** 驱动层回调函数 1ms *****************************************/
 
@@ -434,7 +440,7 @@ void Task_Init()
 #endif
 
     // 定时器循环任务
-    TIM_Init(&htim3, Task100us_TIM4_Callback);
+    TIM_Init(&htim3, Task100us_TIM3_Callback);
     TIM_Init(&htim5, Task1ms_TIM5_Callback);
      TIM_Init(&htim6, Task1ms_TIM6_Callback);
 
