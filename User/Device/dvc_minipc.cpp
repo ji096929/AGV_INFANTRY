@@ -49,7 +49,7 @@ void Class_MiniPC::Data_Process()
 
     float tmp_yaw, tmp_pitch;
 
-    Self_aim(Pack_Rx.target_x, Pack_Rx.target_y, Pack_Rx.target_z+0.20, &Rx_Angle_Yaw, &Rx_Angle_Pitch, &Distance);
+    Self_aim(Pack_Rx.target_x, Pack_Rx.target_y, Pack_Rx.target_z+0.06, &Rx_Angle_Yaw, &Rx_Angle_Pitch, &Distance);
 
     //    Rx_Angle_Yaw = meanFilter(tmp_yaw);
     //    Rx_Angle_Pitch = meanFilter(tmp_pitch);
@@ -277,7 +277,7 @@ float Class_MiniPC::calc_pitch(float x, float y, float z)
 //        float t = sqrtf(x * x) / v_x;
 //        float h = v_y * t - 0.5 * g * t * t;
 //        dz = z - h;
-//        
+       
 //        temp_hight += 0.5 * dz;
 
 //        if (fabsf(dz) < 0.01)

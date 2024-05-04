@@ -5,8 +5,8 @@
 **********************************************************************
 
 File          : E:/files/pure_english_name_files/Standard_4_Cpp_Structure_ByRoboWalker/1.jdebug
-Created       : 25 Mar 2024 19:41
-Ozone Version : V3.30a
+Created       : 3 May 2024 09:28
+Ozone Version : V3.24
 */
 
 /*********************************************************************
@@ -33,6 +33,7 @@ void OnProjectLoad (void) {
   //
   // User settings
   //
+  Edit.SysVar (VAR_HSS_SPEED, FREQ_500_HZ);
   File.Open ("$(ProjectDir)/MDK-ARM/infantry/infantry.axf");
 }
 
@@ -113,9 +114,8 @@ void OnProjectLoad (void) {
 **
 **********************************************************************
 */
-void AfterTargetReset (void) {
-  _SetupTarget();
-}
+//void AfterTargetReset (void) {
+//}
 
 /*********************************************************************
 *
@@ -199,9 +199,8 @@ void AfterTargetReset (void) {
 *
 **********************************************************************
 */
-void AfterTargetDownload (void) {
-  _SetupTarget();
-}
+//void AfterTargetDownload (void) {
+//}
 
 /*********************************************************************
 *
@@ -299,34 +298,3 @@ void AfterTargetDownload (void) {
 */
 //void OnError (void) {
 //}
-
-/*********************************************************************
-*
-*       AfterProjectLoad
-*
-* Function description
-*   After Project load routine. Optional.
-*
-**********************************************************************
-*/
-//void AfterProjectLoad (void) {
-//}
-
-/*********************************************************************
-*
-*       _SetupTarget
-*
-* Function description
-*   Setup the target.
-*   Called by AfterTargetReset() and AfterTargetDownload().
-*
-*   Auto-generated function. May be overridden by Ozone.
-*
-**********************************************************************
-*/
-void _SetupTarget(void) {
-  //
-  // this function is intentionally empty because both inital PC and
-  // initial SP were chosen not to be set
-  //
-}

@@ -178,6 +178,8 @@ BUZZER_RETURN_T buzzer_playCalibrated(buzzer_t *buzzer)
 		buzzer->status.currentTask = BUZZER_FREE_PRIORITY; // 任务完成，释放优先级
 }
 
+
+
 BUZZER_RETURN_T buzzer_playDeviceOffline(buzzer_t *buzzer)
 {
 	uint32_t current_tick, wait;
