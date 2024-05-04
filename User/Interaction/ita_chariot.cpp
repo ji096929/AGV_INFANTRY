@@ -401,17 +401,17 @@ void Class_Chariot::Control_Gimbal()
             {
                 if (Gimbal.Get_Gimbal_Control_Type() == Gimbal_Control_Type_MINIPC)
                 {
-                    // if (MiniPC.Get_MiniPC_Status() == MiniPC_Data_Status_DISABLE)
-                    // {
+                    if (MiniPC.Get_MiniPC_Status() == MiniPC_Data_Status_DISABLE)
+                    {
 
-                    //     tmp_gimbal_yaw = Gimbal.Motor_Yaw.Get_True_Angle_Yaw();
-                    //     tmp_gimbal_pitch = Gimbal.Motor_Pitch.Get_True_Angle_Pitch();
-                    // }
-                    // else
-                    // {
+                        tmp_gimbal_yaw = Gimbal.Motor_Yaw.Get_True_Angle_Yaw();
+                        tmp_gimbal_pitch = Gimbal.Motor_Pitch.Get_True_Angle_Pitch();
+                    }
+                    else
+                    {
                     tmp_gimbal_yaw = MiniPC.Get_Rx_Yaw_Angle();
                     tmp_gimbal_pitch = MiniPC.Get_Rx_Pitch_Angle();
-                    // }
+                    }
 
                     // 键盘遥控器操作逻辑
                     tmp_gimbal_yaw -= DR16.Get_Mouse_X() * DR16_Mouse_Yaw_Angle_Resolution * 10;

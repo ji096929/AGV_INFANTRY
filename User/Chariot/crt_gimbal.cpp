@@ -303,7 +303,7 @@ void Class_Gimbal_Pitch_Motor_GM6020::Transform_Angle()
 {
     True_Rad_Pitch = 1 * IMU->Get_Rad_Pitch();
     True_Gyro_Pitch = -1 * IMU->Get_Gyro_Pitch();
-    True_Angle_Pitch = RADPS_TO_RPM(True_Rad_Pitch);
+    True_Angle_Pitch = RAD_TO_ANGEL(True_Rad_Pitch);
 }
 
 /**
