@@ -117,18 +117,28 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
+<<<<<<< HEAD
           <Key>DLGUARM</Key>
           <Name></Name>
+=======
+          <Key>UL2CM3</Key>
+          <Name>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0STM32F4xx_1024 -FS08000000 -FL0100000 -FP0($$Device:STM32F407IG$Flash\STM32F4xx_1024.FLM))</Name>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
+          <Key>JL2CM3</Key>
+          <Name>-U20090928 -O78 -S2 -ZTIFSpeedSel5000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(2BA01477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO15 -FD20000000 -FC1000 -FN1 -FF0STM32F4xx_1024 -FS08000000 -FL0100000 -FP0($$Device:STM32F407IG$Flash\STM32F4xx_1024.FLM)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
           <Key>elaphureLink</Key>
           <Name>-UCMSIS_DAP -O206 -S0 -C0 -N00("ARM CoreSight SW-DP (ARM Core") -D00(2BA01477) -L00(0) -TO65554 -TC10000000 -TT10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO7 -FD20000000 -FC1000 -FN1 -FF0STM32F4xx_1024.FLM -FS08000000 -FL0100000 -FP0($$Device:STM32F407IGHx$CMSIS\Flash\STM32F4xx_1024.FLM)</Name>
+>>>>>>> b9a872c6221cf3e225490b64a5ba5ff6b52d4ab5
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
-          <Key>CMSIS_AGDI</Key>
-          <Name>-X"Any" -UAny -O206 -S8 -C0 -P00 -N00("") -D00(00000000) -L00(0) -TO18 -TC10000000 -TP20 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO7 -FD20000000 -FC1000 -FN1 -FF0STM32F4xx_1024.FLM -FS08000000 -FL0100000 -FP0($$Device:STM32F407IGHx$CMSIS\Flash\STM32F4xx_1024.FLM)</Name>
+          <Key>elaphureLink</Key>
+          <Name>-UCMSIS_DAP -O206 -S0 -C0 -N00("ARM CoreSight SW-DP (ARM Core") -D00(2BA01477) -L00(0) -TO65554 -TC10000000 -TT10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO7 -FD20000000 -FC1000 -FN1 -FF0STM32F4xx_1024.FLM -FS08000000 -FL0100000 -FP0($$Device:STM32F407IGHx$CMSIS\Flash\STM32F4xx_1024.FLM)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -145,23 +155,61 @@
           <Key>ARMDBGFLAGS</Key>
           <Name></Name>
         </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>JL2CM3</Key>
-          <Name>-U20090928 -O78 -S2 -ZTIFSpeedSel5000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(2BA01477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO15 -FD20000000 -FC1000 -FN1 -FF0STM32F4xx_1024.FLM -FS08000000 -FL0100000 -FP0($$Device:STM32F407IGHx$CMSIS\Flash\STM32F4xx_1024.FLM)</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>UL2CM3</Key>
-          <Name>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0STM32F4xx_1024 -FS08000000 -FL0100000 -FP0($$Device:STM32F407IGHx$CMSIS\Flash\STM32F4xx_1024.FLM))</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>ST-LINKIII-KEIL_SWO</Key>
-          <Name>-U-O142 -O2254 -S0 -C0 -N00("ARM CoreSight SW-DP") -D00(2BA01477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO7 -FD20000000 -FC800 -FN1 -FF0STM32F4xx_1024.FLM -FS08000000 -FL0100000 -FP0($$Device:STM32F407IGHx$CMSIS\Flash\STM32F4xx_1024.FLM)</Name>
-        </SetRegEntry>
       </TargetDriverDllRegistry>
+<<<<<<< HEAD
       <Breakpoint/>
+=======
+      <Breakpoint>
+        <Bp>
+          <Number>0</Number>
+          <Type>2</Type>
+          <LineNumber>0</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>536884264</Address>
+          <ByteObject>1</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>1</ManyObjects>
+          <SizeOfObject>1</SizeOfObject>
+          <BreakByAccess>2</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename></Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\infantry\../User/Task/tsk_config_and_callback.cpp\chariot.Booster.Booster_Control_Type</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>247</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134257110</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\User\Chariot\crt_booster.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\infantry\../User/Chariot/crt_booster.cpp\247</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>2</Type>
+          <LineNumber>0</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>536881736</Address>
+          <ByteObject>1</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>1</ManyObjects>
+          <SizeOfObject>8</SizeOfObject>
+          <BreakByAccess>2</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename></Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\infantry\../User/Task/tsk_config_and_callback.cpp\chariot.Gimbal.Motor_Pitch.Class_DJI_Motor_GM6020.PID_Angle.Target</Expression>
+        </Bp>
+      </Breakpoint>
+>>>>>>> b9a872c6221cf3e225490b64a5ba5ff6b52d4ab5
       <WatchWindow1>
         <Ww>
           <count>0</count>
@@ -212,10 +260,6 @@
       <pszMrule></pszMrule>
       <pSingCmds></pSingCmds>
       <pMultCmds></pMultCmds>
-      <pMisraNamep></pMisraNamep>
-      <pszMrulep></pszMrulep>
-      <pSingCmdsp></pSingCmdsp>
-      <pMultCmdsp></pMultCmdsp>
       <DebugDescription>
         <Enable>1</Enable>
         <EnableLog>0</EnableLog>
@@ -931,6 +975,30 @@
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
+    <File>
+      <GroupNumber>6</GroupNumber>
+      <FileNumber>56</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\User\Device\buzzer.c</PathWithFileName>
+      <FilenameWithoutPath>buzzer.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>6</GroupNumber>
+      <FileNumber>57</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\User\Device\buzzer_bsp.c</PathWithFileName>
+      <FilenameWithoutPath>buzzer_bsp.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
   </Group>
 
   <Group>
@@ -941,7 +1009,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>7</GroupNumber>
-      <FileNumber>56</FileNumber>
+      <FileNumber>58</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -961,7 +1029,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>8</GroupNumber>
-      <FileNumber>57</FileNumber>
+      <FileNumber>59</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -973,7 +1041,7 @@
     </File>
     <File>
       <GroupNumber>8</GroupNumber>
-      <FileNumber>58</FileNumber>
+      <FileNumber>60</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -985,7 +1053,7 @@
     </File>
     <File>
       <GroupNumber>8</GroupNumber>
-      <FileNumber>59</FileNumber>
+      <FileNumber>61</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -997,7 +1065,7 @@
     </File>
     <File>
       <GroupNumber>8</GroupNumber>
-      <FileNumber>60</FileNumber>
+      <FileNumber>62</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1009,7 +1077,7 @@
     </File>
     <File>
       <GroupNumber>8</GroupNumber>
-      <FileNumber>61</FileNumber>
+      <FileNumber>63</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1021,7 +1089,7 @@
     </File>
     <File>
       <GroupNumber>8</GroupNumber>
-      <FileNumber>62</FileNumber>
+      <FileNumber>64</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1033,7 +1101,7 @@
     </File>
     <File>
       <GroupNumber>8</GroupNumber>
-      <FileNumber>63</FileNumber>
+      <FileNumber>65</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1045,7 +1113,7 @@
     </File>
     <File>
       <GroupNumber>8</GroupNumber>
-      <FileNumber>64</FileNumber>
+      <FileNumber>66</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1057,7 +1125,7 @@
     </File>
     <File>
       <GroupNumber>8</GroupNumber>
-      <FileNumber>65</FileNumber>
+      <FileNumber>67</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1069,7 +1137,7 @@
     </File>
     <File>
       <GroupNumber>8</GroupNumber>
-      <FileNumber>66</FileNumber>
+      <FileNumber>68</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1089,7 +1157,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>67</FileNumber>
+      <FileNumber>69</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1101,7 +1169,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>68</FileNumber>
+      <FileNumber>70</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1113,7 +1181,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>69</FileNumber>
+      <FileNumber>71</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1125,7 +1193,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>70</FileNumber>
+      <FileNumber>72</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1137,7 +1205,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>71</FileNumber>
+      <FileNumber>73</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1149,7 +1217,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>72</FileNumber>
+      <FileNumber>74</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1161,7 +1229,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>73</FileNumber>
+      <FileNumber>75</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1173,7 +1241,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>74</FileNumber>
+      <FileNumber>76</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1185,7 +1253,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>75</FileNumber>
+      <FileNumber>77</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1197,7 +1265,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>76</FileNumber>
+      <FileNumber>78</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1217,7 +1285,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>10</GroupNumber>
-      <FileNumber>77</FileNumber>
+      <FileNumber>79</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1237,7 +1305,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>11</GroupNumber>
-      <FileNumber>78</FileNumber>
+      <FileNumber>80</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1249,7 +1317,7 @@
     </File>
     <File>
       <GroupNumber>11</GroupNumber>
-      <FileNumber>79</FileNumber>
+      <FileNumber>81</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1261,7 +1329,7 @@
     </File>
     <File>
       <GroupNumber>11</GroupNumber>
-      <FileNumber>80</FileNumber>
+      <FileNumber>82</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1281,7 +1349,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>12</GroupNumber>
-      <FileNumber>81</FileNumber>
+      <FileNumber>83</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1301,7 +1369,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>13</GroupNumber>
-      <FileNumber>82</FileNumber>
+      <FileNumber>84</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1313,7 +1381,7 @@
     </File>
     <File>
       <GroupNumber>13</GroupNumber>
-      <FileNumber>83</FileNumber>
+      <FileNumber>85</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1325,7 +1393,7 @@
     </File>
     <File>
       <GroupNumber>13</GroupNumber>
-      <FileNumber>84</FileNumber>
+      <FileNumber>86</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1337,7 +1405,7 @@
     </File>
     <File>
       <GroupNumber>13</GroupNumber>
-      <FileNumber>85</FileNumber>
+      <FileNumber>87</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>

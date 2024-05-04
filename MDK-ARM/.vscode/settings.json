@@ -83,6 +83,7 @@
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
     "stm32_hal_legacy.h": "c",
-    "stm32f4xx_hal.h": "c"
+    "stm32f4xx_hal.h": "c",
+    "buzzer.h": "c"
   }
 }

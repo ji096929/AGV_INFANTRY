@@ -32,7 +32,7 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "buzzer_bsp.h"
 #include <stdint.h>
-
+#include <stdio.h>
 // 用于规定各种蜂鸣器发声任务优先级，优先进行高优先级的发声任务
 // （数字越小优先级越高）
 typedef uint8_t BUZZER_BEEP_TASK_TO_PRIORITY_LUT_T; enum 

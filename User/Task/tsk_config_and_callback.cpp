@@ -40,7 +40,7 @@
 #include "tsk_config_and_callback.h"
 #include "usbd_cdc.h"
 #include "usbd_cdc_if.h"
-
+#include "buzzer.h"
 /* Private macros ------------------------------------------------------------*/
 
 /* Private types -------------------------------------------------------------*/
@@ -174,11 +174,13 @@ void Gimbal_Device_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 #ifdef GIMBAL
 void Gimbal_Device_CAN2_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 {
+    
     switch (CAN_RxMessage->Header.StdId)
     {
 
     case (0x1fe): // 留给下板通讯
     {
+        
         chariot.Referee.CAN_RxCpltCallback(CAN_RxMessage->Data,CAN_RxMessage->Header.StdId);
         
     }
@@ -333,6 +335,8 @@ void Task100us_TIM4_Callback()
 #endif
 }
 
+
+
 /**
  * @brief TIM5任务回调函数
  *
@@ -374,6 +378,9 @@ void Task1ms_TIM5_Callback()
             mod5 = 0;
         }
     }
+}
+void Task1ms_TIM6_Callback(){
+    buzzer_taskScheduler(&buzzer);
 }
 
 /**
@@ -421,12 +428,15 @@ void Task_Init()
     USB_Init(&MiniPC_USB_Manage_Object, MiniPC_USB_Callback);
 
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+    HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
+    buzzer_init_example();
 
 #endif
 
     // 定时器循环任务
-    TIM_Init(&htim4, Task100us_TIM4_Callback);
+    TIM_Init(&htim3, Task100us_TIM4_Callback);
     TIM_Init(&htim5, Task1ms_TIM5_Callback);
+     TIM_Init(&htim6, Task1ms_TIM6_Callback);
 
     /********************************* 设备层初始化 *********************************/
 
@@ -438,8 +448,10 @@ void Task_Init()
 
     /********************************* 使能调度时钟 *********************************/
 
+    HAL_TIM_Base_Start_IT(&htim3);
     HAL_TIM_Base_Start_IT(&htim4);
     HAL_TIM_Base_Start_IT(&htim5);
+    HAL_TIM_Base_Start_IT(&htim6);
 
     init_finished = 1;
 }
@@ -451,5 +463,6 @@ void Task_Init()
 void Task_Loop()
 {
 }
+
 
 /************************ COPYRIGHT(C) USTC-ROBOWALKER **************************/

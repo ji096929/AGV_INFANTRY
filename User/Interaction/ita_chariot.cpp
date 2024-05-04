@@ -620,6 +620,7 @@ void Class_Chariot::TIM1msMod50_Alive_PeriodElapsedCallback()
 #elif defined(GIMBAL)
 
         DR16.TIM1msMod50_Alive_PeriodElapsedCallback();
+        Referee.TIM1msMod50_Alive_PeriodElapsedCallback();
 
         if (DR16.Get_DR16_Status() == DR16_Status_DISABLE)
         {

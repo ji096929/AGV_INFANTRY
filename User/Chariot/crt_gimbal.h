@@ -209,6 +209,10 @@ public:
     // pithc轴电机
     Class_Gimbal_Pitch_Motor_LK6010 Motor_Pitch_LK6010;
 
+    //离线判断标志
+    int Flag;
+    int Pre_Flag;
+
     void Init();
 
     void Calculate_Total_Angle();
