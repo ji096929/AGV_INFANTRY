@@ -179,12 +179,12 @@ float Class_IMU::Get_Accel_Z(void)
 
 float Class_IMU::Get_Gyro_Roll(void)
 {
-    return (INS.Gyro[1]);
+    return (INS.Gyro[0]);
 }
 
 float Class_IMU::Get_Gyro_Pitch(void)
 {
-    return (INS.Gyro[0]);
+    return (INS.Gyro[1]);
 }
 
 float Class_IMU::Get_Gyro_Yaw(void)

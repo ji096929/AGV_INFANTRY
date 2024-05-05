@@ -161,10 +161,11 @@ void Class_Gimbal_Yaw_Motor_GM6020::Transform_Angle()
 {
     True_Rad_Yaw = IMU->Get_Rad_Yaw();
     True_Gyro_Yaw = IMU->Get_Gyro_Yaw();
-    if (IMU->Get_Angle_Yaw() > 0)
-        True_Angle_Yaw = IMU->Get_Angle_Yaw() - 180;
-    if (IMU->Get_Angle_Yaw() < 0)
-        True_Angle_Yaw = IMU->Get_Angle_Yaw() + 180;
+    True_Angle_Yaw = IMU->Get_Angle_Yaw();
+    // if (IMU->Get_Angle_Yaw() > 0)
+    //     True_Angle_Yaw = IMU->Get_Angle_Yaw() - 180;
+    // if (IMU->Get_Angle_Yaw() < 0)
+    //     True_Angle_Yaw = IMU->Get_Angle_Yaw() + 180;
 }
 
 /**
@@ -302,8 +303,8 @@ void Class_Gimbal_Pitch_Motor_GM6020::TIM_PID_PeriodElapsedCallback()
  */
 void Class_Gimbal_Pitch_Motor_GM6020::Transform_Angle()
 {
-    True_Rad_Pitch =  IMU->Get_Rad_Pitch();
-    True_Gyro_Pitch =  IMU->Get_Gyro_Pitch();
+    True_Rad_Pitch =  -IMU->Get_Rad_Roll();
+    True_Gyro_Pitch =  -IMU->Get_Gyro_Pitch();
     True_Angle_Pitch = RAD_TO_ANGEL(True_Rad_Pitch);
 }
 
