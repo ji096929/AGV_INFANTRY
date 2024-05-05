@@ -34,7 +34,7 @@
  * @param __Out_Max 输出限幅
  * @param __D_T 时间片长度
  */
-void Class_PID::Init(double __K_P, double __K_I, double __K_D, double __K_F, double __I_Out_Max, double __Out_Max, double __I_Variable_Speed_A, double __I_Variable_Speed_B, double __I_Separate_Threshold,double __D_T, double __Dead_Zone,  Enum_PID_D_First __D_First)
+void Class_PID::Init(float __K_P, float __K_I, float __K_D, float __K_F, float __I_Out_Max, float __Out_Max, float __I_Variable_Speed_A, float __I_Variable_Speed_B, float __I_Separate_Threshold,float __D_T, float __Dead_Zone,  Enum_PID_D_First __D_First)
 {
     K_P = __K_P;
     K_I = __K_I;
@@ -53,24 +53,24 @@ void Class_PID::Init(double __K_P, double __K_I, double __K_D, double __K_F, dou
 /**
  * @brief PID调整值
  *
- * @return double 输出值
+ * @return float 输出值
  */
 void Class_PID::TIM_Adjust_PeriodElapsedCallback()
 {
     // P输出
-    double p_out = 0.0f;
+    float p_out = 0.0f;
     // I输出
-    double i_out = 0.0f;
+    float i_out = 0.0f;
     // D输出
-    double d_out = 0.0f;
+    float d_out = 0.0f;
     // F输出
-    double f_out = 0.0f;
+    float f_out = 0.0f;
     //误差
-    double error;
+    float error;
     //绝对值误差
-    double abs_error;
+    float abs_error;
     //线性变速积分
-    double speed_ratio;
+    float speed_ratio;
 
     error = Target - Now;
     abs_error = Math_Abs(error);
@@ -118,11 +118,7 @@ void Class_PID::TIM_Adjust_PeriodElapsedCallback()
     if (I_Separate_Threshold == 0.0f)
     {
         //没有积分分离
-        Integral_Error += (float)(speed_ratio * D_T * error);
-	  if(isnan(Integral_Error))
-	  {
-		  Integral_Error=0;
-	  }
+        Integral_Error += speed_ratio * D_T * error;
         i_out = K_I * Integral_Error;
     }
     else
@@ -130,12 +126,8 @@ void Class_PID::TIM_Adjust_PeriodElapsedCallback()
         //积分分离使能
         if (abs_error < I_Separate_Threshold)
         {
-            Integral_Error +=  (float)(speed_ratio * D_T *  error);
-		if(isnan(Integral_Error))
-		  {
-			  Integral_Error=0;
-		  }
-             i_out = K_I * Integral_Error;
+            Integral_Error += speed_ratio * D_T * error;
+            i_out = K_I * Integral_Error;
         }
         else
         {

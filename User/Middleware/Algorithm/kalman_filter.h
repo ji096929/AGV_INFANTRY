@@ -45,10 +45,6 @@
 #define Matrix_Transpose arm_mat_trans_f32
 #define Matrix_Inverse arm_mat_inverse_f32
 
-    // ÓÃ»§¶¨Òåº¯Êı,¿ÉÒÔÌæ»»»òÀ©Õ¹»ù×¼KFµÄ¹¦ÄÜ
-   typedef void (*User_Func_f)(struct kf_t *kf);
-
-
 typedef struct kf_t
 {
     float *FilteredValue;
@@ -62,13 +58,13 @@ typedef struct kf_t
     uint8_t UseAutoAdjustment;
     uint8_t MeasurementValidNum;
 
-    uint8_t *MeasurementMap;      // Á¿²âÓë×´Ì¬µÄ¹ØÏµ how measurement relates to the state
-    float *MeasurementDegree;     // ²âÁ¿Öµ¶ÔÓ¦H¾ØÕóÔªËØÖµ elements of each measurement in H
-    float *MatR_DiagonalElements; // Á¿²â·½²î variance for each measurement
-    float *StateMinVariance;      // ×îĞ¡·½²î ±ÜÃâ·½²î¹ı¶ÈÊÕÁ² suppress filter excessive convergence
+    uint8_t *MeasurementMap;      // é‡æµ‹ä¸çŠ¶æ€çš„å…³ç³» how measurement relates to the state
+    float *MeasurementDegree;     // æµ‹é‡å€¼å¯¹åº”HçŸ©é˜µå…ƒç´ å€¼ elements of each measurement in H
+    float *MatR_DiagonalElements; // é‡æµ‹æ–¹å·® variance for each measurement
+    float *StateMinVariance;      // æœ€å°æ–¹å·® é¿å…æ–¹å·®è¿‡åº¦æ”¶æ•› suppress filter excessive convergence
     uint8_t *temp;
 
-    // ÅäºÏÓÃ»§¶¨Òåº¯ÊıÊ¹ÓÃ,×÷Îª±êÖ¾Î»ÓÃÓÚÅĞ¶ÏÊÇ·ñÒªÌø¹ı±ê×¼KFÖĞÎå¸ö»·½ÚÖĞµÄÈÎÒâÒ»¸ö
+    // é…åˆç”¨æˆ·å®šä¹‰å‡½æ•°ä½¿ç”¨,ä½œä¸ºæ ‡å¿—ä½ç”¨äºåˆ¤æ–­æ˜¯å¦è¦è·³è¿‡æ ‡å‡†KFä¸­äº”ä¸ªç¯èŠ‚ä¸­çš„ä»»æ„ä¸€ä¸ª
     uint8_t SkipEq1, SkipEq2, SkipEq3, SkipEq4, SkipEq5;
 
     // definiion of struct mat: rows & cols & pointer to vars
@@ -88,15 +84,16 @@ typedef struct kf_t
 
     int8_t MatStatus;
 
-   User_Func_f User_Func0_f;
-   User_Func_f User_Func1_f;
-   User_Func_f User_Func2_f;
-   User_Func_f User_Func3_f;
-   User_Func_f User_Func4_f;
-   User_Func_f User_Func5_f;
-   User_Func_f User_Func6_f;
+    // ç”¨æˆ·å®šä¹‰å‡½æ•°,å¯ä»¥æ›¿æ¢æˆ–æ‰©å±•åŸºå‡†KFçš„åŠŸèƒ½
+    void (*User_Func0_f)(struct kf_t *kf);
+    void (*User_Func1_f)(struct kf_t *kf);
+    void (*User_Func2_f)(struct kf_t *kf);
+    void (*User_Func3_f)(struct kf_t *kf);
+    void (*User_Func4_f)(struct kf_t *kf);
+    void (*User_Func5_f)(struct kf_t *kf);
+    void (*User_Func6_f)(struct kf_t *kf);
     
-    // ¾ØÕó´æ´¢¿Õ¼äÖ¸Õë
+    // çŸ©é˜µå­˜å‚¨ç©ºé—´æŒ‡é’ˆ
     float *xhat_data, *xhatminus_data;
     float *u_data;
     float *z_data;

@@ -24,7 +24,7 @@
 
 uint8_t GlobalDebugMode = 7;
 
-//¿ìËÙ¿ª·½
+//å¿«é€Ÿå¼€æ–¹
 float Sqrt(float x)
 {
     float y;
@@ -51,7 +51,7 @@ float Sqrt(float x)
     return y;
 }
 
-//¿ìËÙÇóÆ½·½¸ùµ¹Êı
+//å¿«é€Ÿæ±‚å¹³æ–¹æ ¹å€’æ•°
 /*
 float invSqrt(float num)
 {
@@ -65,13 +65,13 @@ float invSqrt(float num)
 }*/
 
 /**
-  * @brief          Ğ±²¨º¯Êı³õÊ¼»¯
+  * @brief          æ–œæ³¢å‡½æ•°åˆå§‹åŒ–
   * @author         RM
-  * @param[in]      Ğ±²¨º¯Êı½á¹¹Ìå
-  * @param[in]      ¼ä¸ôµÄÊ±¼ä£¬µ¥Î» s
-  * @param[in]      ×î´óÖµ
-  * @param[in]      ×îĞ¡Öµ
-  * @retval         ·µ»Ø¿Õ
+  * @param[in]      æ–œæ³¢å‡½æ•°ç»“æ„ä½“
+  * @param[in]      é—´éš”çš„æ—¶é—´ï¼Œå•ä½ s
+  * @param[in]      æœ€å¤§å€¼
+  * @param[in]      æœ€å°å€¼
+  * @retval         è¿”å›ç©º
   */
 void ramp_init(ramp_function_source_t *ramp_source_type, float frame_period, float max, float min)
 {
@@ -83,11 +83,11 @@ void ramp_init(ramp_function_source_t *ramp_source_type, float frame_period, flo
 }
 
 /**
-  * @brief          Ğ±²¨º¯Êı¼ÆËã£¬¸ù¾İÊäÈëµÄÖµ½øĞĞµş¼Ó£¬ ÊäÈëµ¥Î»Îª /s ¼´Ò»ÃëºóÔö¼ÓÊäÈëµÄÖµ
+  * @brief          æ–œæ³¢å‡½æ•°è®¡ç®—ï¼Œæ ¹æ®è¾“å…¥çš„å€¼è¿›è¡Œå åŠ ï¼Œ è¾“å…¥å•ä½ä¸º /s å³ä¸€ç§’åå¢åŠ è¾“å…¥çš„å€¼
   * @author         RM
-  * @param[in]      Ğ±²¨º¯Êı½á¹¹Ìå
-  * @param[in]      ÊäÈëÖµ
-  * @retval         ·µ»Ø¿Õ
+  * @param[in]      æ–œæ³¢å‡½æ•°ç»“æ„ä½“
+  * @param[in]      è¾“å…¥å€¼
+  * @retval         è¿”å›ç©º
   */
 float ramp_calc(ramp_function_source_t *ramp_source_type, float input)
 {
@@ -104,7 +104,7 @@ float ramp_calc(ramp_function_source_t *ramp_source_type, float input)
     return ramp_source_type->out;
 }
 
-//¾ø¶ÔÖµÏŞÖÆ
+//ç»å¯¹å€¼é™åˆ¶
 float abs_limit(float num, float Limit)
 {
     if (num > Limit)
@@ -118,7 +118,7 @@ float abs_limit(float num, float Limit)
     return num;
 }
 
-//ÅĞ¶Ï·ûºÅÎ»
+//åˆ¤æ–­ç¬¦å·ä½
 float sign(float value)
 {
     if (value >= 0.0f)
@@ -131,7 +131,7 @@ float sign(float value)
     }
 }
 
-//¸¡µãËÀÇø
+//æµ®ç‚¹æ­»åŒº
 float float_deadband(float Value, float minValue, float maxValue)
 {
     if (Value < maxValue && Value > minValue)
@@ -141,7 +141,7 @@ float float_deadband(float Value, float minValue, float maxValue)
     return Value;
 }
 
-//int26ËÀÇø
+//int26æ­»åŒº
 int16_t int16_deadline(int16_t Value, int16_t minValue, int16_t maxValue)
 {
     if (Value < maxValue && Value > minValue)
@@ -151,7 +151,7 @@ int16_t int16_deadline(int16_t Value, int16_t minValue, int16_t maxValue)
     return Value;
 }
 
-//ÏŞ·ùº¯Êı
+//é™å¹…å‡½æ•°
 float float_constrain(float Value, float minValue, float maxValue)
 {
     if (Value < minValue)
@@ -162,7 +162,7 @@ float float_constrain(float Value, float minValue, float maxValue)
         return Value;
 }
 
-//ÏŞ·ùº¯Êı
+//é™å¹…å‡½æ•°
 int16_t int16_constrain(int16_t Value, int16_t minValue, int16_t maxValue)
 {
     if (Value < minValue)
@@ -173,7 +173,7 @@ int16_t int16_constrain(int16_t Value, int16_t minValue, int16_t maxValue)
         return Value;
 }
 
-//Ñ­»·ÏŞ·ùº¯Êı
+//å¾ªç¯é™å¹…å‡½æ•°
 float loop_float_constrain(float Input, float minValue, float maxValue)
 {
     if (maxValue < minValue)
@@ -200,9 +200,9 @@ float loop_float_constrain(float Input, float minValue, float maxValue)
     return Input;
 }
 
-//»¡¶È¸ñÊ½»¯Îª-PI~PI
+//å¼§åº¦æ ¼å¼åŒ–ä¸º-PI~PI
 
-//½Ç¶È¸ñÊ½»¯Îª-180~180
+//è§’åº¦æ ¼å¼åŒ–ä¸º-180~180
 float theta_format(float Ang)
 {
     return loop_float_constrain(Ang, -180.0f, 180.0f);
@@ -220,10 +220,10 @@ int float_rounding(float raw)
 }
 
 /**
-  * @brief          ×îĞ¡¶ş³Ë·¨³õÊ¼»¯
-  * @param[in]      ×îĞ¡¶ş³Ë·¨½á¹¹Ìå
-  * @param[in]      Ñù±¾Êı
-  * @retval         ·µ»Ø¿Õ
+  * @brief          æœ€å°äºŒä¹˜æ³•åˆå§‹åŒ–
+  * @param[in]      æœ€å°äºŒä¹˜æ³•ç»“æ„ä½“
+  * @param[in]      æ ·æœ¬æ•°
+  * @retval         è¿”å›ç©º
   */
 void OLS_Init(Ordinary_Least_Squares_t *OLS, uint16_t order)
 {
@@ -239,10 +239,10 @@ void OLS_Init(Ordinary_Least_Squares_t *OLS, uint16_t order)
 }
 
 /**
-  * @brief          ×îĞ¡¶ş³Ë·¨ÄâºÏ
-  * @param[in]      ×îĞ¡¶ş³Ë·¨½á¹¹Ìå
-  * @param[in]      ĞÅºÅĞÂÑù±¾¾àÉÏÒ»¸öÑù±¾Ê±¼ä¼ä¸ô
-  * @param[in]      ĞÅºÅÖµ
+  * @brief          æœ€å°äºŒä¹˜æ³•æ‹Ÿåˆ
+  * @param[in]      æœ€å°äºŒä¹˜æ³•ç»“æ„ä½“
+  * @param[in]      ä¿¡å·æ–°æ ·æœ¬è·ä¸Šä¸€ä¸ªæ ·æœ¬æ—¶é—´é—´éš”
+  * @param[in]      ä¿¡å·å€¼
   */
 void OLS_Update(Ordinary_Least_Squares_t *OLS, float deltax, float y)
 {
@@ -281,11 +281,11 @@ void OLS_Update(Ordinary_Least_Squares_t *OLS, float deltax, float y)
 }
 
 /**
-  * @brief          ×îĞ¡¶ş³Ë·¨ÌáÈ¡ĞÅºÅÎ¢·Ö
-  * @param[in]      ×îĞ¡¶ş³Ë·¨½á¹¹Ìå
-  * @param[in]      ĞÅºÅĞÂÑù±¾¾àÉÏÒ»¸öÑù±¾Ê±¼ä¼ä¸ô
-  * @param[in]      ĞÅºÅÖµ
-  * @retval         ·µ»ØĞ±ÂÊk
+  * @brief          æœ€å°äºŒä¹˜æ³•æå–ä¿¡å·å¾®åˆ†
+  * @param[in]      æœ€å°äºŒä¹˜æ³•ç»“æ„ä½“
+  * @param[in]      ä¿¡å·æ–°æ ·æœ¬è·ä¸Šä¸€ä¸ªæ ·æœ¬æ—¶é—´é—´éš”
+  * @param[in]      ä¿¡å·å€¼
+  * @retval         è¿”å›æ–œç‡k
   */
 float OLS_Derivative(Ordinary_Least_Squares_t *OLS, float deltax, float y)
 {
@@ -326,9 +326,9 @@ float OLS_Derivative(Ordinary_Least_Squares_t *OLS, float deltax, float y)
 }
 
 /**
-  * @brief          »ñÈ¡×îĞ¡¶ş³Ë·¨ÌáÈ¡ĞÅºÅÎ¢·Ö
-  * @param[in]      ×îĞ¡¶ş³Ë·¨½á¹¹Ìå
-  * @retval         ·µ»ØĞ±ÂÊk
+  * @brief          è·å–æœ€å°äºŒä¹˜æ³•æå–ä¿¡å·å¾®åˆ†
+  * @param[in]      æœ€å°äºŒä¹˜æ³•ç»“æ„ä½“
+  * @retval         è¿”å›æ–œç‡k
   */
 float Get_OLS_Derivative(Ordinary_Least_Squares_t *OLS)
 {
@@ -336,11 +336,11 @@ float Get_OLS_Derivative(Ordinary_Least_Squares_t *OLS)
 }
 
 /**
-  * @brief          ×îĞ¡¶ş³Ë·¨Æ½»¬ĞÅºÅ
-  * @param[in]      ×îĞ¡¶ş³Ë·¨½á¹¹Ìå
-  * @param[in]      ĞÅºÅĞÂÑù±¾¾àÉÏÒ»¸öÑù±¾Ê±¼ä¼ä¸ô
-  * @param[in]      ĞÅºÅÖµ
-  * @retval         ·µ»ØÆ½»¬Êä³ö
+  * @brief          æœ€å°äºŒä¹˜æ³•å¹³æ»‘ä¿¡å·
+  * @param[in]      æœ€å°äºŒä¹˜æ³•ç»“æ„ä½“
+  * @param[in]      ä¿¡å·æ–°æ ·æœ¬è·ä¸Šä¸€ä¸ªæ ·æœ¬æ—¶é—´é—´éš”
+  * @param[in]      ä¿¡å·å€¼
+  * @retval         è¿”å›å¹³æ»‘è¾“å‡º
   */
 float OLS_Smooth(Ordinary_Least_Squares_t *OLS, float deltax, float y)
 {
@@ -382,9 +382,9 @@ float OLS_Smooth(Ordinary_Least_Squares_t *OLS, float deltax, float y)
 }
 
 /**
-  * @brief          »ñÈ¡×îĞ¡¶ş³Ë·¨Æ½»¬ĞÅºÅ
-  * @param[in]      ×îĞ¡¶ş³Ë·¨½á¹¹Ìå
-  * @retval         ·µ»ØÆ½»¬Êä³ö
+  * @brief          è·å–æœ€å°äºŒä¹˜æ³•å¹³æ»‘ä¿¡å·
+  * @param[in]      æœ€å°äºŒä¹˜æ³•ç»“æ„ä½“
+  * @retval         è¿”å›å¹³æ»‘è¾“å‡º
   */
 float Get_OLS_Smooth(Ordinary_Least_Squares_t *OLS)
 {

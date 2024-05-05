@@ -26,8 +26,8 @@ typedef struct
 {
     float q[4]; // 四元数估计值
 
-    float Gyro[3];          // 角速度
-    float Accel[3];         // 加速度
+    float Gyro[3];  // 角速度
+    float Accel[3]; // 加速度
     float MotionAccel_b[3]; // 机体坐标加速度
     float MotionAccel_n[3]; // 绝对系加速度
 
@@ -48,7 +48,7 @@ typedef struct
     float YawTotalAngle;
 } INS_t;
 
-enum Enum_IMU_Status
+enum Enum_IMU_Status 
 {
     IMU_Status_DISABLE = 0,
     IMU_Status_ENABLE,
@@ -58,7 +58,8 @@ enum Enum_IMU_Status
 
 class Class_IMU
 {
-public:
+    public:
+
     void Init(void);
     void TIM_Calculate_PeriodElapsedCallback(void);
     void TIM1msMod50_Alive_PeriodElapsedCallback(void);
@@ -81,12 +82,13 @@ public:
 
     Enum_IMU_Status Get_IMU_Status(void);
 
-protected:
+    protected:
+
     Class_MahonyAHRS IMU_MahonyAHRS;
     Class_BoardC_BMI IMU_BMI088;
     Class_BoardC_IST8310 IMU_IST8310;
     Class_PID PID_IMU_Tempture;
-
+    
     Enum_IMU_Status IMU_Status;
 
     void Get_Angle(void);
@@ -103,13 +105,13 @@ protected:
     const float Z_b[3] = {0, 0, 1};
 
     float INS_Quat[4] = {0.0f, 0.0f, 0.0f, 0.0f};
-    float INS_Rad[3] = {0.0f, 0.0f, 0.0f}; // euler angle, unit rad.欧拉角 单位 rad
+    float INS_Rad[3] = {0.0f, 0.0f, 0.0f};      //euler angle, unit rad.欧拉角 单位 rad
     float INS_Angle[3] = {0.0f, 0.0f, 0.0f};
 
-    // 重力加速度
-    const float Gravity[3] = {0, 0, 9.81f};
+    //重力加速度
+	const float Gravity[3] = {0, 0, 9.81f};
 
-    // DWT计数
+    //DWT计数
     float INS_DWT_Dt;
     float INS_DWT_Dt_Sum;
     uint32_t INS_DWT_Count;
@@ -118,7 +120,7 @@ protected:
     uint8_t accel_update_flag = 0;
     uint8_t accel_temp_update_flag = 0;
     uint8_t mag_update_flag = 0;
-    uint8_t imu_start_flag = 0;
+    uint8_t imu_start_flag = 0;    
 
     void BodyFrameToEarthFrame(const float *vecBF, float *vecEF, float *q);
     void EarthFrameToBodyFrame(const float *vecEF, float *vecBF, float *q);
@@ -126,6 +128,8 @@ protected:
 
 //---------------------------------------------------------------------------------------------------
 // Function declarations
+
+
 
 #endif
 //=====================================================================================================

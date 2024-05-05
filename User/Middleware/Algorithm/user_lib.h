@@ -88,11 +88,11 @@ extern uint8_t GlobalDebugMode;
 
 typedef struct
 {
-    float input;        //ÊäÈëÊı¾İ
-    float out;          //Êä³öÊı¾İ
-    float min_value;    //ÏŞ·ù×îĞ¡Öµ
-    float max_value;    //ÏŞ·ù×î´óÖµ
-    float frame_period; //Ê±¼ä¼ä¸ô
+    float input;        //è¾“å…¥æ•°æ®
+    float out;          //è¾“å‡ºæ•°æ®
+    float min_value;    //é™å¹…æœ€å°å€¼
+    float max_value;    //é™å¹…æœ€å¤§å€¼
+    float frame_period; //æ—¶é—´é—´éš”
 } ramp_function_source_t;
 
 typedef __packed struct
@@ -111,34 +111,34 @@ typedef __packed struct
     float t[4];
 } Ordinary_Least_Squares_t;
 
-//¿ìËÙ¿ª·½
+//å¿«é€Ÿå¼€æ–¹
 float Sqrt(float x);
 
-//Ğ±²¨º¯Êı³õÊ¼»¯
+//æ–œæ³¢å‡½æ•°åˆå§‹åŒ–
 void ramp_init(ramp_function_source_t *ramp_source_type, float frame_period, float max, float min);
-//Ğ±²¨º¯Êı¼ÆËã
+//æ–œæ³¢å‡½æ•°è®¡ç®—
 float ramp_calc(ramp_function_source_t *ramp_source_type, float input);
 
-//¾ø¶ÔÏŞÖÆ
+//ç»å¯¹é™åˆ¶
 float abs_limit(float num, float Limit);
-//ÅĞ¶Ï·ûºÅÎ»
+//åˆ¤æ–­ç¬¦å·ä½
 float sign(float value);
-//¸¡µãËÀÇø
+//æµ®ç‚¹æ­»åŒº
 float float_deadband(float Value, float minValue, float maxValue);
-// int26ËÀÇø
+// int26æ­»åŒº
 int16_t int16_deadline(int16_t Value, int16_t minValue, int16_t maxValue);
-//ÏŞ·ùº¯Êı
+//é™å¹…å‡½æ•°
 float float_constrain(float Value, float minValue, float maxValue);
-//ÏŞ·ùº¯Êı
+//é™å¹…å‡½æ•°
 int16_t int16_constrain(int16_t Value, int16_t minValue, int16_t maxValue);
-//Ñ­»·ÏŞ·ùº¯Êı
+//å¾ªç¯é™å¹…å‡½æ•°
 float loop_float_constrain(float Input, float minValue, float maxValue);
-//½Ç¶È ¡ãÏŞ·ù 180 ~ -180
+//è§’åº¦ Â°é™å¹… 180 ~ -180
 float theta_format(float Ang);
 
 int float_rounding(float raw);
 
-//»¡¶È¸ñÊ½»¯Îª-PI~PI
+//å¼§åº¦æ ¼å¼åŒ–ä¸º-PI~PI
 #define rad_format(Ang) loop_float_constrain((Ang), -PI, PI)
 
 void OLS_Init(Ordinary_Least_Squares_t *OLS, uint16_t order);

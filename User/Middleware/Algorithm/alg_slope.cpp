@@ -31,8 +31,10 @@
  */
 void Class_Slope::Init(float __Increase_Value, float __Decrease_Value)
 {
-    Increase_Value = __Increase_Value;
-    Decrease_Value = __Decrease_Value;
+    Default_Increase_Value = __Increase_Value;
+    Default_Decrease_Value = __Decrease_Value;
+    Increase_Value = Default_Increase_Value;
+    Decrease_Value = Default_Decrease_Value;
 }
 
 /**

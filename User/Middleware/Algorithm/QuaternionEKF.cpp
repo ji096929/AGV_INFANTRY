@@ -39,7 +39,8 @@ static void IMU_QuaternionEKF_SetH(KalmanFilter_t *kf);
 static void IMU_QuaternionEKF_xhatUpdate(KalmanFilter_t *kf);
 
 void (*temp_func_1)(struct kf_t *kf) = IMU_QuaternionEKF_Observe;
-
+															 
+																 
 /**
  * @brief Quaternion EKF initialization and some reference value
  * @param[in] process_noise1 quaternion process noise    10
@@ -102,7 +103,7 @@ void IMU_QuaternionEKF_Update(float gx, float gy, float gz, float ax, float ay, 
     static float accelInvNorm;
     if (!QEKF_INS->Initialized)
     {
-        IMU_QuaternionEKF_Init(10, 0.001, 1000000 * 10, 0.9996 * 0 + 1, 0, QEKF_INS);
+        IMU_QuaternionEKF_Init(10, 0.001, 1000000 * 10, 0.9996 * 0 + 1, 0 , QEKF_INS);
     }
 
     /*   F, number with * represent vals to be set
@@ -164,8 +165,8 @@ void IMU_QuaternionEKF_Update(float gx, float gy, float gz, float ax, float ay, 
 
     // get body state
     QEKF_INS->gyro_norm = 1.0f / invSqrt(QEKF_INS->Gyro[0] * QEKF_INS->Gyro[0] +
-                                         QEKF_INS->Gyro[1] * QEKF_INS->Gyro[1] +
-                                         QEKF_INS->Gyro[2] * QEKF_INS->Gyro[2]);
+                                        QEKF_INS->Gyro[1] * QEKF_INS->Gyro[1] +
+                                        QEKF_INS->Gyro[2] * QEKF_INS->Gyro[2]);
     QEKF_INS->accl_norm = 1.0f / accelInvNorm;
 
     // 如果角速度小于阈值且加速度处于设定范围内,认为运动稳定,加速度可以用于修正角速度
@@ -194,7 +195,7 @@ void IMU_QuaternionEKF_Update(float gx, float gy, float gz, float ax, float ay, 
     Kalman_Filter_Update(&QEKF_INS->IMU_QuaternionEKF);
 
     // 获取融合后的数据,包括四元数和xy零飘值
-
+		
     QEKF_INS->q[0] = QEKF_INS->IMU_QuaternionEKF.FilteredValue[0];
     QEKF_INS->q[1] = QEKF_INS->IMU_QuaternionEKF.FilteredValue[1];
     QEKF_INS->q[2] = QEKF_INS->IMU_QuaternionEKF.FilteredValue[2];
