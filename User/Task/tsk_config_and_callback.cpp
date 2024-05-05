@@ -346,7 +346,7 @@ uint16_t pwmVal = 300;
 void Task1ms_TIM5_Callback()
 {
     init_finished++;
-    if(init_finished <10000)
+    if(init_finished <3000)
 		{
 			buzzer_setTask(&buzzer,BUZZER_CALIBRATING_PRIORITY);
 		}

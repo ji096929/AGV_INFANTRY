@@ -31,7 +31,7 @@ void Class_IMU::Init()
     IMU_MahonyAHRS.init(INS_Quat);
  
     //EKF初始化
-    IMU_QuaternionEKF_Init(10, 0.001, 10000000, 1, 0 );
+    IMU_QuaternionEKF_Init(10, 0.001, 10000000, 1, 0 ,&QEKF_INS);
 
     INS.AccelLPF = 0.0085;
 
@@ -60,7 +60,7 @@ void Class_IMU::TIM_Calculate_PeriodElapsedCallback(void)
     INS.Gyro[2] = BMI088_Raw_Data.Gyro[2];
 
     // 核心函数,EKF更新四元数
-    IMU_QuaternionEKF_Update(INS.Gyro[0], INS.Gyro[1], INS.Gyro[2], INS.Accel[0], INS.Accel[1], INS.Accel[2], INS_DWT_Dt );
+    IMU_QuaternionEKF_Update(INS.Gyro[0], INS.Gyro[1], INS.Gyro[2], INS.Accel[0], INS.Accel[1], INS.Accel[2], INS_DWT_Dt ,&QEKF_INS);
 
     memcpy(INS.q, QEKF_INS.q, sizeof(QEKF_INS.q));
 
