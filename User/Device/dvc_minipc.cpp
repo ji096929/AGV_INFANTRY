@@ -49,7 +49,7 @@ void Class_MiniPC::Data_Process()
 
     float tmp_yaw, tmp_pitch;
 
-    Self_aim(Pack_Rx.target_x, Pack_Rx.target_y, Pack_Rx.target_z+0.06, &Rx_Angle_Yaw, &Rx_Angle_Pitch, &Distance);
+    Self_aim(Pack_Rx.target_x, Pack_Rx.target_y, Pack_Rx.target_z + 0.12, &Rx_Angle_Yaw, &Rx_Angle_Pitch, &Distance);
 
     //    Rx_Angle_Yaw = meanFilter(tmp_yaw);
     //    Rx_Angle_Pitch = meanFilter(tmp_pitch);
@@ -57,6 +57,7 @@ void Class_MiniPC::Data_Process()
 
     memset(USB_Manage_Object->Rx_Buffer, 0, USB_Manage_Object->Rx_Buffer_Length);
 }
+
 
 /**
  * @brief 迷你主机发送数据输出到usb发送缓冲区
@@ -258,43 +259,43 @@ float Class_MiniPC::calc_pitch(float x, float y, float z)
     // {
     //     temp++;
     // }
-    
+
     float temp_hight;
     temp_hight = z;
     float pitch;
-	pitch = atan2f(z, sqrtf(x*x+y*y));
-//    // 使用重力加速度模型迭代更新俯仰角
-//    for (size_t i = 0; i < 20; i++)
-//    {
-//        pitch = atan2f(temp_hight, Math_Abs(x));
-//        float v_x = bullet_v * cosf(pitch);
-//        if (v_x == 0)
-//        {
-//            temp++;
-//        }
-//        float v_y = bullet_v * sinf(pitch);
+    pitch = atan2f(z, sqrtf(x * x + y * y));
+    //    // 使用重力加速度模型迭代更新俯仰角
+    //    for (size_t i = 0; i < 20; i++)
+    //    {
+    //        pitch = atan2f(temp_hight, Math_Abs(x));
+    //        float v_x = bullet_v * cosf(pitch);
+    //        if (v_x == 0)
+    //        {
+    //            temp++;
+    //        }
+    //        float v_y = bullet_v * sinf(pitch);
 
-//        float t = sqrtf(x * x) / v_x;
-//        float h = v_y * t - 0.5 * g * t * t;
-//        dz = z - h;
-       
-//        temp_hight += 0.5 * dz;
+    //        float t = sqrtf(x * x) / v_x;
+    //        float h = v_y * t - 0.5 * g * t * t;
+    //        dz = z - h;
 
-//        if (fabsf(dz) < 0.01)
-//        {
-//            break;
-//        }
+    //        temp_hight += 0.5 * dz;
 
-//        // 根据 dz 和向量的欧几里德距离计算新的俯仰角的变化量，进行迭代更新
-//        //   pitch += asinf(dz / calc_distance(x, y, z));
-//    }
+    //        if (fabsf(dz) < 0.01)
+    //        {
+    //            break;
+    //        }
+
+    //        // 根据 dz 和向量的欧几里德距离计算新的俯仰角的变化量，进行迭代更新
+    //        //   pitch += asinf(dz / calc_distance(x, y, z));
+    //    }
 
     // 将弧度制的俯仰角转换为角度制
     pitch = (pitch * 180 / 3.1415926); //
-    
-    if(pitch<-40)
+
+    if (pitch < -40)
     {
-	    temp++;
+        temp++;
     }
 
     return pitch;

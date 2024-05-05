@@ -31,6 +31,7 @@ float test = -10;
  */
 void Class_Gimbal_Yaw_Motor_GM6020::TIM_PID_PeriodElapsedCallback()
 {
+    
     switch (DJI_Motor_Control_Method)
     {
     case (DJI_Motor_Control_Method_OPENLOOP):
@@ -191,10 +192,10 @@ void Class_Gimbal_Pitch_Motor_GM6020::TIM_PID_PeriodElapsedCallback()
     break;
     case (DJI_Motor_Control_Method_IMU_OMEGA):
     {
-        if (RAD_TO_ANGEL(True_Rad_Pitch) > 20)
-            Target_Omega = test;
-        if (RAD_TO_ANGEL(True_Rad_Pitch) < -20)
-            Target_Omega = -test;
+        // if (RAD_TO_ANGEL(True_Rad_Pitch) > 20)
+        //     Target_Omega = test;
+        // if (RAD_TO_ANGEL(True_Rad_Pitch) < -20)
+        //     Target_Omega = -test;
         PID_Omega.Set_Target(Target_Omega);
         if (IMU->Get_IMU_Status() == IMU_Status_DISABLE)
         {
@@ -430,7 +431,7 @@ void Class_Gimbal::Init()
     // Motor_Yaw.PID_Angle.Init(0.0f, 0.0f, 0.0f, 0.0f, 100, 100);
     // Motor_Yaw.PID_Omega.Init(0.0f, 0.0f, 0.0f, 0.0f, Motor_Yaw.Get_Output_Max(), Motor_Yaw.Get_Output_Max());
 
-    Motor_Yaw.PID_Angle.Init(3.5f, 0.015f, 0.0f, 0.0f, 100, 100, 0, 0, 0, 0.001, 0.15);
+    Motor_Yaw.PID_Angle.Init(1.5f, 0.0f, 0.01f, 0.0f, 500, 500, 0, 0, 0, 0.001, 0.15);
     Motor_Yaw.PID_Omega.Init(2200.0f, 10000.0f, 0.0f, 0.0f, Motor_Yaw.Get_Output_Max(), Motor_Yaw.Get_Output_Max());
 
     // Motor_Yaw.PID_Angle.Init(9.35f, 0.0f, 0.071f, 0.0f, 100, 100);

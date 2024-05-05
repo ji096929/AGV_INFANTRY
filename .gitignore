@@ -35,6 +35,10 @@ JLinkLog.txt
 *.mxproject
 *.jdebug.*
 *.exf
+*._2i
+*.json
+*.log
+
 
 !*.uvprojx
 !*.h
