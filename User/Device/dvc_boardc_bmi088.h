@@ -5,7 +5,6 @@
 #include "main.h"
 #include "drv_spi.h"
 #include "tim.h"
-#include "dvc_boardc_bmi088_task.h"
 #include "QuaternionEKF.h"
 
 #define BMI088_TEMP_FACTOR 0.125f
@@ -88,11 +87,6 @@ typedef struct BMI088_REAL_DATA
     float time;
 } IMU_Real_Data_t;
 
-// extern INS_t INS;
-// extern IMU_Data_t BMI088;
-// extern IMU_Real_Data_t BMI088_Real_Data;
-// extern IMU_Param_t IMU_Param;
-// extern class Class_BoardC_BMI BoardC_BMI;
 
 enum
 {
@@ -118,12 +112,14 @@ enum
 
 class Class_BoardC_BMI{
 public:	
-    uint8_t init(SPI_HandleTypeDef *hspi);
+    uint8_t init(SPI_HandleTypeDef *hspi ,IMU_Data_t *__BMI088);
     
-    uint8_t BMI088_Init(void);
+    uint8_t BMI088_Init(IMU_Data_t *__BMI088);
     uint8_t BMI088_Accel_Init(void);
     uint8_t BMI088_Gyro_Init(void);
     void Delay_Init(void);
+
+    void Calibrate_MPU_Offset(IMU_Data_t *bmi088);
     
     void BMI088_Read(IMU_Data_t *bmi088);
 
@@ -133,6 +129,10 @@ public:
 protected:
 
 	Struct_SPI_Manage_Object *SPI_Manage_Object;
+
+    uint8_t error = BMI088_NO_ERROR;
+
+    const uint8_t caliOffset = 1;
 
     uint8_t fac_us = 0;
     uint32_t fac_ms = 0;

@@ -19,8 +19,8 @@
 
 void Class_IMU::Init()
 {
-    // 初始化BMI088传感器，并检查初始化是否成功
-    IMU_BMI088.init(&hspi1);
+    // 初始化BMI088传感器，计算零漂 并检查初始化是否成功
+    IMU_BMI088.init(&hspi1,&BMI088_Raw_Data);
     HAL_Delay(100);
 
     // 初始化IST8310传感器
@@ -30,45 +30,55 @@ void Class_IMU::Init()
     // 初始化MahonyAHRS算法，并传入初始四元数
     IMU_MahonyAHRS.init(INS_Quat);
  
+    //EKF初始化
+    IMU_QuaternionEKF_Init(10, 0.001, 10000000, 1, 0 );
+
+    INS.AccelLPF = 0.0085;
+
     //初始化温控pid参数
     PID_IMU_Tempture.Init(2000, 3000, 0, 0.0, uint32_max, uint32_max);
     HAL_TIM_PWM_Start(&htim10, TIM_CHANNEL_1);
 
 }
 
-
+float tmp_gravity_b[3];
 void Class_IMU::TIM_Calculate_PeriodElapsedCallback(void)
 {
     static uint8_t Tempture_Cnt_mod50 = 0;
     Tempture_Cnt_mod50++;
 
+    INS_DWT_Dt = DWT_GetDeltaT(&INS_DWT_Count);
+    INS_DWT_Dt_Sum += INS_DWT_Dt;
+
     IMU_BMI088.BMI088_Read(&BMI088_Raw_Data);
-        
-    //加速度计低通滤波
-    //accel low-pass filter
-    accel_fliter_1[0] = accel_fliter_2[0];
-    accel_fliter_2[0] = accel_fliter_3[0];
 
-    accel_fliter_3[0] = accel_fliter_2[0] * fliter_num[0] + accel_fliter_1[0] * fliter_num[1] + BMI088_Raw_Data.Accel[0] * fliter_num[2];
+    INS.Accel[0] = BMI088_Raw_Data.Accel[0];
+    INS.Accel[1] = BMI088_Raw_Data.Accel[1];
+    INS.Accel[2] = BMI088_Raw_Data.Accel[2];
+    INS.Gyro[0] = BMI088_Raw_Data.Gyro[0];
+    INS.Gyro[1] = BMI088_Raw_Data.Gyro[1];
+    INS.Gyro[2] = BMI088_Raw_Data.Gyro[2];
 
-    accel_fliter_1[1] = accel_fliter_2[1];
-    accel_fliter_2[1] = accel_fliter_3[1];
+    // 核心函数,EKF更新四元数
+    IMU_QuaternionEKF_Update(INS.Gyro[0], INS.Gyro[1], INS.Gyro[2], INS.Accel[0], INS.Accel[1], INS.Accel[2], INS_DWT_Dt );
 
-    accel_fliter_3[1] = accel_fliter_2[1] * fliter_num[0] + accel_fliter_1[1] * fliter_num[1] + BMI088_Raw_Data.Accel[1] * fliter_num[2];
+    memcpy(INS.q, QEKF_INS.q, sizeof(QEKF_INS.q));
 
-    accel_fliter_1[2] = accel_fliter_2[2];
-    accel_fliter_2[2] = accel_fliter_3[2];
+    // 机体系基向量转换到导航坐标系，本例选取惯性系为导航系
+    BodyFrameToEarthFrame(X_b, INS.xn, INS.q);
+    BodyFrameToEarthFrame(Y_b, INS.yn, INS.q);
+    BodyFrameToEarthFrame(Z_b, INS.zn, INS.q); 
 
-    accel_fliter_3[2] = accel_fliter_2[2] * fliter_num[0] + accel_fliter_1[2] * fliter_num[1] + BMI088_Raw_Data.Accel[2] * fliter_num[2];
-
-    //角速度零值修正，目的是建立死区，mpu波纹浮动
-    BMI088_Raw_Data.Gyro[0] = fabs(BMI088_Raw_Data.Gyro[0])<GIMBAL_GYRO_X_ZERO_CORRECT ? 0.0f : BMI088_Raw_Data.Gyro[0];
-    BMI088_Raw_Data.Gyro[1] = fabs(BMI088_Raw_Data.Gyro[1])<GIMBAL_GYRO_Y_ZERO_CORRECT ? 0.0f : BMI088_Raw_Data.Gyro[1];
-    BMI088_Raw_Data.Gyro[2] = fabs(BMI088_Raw_Data.Gyro[2])<GIMBAL_GYRO_Z_ZERO_CORRECT ? 0.0f : BMI088_Raw_Data.Gyro[2];
+    // 将重力从导航坐标系n转换到机体系b,随后根据加速度计数据计算运动加速度
     
-//  IMU_IST8310.ist8310_read_mag(IST8310_Real_Data.mag);
+    EarthFrameToBodyFrame(Gravity, tmp_gravity_b, INS.q);
+    for (uint8_t i = 0; i < 3; i++) // 同样过一个低通滤波
+    {
+        INS.MotionAccel_b[i] = (INS.Accel[i] - tmp_gravity_b[i]) * INS_DWT_Dt / (INS.AccelLPF + INS_DWT_Dt) + INS.MotionAccel_b[i] * INS.AccelLPF / (INS.AccelLPF + INS_DWT_Dt);
+    }
+    BodyFrameToEarthFrame(INS.MotionAccel_b, INS.MotionAccel_n, INS.q); // 转换回导航系n
 
-    IMU_MahonyAHRS.AHRS_update(INS_Quat, 0.001f, BMI088_Raw_Data.Gyro, BMI088_Raw_Data.Accel, IST8310_Real_Data.mag);
+    // 获取最终数据
     Get_Angle();
 
     if(Tempture_Cnt_mod50 % 50 == 0)
@@ -100,6 +110,12 @@ void Class_IMU::TIM1msMod50_Alive_PeriodElapsedCallback(void)
 
 void Class_IMU::Get_Angle()
 {
+    // 获取最终数据
+    INS.Yaw = QEKF_INS.Yaw;
+    INS.Pitch = QEKF_INS.Pitch;
+    INS.Roll = QEKF_INS.Roll;
+    INS.YawTotalAngle = QEKF_INS.YawTotalAngle;
+
     INS_Rad[0] = atan2f(2.0f*(INS_Quat[0]*INS_Quat[3]+INS_Quat[1]*INS_Quat[2]), 2.0f*(INS_Quat[0]*INS_Quat[0]+INS_Quat[1]*INS_Quat[1])-1.0f);
     INS_Rad[1] = asinf(-2.0f*(INS_Quat[1]*INS_Quat[3]-INS_Quat[0]*INS_Quat[2]));
     INS_Rad[2] = atan2f(2.0f*(INS_Quat[0]*INS_Quat[1]+INS_Quat[2]*INS_Quat[3]),2.0f*(INS_Quat[0]*INS_Quat[0]+INS_Quat[3]*INS_Quat[3])-1.0f);
@@ -133,67 +149,109 @@ void Class_IMU::TIM_Set_PWM(TIM_HandleTypeDef *tim_pwmHandle, uint8_t Channel, u
 
 float Class_IMU::Get_Angle_Roll(void)
 {
-    return INS_Angle[2];
+    return (INS.Roll);
 }
 
 float Class_IMU::Get_Angle_Pitch(void)
 {
-    return INS_Angle[1];
+    return (INS.Pitch);
 }
 
 float Class_IMU::Get_Angle_Yaw(void)
 {
-    return INS_Angle[0];
+    return (INS.Yaw);
 }
 
 float Class_IMU::Get_Accel_X(void)
 {
-    return BMI088_Raw_Data.Accel[0];
+    return (INS.Accel[0]);
 }
 
 float Class_IMU::Get_Accel_Y(void)
 {
-    return BMI088_Raw_Data.Accel[1];
+    return (INS.Accel[1]);
 }
 
 float Class_IMU::Get_Accel_Z(void)
 {
-    return BMI088_Raw_Data.Accel[2];
+    return (INS.Accel[2]);
 }
 
 float Class_IMU::Get_Gyro_Roll(void)
 {
-    return BMI088_Raw_Data.Gyro[0];
+    return (INS.Gyro[1]);
 }
 
 float Class_IMU::Get_Gyro_Pitch(void)
 {
-    return BMI088_Raw_Data.Gyro[1];
+    return (INS.Gyro[0]);
 }
 
 float Class_IMU::Get_Gyro_Yaw(void)
 {
-    return BMI088_Raw_Data.Gyro[2];
+    return (INS.Gyro[2]);
 }
 
 float Class_IMU::Get_Rad_Roll(void)
 {
-    return INS_Rad[0];
+    return (INS.Roll/180.f*PI);
 }
 
 float Class_IMU::Get_Rad_Pitch(void)
 {
-    return INS_Rad[1];
+    return (INS.Pitch/180.f*PI);
 }
 
 float Class_IMU::Get_Rad_Yaw(void)
 {
-    return INS_Rad[2];
+    return (INS.Yaw/180.f*PI);
 }
 
 Enum_IMU_Status Class_IMU::Get_IMU_Status(void)
 {
     return IMU_Status;
+}
+
+/**
+ * @brief          Transform 3dvector from BodyFrame to EarthFrame
+ * @param[1]       vector in BodyFrame
+ * @param[2]       vector in EarthFrame
+ * @param[3]       quaternion
+ */
+void Class_IMU::BodyFrameToEarthFrame(const float *vecBF, float *vecEF, float *q)
+{
+    vecEF[0] = 2.0f * ((0.5f - q[2] * q[2] - q[3] * q[3]) * vecBF[0] +
+                       (q[1] * q[2] - q[0] * q[3]) * vecBF[1] +
+                       (q[1] * q[3] + q[0] * q[2]) * vecBF[2]);
+
+    vecEF[1] = 2.0f * ((q[1] * q[2] + q[0] * q[3]) * vecBF[0] +
+                       (0.5f - q[1] * q[1] - q[3] * q[3]) * vecBF[1] +
+                       (q[2] * q[3] - q[0] * q[1]) * vecBF[2]);
+
+    vecEF[2] = 2.0f * ((q[1] * q[3] - q[0] * q[2]) * vecBF[0] +
+                       (q[2] * q[3] + q[0] * q[1]) * vecBF[1] +
+                       (0.5f - q[1] * q[1] - q[2] * q[2]) * vecBF[2]);
+}
+
+/**
+ * @brief          Transform 3dvector from EarthFrame to BodyFrame
+ * @param[1]       vector in EarthFrame
+ * @param[2]       vector in BodyFrame
+ * @param[3]       quaternion
+ */
+void Class_IMU::EarthFrameToBodyFrame(const float *vecEF, float *vecBF, float *q)
+{
+    vecBF[0] = 2.0f * ((0.5f - q[2] * q[2] - q[3] * q[3]) * vecEF[0] +
+                       (q[1] * q[2] + q[0] * q[3]) * vecEF[1] +
+                       (q[1] * q[3] - q[0] * q[2]) * vecEF[2]);
+
+    vecBF[1] = 2.0f * ((q[1] * q[2] - q[0] * q[3]) * vecEF[0] +
+                       (0.5f - q[1] * q[1] - q[3] * q[3]) * vecEF[1] +
+                       (q[2] * q[3] + q[0] * q[1]) * vecEF[2]);
+
+    vecBF[2] = 2.0f * ((q[1] * q[3] + q[0] * q[2]) * vecEF[0] +
+                       (q[2] * q[3] - q[0] * q[1]) * vecEF[1] +
+                       (0.5f - q[1] * q[1] - q[2] * q[2]) * vecEF[2]);
 }
 
 //====================================================================================================

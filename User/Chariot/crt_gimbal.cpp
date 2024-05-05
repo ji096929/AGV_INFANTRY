@@ -51,10 +51,10 @@ void Class_Gimbal_Yaw_Motor_GM6020::TIM_PID_PeriodElapsedCallback()
     break;
     case (DJI_Motor_Control_Method_IMU_OMEGA):
     {
-        if (True_Angle_Yaw > 70)
-            Target_Omega = test;
-        if (True_Angle_Yaw < 20)
-            Target_Omega = -test;
+        // if (True_Angle_Yaw > 70)
+        //     Target_Omega = test;
+        // if (True_Angle_Yaw < 20)
+        //     Target_Omega = -test;
         PID_Omega.Set_Target(Target_Omega);
         if (IMU->Get_IMU_Status() == IMU_Status_DISABLE)
         {
@@ -159,8 +159,8 @@ void Class_Gimbal_Yaw_Motor_GM6020::TIM_PID_PeriodElapsedCallback()
  */
 void Class_Gimbal_Yaw_Motor_GM6020::Transform_Angle()
 {
-    True_Rad_Yaw = -IMU->Get_Rad_Yaw();
-    True_Gyro_Yaw = -IMU->Get_Gyro_Yaw();
+    True_Rad_Yaw = IMU->Get_Rad_Yaw();
+    True_Gyro_Yaw = IMU->Get_Gyro_Yaw();
     if (IMU->Get_Angle_Yaw() > 0)
         True_Angle_Yaw = IMU->Get_Angle_Yaw() - 180;
     if (IMU->Get_Angle_Yaw() < 0)
@@ -302,8 +302,8 @@ void Class_Gimbal_Pitch_Motor_GM6020::TIM_PID_PeriodElapsedCallback()
  */
 void Class_Gimbal_Pitch_Motor_GM6020::Transform_Angle()
 {
-    True_Rad_Pitch = 1 * IMU->Get_Rad_Pitch();
-    True_Gyro_Pitch = -1 * IMU->Get_Gyro_Pitch();
+    True_Rad_Pitch =  IMU->Get_Rad_Pitch();
+    True_Gyro_Pitch =  IMU->Get_Gyro_Pitch();
     True_Angle_Pitch = RAD_TO_ANGEL(True_Rad_Pitch);
 }
 

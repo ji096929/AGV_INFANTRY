@@ -1,5 +1,4 @@
 #include "dvc_boardc_bmi088.h"
-#include "dvc_boardc_bmi088_middleware.h"
 #include "dvc_boardc_bmi088_reg.h"
 #include "dvc_dwt.h"
 #include "math.h"
@@ -9,15 +8,13 @@ float BMI088_GYRO_SEN = BMI088_GYRO_2000_SEN;
 
 static uint8_t res = 0;
 static uint8_t write_reg_num = 0;
-static uint8_t error = BMI088_NO_ERROR;
+
 float gyroDiff[3], gNormDiff;
 
-uint8_t caliOffset = 1;
+
 int16_t caliCount = 0;
 
-IMU_Data_t BMI088;
-IMU_Real_Data_t BMI088_Real_Data;
-SPI_HandleTypeDef *BMI088_SPI;
+
 
 static uint8_t write_BMI088_accel_reg_data_error[BMI088_WRITE_ACCEL_REG_NUM][3] =
     {
@@ -41,7 +38,7 @@ static uint8_t write_BMI088_gyro_reg_data_error[BMI088_WRITE_GYRO_REG_NUM][3] =
 
 };
 
-uint8_t Class_BoardC_BMI::init(SPI_HandleTypeDef *hspi)
+uint8_t Class_BoardC_BMI::init(SPI_HandleTypeDef *hspi ,IMU_Data_t *__BMI088)
 {
     if(hspi == NULL)
     {
@@ -64,19 +61,14 @@ uint8_t Class_BoardC_BMI::init(SPI_HandleTypeDef *hspi)
         return 0;
     }
      
-		Delay_Init();
-    while (BMI088_Init());  
+	Delay_Init();
+    while (BMI088_Init(__BMI088));  
 	return 1;
 }
 
 
-uint8_t Class_BoardC_BMI::BMI088_Init(void)
+uint8_t Class_BoardC_BMI::BMI088_Init(IMU_Data_t *__BMI088)
 {
-    uint8_t error = BMI088_NO_ERROR;
-    // GPIO and SPI  Init .
-    // BMI088_GPIO_init();
-    // BMI088_com_init();
-
     // self test pass and init
     if (bmi088_accel_self_test() != BMI088_NO_ERROR)
     {
@@ -96,8 +88,142 @@ uint8_t Class_BoardC_BMI::BMI088_Init(void)
         error |= BMI088_Gyro_Init();
     }
 
+    if (caliOffset)
+        Calibrate_MPU_Offset(__BMI088);
+    else
+    {
+        __BMI088->GyroOffset[0] = GxOFFSET;
+        __BMI088->GyroOffset[1] = GyOFFSET;
+        __BMI088->GyroOffset[2] = GzOFFSET;
+        __BMI088->gNorm = gNORM;
+        __BMI088->AccelScale = 9.81f / __BMI088->gNorm;
+        __BMI088->TempWhenCali = 40;
+    }
     return error;
 }
+
+// 较准零飘
+void Class_BoardC_BMI::Calibrate_MPU_Offset(IMU_Data_t *bmi088)
+{
+    static float startTime;
+    static uint16_t CaliTimes = 6000; // 需要足够多的数据才能得到有效陀螺仪零偏校准结果
+    uint8_t buf[8] = {0, 0, 0, 0, 0, 0};
+    int16_t bmi088_raw_temp;
+    float gyroMax[3], gyroMin[3];
+    float gNormTemp, gNormMax, gNormMin;
+
+    startTime = DWT_GetTimeline_s();
+    do
+    {
+        if (DWT_GetTimeline_s() - startTime > 10)
+        {
+            // 校准超时
+            bmi088->GyroOffset[0] = GxOFFSET;
+            bmi088->GyroOffset[1] = GyOFFSET;
+            bmi088->GyroOffset[2] = GzOFFSET;
+            bmi088->gNorm = gNORM;
+            bmi088->TempWhenCali = 40;
+            break;
+        }
+
+        DWT_Delay(0.005);
+        bmi088->gNorm = 0;
+        bmi088->GyroOffset[0] = 0;
+        bmi088->GyroOffset[1] = 0;
+        bmi088->GyroOffset[2] = 0;
+
+        for (uint16_t i = 0; i < CaliTimes; i++)
+        {
+            BMI088_accel_read_muli_reg(BMI088_ACCEL_XOUT_L, buf, 6);
+            bmi088_raw_temp = (int16_t)((buf[1]) << 8) | buf[0];
+            bmi088->Accel[0] = bmi088_raw_temp * BMI088_ACCEL_SEN;
+            bmi088_raw_temp = (int16_t)((buf[3]) << 8) | buf[2];
+            bmi088->Accel[1] = bmi088_raw_temp * BMI088_ACCEL_SEN;
+            bmi088_raw_temp = (int16_t)((buf[5]) << 8) | buf[4];
+            bmi088->Accel[2] = bmi088_raw_temp * BMI088_ACCEL_SEN;
+            gNormTemp = sqrtf(bmi088->Accel[0] * bmi088->Accel[0] +
+                              bmi088->Accel[1] * bmi088->Accel[1] +
+                              bmi088->Accel[2] * bmi088->Accel[2]);
+            bmi088->gNorm += gNormTemp;
+
+            BMI088_gyro_read_muli_reg(BMI088_GYRO_CHIP_ID, buf, 8);
+            if (buf[0] == BMI088_GYRO_CHIP_ID_VALUE)
+            {
+                bmi088_raw_temp = (int16_t)((buf[3]) << 8) | buf[2];
+                bmi088->Gyro[0] = bmi088_raw_temp * BMI088_GYRO_SEN;
+                bmi088->GyroOffset[0] += bmi088->Gyro[0];
+                bmi088_raw_temp = (int16_t)((buf[5]) << 8) | buf[4];
+                bmi088->Gyro[1] = bmi088_raw_temp * BMI088_GYRO_SEN;
+                bmi088->GyroOffset[1] += bmi088->Gyro[1];
+                bmi088_raw_temp = (int16_t)((buf[7]) << 8) | buf[6];
+                bmi088->Gyro[2] = bmi088_raw_temp * BMI088_GYRO_SEN;
+                bmi088->GyroOffset[2] += bmi088->Gyro[2];
+            }
+
+            // 记录数据极差
+            if (i == 0)
+            {
+                gNormMax = gNormTemp;
+                gNormMin = gNormTemp;
+                for (uint8_t j = 0; j < 3; j++)
+                {
+                    gyroMax[j] = bmi088->Gyro[j];
+                    gyroMin[j] = bmi088->Gyro[j];
+                }
+            }
+            else
+            {
+                if (gNormTemp > gNormMax)
+                    gNormMax = gNormTemp;
+                if (gNormTemp < gNormMin)
+                    gNormMin = gNormTemp;
+                for (uint8_t j = 0; j < 3; j++)
+                {
+                    if (bmi088->Gyro[j] > gyroMax[j])
+                        gyroMax[j] = bmi088->Gyro[j];
+                    if (bmi088->Gyro[j] < gyroMin[j])
+                        gyroMin[j] = bmi088->Gyro[j];
+                }
+            }
+
+            // 数据差异过大认为收到外界干扰，需重新校准
+            gNormDiff = gNormMax - gNormMin;
+            for (uint8_t j = 0; j < 3; j++)
+                gyroDiff[j] = gyroMax[j] - gyroMin[j];
+            if (gNormDiff > 0.5f ||
+                gyroDiff[0] > 0.15f ||
+                gyroDiff[1] > 0.15f ||
+                gyroDiff[2] > 0.15f)
+                break;
+            DWT_Delay(0.0005);
+        }
+
+        // 取平均值得到标定结果
+        bmi088->gNorm /= (float)CaliTimes;
+        for (uint8_t i = 0; i < 3; i++)
+            bmi088->GyroOffset[i] /= (float)CaliTimes;
+
+        // 记录标定时IMU温度
+        BMI088_accel_read_muli_reg(BMI088_TEMP_M, buf, 2);
+        bmi088_raw_temp = (int16_t)((buf[0] << 3) | (buf[1] >> 5));
+        if (bmi088_raw_temp > 1023)
+            bmi088_raw_temp -= 2048;
+        bmi088->TempWhenCali = bmi088_raw_temp * BMI088_TEMP_FACTOR + BMI088_TEMP_OFFSET;
+
+        caliCount++;
+    } while (gNormDiff > 0.5f ||
+             fabsf(bmi088->gNorm - 9.8f) > 0.5f ||
+             gyroDiff[0] > 0.15f ||
+             gyroDiff[1] > 0.15f ||
+             gyroDiff[2] > 0.15f ||
+             fabsf(bmi088->GyroOffset[0]) > 0.01f ||
+             fabsf(bmi088->GyroOffset[1]) > 0.01f ||
+             fabsf(bmi088->GyroOffset[2]) > 0.01f);
+
+    // 根据标定结果校准加速度计标度因数
+    bmi088->AccelScale = 9.81f / bmi088->gNorm;
+}
+
 
 uint8_t Class_BoardC_BMI::BMI088_Accel_Init(void)
 {
