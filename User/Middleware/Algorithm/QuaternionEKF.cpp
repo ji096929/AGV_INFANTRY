@@ -90,6 +90,8 @@ void IMU_QuaternionEKF_Init(float process_noise1, float process_noise2, float me
     memcpy(QEKF_INS->IMU_QuaternionEKF.P_data, IMU_QuaternionEKF_P, sizeof(IMU_QuaternionEKF_P));
 }
 
+
+float yaw_offset;//度数每秒，是观测出来的静态偏移量，可以加在 QEKF_INS->GyroBias[2] = 0; // 大部分时候z轴通天,无法观测yaw的漂移这行
 /**
  * @brief Quaternion EKF update
  * @param[in]       gyro x y z in rad/s
