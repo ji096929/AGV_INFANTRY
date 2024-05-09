@@ -109,65 +109,70 @@ void AGV_connoection(int ms_cnt)
 float test_sum;
 void calculate_true_power(void)
 {
-	float expect_supercap_per;
+    float expect_supercap_per;
     PID_Calculate(&buffer_pid, JudgeReceive.remainEnergy, 30);
     float sum = 0;
-		if(JudgeReceive.MaxPower==65535)
-			JudgeReceive.MaxPower=5000;
-	
+    if (JudgeReceive.MaxPower == 65535)
+        JudgeReceive.MaxPower = 5000;
+
     if (JudgeReceive.MaxPower == 0)
         chassis_power_control.power_limit_max = 80;
     else
         chassis_power_control.power_limit_max = JudgeReceive.MaxPower - buffer_pid.Output;
 
-    
-//chassis_power_control.power_limit_max=chassis_power_control.power_limit_max+(chassis.supercap.supercap_per*100-30)*2;
-        
-//    if (chassis.supercap.supercap_per > 5)
-//    {
-        if (chassis.supercap.state == 0)
-        {
-            expect_supercap_per = 0.8;
-            // chassis_power_control.power_limit_max = chassis_power_control.power_limit_max + 5; // slightly greater than the maximum power, avoiding the capacitor being full all the time and improving energy utilization
-        }
-        else
-        {
-            expect_supercap_per = 0.2;
-            // chassis_power_control.power_limit_max = chassis_power_control.power_limit_max + 80;
-        }
-        PID_Calculate(&supercap_pid, chassis.supercap.supercap_per, expect_supercap_per);
-        chassis_power_control.power_limit_max -= supercap_pid.Output;
+    // chassis_power_control.power_limit_max=chassis_power_control.power_limit_max+(chassis.supercap.supercap_per*100-30)*2;
 
-        //    }
-        //    else
-        //    {
-        //        chassis_power_control.power_limit_max = chassis_power_control.power_limit_max;
-        //    }
+    //    if (chassis.supercap.supercap_per > 5)
+    //    {
+    if (chassis.supercap.state == 0)
+    {
+        expect_supercap_per = 0.8;
+        // chassis_power_control.power_limit_max = chassis_power_control.power_limit_max + 5; // slightly greater than the maximum power, avoiding the capacitor being full all the time and improving energy utilization
+    }
+    else
+    {
+        expect_supercap_per = 0.2;
+        // chassis_power_control.power_limit_max = chassis_power_control.power_limit_max + 80;
+    }
+    PID_Calculate(&supercap_pid, chassis.supercap.supercap_per, expect_supercap_per);
+    chassis_power_control.power_limit_max -= supercap_pid.Output;
 
-        if (chassis_power_control.all_mscb_ready_flag & 0xf)
+
+
+    if(chassis.supercap.supercap_voltage<13.5)
+    {
+        chassis_power_control.power_limit_max = JudgeReceive.MaxPower-5;
+    }
+    //    }
+    //    else
+    //    {
+    //        chassis_power_control.power_limit_max = chassis_power_control.power_limit_max;
+    //    }
+
+    if (chassis_power_control.all_mscb_ready_flag & 0xf)
+    {
+        for (uint8_t i = 0; i < 4; i++)
+        {
+            sum += chassis_power_control.expect_power_32[i];
+        }
+        test_sum = sum;
+
+        chassis_power_control.scaled_power_coefficient_32 = (chassis_power_control.power_limit_max) / sum;
+        if (chassis_power_control.scaled_power_coefficient_32 <= 1)
         {
             for (uint8_t i = 0; i < 4; i++)
             {
-                sum += chassis_power_control.expect_power_32[i];
+                chassis_power_control.scaled_power_32[i] = chassis_power_control.scaled_power_coefficient_32 * chassis_power_control.expect_power_32[i];
             }
-            test_sum = sum;
-
-            chassis_power_control.scaled_power_coefficient_32 = (chassis_power_control.power_limit_max) / sum;
-            if (chassis_power_control.scaled_power_coefficient_32 <= 1)
+        }
+        else
+        {
+            for (uint8_t i = 0; i < 4; i++)
             {
-                for (uint8_t i = 0; i < 4; i++)
-                {
-                    chassis_power_control.scaled_power_32[i] = chassis_power_control.scaled_power_coefficient_32 * chassis_power_control.expect_power_32[i];
-                }
+                chassis_power_control.scaled_power_32[i] = chassis_power_control.expect_power_32[i];
             }
-            else
-            {
-                for (uint8_t i = 0; i < 4; i++)
-                {
-                    chassis_power_control.scaled_power_32[i] = chassis_power_control.expect_power_32[i];
-                }
-            }
-            chassis_power_control.all_mscb_ready_flag = 0;
+        }
+        chassis_power_control.all_mscb_ready_flag = 0;
     }
 }
 
