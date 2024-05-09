@@ -264,6 +264,8 @@ void Class_Chariot::Control_Chassis()
         // 遥控器键盘鼠标操作逻辑,右下键鼠操作
         if ((DR16.Get_Right_Switch() == DR16_Switch_Status_DOWN))
         {
+            if (Chassis.Get_Chassis_Control_Type() == Chassis_Control_Type_DISABLE)
+                Chassis.Set_Chassis_Control_Type(Chassis_Control_Type_FLLOW);
 
             if (DR16.Get_Keyboard_Key_Q() == DR16_Key_Status_TRIG_FREE_PRESSED) // Q键切换小陀螺与随动
             {
@@ -461,8 +463,8 @@ void Class_Chariot::Control_Gimbal()
                 Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_NORMAL);
 
                 // 遥控器操作逻辑
-                tmp_gimbal_yaw -= dr16_y * DR16_Yaw_Angle_Resolution*10;
-                tmp_gimbal_pitch += dr16_r_y * DR16_Pitch_Resolution*10;
+                tmp_gimbal_yaw -= dr16_y * DR16_Yaw_Angle_Resolution * 10;
+                tmp_gimbal_pitch += dr16_r_y * DR16_Pitch_Resolution * 10;
             }
         }
     }

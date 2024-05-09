@@ -118,6 +118,8 @@ protected:
     //积分值
     float Integral_Error = 0.0f;
 
+    uint16_t cnt = 0;
+
     //内部函数
 };
 
