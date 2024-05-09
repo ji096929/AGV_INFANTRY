@@ -73,6 +73,8 @@ void Class_MiniPC::Output()
     else
         Pack_Tx.detect_color = 0; // 红方
 
+    Pack_Tx.points_num = 4;
+
     Pack_Tx.target_id = 0x01;
     Pack_Tx.Game_Status_Stage = Referee->Get_Game_Stage();
     Pack_Tx.roll = Tx_Angle_Roll;

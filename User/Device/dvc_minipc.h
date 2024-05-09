@@ -19,7 +19,7 @@
 #include "drv_usb.h"
 #include "dvc_imu.h"
 #include "dvc_referee.h"
-
+#include "dvc_djimotor.h"
 /* Exported macros -----------------------------------------------------------*/
 
 class Class_Gimbal_Pitch_Motor_GM6020;
@@ -58,6 +58,7 @@ struct Pack_tx_t
 {
     uint8_t hander;
     uint8_t Game_Status_Stage;
+    uint8_t points_num;
     uint8_t detect_color;
     uint8_t target_id;
     float roll;
@@ -249,6 +250,8 @@ public:
     Class_Referee *Referee;
     Class_Gimbal_Pitch_Motor_GM6020 *Gimbal_Pitch_Motor_GM6020;
     Class_Gimbal_Yaw_Motor_GM6020 *Gimbal_Yaw_Motor_GM6020;
+
+   
 
 protected:
     // 初始化相关常量
@@ -581,16 +584,25 @@ void Class_MiniPC::Set_Outpost_Protect_Status(Enum_MiniPC_Data_Status __Outpost_
 
 void Class_MiniPC::Transform_Angle_Tx()
 {
-    Tx_Angle_Pitch = IMU->Get_Angle_Pitch();
-    if (IMU->Get_Angle_Roll() > 0)
-        Tx_Angle_Roll = IMU->Get_Angle_Roll() - 180;
-    if (IMU->Get_Angle_Roll() < 0)
-        Tx_Angle_Roll = IMU->Get_Angle_Roll() + 180;
+    // Tx_Angle_Pitch = Gimbal_Pitch_Motor_GM6020->Get_True_Angle_Pitch();
+ 
 
-    if (IMU->Get_Angle_Yaw() > 0)
-        Tx_Angle_Yaw = IMU->Get_Angle_Yaw() - 180;
-    if (IMU->Get_Angle_Yaw() < 0)
-        Tx_Angle_Yaw = IMU->Get_Angle_Yaw() + 180;
+
+    // Tx_Angle_Yaw= Gimbal_Yaw_Motor_GM6020->Get_True_Angle_Yaw();
+    //Gimbal_Pitch_Motor_GM6020->Get_True_Angle_Pitch();
+    Tx_Angle_Pitch = RAD_TO_ANGEL(-IMU->Get_Rad_Roll());
+    Tx_Angle_Roll = IMU->Get_Angle_Pitch();
+    Tx_Angle_Yaw = IMU->Get_Angle_Yaw();
+    //Tx_Angle_Pitch = IMU->Get_Angle_Pitch();
+    // if (IMU->Get_Angle_Roll() > 0)
+    //     Tx_Angle_Roll = IMU->Get_Angle_Roll() - 180;
+    // if (IMU->Get_Angle_Roll() < 0)
+    //     Tx_Angle_Roll = IMU->Get_Angle_Roll() + 180;
+
+    // if (IMU->Get_Angle_Yaw() > 0)
+    //     Tx_Angle_Yaw = IMU->Get_Angle_Yaw() - 180;
+    // if (IMU->Get_Angle_Yaw() < 0)
+    //     Tx_Angle_Yaw = IMU->Get_Angle_Yaw() + 180;
     // Tx_Angle_Yaw = 0;
 }
 
