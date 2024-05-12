@@ -92,6 +92,7 @@ enum ARMOR_ID
 	ARMOR_ID_4,
 	ARMOR_ID_5,
 	ARMOR_ID_Sentry,
+	
 };
 
 //ͼ�����ݽṹ��

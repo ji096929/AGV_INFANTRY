@@ -126,20 +126,20 @@ void calculate_true_power(void)
     //    {
     if (chassis.supercap.state == 0)
     {
-        expect_supercap_per = 0.8;
+        expect_supercap_per = 0.5;
         // chassis_power_control.power_limit_max = chassis_power_control.power_limit_max + 5; // slightly greater than the maximum power, avoiding the capacitor being full all the time and improving energy utilization
     }
     else
     {
-        expect_supercap_per = 0.2;
+        expect_supercap_per = -0.3;
         // chassis_power_control.power_limit_max = chassis_power_control.power_limit_max + 80;
     }
     PID_Calculate(&supercap_pid, chassis.supercap.supercap_per, expect_supercap_per);
     chassis_power_control.power_limit_max -= supercap_pid.Output;
 
+    //chassis_power_control.power_limit_max += (chassis.supercap.supercap_per - expect_supercap_per) * 400;
 
-
-    if(chassis.supercap.supercap_voltage<13.5)
+    if (chassis.supercap.supercap_voltage < 13.5)
     {
         chassis_power_control.power_limit_max = JudgeReceive.MaxPower-5;
     }

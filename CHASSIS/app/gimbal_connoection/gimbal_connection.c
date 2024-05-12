@@ -28,7 +28,8 @@ void Chassis_Control_Mode_Update(GIMBAL_CONNECTION_T *connection, uint8_t data[]
 {
 	connection->connection_rx.follow.flag = 1;
 	connection->connection_rx.mode = data[0];
-	connection->connection_rx.invert.flag = data[1];
+	connection->connection_rx.invert.flag = 0;
+	connection->connection_rx.vision_mode.flag = data[1];
 	connection->connection_rx.supercap.flag = data[2];
 	connection->connection_rx.fric.flag = data[3];
 	connection->connection_rx.gimbal.flag = data[4];

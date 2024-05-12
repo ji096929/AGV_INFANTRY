@@ -18,7 +18,7 @@ YAW_T yaw;
 PID_T yaw_pid;
 float yaw_position_loop_data[10] = {0.3f, 0.0f, 3.f, 4.f, 0.0f, 1.0f, 0.f, 0.f, 0.f, 0.f};
 float buffer_loop_data[10] = {5.0f, 0.0f, 0.f, 50.0f, 0.0f, 1.0f, 0.f, 0.f, 0.f, 0.f};
-float supercap_loop_data[10] = {150.0f, 0.0f, 0.f, 200.0f, 0.0f, 1.0f, 0.f, 0.f, 0.f, 0.f};
+float supercap_loop_data[10] = {75.0f, 0.0f, 0.f, 200.0f, 0.0f, 0.0f, 0.f, 0.f, 0.f, 0.f};
 void Chassis_Speed_Slow_Motion(CHASSIS_T *chassis)
 {
 	// int Delta;

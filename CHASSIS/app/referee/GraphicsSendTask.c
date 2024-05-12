@@ -489,6 +489,7 @@ void CharChange(uint8_t Init_Flag)
 {
 	uint8_t GimbalNormal[] = "NORMAL";
 	uint8_t GimbalAuto[] = "AUTO";
+	uint8_t GimbalAutoF[] = "AUTOF";
 	uint8_t GimbalPowerdown[] = "POWERDOWN";
 	uint8_t GimbalBigBuf[] = "BIGBUF";
 	uint8_t GimbalSmlBuf[] = "SMLBUF";
@@ -570,7 +571,12 @@ void CharChange(uint8_t Init_Flag)
 			break;
 
 		case Gimbal_Control_Type_MINIPC:
-			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.55 * SCREEN_WIDTH, 20, sizeof(GimbalAuto), 2, Cyan, GimbalChangeName, GimbalAuto);
+			{
+				if (connection.connection_rx.vision_mode.flag==4)
+					Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.55 * SCREEN_WIDTH, 20, sizeof(GimbalAuto), 2, Cyan, GimbalChangeName, GimbalAuto);
+				if (connection.connection_rx.vision_mode.flag == 5)
+					Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.55 * SCREEN_WIDTH, 20, sizeof(GimbalAutoF), 2, Black, GimbalChangeName, GimbalAutoF);
+			}
 			break;
 
 			// case Gimbal_BigBuf_Mode:
@@ -636,6 +642,7 @@ void CharChange(uint8_t Init_Flag)
 		case ARMOR_ID_Sentry:
 			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.45 * SCREEN_WIDTH, 20, sizeof(ArmorID_Sentry), 2, Green, ArmorChangeName, ArmorID_Sentry);
 			break;
+			
 
 		default:
 			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.45 * SCREEN_WIDTH, 20, sizeof(ArmorLost), 2, Pink, ArmorChangeName, ArmorLost);

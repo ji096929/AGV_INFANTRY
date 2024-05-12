@@ -51,7 +51,7 @@ void Tx_Super_Capacitor(void)
 {
     if (JudgeReceive.remainEnergy > 10.f)
     {
-        Add_Power = (JudgeReceive.remainEnergy - 10.f) / 50.f * 20.f;
+        Add_Power = (JudgeReceive.remainEnergy - 10.f) / 50.f * 60.f;
     }
     else
         Add_Power = 0.f;

@@ -58,6 +58,7 @@ typedef struct
 	CHASSIS_MODE_STATE_T Graphic_Init;
 	CHASSIS_MODE_STATE_T fric;
 	CHASSIS_MODE_STATE_T vision;
+	CHASSIS_MODE_STATE_T vision_mode;
 	CHASSIS_MODE_STATE_T gimbal;
 	CHASSIS_MODE_STATE_T jamming;
 	float pitch_angle;
