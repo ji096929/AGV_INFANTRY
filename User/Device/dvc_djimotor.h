@@ -89,8 +89,8 @@ struct Struct_DJI_Motor_Data
 {
     float Now_Angle;
     float Now_Omega;
-    float Now_Torque;
-    float Now_Temperature;
+    int16_t Now_Torque;
+    uint8_t Now_Temperature;
     uint32_t Pre_Encoder;
     int32_t Total_Encoder;
     int32_t Total_Round;

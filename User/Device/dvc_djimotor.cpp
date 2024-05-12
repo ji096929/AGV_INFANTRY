@@ -223,9 +223,9 @@ void Class_DJI_Motor_GM6020::Data_Process()
     Data.Now_Angle=tmp_encoder/8191.0*2*PI;
     Data.Now_Omega = (float)tmp_omega * RPM_TO_RADPS;
     Data.Now_Torque = tmp_torque;
-    Data.Now_Temperature = tmp_temperature + CELSIUS_TO_KELVIN;
-
-    //存储预备信息
+    //Data.Now_Temperature = tmp_temperature;
+    Data.Now_Temperature = tmp_buffer->Temperature;
+    // 存储预备信息
     Data.Pre_Encoder = tmp_encoder;
 }
 

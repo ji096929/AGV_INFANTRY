@@ -73,7 +73,7 @@ void Class_MiniPC::Output()
     else
         Pack_Tx.detect_color = 0; // 红方
 
-    Pack_Tx.points_num = 4;
+    Pack_Tx.points_num = Get_Vision_Mode();
 
     Pack_Tx.target_id = 0x01;
     Pack_Tx.Game_Status_Stage = Referee->Get_Game_Stage();
@@ -291,6 +291,25 @@ float Class_MiniPC::calc_pitch(float x, float y, float z)
     //        // 根据 dz 和向量的欧几里德距离计算新的俯仰角的变化量，进行迭代更新
     //        //   pitch += asinf(dz / calc_distance(x, y, z));
     //    }
+
+    // 使用重力加速度模型迭代更新俯仰角
+    for (size_t i = 0; i < 20; i++)
+    {
+        float v_x = bullet_v * cosf(pitch);
+        float v_y = bullet_v * sinf(pitch);
+
+        float t = sqrtf(x * x + y * y) / v_x;
+        float h = v_y * t - 0.5 * g * t * t;
+        float dz = z - h;
+
+        if (fabsf(dz) < 0.01)
+        {
+            break;
+        }
+
+        // 根据 dz 和向量的欧几里德距离计算新的俯仰角的变化量，进行迭代更新
+        pitch += asinf(dz / calc_distance(x, y, z));
+    }
 
     // 将弧度制的俯仰角转换为角度制
     pitch = (pitch * 180 / 3.1415926); //

@@ -350,7 +350,7 @@ void Task1ms_TIM5_Callback()
 		{
 			buzzer_setTask(&buzzer,BUZZER_CALIBRATING_PRIORITY);
 		}
-    if (init_finished > 10000)//等待IMU稳定后开始控制
+    if (init_finished > 3000)//等待IMU稳定后开始控制
         start_flag = 1;
 		
 

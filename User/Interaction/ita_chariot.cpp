@@ -222,7 +222,7 @@ void Class_Chariot::CAN_Gimbal_TxCpltCallback()
 
     CAN2_0x152_Tx_Data[0] = Chassis.Get_Chassis_Control_Type();
     //		CAN2_0x152_Tx_Data[0] =0	;
-    CAN2_0x152_Tx_Data[1] = 0;
+    CAN2_0x152_Tx_Data[1] = MiniPC.Get_Vision_Mode();
     CAN2_0x152_Tx_Data[2] = Chassis.Get_Supercap_State();
     CAN2_0x152_Tx_Data[3] = Booster.Get_Booster_Control_Type(); // 摩擦轮状态
     CAN2_0x152_Tx_Data[4] = Gimbal.Get_Gimbal_Control_Type();   // 云台状态
@@ -371,6 +371,13 @@ void Class_Chariot::Control_Gimbal()
         {
             if (DR16.Get_Mouse_Right_Key() == DR16_Key_Status_PRESSED)
             {
+                if (DR16.Get_Keyboard_Key_V() == DR16_Key_Status_PRESSED)
+                {
+                    if (MiniPC.Get_Vision_Mode() == ARMOR_MODE)
+                        MiniPC.Set_Vision_Mode(WINDMILL_MODE);
+                    else
+                        MiniPC.Set_Vision_Mode(ARMOR_MODE);
+                }
                 Gimbal.Set_Gimbal_Control_Type(Gimbal_Control_Type_MINIPC);
             }
             else if (DR16.Get_Mouse_Right_Key() == DR16_Key_Status_FREE)

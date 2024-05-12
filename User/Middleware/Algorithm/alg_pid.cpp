@@ -74,8 +74,16 @@ void Class_PID::TIM_Adjust_PeriodElapsedCallback()
     float speed_ratio;
 
     error = Target - Now;
-    abs_error = Math_Abs(error);
 
+    if (cnt > 100)
+    {
+        // 善后工作
+        
+
+        cnt = 0;
+    }
+    abs_error = Math_Abs(error);
+    Pre_Target = Target;
     // 判断死区
     if (abs_error < Dead_Zone)
     {
@@ -155,7 +163,7 @@ void Class_PID::TIM_Adjust_PeriodElapsedCallback()
     f_out = (Target - Pre_Target) * K_F / D_T;
 
     // 计算总共的输出
-
+    Integral_out = i_out;
     Out = p_out + i_out + d_out + f_out;
     // 输出限幅
     if (Out_Max != 0.0f)
@@ -163,15 +171,11 @@ void Class_PID::TIM_Adjust_PeriodElapsedCallback()
         Math_Constrain(&Out, -Out_Max, Out_Max);
     }
 
-    if (cnt > 100)
-    {
-        // 善后工作
-        Pre_Now = Now;
-        Pre_Target = Target;
-        Pre_Out = Out;
-        Pre_Error = error;
-        cnt = 0;
-    }
+
+    
+    Pre_Now = Now;
+    Pre_Out = Out;
+    Pre_Error = error;
 }
 
 /************************ COPYRIGHT(C) USTC-ROBOWALKER **************************/

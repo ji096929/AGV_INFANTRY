@@ -90,6 +90,16 @@ enum Enum_MiniPC_Status
 };
 
 /**
+ * @brief
+ *
+ */
+enum Enum_Vision_Mode
+{
+    ARMOR_MODE = 4,
+    WINDMILL_MODE,
+};
+
+/**
  * @brief 各种标签, 场地, 相关设施激活与存活状态
  *
  */
@@ -227,6 +237,8 @@ public:
     inline void Set_Self_Color(Enum_MiniPC_Self_Color __Self_Color);
     inline void Set_Outpost_Status(Enum_MiniPC_Data_Status __Outpost_Status);
     inline void Set_Outpost_Protect_Status(Enum_MiniPC_Data_Status __Outpost_Protect_Status);
+    inline void Set_Vision_Mode(Enum_Vision_Mode _Vision_Mode);
+    inline Enum_Vision_Mode Get_Vision_Mode();
 
     void Append_CRC16_Check_Sum(uint8_t *pchMessage, uint32_t dwLength);
     bool Verify_CRC16_Check_Sum(const uint8_t *pchMessage, uint32_t dwLength);
@@ -250,8 +262,6 @@ public:
     Class_Referee *Referee;
     Class_Gimbal_Pitch_Motor_GM6020 *Gimbal_Pitch_Motor_GM6020;
     Class_Gimbal_Yaw_Motor_GM6020 *Gimbal_Yaw_Motor_GM6020;
-
-   
 
 protected:
     // 初始化相关常量
@@ -281,6 +291,8 @@ protected:
 
     Pack_tx_t Pack_Tx;
     Pack_rx_t Pack_Rx;
+
+    Enum_Vision_Mode Vision_Mode = ARMOR_MODE;
 
     float Tx_Angle_Roll;
     float Tx_Angle_Pitch;
@@ -320,6 +332,26 @@ float Class_MiniPC::Get_Rx_Pitch_Angle()
 float Class_MiniPC::Get_Rx_Yaw_Angle()
 {
     return (Rx_Angle_Yaw);
+}
+
+/**
+ * @brief 获取
+ *
+ * @return
+ */
+void Class_MiniPC::Set_Vision_Mode(Enum_Vision_Mode _Vision_Mode)
+{
+    Vision_Mode = _Vision_Mode;
+}
+
+/**
+ * @brief 获取
+ *
+ * @return
+ */
+Enum_Vision_Mode Class_MiniPC::Get_Vision_Mode()
+{
+    return (Vision_Mode);
 }
 
 /**
@@ -585,19 +617,17 @@ void Class_MiniPC::Set_Outpost_Protect_Status(Enum_MiniPC_Data_Status __Outpost_
 void Class_MiniPC::Transform_Angle_Tx()
 {
     // Tx_Angle_Pitch = Gimbal_Pitch_Motor_GM6020->Get_True_Angle_Pitch();
- 
-
 
     // Tx_Angle_Yaw= Gimbal_Yaw_Motor_GM6020->Get_True_Angle_Yaw();
-    //Gimbal_Pitch_Motor_GM6020->Get_True_Angle_Pitch();
+    // Gimbal_Pitch_Motor_GM6020->Get_True_Angle_Pitch();
     Tx_Angle_Pitch = RAD_TO_ANGEL(-IMU->Get_Rad_Roll());
     Tx_Angle_Roll = IMU->Get_Angle_Pitch();
     Tx_Angle_Yaw = IMU->Get_Angle_Yaw();
-    //Tx_Angle_Pitch = IMU->Get_Angle_Pitch();
-    // if (IMU->Get_Angle_Roll() > 0)
-    //     Tx_Angle_Roll = IMU->Get_Angle_Roll() - 180;
-    // if (IMU->Get_Angle_Roll() < 0)
-    //     Tx_Angle_Roll = IMU->Get_Angle_Roll() + 180;
+    // Tx_Angle_Pitch = IMU->Get_Angle_Pitch();
+    //  if (IMU->Get_Angle_Roll() > 0)
+    //      Tx_Angle_Roll = IMU->Get_Angle_Roll() - 180;
+    //  if (IMU->Get_Angle_Roll() < 0)
+    //      Tx_Angle_Roll = IMU->Get_Angle_Roll() + 180;
 
     // if (IMU->Get_Angle_Yaw() > 0)
     //     Tx_Angle_Yaw = IMU->Get_Angle_Yaw() - 180;
