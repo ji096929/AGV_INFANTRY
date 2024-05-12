@@ -386,7 +386,7 @@ void Task1ms_TIM5_Callback()
     }
 }
 void Task1ms_TIM6_Callback(){
-    //buzzer_taskScheduler(&buzzer);
+    buzzer_taskScheduler(&buzzer);
 }
 
 /**
