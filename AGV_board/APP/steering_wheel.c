@@ -7,6 +7,138 @@
 #include "can.h"
 #endif
 
+#define RECORD_NUM 50
+#define FLT_EPSILON 1.19209290e-7F
+#define Math_Abs(x) x>0?x:-x
+
+int32_t record_data_exp_speed[RECORD_NUM];
+int32_t record_data_act_speed[RECORD_NUM];
+int32_t record_data_exp_torque[RECORD_NUM];
+
+Struct_Fourier_Filter Fourier_Filter;
+
+float Math_Sinc(float x)
+{
+	// 分母为0则按极限求法
+	if (Math_Abs(x) <= 2.0f * FLT_EPSILON)
+	{
+		return (1.0f);
+	}
+
+	return (sin(x) / x);
+}
+/**
+ * @brief 初始化滤波器
+ *
+ * @param __Value_Constrain_Low 滤波器最小值
+ * @param __Value_Constrain_High 滤波器最大值
+ * @param __Filter_Fourier_Type 滤波器类型
+ * @param __Frequency_Low 滤波器特征低频, 非高通有效
+ * @param __Frequency_High 滤波器特征高频, 非低通有效
+ * @param __Sampling_Frequency 滤波器采样频率
+ */
+void Filter_Fourier_Init(Struct_Fourier_Filter *Fourier_Filter, float __Value_Constrain_Low, float __Value_Constrain_High, Enum_Filter_Fourier_Type __Filter_Fourier_Type, float __Frequency_Low, float __Frequency_High, float __Sampling_Frequency, int __Filter_Fourier_Order)
+{
+	Fourier_Filter->Value_Constrain_Low = __Value_Constrain_Low;
+	Fourier_Filter->Value_Constrain_High = __Value_Constrain_High;
+	Fourier_Filter->Filter_Fourier_Type = __Filter_Fourier_Type;
+	Fourier_Filter->Frequency_Low = __Frequency_Low;
+	Fourier_Filter->Frequency_High = __Frequency_High;
+	Fourier_Filter->Sampling_Frequency = __Sampling_Frequency;
+	Fourier_Filter->Filter_Fourier_Order = __Filter_Fourier_Order;
+
+	// 平均数求法
+	float system_function_sum = 0.0f;
+	// 特征低角速度
+	float omega_low;
+	// 特征高角速度
+	float omega_high;
+
+	omega_low = 2.0f * PI * Fourier_Filter->Frequency_Low / Fourier_Filter->Sampling_Frequency;
+	omega_high = 2.0f * PI * Fourier_Filter->Frequency_High / Fourier_Filter->Sampling_Frequency;
+
+	// 计算滤波器系统
+
+	switch (Fourier_Filter->Filter_Fourier_Type)
+	{
+	case (Filter_Fourier_Type_LOWPASS):
+	{
+		for (int i = 0; i < Fourier_Filter->Filter_Fourier_Order + 1; i++)
+		{
+			Fourier_Filter->System_Function[i] = omega_low / PI * Math_Sinc((i - Fourier_Filter->Filter_Fourier_Order / 2.0f) * omega_low);
+		}
+	}
+	break;
+	case (Filter_Fourier_Type_HIGHPASS):
+	{
+		for (int i = 0; i < Fourier_Filter->Filter_Fourier_Order + 1; i++)
+		{
+			Fourier_Filter->System_Function[i] = Math_Sinc((i - Fourier_Filter->Filter_Fourier_Order / 2.0f) * PI) - omega_high / PI * Math_Sinc((i - Fourier_Filter->Filter_Fourier_Order / 2.0f) * omega_high);
+		}
+	}
+	break;
+	case (Filter_Fourier_Type_BANDPASS):
+	{
+		for (int i = 0; i < Fourier_Filter->Filter_Fourier_Order + 1; i++)
+		{
+			Fourier_Filter->System_Function[i] = omega_high / PI * Math_Sinc((i - Fourier_Filter->Filter_Fourier_Order / 2.0f) * omega_high) - omega_low / PI * Math_Sinc((i - Fourier_Filter->Filter_Fourier_Order / 2.0f) * omega_low);
+		}
+	}
+	break;
+	case (Filter_Fourier_Type_BANDSTOP):
+	{
+		for (int i = 0; i < Fourier_Filter->Filter_Fourier_Order + 1; i++)
+		{
+			Fourier_Filter->System_Function[i] = Math_Sinc((i - Fourier_Filter->Filter_Fourier_Order / 2.0f) * PI) + omega_low / PI * Math_Sinc((i - Fourier_Filter->Filter_Fourier_Order / 2.0f) * omega_low) - omega_high / PI * Math_Sinc((i - Fourier_Filter->Filter_Fourier_Order / 2.0f) * omega_high);
+		}
+	}
+	break;
+	}
+
+	for (int i = 0; i < Fourier_Filter->Filter_Fourier_Order + 1; i++)
+	{
+		system_function_sum += Fourier_Filter->System_Function[i];
+	}
+
+	for (int i = 0; i < Fourier_Filter->Filter_Fourier_Order + 1; i++)
+	{
+		Fourier_Filter->System_Function[i] /= system_function_sum;
+	}
+}
+float test_Frequency_Low=10;
+/**
+ * @brief 滤波器调整值
+ *
+ */
+float Filter_Fourier_TIM_Adjust_PeriodElapsedCallback(Struct_Fourier_Filter *Fourier_Filter, float now)
+{
+
+	Fourier_Filter->Frequency_Low = test_Frequency_Low;
+	if (now > Fourier_Filter->Value_Constrain_High)
+		now = Fourier_Filter->Value_Constrain_High;
+
+	if (now < Fourier_Filter->Value_Constrain_Low)
+		now = Fourier_Filter->Value_Constrain_Low;
+
+			// 将当前值放入被卷积的信号中
+	Fourier_Filter->Input_Signal[Fourier_Filter->Signal_Flag] = now;
+	Fourier_Filter->Signal_Flag++;
+
+	// 若越界则轮回
+	if (Fourier_Filter->Signal_Flag == Fourier_Filter->Filter_Fourier_Order + 1)
+	{
+		Fourier_Filter->Signal_Flag = 0;
+	}
+
+	Fourier_Filter->Out = 0.0f;
+	for (int i = 0; i < Fourier_Filter->Filter_Fourier_Order + 1; i++)
+	{
+		Fourier_Filter->Out += Fourier_Filter->System_Function[i] * Fourier_Filter->Input_Signal[(Fourier_Filter->Signal_Flag + i) % (Fourier_Filter->Filter_Fourier_Order + 1)];
+	}
+	return Fourier_Filter->Out;
+}
+
+
 /**
  * @brief 初始化舵轮的PID参数。
  * @param steering_wheel 指向 steering_wheel_t 结构的指针。
@@ -89,17 +221,18 @@ void Steering_Wheel_PID_HandleInit(steering_wheel_t *steering_wheel)
 
 #ifdef AGV_BOARD_C
 	// 先把PID结构体置零
+		// 先把PID结构体置零
 	memset(&steering_wheel->directive_part.motor.PID_Handles, 0, sizeof(steering_wheel->directive_part.motor.PID_Handles));
 	memset(&steering_wheel->motion_part.motor.PID_Handles, 0, sizeof(steering_wheel->motion_part.motor.PID_Handles));
-	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hDefKpGain = 10;
+	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hDefKpGain = 7;
 	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hKpDivisorPOW2 = 6;
-	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hDefKdGain = 2;
+	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hDefKdGain = 0;
 	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hKdDivisorPOW2 = 0;
 	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hUpperOutputLimit = 2000;
 	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hLowerOutputLimit = -2000;
 
 	// 转向电机速度环 默认Kp Ki Kd 写入
-	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.hDefKpGain = 400;
+	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.hDefKpGain = 200;
 	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.hKpDivisorPOW2 = 1;
 	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.hDefKiGain = 50;
 	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.hKiDivisorPOW2 = 2;
@@ -125,18 +258,19 @@ void Steering_Wheel_PID_HandleInit(steering_wheel_t *steering_wheel)
 #endif
 
 #ifdef AGV_BOARD_D
-	// 先把PID结构体置零
+
+		// 先把PID结构体置零
 	memset(&steering_wheel->directive_part.motor.PID_Handles, 0, sizeof(steering_wheel->directive_part.motor.PID_Handles));
 	memset(&steering_wheel->motion_part.motor.PID_Handles, 0, sizeof(steering_wheel->motion_part.motor.PID_Handles));
-	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hDefKpGain = 10;
+	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hDefKpGain = 7;
 	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hKpDivisorPOW2 = 6;
-	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hDefKdGain = 2;
+	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hDefKdGain = 0;
 	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hKdDivisorPOW2 = 0;
 	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hUpperOutputLimit = 2000;
 	steering_wheel->directive_part.motor.PID_Handles.position_loop_handle.hLowerOutputLimit = -2000;
 
 	// 转向电机速度环 默认Kp Ki Kd 写入
-	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.hDefKpGain = 400;
+	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.hDefKpGain = 200;
 	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.hKpDivisorPOW2 = 1;
 	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.hDefKiGain = 50;
 	steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle.hKiDivisorPOW2 = 2;
@@ -198,6 +332,8 @@ STEERING_WHEEL_RETURN_T Steering_CheckHandleLegitimacy(steering_wheel_t *steerin
  */
 STEERING_WHEEL_RETURN_T Steering_Wheel_HandleInit(steering_wheel_t *steering_wheel)
 {
+
+	Filter_Fourier_Init(&Fourier_Filter, -10000, 10000, Filter_Fourier_Type_LOWPASS, 10, 0, 200, 50);
 	// 初始化舵轮列表
 	memset(&steering_handle_list, NULL, sizeof(steering_handle_list));
 
@@ -409,6 +545,26 @@ STEERING_WHEEL_RETURN_T Steering_Wheel_StatusUpdate(steering_wheel_t *steering_w
 		return STEERING_WHEEL_ILLEGAL_HANDLE;
 }
 
+/*
+ * 进行平均滤波
+ * 
+ * 
+ */
+int32_t Filter(int32_t new_data, int32_t *data_record)
+{
+	int32_t sum = 0.0;
+
+	for (uint8_t i = RECORD_NUM - 1; i > 0; i--) // 将现有数据后移一位
+	{
+		data_record[i] = data_record[i - 1];
+		sum += data_record[i - 1];
+	}
+	data_record[0] = new_data; // 第一位是新的数据
+	sum += new_data;
+
+	return sum / (RECORD_NUM*1.0); // 返回均值
+}
+
 /**
  * @brief 根据PID控制和协议命令更新电机的指令。
  * @param steering_wheel 舵轮的句柄
@@ -417,7 +573,9 @@ STEERING_WHEEL_RETURN_T Steering_Wheel_StatusUpdate(steering_wheel_t *steering_w
 int16_t testt;
 int16_t test_pos;
 int16_t test_pos_now;
-STEERING_WHEEL_RETURN_T Steering_Wheel_MotorCommandUpdate(steering_wheel_t *steering_wheel)
+int16_t test_torque_low_pass;
+STEERING_WHEEL_RETURN_T
+Steering_Wheel_MotorCommandUpdate(steering_wheel_t *steering_wheel)
 {
 
 	if (Steering_CheckHandleLegitimacy(steering_wheel) == STEERING_WHEEL_OK)
@@ -474,8 +632,17 @@ STEERING_WHEEL_RETURN_T Steering_Wheel_MotorCommandUpdate(steering_wheel_t *stee
 		test_pos_now = test_pos - temp_err;
 		steering_wheel->directive_part.command.protocol_speed = PID_Controller(&steering_wheel->directive_part.motor.PID_Handles.position_loop_handle, temp_err);
 		// steering_wheel->directive_part.command.protocol_speed	= testt;
+		steering_wheel->directive_part.command.protocol_speed = Filter(steering_wheel->directive_part.command.protocol_speed, record_data_exp_speed);
+
+		//steering_wheel->directive_part.status.protocol_speed = Filter(steering_wheel->directive_part.status.protocol_speed, record_data_act_speed);
+
+
 		temp_err = steering_wheel->directive_part.command.protocol_speed - steering_wheel->directive_part.status.protocol_speed;
 		steering_wheel->directive_part.motor.command.torque = PID_Controller(&steering_wheel->directive_part.motor.PID_Handles.velocity_loop_handle, temp_err);
+
+		// steering_wheel->directive_part.motor.command.torque = Filter(steering_wheel->directive_part.motor.command.torque, record_data_exp_torque);
+		
+
 		// 由于齿轮传动使得编码器转动方向为CW时，舵转动方向为CCW，反之亦然。所以要对称处理
 		if (steering_wheel->directive_part.encoder.parameter.encoder_directive_part_direction == DIRECTION_INVERSE)
 			steering_wheel->directive_part.motor.command.torque = steering_wheel->directive_part.motor.command.torque;
@@ -487,10 +654,14 @@ STEERING_WHEEL_RETURN_T Steering_Wheel_MotorCommandUpdate(steering_wheel_t *stee
 		calculate_torque_current_according_to_scaled_power(chassis_power_control.power_limit_max);
 #endif
 #if defined(DIRECTIVE_MOTOR_M3508)
+		
+		//test_torque_low_pass = Filter_Fourier_TIM_Adjust_PeriodElapsedCallback(&Fourier_Filter, steering_wheel->directive_part.motor.command.torque);
 		steering_wheel->directive_part.motor.M3508_kit.command.torque = steering_wheel->directive_part.motor.command.torque;
+
+		//steering_wheel->directive_part.motor.M3508_kit.command.torque = Filter(steering_wheel->directive_part.motor.M3508_kit.command.torque, record_data);
 #endif
 
-		return STEERING_WHEEL_OK;
+			return STEERING_WHEEL_OK;
 	}
 	else
 		return STEERING_WHEEL_ILLEGAL_HANDLE;

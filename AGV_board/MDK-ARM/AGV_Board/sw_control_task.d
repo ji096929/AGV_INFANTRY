@@ -5,6 +5,11 @@ agv_board\sw_control_task.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stdint.h
 agv_board\sw_control_task.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\math.h
 agv_board\sw_control_task.o: ..\task\SW_control_task.h
 agv_board\sw_control_task.o: ../APP/steering_wheel.h
+agv_board\sw_control_task.o: D:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\arm_math.h
+agv_board\sw_control_task.o: D:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm4.h
+agv_board\sw_control_task.o: D:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h
+agv_board\sw_control_task.o: D:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_armcc.h
+agv_board\sw_control_task.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\string.h
 agv_board\sw_control_task.o: ../APP/pid_regulator.h
 agv_board\sw_control_task.o: ../BSP/steering_wheel_bsp.h
 agv_board\sw_control_task.o: ../APP/M3508_gear.h

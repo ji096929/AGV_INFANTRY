@@ -33,6 +33,11 @@ agv_board\stm32f1xx_it.o: ../Core/Inc/stm32f1xx_it.h
 agv_board\stm32f1xx_it.o: ../Core/Inc/tim.h
 agv_board\stm32f1xx_it.o: ../task/SW_control_task.h
 agv_board\stm32f1xx_it.o: ../APP/steering_wheel.h
+agv_board\stm32f1xx_it.o: D:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\arm_math.h
+agv_board\stm32f1xx_it.o: D:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm4.h
+agv_board\stm32f1xx_it.o: D:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h
+agv_board\stm32f1xx_it.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\string.h
+agv_board\stm32f1xx_it.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\math.h
 agv_board\stm32f1xx_it.o: ../APP/pid_regulator.h
 agv_board\stm32f1xx_it.o: ../BSP/steering_wheel_bsp.h
 agv_board\stm32f1xx_it.o: ../APP/M3508_gear.h

@@ -126,12 +126,12 @@ void calculate_true_power(void)
     //    {
     if (chassis.supercap.state == 0)
     {
-        expect_supercap_per = 0.5;
+        expect_supercap_per = 0.6;
         // chassis_power_control.power_limit_max = chassis_power_control.power_limit_max + 5; // slightly greater than the maximum power, avoiding the capacitor being full all the time and improving energy utilization
     }
     else
     {
-        expect_supercap_per = -0.3;
+        expect_supercap_per = -0.5;
         // chassis_power_control.power_limit_max = chassis_power_control.power_limit_max + 80;
     }
     PID_Calculate(&supercap_pid, chassis.supercap.supercap_per, expect_supercap_per);

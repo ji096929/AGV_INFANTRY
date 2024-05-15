@@ -123,6 +123,7 @@
             "defines": [
                 "USE_HAL_DRIVER",
                 "STM32F105xC",
+                "ARM_MATH_CM4",
                 "__CC_ARM",
                 "__arm__",
                 "__align(x)=",

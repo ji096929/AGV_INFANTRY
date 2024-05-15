@@ -495,7 +495,8 @@ void CharChange(uint8_t Init_Flag)
 	uint8_t GimbalSmlBuf[] = "SMLBUF";
 
 	uint8_t FrictionOff[] = "OFF";
-	uint8_t FrictionOn[] = "ON";
+	uint8_t FrictionSingle[] = "Single";
+	uint8_t FrictionMulti[] = "Multi";
 
 	uint8_t SupercapOff[] = "OFF";
 	uint8_t SupercapOn[] = "ON";
@@ -599,12 +600,15 @@ void CharChange(uint8_t Init_Flag)
 	{
 		switch (connection.connection_rx.fric.flag)
 		{
-		case Booster_Control_Type_DISABLE:
+		case Booster_User_Control_Type_DISABLE:
 			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.50 * SCREEN_WIDTH, 20, sizeof(FrictionOff), 2, Green, FrictionChangeName, FrictionOff);
 			break;
 
-		default:
-			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.50 * SCREEN_WIDTH, 20, sizeof(FrictionOn), 2, Pink, FrictionChangeName, FrictionOn);
+		case Booster_User_Control_Type_SINGLE:
+			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.50 * SCREEN_WIDTH, 20, sizeof(FrictionSingle), 2, Pink, FrictionChangeName, FrictionSingle);
+
+		case Booster_User_Control_Type_MULTI:
+			Char_Draw(0, Op_Change, 0.9 * SCREEN_LENGTH, 0.50 * SCREEN_WIDTH, 20, sizeof(FrictionMulti), 2, Pink, FrictionChangeName, FrictionMulti);
 			break;
 		}
 	}

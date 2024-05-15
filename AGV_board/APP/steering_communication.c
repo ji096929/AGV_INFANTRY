@@ -353,13 +353,18 @@ steering_communication_pack_t steering_communication_SET_VELOCITY_VECTOR_handler
 /*
 		用于处理cmd_id 为 DISABLE_CONTROLLING 的情况
 */
+uint8_t a_1;
+uint8_t a_2;
 steering_communication_pack_t steering_communication_SET_DISABLE_OPERATION_MODE_handler(steering_wheel_t *steering, steering_communication_pack_t rx_pack)
 {
 	rx_pack.cmd_id	= RETURN_CMD_ID;
+	
+	
+	
 	uint8_t deg_mode,arc_mode;
-	memcpy(&deg_mode,(uint8_t)&rx_pack.data2,1);
+	deg_mode=rx_pack.data2;
 	Steering_Wheel_SetProtocolDegMode(steering,deg_mode);
-	memcpy(&arc_mode,(uint8_t)&rx_pack.data2+1,1);
+	arc_mode=rx_pack.data2>>8;
 	Steering_Wheel_SetProtocolArcMode(steering,arc_mode);
 	steering->parameter.enable=DISABLE_CONTROLLING;
 	return rx_pack;
@@ -371,9 +376,9 @@ steering_communication_pack_t steering_communication_SET_ENABLE_OPERATION_MODE_h
 {
 	rx_pack.cmd_id	= RETURN_CMD_ID;
 	uint8_t deg_mode,arc_mode;
-	memcpy(&deg_mode,(uint8_t)&rx_pack.data2,1);
+	deg_mode=rx_pack.data2;
 	Steering_Wheel_SetProtocolDegMode(steering,deg_mode);
-	memcpy(&arc_mode,(uint8_t)&rx_pack.data2+1,1);
+	arc_mode=rx_pack.data2>>8;
 	Steering_Wheel_SetProtocolArcMode(steering,arc_mode);
 	steering->parameter.enable=ENABLE_CONTROLLING;
 	return rx_pack;

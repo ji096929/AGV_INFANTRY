@@ -15,8 +15,8 @@ extern "C" {
 //舵小板选择
 //#define AGV_BOARD_A //不同舵轮对应宏定义
 //#define AGV_BOARD_B
-//#define AGV_BOARD_C
-#define AGV_BOARD_D
+#define AGV_BOARD_C
+//#define AGV_BOARD_D
 //兵种选择
 //#define AGV_HERO
 #define AGV_STANDARD	
@@ -36,6 +36,8 @@ extern "C" {
 #define C_STEERING_CAN_ID 0x1CU
 #define D_STEERING_CAN_ID 0x1DU
 
+#define FILTER_FOURIER_ORDER 50
+
 /* SYSTEM Settings, DONT CHANGE EASILY! --------------------------------------*/
 #define PROTOCOL_POSITION_LSBS		8191	// 统一的角度分辨率。从零点开始CW方向，将角度等分为 PROTOCOL_POSITION_LSBS 份。
 #define HALF_PROTOCOL_POSITION_LSBS		4095
@@ -48,6 +50,7 @@ extern "C" {
   */
 #if defined(STM32F105) | defined(STM32F407)
 	#include <stdint.h>
+#include "arm_math.h"
 #endif
 
 #include "pid_regulator.h"
@@ -199,6 +202,59 @@ typedef struct
 	uint8_t				CANID;
 }steering_handle_list_t;
 
+typedef enum
+{
+	Filter_Fourier_Type_LOWPASS = 0,
+	Filter_Fourier_Type_HIGHPASS,
+	Filter_Fourier_Type_BANDPASS,
+	Filter_Fourier_Type_BANDSTOP,
+} Enum_Filter_Fourier_Type;
+
+/**
+ * @brief Reusable, Fourier滤波器算法
+ *
+ */
+typedef struct
+{
+
+    //输入限幅
+    float Value_Constrain_Low;
+    float Value_Constrain_High;
+    int Filter_Fourier_Order;
+
+    //滤波器类型
+    Enum_Filter_Fourier_Type Filter_Fourier_Type;
+    //滤波器特征低频
+    float Frequency_Low;
+    //滤波器特征高频
+    float Frequency_High;
+    //滤波器采样频率
+    float Sampling_Frequency;
+
+    //常量
+
+    //内部变量
+
+    //卷积系统函数向量
+    float System_Function[FILTER_FOURIER_ORDER + 1];
+
+    //输入信号向量
+    float Input_Signal[FILTER_FOURIER_ORDER + 1];
+
+    //新数据指示向量
+    uint8_t Signal_Flag;
+
+    //读变量
+
+    //输出值
+    float Out;
+
+    //写变量
+
+    //内部函数
+} Struct_Fourier_Filter;
+
+
 STEERING_WHEEL_RETURN_T Steering_Wheel_MotorFeedbackUpdate(steering_wheel_t *steering_wheel);
 
 STEERING_WHEEL_RETURN_T Steering_Wheel_MotorCommandUpdate(steering_wheel_t *steering_wheel);
@@ -220,6 +276,7 @@ steering_wheel_t *Steering_FindSteeringHandle_via_CANID(uint8_t CANID);
 void Alive_Tect(void);
 extern steering_wheel_t steering_wheel;
 extern uint32_t total_count;
+extern Struct_Fourier_Filter Fourier_Filter;
 
 /* CRITICAL Settings, NEVER CHANGE! ------------------------------------------*/
 #define STEERING_ILLEGAL_HANDLE (steering_wheel_t*)NULL

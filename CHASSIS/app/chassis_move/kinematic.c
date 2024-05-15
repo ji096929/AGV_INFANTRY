@@ -97,7 +97,7 @@ void AGV_Calc_Angle_Speed(CHASSIS_T *chassis)
 
 	// BD电机安装方向不同
 	chassis->A_motor.target_speed.rpm = -chassis->A_motor.target_speed.linear_vel * VEL2RPM;
-	chassis->B_motor.target_speed.rpm = chassis->B_motor.target_speed.linear_vel * VEL2RPM;
+	chassis->B_motor.target_speed.rpm = -chassis->B_motor.target_speed.linear_vel * VEL2RPM;
 	chassis->C_motor.target_speed.rpm = -chassis->C_motor.target_speed.linear_vel * VEL2RPM;
 	chassis->D_motor.target_speed.rpm = -chassis->D_motor.target_speed.linear_vel * VEL2RPM;
 }

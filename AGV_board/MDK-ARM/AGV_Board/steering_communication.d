@@ -3,6 +3,12 @@ agv_board\steering_communication.o: ..\APP\steering_communication.h
 agv_board\steering_communication.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\stdint.h
 agv_board\steering_communication.o: ../BSP/steering_communication_bsp.h
 agv_board\steering_communication.o: ..\APP\steering_wheel.h
+agv_board\steering_communication.o: D:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\arm_math.h
+agv_board\steering_communication.o: D:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm4.h
+agv_board\steering_communication.o: D:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h
+agv_board\steering_communication.o: D:\software\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_armcc.h
+agv_board\steering_communication.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\string.h
+agv_board\steering_communication.o: D:\software\keil5\ARM\ARMCC\Bin\..\include\math.h
 agv_board\steering_communication.o: ..\APP\pid_regulator.h
 agv_board\steering_communication.o: ../BSP/steering_wheel_bsp.h
 agv_board\steering_communication.o: ..\APP\M3508_gear.h
@@ -23,7 +29,6 @@ agv_board\steering_communication.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include
 agv_board\steering_communication.o: ../Drivers/CMSIS/Include/core_cm3.h
 agv_board\steering_communication.o: ../Drivers/CMSIS/Include/cmsis_version.h
 agv_board\steering_communication.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
-agv_board\steering_communication.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
 agv_board\steering_communication.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h
 agv_board\steering_communication.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 agv_board\steering_communication.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h

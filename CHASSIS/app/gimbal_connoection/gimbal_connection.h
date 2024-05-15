@@ -24,11 +24,9 @@ typedef enum
 
 typedef enum
 {
-	Booster_Control_Type_DISABLE = 0,
-	Booster_Control_Type_CEASEFIRE,
-	Booster_Control_Type_SINGLE,
-	Booster_Control_Type_REPEATED,
-	Booster_Control_Type_MULTI, // ����
+	Booster_User_Control_Type_DISABLE = 0,
+	Booster_User_Control_Type_SINGLE = 1,
+	Booster_User_Control_Type_MULTI = 2,
 } FRIC_FLAG_E;
 
 typedef enum
