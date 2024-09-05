@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Prerequisites
 *.d
 
@@ -32,6 +33,8 @@
 *.out
 *.app
 =======
+=======
+>>>>>>> origin/gimbal
 
 workspace.code-workspace
 
@@ -69,11 +72,22 @@ JLinkLog.txt
 *.mxproject
 *.jdebug.*
 *.exf
+<<<<<<< HEAD
+=======
+*._2i
+*.json
+*.log
+
+>>>>>>> origin/gimbal
 
 !*.uvprojx
 !*.h
 !*.c
 !*.ioc
 !*.bin
+<<<<<<< HEAD
 !*.hex
 >>>>>>> origin/chassis
+=======
+!*.hex
+>>>>>>> origin/gimbal
