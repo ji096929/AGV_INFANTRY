@@ -374,7 +374,6 @@
           "../app",
           "../bsp",
           "../bsp/fifo",
-          ".cmsis/include",
           "RTE/_CHASSIS"
         ],
         "libList": [],
